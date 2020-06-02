@@ -15,5 +15,14 @@ return [
     /**
      * The login attribute to use. Default is email, but can be overwritten, for example, username
      */
-    'login_attribute' => env('MOODLE_LOGIN_ATTRIBUTE', 'email')
+    'login_attribute' => env('MOODLE_LOGIN_ATTRIBUTE', 'email'),
+
+    /**
+     * User attributes to sync to the user model
+     * db field name => moodle field name
+     */
+    'sync_attributes' => [
+        'name' => 'fullname',
+        'email' => 'email'
+    ],
 ];

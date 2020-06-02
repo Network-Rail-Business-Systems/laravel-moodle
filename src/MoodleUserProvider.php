@@ -95,6 +95,7 @@ class MoodleUserProvider implements UserProvider
     }
 
     /**
+     * Find or create a user
      * Syncs a users details from the provided moodle data
      *
      * @param array $data
@@ -102,14 +103,17 @@ class MoodleUserProvider implements UserProvider
      */
     public function syncUser(array $data)
     {
+        $userSync = collect(config('laramoodle.sync_attributes'))
+            ->map(function ($item) use ($data) {
+                return $data[$item];
+            })
+            ->toArray();
+
         return User::firstOrCreate(
             [
                 'username' => $data['username']
             ],
-            [
-                'name' => $data['firstname'] . ' ' . $data['lastname'],
-                'email' => $data['email']
-            ]
+            $userSync
         );
     }
 }

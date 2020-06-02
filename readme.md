@@ -20,7 +20,7 @@ php artisan migrate
 
 ### Configuration
 
-Optionally, publish the config file.
+Optionally, publish the config file. This is required if you want to customise which fields are synchronised from Moodle to your user model.
 
 ```bash
 php artisan vendor:publish
