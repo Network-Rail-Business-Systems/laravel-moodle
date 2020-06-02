@@ -1,0 +1,34 @@
+{
+    "name": "nrbusinesssystems/laramoodle",
+    "description": "A Laravel package to authenticate against Moodle and retreive course data",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Chris Rhymes",
+            "email": "christopher.rhymes@networkrail.co.uk"
+        }
+    ],
+    "require": {
+        "php": ">=7.3",
+        "doctrine/dbal": "^2.10"
+    },
+    "autoload": {
+        "psr-4": {
+            "NRBusinessSystems\\LaraMoodle\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "NRBusinessSystems\\LaraMoodle\\ServiceProvider",
+                "NRBusinessSystems\\LaraMoodle\\AuthServiceProvider"
+            ],
+            "aliases": {
+                "LaraMoodle": "NRBusinessSystems\\LaraMoodle\\Facade"
+            }
+        }
+    },
+    "require-dev": {
+        "laravel/framework": "^7.0"
+    }
+}
