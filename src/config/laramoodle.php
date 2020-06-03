@@ -25,4 +25,6 @@ return [
         'name' => 'fullname',
         'email' => 'email'
     ],
+
+    'user_model' => App\User::class,
 ];

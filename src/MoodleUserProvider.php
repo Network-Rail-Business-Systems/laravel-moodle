@@ -11,6 +11,7 @@ class MoodleUserProvider implements UserProvider
 {
     private $http;
     private $adminToken;
+    private $userModel;
 
     public function __construct()
     {
@@ -19,6 +20,8 @@ class MoodleUserProvider implements UserProvider
         ]);
 
         $this->adminToken = config('laramoodle.admin_token');
+
+        $this->userModel = config('laramoodle.user_model');
     }
 
     /**
@@ -69,7 +72,7 @@ class MoodleUserProvider implements UserProvider
             return $this->syncUser($data['users'][0]);
         }
 
-        return new User;
+        return new $this->userModel;
     }
 
     /**
@@ -109,7 +112,7 @@ class MoodleUserProvider implements UserProvider
             })
             ->toArray();
 
-        return User::firstOrCreate(
+        return $this->userModel::firstOrCreate(
             [
                 'username' => $data['username']
             ],
