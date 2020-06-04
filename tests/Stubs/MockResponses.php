@@ -30,7 +30,8 @@ class MockResponses
                     'profileimageurlsmall' => 'http://moodle.test/theme/image.php/moove/core/1590132460/u/f2',
                     'profileimageurl' => 'http://moodle.test/theme/image.php/moove/core/1590132460/u/f1',
                 ]
-            ]
+            ],
+            'warnings' => []
         ];
     }
 
@@ -243,4 +244,61 @@ class MockResponses
         ];
     }
 
+    public static function enrolledUsers()
+    {
+        return [
+            [
+                "id" => 3,
+                "username" => "testuser",
+                "firstname" => "Test",
+                "lastname" => "User",
+                "fullname" => "Test User",
+                "email" => "test.user@fake.email",
+                "department" => "",
+                "firstaccess" => 1589799176,
+                "lastaccess" => 1589872796,
+                "lastcourseaccess" => 0,
+                "description" => "",
+                "descriptionformat" => 1,
+                "profileimageurlsmall" => "http =>//moodle.test/theme/image.php/moove/core/1590132460/u/f2",
+                "profileimageurl" => "http =>//moodle.test/theme/image.php/moove/core/1590132460/u/f1",
+                "groups" => [],
+                "roles" => [
+                    [
+                        "roleid" => 5,
+                        "name" => "",
+                        "shortname" => "student",
+                        "sortorder" => 0
+                    ]
+                ],
+                "preferences" => [],
+                "enrolledcourses" => [
+                    [
+                        "id" => 2,
+                        "fullname" => "My First Course",
+                        "shortname" => "Short Course"
+                    ]
+                ]
+            ]
+        ];
+    }
+
+    public static function courseActivityStatuses()
+    {
+        return [
+            'statuses' => [
+                [
+                    "cmid" => 2,
+                    "modname" => "page",
+                    "instance" => 1,
+                    "state" => 1,
+                    "timecompleted" => 1589877760,
+                    "tracking" => 2,
+                    "overrideby" => null,
+                    "valueused" => false
+                ]
+            ],
+            'warnings' => []
+        ];
+    }
 }

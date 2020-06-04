@@ -51,11 +51,14 @@ In order to access data from Moodle, it needs to be configured first as the web 
     * Site Administration > Plugins > Web services > External Services
     * On the newly created Web Service, click functions and add the following
         * core_user_get_users
+        * core_completion_get_course_completion_status
         * core_course_get_courses
         * core_course_get_contents
         * core_course_get_course_module
         * core_course_get_courses
         * core_course_search_courses
+        * core_enrol_get_enrolled_users
+        * enrol_manual_enrol_users
         * mod_page_get_pages_by_courses
         * mod_book_get_books_by_courses
         * mod_scorm_get_scorms_by_courses
@@ -136,4 +139,53 @@ Once you know the module id from the course contents you can get more details ab
 $module = LaraMoodle::getCourseModuleById(11);
 
 echo $module->cm->name; // Topic name
+```
+
+### Get Course Pages
+
+Once you know the course Id you can get the pages for the course.
+
+```php
+$pages = LaraMoodle::getCoursePages(1);
+
+echo $pages->pages[0]->name; // Page name
+```
+
+### Search Users
+
+Search for users. Default search field is username if not provided. 
+
+```php
+// Defaults to searching by username
+$users = LaraMoodle::searchUsers('testuser');
+
+// Override to search by email address
+$users = LaraMoodle::searchUsers('test.user@fake.email', 'email');
+
+echo $users->users[0]->fullname; // Test User
+```
+
+### Enrol User On A Course
+
+You can enrol a user onto a course by specifying the user id then the course id. By default they have the student role, but you can specify the role id.
+
+There is a `null` response from Moodle when successful, but enrolUserOnCourse returns `true` when successful and MoodleException if it fails.
+
+```php
+// Defaults role to student
+LaraMoodle::enrolUserOnCourse(2, 2);
+
+// Override role to editing teacher
+LaraMoodle::enrolUserOnCourse(2, 2, 3);
+```
+
+### Get Enrolled Users For A Course
+
+You can get a collection of users enrolled on a course. These are Moodle users and not Laravel user models.
+
+```php
+$enrolledUsers = LaraMoodle::getEnrolledUsersForCourse(2);
+
+echo $enrolledUsers[0]->fullname; // Test User
+echo $enrolledUsers[0]->roles[0]->shortname; // Student
 ```
