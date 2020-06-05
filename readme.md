@@ -1,4 +1,4 @@
-#LaraMoodle
+# LaraMoodle
 
 A Laravel package to authenticate with Moodle and retrieve course information.
 
