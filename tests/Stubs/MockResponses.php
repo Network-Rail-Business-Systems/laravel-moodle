@@ -409,7 +409,27 @@ class MockResponses
             ],
             "warnings" => []
         ];
+    }
 
-
+    public static function categories()
+    {
+        return [
+            [
+                "id" => 1,
+                "name" => "Miscellaneous",
+                "idnumber" => null,
+                "description" => "",
+                "descriptionformat" => 1,
+                "parent" => 0,
+                "sortorder" => 10000,
+                "coursecount" => 1,
+                "visible" => 1,
+                "visibleold" => 1,
+                "timemodified" => 1589550212,
+                "depth" => 1,
+                "path" => "/1",
+                "theme" => ""
+            ]
+        ];
     }
 }

@@ -3,6 +3,7 @@
 namespace NRBusinessSystems\LaraMoodle;
 
 use Illuminate\Support\Facades\Http;
+use NRBusinessSystems\LaraMoodle\DataTransferObjects\Category;
 use NRBusinessSystems\LaraMoodle\DataTransferObjects\CourseActivityStatuses;
 use NRBusinessSystems\LaraMoodle\DataTransferObjects\CourseContent;
 use NRBusinessSystems\LaraMoodle\DataTransferObjects\CourseEnrolledUser;
@@ -51,6 +52,29 @@ class LaraMoodle
     }
 
     /**
+     * Get courses for a specific category ID
+     *
+     * @param $categoryId
+     * @return \Illuminate\Support\Collection
+     */
+    public function getCoursesByCategory($categoryId)
+    {
+        $courses = $this->http->asForm()
+            ->post(
+                "/rest/server.php?wstoken={$this->token}&wsfunction=core_course_get_courses_by_field&moodlewsrestformat=json",
+                [
+                    'field' => 'category',
+                    'value' => $categoryId
+                ]
+            )
+            ->json();
+
+        return collect($courses)->map(function($course) {
+            return new Course($course);
+        });
+    }
+
+    /**
      * Return a course object for the id
      *
      * @param $id
@@ -76,9 +100,10 @@ class LaraMoodle
      * @param string $term
      * @param int $page
      * @param int $perPage
+     * @param int $onlyEnrolled
      * @return CourseSearch
      */
-    public function searchCourses(string $term, int $page = 0, int $perPage = 15)
+    public function searchCourses(string $term, int $page = 0, int $perPage = 15, int $onlyEnrolled = 0)
     {
         $courses = $this->http->asForm()
             ->post(
@@ -87,7 +112,8 @@ class LaraMoodle
                     'criterianame' => 'search',
                     'criteariavalue' => $term,
                     'page' => $page,
-                    'perpage' => $perPage
+                    'perpage' => $perPage,
+                    'limittoenrolled' => $onlyEnrolled
                 ]
             )
             ->json();
@@ -296,6 +322,15 @@ class LaraMoodle
         });
     }
 
+    /**
+     * Get badges for a specific user.
+     * By default it will search for the current user and all courses without any parameters
+     *
+     * @param int $userId
+     * @param int $courseId
+     * @param string $search
+     * @return array
+     */
     public function getBadges(int $userId = 0, int $courseId = 0, string $search = '')
     {
         $badges = $this->http->asForm()
@@ -310,5 +345,49 @@ class LaraMoodle
             ->json();
 
         return $badges;
+    }
+
+    /**
+     * Return a collection of categories
+     *
+     * @return \Illuminate\Support\Collection
+     */
+    public function getCategories()
+    {
+        $categories = $this->http->asForm()
+            ->get(
+                "/rest/server.php?wstoken={$this->token}&wsfunction=core_course_get_categories&moodlewsrestformat=json"
+            )
+            ->json();
+
+        return collect($categories)->map(function($category) {
+            return new Category($category);
+        });
+    }
+
+    /**
+     * Search categories
+     *
+     * @param string $searchTerm
+     * @param string $field
+     * @return \Illuminate\Support\Collection
+     */
+    public function searchCategories(string $searchTerm, string $field = 'name')
+    {
+        $categories = $this->http->asForm()
+            ->post(
+                "/rest/server.php?wstoken={$this->token}&wsfunction=core_course_get_categories&moodlewsrestformat=json",
+                [
+                    'criteria' => [
+                        'key' => $field,
+                        'value' => $searchTerm
+                    ]
+                ]
+            )
+            ->json();
+
+        return collect($categories)->map(function($category) {
+            return new Category($category);
+        });
     }
 }

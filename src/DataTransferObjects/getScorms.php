@@ -9,5 +9,6 @@ class getScorms extends DataTransferObject
     /** @var \NRBusinessSystems\LaraMoodle\DataTransferObjects\Scorm[] */
     public $scorms;
 
+    /** @var array */
     public $warnings;
 }

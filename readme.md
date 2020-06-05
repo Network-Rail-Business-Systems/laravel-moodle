@@ -53,7 +53,7 @@ In order to access data from Moodle, it needs to be configured first as the web 
         * core_badges_get_user_badges
         * core_completion_get_activities_completion_status
         * core_completion_get_course_completion_status
-        * core_course_get_courses
+        * core_course_get_categories
         * core_course_get_contents
         * core_course_get_course_module
         * core_course_get_courses
@@ -120,6 +120,12 @@ Optionally pass in page number (integer) and per page (integer).
 
 ```php
 $searchResults = LaraMoodle::searchCourses('search term', 2, 15);
+```
+
+You can also limit the search to only enrolled courses by specifying 1 as the 4th parameter.
+
+```php
+$searchResults = LaraMoodle::searchCourses('search term', 2, 15, 1);
 ```
 
 ### Get Course Contents By Id
@@ -218,4 +224,24 @@ $enrolledUsers = LaraMoodle::getEnrolledUsersForCourse(2);
 
 echo $enrolledUsers[0]->fullname; // Test User
 echo $enrolledUsers[0]->roles[0]->shortname; // Student
+```
+
+### Get Categories
+
+Get all categories. 
+
+```php
+$categories = LaraMoodle::getCategories();
+
+echo $categories[0]->name; // Category name
+```
+
+### Search Categories
+
+Search categories. Defaults to searching name if second parameter isn't passed.
+
+```php
+$categories = LaraMoodle::searchCategories('Business Briefing System');
+
+echo $categories[0]->name; // Business Briefing System
 ```
