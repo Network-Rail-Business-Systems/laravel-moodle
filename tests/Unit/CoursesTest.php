@@ -30,13 +30,13 @@ class CoursesTest extends TestCase
         $this->assertEquals('Intro Course', $courses[0]->shortname);
     }
 
-    public function test_get_course_by_id()
+    public function test_get_course()
     {
         Http::fake([
             '*' => Http::response(MockResponses::getCourses(), 200)
         ]);
 
-        $course = LaraMoodle::getCourseById(2);
+        $course = LaraMoodle::getCourse(2);
 
         $this->assertNotNull($course);
         $this->assertEquals('My First Course', $course->fullname);
@@ -49,7 +49,7 @@ class CoursesTest extends TestCase
             '*' => Http::response(MockResponses::getCourseContents(), 200)
         ]);
 
-        $contents = LaraMoodle::getCourseContentsById(2);
+        $contents = LaraMoodle::getCourseContents(2);
 
         $this->assertNotNull($contents);
         $this->assertCount(1, $contents);
@@ -77,9 +77,48 @@ class CoursesTest extends TestCase
             '*' => Http::response(MockResponses::getCourseModule(), 200)
         ]);
 
-        $module = LaraMoodle::getCourseModuleById(1);
+        $module = LaraMoodle::getCourseModule(1);
 
         $this->assertNotNull($module);
         $this->assertEquals('My first module', $module->cm->name);
+    }
+
+    public function test_get_course_pages()
+    {
+        Http::fake([
+            '*' => Http::response(MockResponses::coursePages(), 200)
+        ]);
+
+        $pages = LaraMoodle::getCoursePages(2);
+
+        $this->assertNotNull($pages);
+        $this->assertEquals('My First Page', $pages->pages[0]->name);
+        $this->assertEquals('Page Image.png', $pages->pages[0]->contentfiles[0]->filename);
+    }
+
+    public function test_get_course_scorm()
+    {
+        Http::fake([
+            '*' => Http::response(MockResponses::getScorms(), 200)
+        ]);
+
+        $scorms = LaraMoodle::getCourseScorms(3);
+
+        $this->assertNotNull($scorms);
+        $this->assertEquals('Example scorm', $scorms->scorms[0]->name);
+        $this->assertEquals(3, $scorms->scorms[0]->course);
+    }
+
+    public function test_course_completion_activities()
+    {
+        Http::fake([
+            '*' => Http::response(MockResponses::courseActivityStatuses(), 200)
+        ]);
+
+        $activityStatuses = LaraMoodle::getCourseActivitiesCompletion(2, 2);
+
+        $this->assertNotNull($activityStatuses);
+        $this->assertEquals('page', $activityStatuses->statuses[0]->modname);
+        $this->assertEquals('1', $activityStatuses->statuses[0]->state);
     }
 }

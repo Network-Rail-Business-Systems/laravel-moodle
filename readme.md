@@ -50,7 +50,8 @@ In order to access data from Moodle, it needs to be configured first as the web 
 2. Enable the following functions in the new Moodle web service
     * Site Administration > Plugins > Web services > External Services
     * On the newly created Web Service, click functions and add the following
-        * core_user_get_users
+        * core_badges_get_user_badges
+        * core_completion_get_activities_completion_status
         * core_completion_get_course_completion_status
         * core_course_get_courses
         * core_course_get_contents
@@ -58,6 +59,7 @@ In order to access data from Moodle, it needs to be configured first as the web 
         * core_course_get_courses
         * core_course_search_courses
         * core_enrol_get_enrolled_users
+        * core_user_get_users
         * enrol_manual_enrol_users
         * mod_page_get_pages_by_courses
         * mod_book_get_books_by_courses
@@ -98,7 +100,7 @@ echo $courses[0]->fullname; // My First Course
 Once you know the course ID (int) you can get a specific course.
 
 ```php
-$course = LaraMoodle::getCourseById(2);
+$course = LaraMoodle::getCourse(2);
 
 echo $course->fullname; // My First Course
 ```
@@ -125,7 +127,7 @@ $searchResults = LaraMoodle::searchCourses('search term', 2, 15);
 Once you know the course Id you can get the contents of a specific course.
 
 ```php
-$courseContents = LaraMoodle::getCourseContentsById(1);
+$courseContents = LaraMoodle::getCourseContents(1);
 
 echo $courseContents[0]->name; // Topic name
 echo $courseContents[0]->modules[0]->name; // Activity name
@@ -136,7 +138,7 @@ echo $courseContents[0]->modules[0]->name; // Activity name
 Once you know the module id from the course contents you can get more details about the module.
 
 ```php
-$module = LaraMoodle::getCourseModuleById(11);
+$module = LaraMoodle::getCourseModule(11);
 
 echo $module->cm->name; // Topic name
 ```
@@ -149,6 +151,34 @@ Once you know the course Id you can get the pages for the course.
 $pages = LaraMoodle::getCoursePages(1);
 
 echo $pages->pages[0]->name; // Page name
+```
+
+### Get Course Scorms
+
+Once you know the course Id you can get the scorms for the course.
+
+```php
+$scorms = LaraMoodle::getCourseScorms(1);
+
+echo $scorms->scorms[0]->name; // Example scorm
+```
+
+### Get Course Completion
+
+You can get the course completion status by passing in the user Id and the course Id.
+
+```php
+$completion = LaraMoodle::getCourseCompletion(2, 2);
+```
+
+### Get Course Activities Completion
+
+You can get details of a course's activities completion by passing in the user Id and the course Id. 
+
+```php
+$activities = LaraMoodle::getCourseActivitiesCompletion(2, 2);
+
+echo $activities->
 ```
 
 ### Search Users

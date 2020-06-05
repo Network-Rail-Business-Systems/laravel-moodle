@@ -26,5 +26,14 @@ return [
         'email' => 'email'
     ],
 
+    /**
+     * The user model in your app
+     */
     'user_model' => App\User::class,
+
+    /**
+     * The default ID of student.
+     * Overwrite in the env file if you would like a different default role id when a user is enrolled onto a course
+     */
+    'student_role_id' => env('MOODLE_STUDENT_ROLE_ID', 5),
 ];

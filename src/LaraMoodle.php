@@ -9,6 +9,7 @@ use NRBusinessSystems\LaraMoodle\DataTransferObjects\CourseEnrolledUser;
 use NRBusinessSystems\LaraMoodle\DataTransferObjects\CourseModuleById;
 use NRBusinessSystems\LaraMoodle\DataTransferObjects\CoursePages;
 use NRBusinessSystems\LaraMoodle\DataTransferObjects\CourseSearch;
+use NRBusinessSystems\LaraMoodle\DataTransferObjects\getScorms;
 use NRBusinessSystems\LaraMoodle\DataTransferObjects\GetUsers;
 use NRBusinessSystems\LaraMoodle\Exceptions\MoodleException;
 use NRBusinessSystems\LaraMoodle\Exceptions\MoodleTokenMissingException;
@@ -55,7 +56,7 @@ class LaraMoodle
      * @param $id
      * @return Course
      */
-    public function getCourseById(int $id)
+    public function getCourse(int $id)
     {
         $course = $this->http->asForm()
             ->post(
@@ -100,7 +101,7 @@ class LaraMoodle
      * @param $id
      * @return \Illuminate\Support\Collection
      */
-    public function getCourseContentsById(int $id)
+    public function getCourseContents(int $id)
     {
         $courseContents = $this->http->get(
                 "?wstoken={$this->token}&moodlewsrestformat=json&wsfunction=core_course_get_contents&courseid={$id}"
@@ -118,7 +119,7 @@ class LaraMoodle
      * @param $id
      * @return CourseModuleById
      */
-    public function getCourseModuleById($id)
+    public function getCourseModule($id)
     {
         $module = $this->http
             ->get(
@@ -146,6 +147,20 @@ class LaraMoodle
             ->json();
 
         return new CoursePages($pages);
+    }
+
+    public function getCourseScorms(int $id)
+    {
+        $scorms = $this->http->asForm()
+            ->post(
+                "?wstoken={$this->token}&moodlewsrestformat=json&wsfunction=mod_scorm_get_scorms_by_courses",
+                [
+                    'courseids' => [$id]
+                ]
+            )
+            ->json();
+
+        return new getScorms($scorms);
     }
 
     /**
@@ -199,7 +214,6 @@ class LaraMoodle
         }
 
         return new CourseActivityStatuses($completion);
-
     }
 
     /**
@@ -238,14 +252,14 @@ class LaraMoodle
      * @return bool
      * @throws MoodleException
      */
-    public function enrolUserOnCourse(int $userId, int $courseId, $roleId = 5)
+    public function enrolUserOnCourse(int $userId, int $courseId, $roleId = null)
     {
         $enrol = $this->http->asForm()
             ->post(
                 "/webservice/rest/server.php?wstoken={$this->token}&wsfunction=enrol_manual_enrol_users&moodlewsrestformat=json",
                 [
                     'enrolements' => [
-                        'roleid' => $roleId,
+                        'roleid' => $roleId ?? config('laramoodle.student_role_id'),
                         'userid' => $userId,
                         'courseid' => $courseId
                     ]
@@ -282,5 +296,19 @@ class LaraMoodle
         });
     }
 
+    public function getBadges(int $userId = 0, int $courseId = 0, string $search = '')
+    {
+        $badges = $this->http->asForm()
+            ->post(
+                "/webservice/rest/server.php?wstoken={$this->token}&wsfunction=core_badges_get_user_badges&moodlewsrestformat=json",
+                [
+                    'userid' => $userId,
+                    'courseid' => $courseId,
+                    'search' => $search
+                ]
+            )
+            ->json();
 
+        return $badges;
+    }
 }

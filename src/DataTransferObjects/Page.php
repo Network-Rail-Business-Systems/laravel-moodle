@@ -1,8 +1,6 @@
 <?php
 
-
 namespace NRBusinessSystems\LaraMoodle\DataTransferObjects;
-
 
 use Spatie\DataTransferObject\DataTransferObject;
 
@@ -46,7 +44,7 @@ class Page extends DataTransferObject
     public $legacyfileslast;
 
     /** @var integer **/
-    public $diplay;
+    public $display;
 
     /** @var string **/
     public $displayoptions;
