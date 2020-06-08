@@ -30,6 +30,20 @@ class CoursesTest extends TestCase
         $this->assertEquals('Intro Course', $courses[0]->shortname);
     }
 
+    public function test_get_courses_by_category()
+    {
+        Http::fake([
+            '*' => Http::response(MockResponses::getCourses(), 200)
+        ]);
+
+        $courses = LaraMoodle::getCoursesByCategory(1);
+
+        $this->assertNotNull($courses);
+        $this->assertCount(1, $courses);
+        $this->assertEquals('My First Course', $courses[0]->fullname);
+        $this->assertEquals('Intro Course', $courses[0]->shortname);
+    }
+
     public function test_get_course()
     {
         Http::fake([

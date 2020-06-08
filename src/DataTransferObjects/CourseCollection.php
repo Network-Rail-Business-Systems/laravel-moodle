@@ -15,4 +15,9 @@ class CourseCollection extends DataTransferObjectCollection
     {
         return parent::current();
     }
+
+    public static function create(array $data): CourseCollection
+    {
+        return new static(Course::arrayOf($data));
+    }
 }
