@@ -10,6 +10,7 @@ use NRBusinessSystems\LaraMoodle\DataTransferObjects\CourseEnrolledUser;
 use NRBusinessSystems\LaraMoodle\DataTransferObjects\CourseModuleById;
 use NRBusinessSystems\LaraMoodle\DataTransferObjects\CoursePages;
 use NRBusinessSystems\LaraMoodle\DataTransferObjects\CourseSearch;
+use NRBusinessSystems\LaraMoodle\DataTransferObjects\GetCoursesByField;
 use NRBusinessSystems\LaraMoodle\DataTransferObjects\getScorms;
 use NRBusinessSystems\LaraMoodle\DataTransferObjects\GetUsers;
 use NRBusinessSystems\LaraMoodle\Exceptions\MoodleException;
@@ -37,31 +38,36 @@ class LaraMoodle
     /**
      * Get a collection course objects
      *
-     * @return \Illuminate\Support\Collection
+     * @param string $term
+     * @param string $field
+     * @return GetCoursesByField
      */
-    public function getCourses()
+    public function getCourses(string $term = '', string $field = '')
     {
-        $courses = $this->http->get(
-                "/rest/server.php?wstoken={$this->token}&wsfunction=core_course_get_courses&moodlewsrestformat=json"
+        $courses = $this->http->asForm()
+            ->post(
+                "/webservice/rest/server.php?wstoken={$this->token}&moodlewsrestformat=json&wsfunction=core_course_get_courses_by_field",
+                [
+                    'field' => $field,
+                    'value' => $term
+                ]
             )
             ->json();
 
-        return collect($courses)->map(function($course) {
-            return new Course($course);
-        });
+        return new GetCoursesByField($courses);
     }
 
     /**
      * Get courses for a specific category ID
      *
      * @param $categoryId
-     * @return \Illuminate\Support\Collection
+     * @return GetCoursesByField
      */
     public function getCoursesByCategory($categoryId)
     {
         $courses = $this->http->asForm()
             ->post(
-                "/rest/server.php?wstoken={$this->token}&wsfunction=core_course_get_courses_by_field&moodlewsrestformat=json",
+                "/webservice/rest/server.php?wstoken={$this->token}&wsfunction=core_course_get_courses_by_field&moodlewsrestformat=json",
                 [
                     'field' => 'category',
                     'value' => $categoryId
@@ -69,9 +75,7 @@ class LaraMoodle
             )
             ->json();
 
-        return collect($courses)->map(function($course) {
-            return new Course($course);
-        });
+        return new GetCoursesByField($courses);
     }
 
     /**
@@ -82,18 +86,17 @@ class LaraMoodle
      */
     public function getCourse(int $id)
     {
-        $course = $this->http->asForm()
+        $courses = $this->http->asForm()
             ->post(
-                "/rest/server.php?wstoken={$this->token}&wsfunction=core_course_get_courses&moodlewsrestformat=json",
+                "/webservice/rest/server.php?wstoken={$this->token}&wsfunction=core_course_get_courses_by_field&moodlewsrestformat=json",
                 [
-                    'options' => [
-                        'ids' => [$id]
-                    ]
+                    'field' => 'id',
+                    'value' => $id
                 ]
             )
             ->json();
 
-        return new Course($course[0]);
+        return new Course($courses['courses'][0]);
     }
 
     /**
@@ -107,7 +110,7 @@ class LaraMoodle
     {
         $courses = $this->http->asForm()
             ->post(
-                "?wstoken={$this->token}&moodlewsrestformat=json&wsfunction=core_course_search_courses",
+                "/webservice/rest/server.php?wstoken={$this->token}&moodlewsrestformat=json&wsfunction=core_course_search_courses",
                 [
                     'criterianame' => 'search',
                     'criteariavalue' => $term,
@@ -130,7 +133,7 @@ class LaraMoodle
     public function getCourseContents(int $id)
     {
         $courseContents = $this->http->get(
-                "?wstoken={$this->token}&moodlewsrestformat=json&wsfunction=core_course_get_contents&courseid={$id}"
+                "/webservice/rest/server.php?wstoken={$this->token}&moodlewsrestformat=json&wsfunction=core_course_get_contents&courseid={$id}"
             )
             ->json();
 
@@ -149,7 +152,7 @@ class LaraMoodle
     {
         $module = $this->http
             ->get(
-                "?wstoken=3a52dd83512957fc724122bf4853a2a8&moodlewsrestformat=json&wsfunction=core_course_get_course_module&cmid={$id}"
+                "/webservice/rest/server.php?wstoken=3a52dd83512957fc724122bf4853a2a8&moodlewsrestformat=json&wsfunction=core_course_get_course_module&cmid={$id}"
             )->json();
 
         return new CourseModuleById($module);
@@ -165,7 +168,7 @@ class LaraMoodle
     {
         $pages = $this->http->asForm()
             ->post(
-                "?wstoken={$this->token}&moodlewsrestformat=json&wsfunction=mod_page_get_pages_by_courses",
+                "/webservice/rest/server.php?wstoken={$this->token}&moodlewsrestformat=json&wsfunction=mod_page_get_pages_by_courses",
                 [
                     'courseids' => [$id]
                 ]
@@ -179,7 +182,7 @@ class LaraMoodle
     {
         $scorms = $this->http->asForm()
             ->post(
-                "?wstoken={$this->token}&moodlewsrestformat=json&wsfunction=mod_scorm_get_scorms_by_courses",
+                "/webservice/rest/server.php?wstoken={$this->token}&moodlewsrestformat=json&wsfunction=mod_scorm_get_scorms_by_courses",
                 [
                     'courseids' => [$id]
                 ]
@@ -200,7 +203,7 @@ class LaraMoodle
     {
         $completion = $this->http->asForm()
             ->post(
-                "?wstoken={$this->token}&moodlewsrestformat=json&wsfunction=core_completion_get_course_completion_status",
+                "/webservice/rest/server.php?wstoken={$this->token}&moodlewsrestformat=json&wsfunction=core_completion_get_course_completion_status",
                 [
                     'courseid' => $courseId,
                     'userid' => $userId
@@ -227,7 +230,7 @@ class LaraMoodle
     {
         $completion = $this->http->asForm()
             ->post(
-                "?wstoken={$this->token}&moodlewsrestformat=json&wsfunction=core_completion_get_activities_completion_status",
+                "/webservice/rest/server.php?wstoken={$this->token}&moodlewsrestformat=json&wsfunction=core_completion_get_activities_completion_status",
                 [
                     'courseid' => $courseId,
                     'userid' => $userId
@@ -356,7 +359,7 @@ class LaraMoodle
     {
         $categories = $this->http->asForm()
             ->get(
-                "/rest/server.php?wstoken={$this->token}&wsfunction=core_course_get_categories&moodlewsrestformat=json"
+                "/webservice/rest/server.php?wstoken={$this->token}&wsfunction=core_course_get_categories&moodlewsrestformat=json"
             )
             ->json();
 
@@ -376,7 +379,7 @@ class LaraMoodle
     {
         $categories = $this->http->asForm()
             ->post(
-                "/rest/server.php?wstoken={$this->token}&wsfunction=core_course_get_categories&moodlewsrestformat=json",
+                "/webservice/rest/server.php?wstoken={$this->token}&wsfunction=core_course_get_categories&moodlewsrestformat=json",
                 [
                     'criteria' => [
                         'key' => $field,

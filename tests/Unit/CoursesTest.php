@@ -22,12 +22,12 @@ class CoursesTest extends TestCase
             '*' => Http::response(MockResponses::getCourses(), 200)
         ]);
 
-        $courses = LaraMoodle::getCourses();
+        $data = LaraMoodle::getCourses();
 
-        $this->assertNotNull($courses);
-        $this->assertCount(1, $courses);
-        $this->assertEquals('My First Course', $courses[0]->fullname);
-        $this->assertEquals('Intro Course', $courses[0]->shortname);
+        $this->assertNotNull($data->courses);
+        $this->assertCount(1, $data->courses);
+        $this->assertEquals('My First Course', $data->courses[0]->fullname);
+        $this->assertEquals('Intro Course', $data->courses[0]->shortname);
     }
 
     public function test_get_courses_by_category()
@@ -36,12 +36,12 @@ class CoursesTest extends TestCase
             '*' => Http::response(MockResponses::getCourses(), 200)
         ]);
 
-        $courses = LaraMoodle::getCoursesByCategory(1);
+        $data = LaraMoodle::getCoursesByCategory(1);
 
-        $this->assertNotNull($courses);
-        $this->assertCount(1, $courses);
-        $this->assertEquals('My First Course', $courses[0]->fullname);
-        $this->assertEquals('Intro Course', $courses[0]->shortname);
+        $this->assertNotNull($data->courses);
+        $this->assertCount(1, $data->courses);
+        $this->assertEquals('My First Course', $data->courses[0]->fullname);
+        $this->assertEquals('Intro Course', $data->courses[0]->shortname);
     }
 
     public function test_get_course()

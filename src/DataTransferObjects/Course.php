@@ -10,28 +10,46 @@ class Course extends DataTransferObject
     public $id;
 
     /** @var string */
-    public $shortname;
-
-    /** @var string */
     public $fullname;
 
-    /** @var integer */
-    public $categoryid;
-
-    /** @var integer */
-    public $categorysortorder;
+    /** @var string */
+    public $shortname;
 
     /** @var string */
     public $displayname;
 
+    /** @var integer */
+    public $categoryid;
+
     /** @var string */
-    public $idnumber;
+    public $categoryname;
+
+    /** @var integer */
+    public $sortorder;
 
     /** @var string */
     public $summary;
 
     /** @var integer */
     public $summaryformat;
+
+    /** @var \NRBusinessSystems\LaraMoodle\DataTransferObjects\FileObject[] */
+    public $summaryfiles;
+
+    /** @var \NRBusinessSystems\LaraMoodle\DataTransferObjects\FileObject[] */
+    public $overviewfiles;
+
+    /** @var array */
+    public $contacts;
+
+    /** @var array */
+    public $enrollmentmethods;
+
+    /** @var \NRBusinessSystems\LaraMoodle\DataTransferObjects\CustomField[] */
+    public $customfields;
+
+    /** @var string */
+    public $idnumber;
 
     /** @var string */
     public $format;
@@ -49,9 +67,6 @@ class Course extends DataTransferObject
     public $enddate;
 
     /** @var integer */
-    public $numsections;
-
-    /** @var integer */
     public $maxbytes;
 
     /** @var integer */
@@ -59,9 +74,6 @@ class Course extends DataTransferObject
 
     /** @var integer */
     public $visible;
-
-    /** @var integer */
-    public $hiddensections;
 
     /** @var integer */
     public $groupmode;
@@ -73,12 +85,6 @@ class Course extends DataTransferObject
     public $defaultgroupingid;
 
     /** @var integer */
-    public $timecreated;
-
-    /** @var integer */
-    public $timemodified;
-
-    /** @var integer */
     public $enablecompletion;
 
     /** @var integer */
@@ -88,8 +94,32 @@ class Course extends DataTransferObject
     public $lang;
 
     /** @var string */
-    public $forcetheme;
+    public $theme;
+
+    /** @var integer */
+    public $marker;
+
+    /** @var integer */
+    public $legacyfiles;
+
+    /** @var string */
+    public $calendartype;
+
+    /** @var integer */
+    public $timecreated;
+
+    /** @var integer */
+    public $timemodified;
+
+    /** @var integer */
+    public $requested;
+
+    /** @var integer */
+    public $cacherev;
 
     /** @var array */
+    public $filters;
+
+    /** @var mixed|null|array */
     public $courseformatoptions;
 }

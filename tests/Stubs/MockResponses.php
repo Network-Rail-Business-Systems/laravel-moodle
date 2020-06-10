@@ -53,37 +53,56 @@ class MockResponses
 
     public static function getCourses()
     {
-        return
-            [
+        return [
+            'courses' => [
                 [
                     "id"=> 2,
-                    "shortname"=> "Intro Course",
-                    "categoryid"=> 2,
-                    "categorysortorder"=> 20001,
                     "fullname"=> "My First Course",
+                    "shortname"=> "Intro Course",
                     "displayname"=> "My First Course",
-                    "idnumber"=> "",
+                    "categoryid"=> 2,
+                    "categoryname" => 'Miscellaneous',
+                    "sortorder"=> 10001,
                     "summary"=> "<p>This course is aimed at all staff</p>",
                     "summaryformat"=> 1,
+                    "summaryfiles" => [],
+                    "overviewfiles" => [
+                        [
+                            "filename" => "4251.png",
+                            "filepath" => "/",
+                            "filesize" => 37306,
+                            "fileurl" => "http://moodle.test/webservice/pluginfile.php/45/course/overviewfiles/4251.png",
+                            "timemodified" => 1589882661,
+                            "mimetype" => "image/png"
+                        ]
+                    ],
+                    "contacts"=> [],
+                    "enrollmentmethods" => [],
+                    "customfields" => [],
+                    "idnumber" => "",
                     "format"=> "topics",
                     "showgrades"=> 1,
                     "newsitems"=> 5,
                     "startdate"=> 1589929200,
                     "enddate"=> 1621465200,
-                    "numsections"=> 7,
                     "maxbytes"=> 0,
                     "showreports"=> 0,
                     "visible"=> 1,
-                    "hiddensections"=> 0,
                     "groupmode"=> 0,
                     "groupmodeforce"=> 0,
                     "defaultgroupingid"=> 0,
-                    "timecreated"=> 1589873173,
-                    "timemodified"=> 1589882661,
                     "enablecompletion"=> 1,
                     "completionnotify"=> 0,
                     "lang"=> "en",
-                    "forcetheme"=> "",
+                    "theme" => "",
+                    "marker" => 0,
+                    "legacyfiles" => 0,
+                    "calendartype" => "",
+                    "timecreated"=> 1589873173,
+                    "timemodified"=> 1589882661,
+                    "requested" => 0,
+                    "cacherev" => 1591624713,
+                    "filters"=> [],
                     "courseformatoptions"=> [
                         [
                             "name"=> "hiddensections",
@@ -96,7 +115,10 @@ class MockResponses
 
                     ]
                 ]
-            ];
+            ],
+            'warnings' => []
+
+        ];
     }
 
     public static function getCourseContents()

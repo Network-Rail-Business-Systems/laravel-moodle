@@ -86,13 +86,23 @@ The package uses [Spatie Data Transfer Objects](https://github.com/spatie/data-t
 Returns a collection of courses.
 
 ```php
-$courses = LaraMoodle::getCourses();
+$data = LaraMoodle::getCourses();
 
-foreach($courses as $course) {
+foreach($data->courses as $course) {
    echo $course->fullname; // My First Course        
 }
 
-echo $courses[0]->fullname; // My First Course
+echo $data->courses[0]->fullname; // My First Course
+```
+
+To filter the list of courses pass in the term and the field. you can use id, ids, shortname and category id.
+
+```php
+// Get course with id 3
+$data = LaraMoodle::getCourses('2', 'id');
+
+// Get courses with ids 2 & 3
+$data = LaraMoodle::getCourses('2,3', 'ids');
 ```
 
 ### Get Course By Id
@@ -151,7 +161,7 @@ echo $module->cm->name; // Topic name
 
 ### Get Course Pages
 
-Once you know the course Id you can get the pages for the course.
+Once you know the course id you can get the pages for the course.
 
 ```php
 $pages = LaraMoodle::getCoursePages(1);
@@ -161,7 +171,7 @@ echo $pages->pages[0]->name; // Page name
 
 ### Get Course Scorms
 
-Once you know the course Id you can get the scorms for the course.
+Once you know the course id you can get the scorms for the course.
 
 ```php
 $scorms = LaraMoodle::getCourseScorms(1);
@@ -171,7 +181,7 @@ echo $scorms->scorms[0]->name; // Example scorm
 
 ### Get Course Completion
 
-You can get the course completion status by passing in the user Id and the course Id.
+You can get the course completion status by passing in the user id and the course id.
 
 ```php
 $completion = LaraMoodle::getCourseCompletion(2, 2);
@@ -179,7 +189,7 @@ $completion = LaraMoodle::getCourseCompletion(2, 2);
 
 ### Get Course Activities Completion
 
-You can get details of a course's activities completion by passing in the user Id and the course Id. 
+You can get details of a course's activities completion by passing in the user id and the course id. 
 
 ```php
 $activities = LaraMoodle::getCourseActivitiesCompletion(2, 2);
