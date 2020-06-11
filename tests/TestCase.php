@@ -34,7 +34,8 @@ class TestCase extends Orchestra
     protected function getPackageAliases($app)
     {
         return [
-            'LaraMoodle' => 'NRBusinessSystems\LaraMoodle\Facade'
+            'LaraMoodle' => 'NRBusinessSystems\LaraMoodle\Facades\LaraMoodle',
+            'AddToken' => 'NRBusinessSystems\LaraMoodle\Facades\AddToken'
         ];
     }
 

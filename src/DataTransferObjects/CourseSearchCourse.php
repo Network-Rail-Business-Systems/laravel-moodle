@@ -44,4 +44,7 @@ class CourseSearchCourse extends DataTransferObject
 
     /** @var array */
     public $enrollmentmethods;
+
+    /** @var mixed|null|\NRBusinessSystems\LaraMoodle\DataTransferObjects\CustomField[] */
+    public $customfields;
 }

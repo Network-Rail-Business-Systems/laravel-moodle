@@ -3,7 +3,7 @@
 namespace NRBusinessSystems\LaraMoodle\Tests\Unit;
 
 use NRBusinessSystems\LaraMoodle\Exceptions\MoodleTokenMissingException;
-use NRBusinessSystems\LaraMoodle\Facade as LaraMoodle;
+use NRBusinessSystems\LaraMoodle\Facades\LaraMoodle;
 use NRBusinessSystems\LaraMoodle\Tests\TestCase;
 
 class FacadeTest extends TestCase

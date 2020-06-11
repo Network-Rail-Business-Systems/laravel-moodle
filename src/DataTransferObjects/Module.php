@@ -20,6 +20,9 @@ class Module extends DataTransferObject
     /** @var integer **/
     public $instance;
 
+    /** @var mixed|null|string */
+    public $description;
+
     /** @var integer */
     public $visible;
 
@@ -59,4 +62,11 @@ class Module extends DataTransferObject
     /** @var integer **/
     public $completion;
 
+    /** @var mixed|null|\NRBusinessSystems\LaraMoodle\DataTransferObjects\CompletionData */
+    public $completiondata;
+
+    /** @var mixed|null|array */
+    public $contents;
+
+    public $contentsinfo;
 }

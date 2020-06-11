@@ -5,11 +5,13 @@ namespace NRBusinessSystems\LaraMoodle;
 use Illuminate\Support\Facades\Http;
 use NRBusinessSystems\LaraMoodle\DataTransferObjects\Category;
 use NRBusinessSystems\LaraMoodle\DataTransferObjects\CourseActivityStatuses;
+use NRBusinessSystems\LaraMoodle\DataTransferObjects\CourseCompletion;
 use NRBusinessSystems\LaraMoodle\DataTransferObjects\CourseContent;
 use NRBusinessSystems\LaraMoodle\DataTransferObjects\CourseEnrolledUser;
 use NRBusinessSystems\LaraMoodle\DataTransferObjects\CourseModuleById;
 use NRBusinessSystems\LaraMoodle\DataTransferObjects\CoursePages;
 use NRBusinessSystems\LaraMoodle\DataTransferObjects\CourseSearch;
+use NRBusinessSystems\LaraMoodle\DataTransferObjects\GetBadges;
 use NRBusinessSystems\LaraMoodle\DataTransferObjects\GetCoursesByField;
 use NRBusinessSystems\LaraMoodle\DataTransferObjects\getScorms;
 use NRBusinessSystems\LaraMoodle\DataTransferObjects\GetUsers;
@@ -113,7 +115,7 @@ class LaraMoodle
                 "/webservice/rest/server.php?wstoken={$this->token}&moodlewsrestformat=json&wsfunction=core_course_search_courses",
                 [
                     'criterianame' => 'search',
-                    'criteariavalue' => $term,
+                    'criteriavalue' => $term,
                     'page' => $page,
                     'perpage' => $perPage,
                     'limittoenrolled' => $onlyEnrolled
@@ -196,7 +198,7 @@ class LaraMoodle
      * TODO implement data transfer object for response
      * @param int $userId
      * @param int $courseId
-     * @return array
+     * @return CourseCompletion
      * @throws MoodleException
      */
     public function getCourseCompletion(int $userId, int $courseId)
@@ -215,7 +217,7 @@ class LaraMoodle
             throw new MoodleException($completion['message']);
         }
 
-        return $completion;
+        return new CourseCompletion($completion);
     }
 
     /**
@@ -287,10 +289,12 @@ class LaraMoodle
             ->post(
                 "/webservice/rest/server.php?wstoken={$this->token}&wsfunction=enrol_manual_enrol_users&moodlewsrestformat=json",
                 [
-                    'enrolements' => [
-                        'roleid' => $roleId ?? config('laramoodle.student_role_id'),
-                        'userid' => $userId,
-                        'courseid' => $courseId
+                    'enrolments' => [
+                        [
+                            'roleid' => $roleId ?? config('laramoodle.student_role_id'),
+                            'userid' => $userId,
+                            'courseid' => $courseId
+                        ]
                     ]
                 ]
             )
@@ -332,7 +336,7 @@ class LaraMoodle
      * @param int $userId
      * @param int $courseId
      * @param string $search
-     * @return array
+     * @return GetBadges
      */
     public function getBadges(int $userId = 0, int $courseId = 0, string $search = '')
     {
@@ -347,7 +351,7 @@ class LaraMoodle
             )
             ->json();
 
-        return $badges;
+        return new GetBadges($badges);
     }
 
     /**
@@ -382,8 +386,10 @@ class LaraMoodle
                 "/webservice/rest/server.php?wstoken={$this->token}&wsfunction=core_course_get_categories&moodlewsrestformat=json",
                 [
                     'criteria' => [
-                        'key' => $field,
-                        'value' => $searchTerm
+                        [
+                            'key' => $field,
+                            'value' => $searchTerm
+                        ]
                     ]
                 ]
             )
@@ -392,5 +398,30 @@ class LaraMoodle
         return collect($categories)->map(function($category) {
             return new Category($category);
         });
+    }
+
+    /**
+     * Simulate the page viewed event
+     *
+     * @param $pageId
+     * @return bool
+     * @throws MoodleException
+     */
+    public function viewPageEvent(int $pageId)
+    {
+        $page = $this->http->asForm()
+            ->post(
+                "/webservice/rest/server.php?wstoken={$this->token}&wsfunction=mod_page_view_page&moodlewsrestformat=json",
+                [
+                    'pageid' => $pageId
+                ]
+            )
+            ->json();
+
+        if (isset($page['exception'])) {
+            throw new MoodleException($page['message']);
+        }
+
+        return $page['status'];
     }
 }

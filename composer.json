@@ -36,7 +36,8 @@
                 "NRBusinessSystems\\LaraMoodle\\AuthServiceProvider"
             ],
             "aliases": {
-                "LaraMoodle": "NRBusinessSystems\\LaraMoodle\\Facade"
+                "LaraMoodle": "NRBusinessSystems\\LaraMoodle\\Facades\\LaraMoodle",
+                "AddToken": "NRBusinessSystems\\LaraMoodle\\Facades\\AddToken"
             }
         }
     },

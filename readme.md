@@ -34,6 +34,20 @@ Update the .env file with the `MOODLE_BASE_URL` with the url of your Moodle inst
 
 The package expects the credentials from the LoginController to be an array containing `username` and `password`, but if you want to use `username` instead then add `MOODLE_LOGIN_ATTRIBUTE=username` to your .env file.
 
+### Middleware
+
+The package contains a middleware that you can use to check if the user has a moodle token in their session. If they don't it will log the user out from their Laravel session and redirect the user ot the login page. 
+
+To use globally list the `NRBusinessSystems\LaraMoodle\Middleware\MoodleToken::class` in the `$middleware` property of `app/Http/Kernel.php`.
+
+To use on specific routes add `'laramoodle' => \NRBusinessSystems\LaraMoodle\Middleware\MoodleToken::class` to the `$routeMiddleware` in `app/Http/Kernel.php` and then add to your route.
+
+```php
+Route::get('/', function() {
+
+})->middleware('laramoodle');
+```
+
 ## Moodle Configuration
 
 In order to access data from Moodle, it needs to be configured first as the web service features are disabled by default. 
@@ -62,6 +76,7 @@ In order to access data from Moodle, it needs to be configured first as the web 
         * core_user_get_users
         * enrol_manual_enrol_users
         * mod_page_get_pages_by_courses
+        * mod_page_view_page
         * mod_book_get_books_by_courses
         * mod_scorm_get_scorms_by_courses
 3. Create a token for the admin user (used in the Laravel .env file)
@@ -76,7 +91,7 @@ In order to access data from Moodle, it needs to be configured first as the web 
 Use the LaraMoodle facade to access the web service data.
 
 ```php
-use NRBusinessSystems\LaraMoodle\Facade as LaraMoodle;
+use NRBusinessSystems\LaraMoodle\LaraMoodle as LaraMoodle;
 ``` 
 
 The package uses [Spatie Data Transfer Objects](https://github.com/spatie/data-transfer-object) to format the response into objects.
@@ -248,10 +263,20 @@ echo $categories[0]->name; // Category name
 
 ### Search Categories
 
-Search categories. Defaults to searching name if second parameter isn't passed.
+Search for categories. Defaults to searching name if second parameter isn't passed. The search term is an exact match only.
 
 ```php
 $categories = LaraMoodle::searchCategories('Business Briefing System');
 
 echo $categories[0]->name; // Business Briefing System
 ```
+
+### View Page Event
+
+Trigger the view page event for activity auto completion. Pass in the page id. Returns true if successful and MoodleException if unsuccessful.
+
+```php
+$pageViewed = LaraMoodle::viewPageEvent(1);
+
+dd($pageViewed); // true
+``` 

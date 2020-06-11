@@ -30,8 +30,8 @@ class Badge extends DataTransferObject
     /** @var string **/
     public $issuername;
 
-    /** @var string **/
-    public $issueurl;
+    /** @var mixed|null|string **/
+    public $issuerurl;
 
     /** @var string **/
     public $issuercontact;
@@ -60,7 +60,7 @@ class Badge extends DataTransferObject
     /** @var integer **/
     public $notification;
 
-    /** @var string **/
+    /** @var mixed|null|string **/
     public $nextcron;
 
     /** @var integer **/
@@ -75,7 +75,7 @@ class Badge extends DataTransferObject
     /** @var integer **/
     public $dateissued;
 
-    /** @var integer **/
+    /** @var mixed|null|integer **/
     public $dateexpire;
 
     /** @var integer **/
@@ -108,6 +108,6 @@ class Badge extends DataTransferObject
     /** @var array **/
     public $alignment;
 
-    /** @var array **/
-    public $relatedbsadges;
+    /** @var mixed|null|array **/
+    public $relatedbadges;
 }

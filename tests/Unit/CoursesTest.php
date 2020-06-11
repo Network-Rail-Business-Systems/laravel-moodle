@@ -5,7 +5,7 @@ namespace NRBusinessSystems\LaraMoodle\Tests\Unit;
 use Illuminate\Support\Facades\Http;
 use NRBusinessSystems\LaraMoodle\Tests\Stubs\MockResponses;
 use NRBusinessSystems\LaraMoodle\Tests\TestCase;
-use NRBusinessSystems\LaraMoodle\Facade as LaraMoodle;
+use NRBusinessSystems\LaraMoodle\Facades\LaraMoodle;
 
 class CoursesTest extends TestCase
 {
