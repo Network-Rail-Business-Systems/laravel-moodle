@@ -2,10 +2,14 @@
 
 namespace NRBusinessSystems\LaraMoodle\DataTransferObjects;
 
+use NRBusinessSystems\LaraMoodle\Traits\HasDates;
 use Spatie\DataTransferObject\DataTransferObject;
 
 class Badge extends DataTransferObject
 {
+    use HasDates;
+    protected $dates = ['timecreated', 'timemodified', 'dateissued'];
+
     /** @var integer **/
     public $id;
 

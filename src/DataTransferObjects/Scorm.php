@@ -2,10 +2,14 @@
 
 namespace NRBusinessSystems\LaraMoodle\DataTransferObjects;
 
+use NRBusinessSystems\LaraMoodle\Traits\HasDates;
 use Spatie\DataTransferObject\DataTransferObject;
 
 class Scorm extends DataTransferObject
 {
+    use HasDates;
+    protected $dates = ['timemodified'];
+
     /** @var integer **/
     public $id;
 

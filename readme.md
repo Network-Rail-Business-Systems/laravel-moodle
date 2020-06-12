@@ -280,3 +280,15 @@ $pageViewed = LaraMoodle::viewPageEvent(1);
 
 dd($pageViewed); // true
 ``` 
+
+## HasDates Trait
+
+The package has a HasDates trait that can be added to DataTransferObjects to convert the timestamp from Moodle into a Carbon instance to allow easier formatting for presentation. 
+
+```php
+$data = LaraMoodle::getCourses();
+
+$data->courses[0]->asDate('startdate')->format('d/m/Y');
+$data->courses[0]->dates()->startdate->format('d/m/Y');
+$data->courses[0]->dates()->enddate->format('d/m/Y');
+```

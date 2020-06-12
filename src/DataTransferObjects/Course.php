@@ -2,10 +2,15 @@
 
 namespace NRBusinessSystems\LaraMoodle\DataTransferObjects;
 
+use NRBusinessSystems\LaraMoodle\Traits\HasDates;
 use Spatie\DataTransferObject\DataTransferObject;
 
 class Course extends DataTransferObject
 {
+    use HasDates;
+
+    protected $dates = ['startdate', 'enddate', 'timecreated', 'timemodified'];
+
     /** @var integer */
     public $id;
 

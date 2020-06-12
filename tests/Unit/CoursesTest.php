@@ -30,6 +30,18 @@ class CoursesTest extends TestCase
         $this->assertEquals('Intro Course', $data->courses[0]->shortname);
     }
 
+    public function test_get_course_dates()
+    {
+        Http::fake([
+            '*' => Http::response(MockResponses::getCourses(), 200)
+        ]);
+
+        $data = LaraMoodle::getCourses();
+
+        $this->assertEquals('19/05/2020', $data->courses[0]->asDate('startdate')->format('d/m/Y'));
+        $this->assertEquals('19/05/2020', $data->courses[0]->dates()->startdate->format('d/m/Y'));
+    }
+
     public function test_get_courses_by_category()
     {
         Http::fake([

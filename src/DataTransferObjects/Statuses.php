@@ -2,10 +2,14 @@
 
 namespace NRBusinessSystems\LaraMoodle\DataTransferObjects;
 
+use NRBusinessSystems\LaraMoodle\Traits\HasDates;
 use Spatie\DataTransferObject\DataTransferObject;
 
 class Statuses extends DataTransferObject
 {
+    use HasDates;
+    protected $dates = ['timecompleted'];
+
     /** @var integer **/
     public $cmid;
 

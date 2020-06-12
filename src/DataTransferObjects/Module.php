@@ -4,10 +4,14 @@
 namespace NRBusinessSystems\LaraMoodle\DataTransferObjects;
 
 
+use NRBusinessSystems\LaraMoodle\Traits\HasDates;
 use Spatie\DataTransferObject\DataTransferObject;
 
 class Module extends DataTransferObject
 {
+    use HasDates;
+    protected $dates = ['added'];
+
     /** @var integer */
      public $id;
 

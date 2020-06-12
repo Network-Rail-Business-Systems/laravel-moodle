@@ -2,10 +2,14 @@
 
 namespace NRBusinessSystems\LaraMoodle\DataTransferObjects;
 
+use NRBusinessSystems\LaraMoodle\Traits\HasDates;
 use Spatie\DataTransferObject\FlexibleDataTransferObject;
 
 class User extends FlexibleDataTransferObject
 {
+    use HasDates;
+    protected $dates = ['firstaccess', 'lastaccess'];
+
     /** @var integer **/
     public $id;
 

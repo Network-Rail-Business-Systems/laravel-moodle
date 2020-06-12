@@ -2,10 +2,14 @@
 
 namespace NRBusinessSystems\LaraMoodle\DataTransferObjects;
 
+use NRBusinessSystems\LaraMoodle\Traits\HasDates;
 use Spatie\DataTransferObject\DataTransferObject;
 
 class FileObject extends DataTransferObject
 {
+    use HasDates;
+    protected $dates = ['timemodified'];
+
     /** @var string */
     public $filename;
 
