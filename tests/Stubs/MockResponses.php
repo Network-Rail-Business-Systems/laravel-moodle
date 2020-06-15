@@ -56,15 +56,15 @@ class MockResponses
         return [
             'courses' => [
                 [
-                    "id"=> 2,
-                    "fullname"=> "My First Course",
-                    "shortname"=> "Intro Course",
-                    "displayname"=> "My First Course",
-                    "categoryid"=> 2,
+                    "id" => 2,
+                    "fullname" => "My First Course",
+                    "shortname" => "Intro Course",
+                    "displayname" => "My First Course",
+                    "categoryid" => 2,
                     "categoryname" => 'Miscellaneous',
-                    "sortorder"=> 10001,
-                    "summary"=> "<p>This course is aimed at all staff</p>",
-                    "summaryformat"=> 1,
+                    "sortorder" => 10001,
+                    "summary" => "<p>This course is aimed at all staff</p>",
+                    "summaryformat" => 1,
                     "summaryfiles" => [],
                     "overviewfiles" => [
                         [
@@ -76,41 +76,41 @@ class MockResponses
                             "mimetype" => "image/png"
                         ]
                     ],
-                    "contacts"=> [],
+                    "contacts" => [],
                     "enrollmentmethods" => [],
                     "customfields" => [],
                     "idnumber" => "",
-                    "format"=> "topics",
-                    "showgrades"=> 1,
-                    "newsitems"=> 5,
-                    "startdate"=> 1589929200,
-                    "enddate"=> 1621465200,
-                    "maxbytes"=> 0,
-                    "showreports"=> 0,
-                    "visible"=> 1,
-                    "groupmode"=> 0,
-                    "groupmodeforce"=> 0,
-                    "defaultgroupingid"=> 0,
-                    "enablecompletion"=> 1,
-                    "completionnotify"=> 0,
-                    "lang"=> "en",
+                    "format" => "topics",
+                    "showgrades" => 1,
+                    "newsitems" => 5,
+                    "startdate" => 1589929200,
+                    "enddate" => 1621465200,
+                    "maxbytes" => 0,
+                    "showreports" => 0,
+                    "visible" => 1,
+                    "groupmode" => 0,
+                    "groupmodeforce" => 0,
+                    "defaultgroupingid" => 0,
+                    "enablecompletion" => 1,
+                    "completionnotify" => 0,
+                    "lang" => "en",
                     "theme" => "",
                     "marker" => 0,
                     "legacyfiles" => 0,
                     "calendartype" => "",
-                    "timecreated"=> 1589873173,
-                    "timemodified"=> 1589882661,
+                    "timecreated" => 1589873173,
+                    "timemodified" => 1589882661,
                     "requested" => 0,
                     "cacherev" => 1591624713,
-                    "filters"=> [],
-                    "courseformatoptions"=> [
+                    "filters" => [],
+                    "courseformatoptions" => [
                         [
-                            "name"=> "hiddensections",
-                            "value"=> 0
+                            "name" => "hiddensections",
+                            "value" => 0
                         ],
                         [
-                            "name"=> "coursedisplay",
-                            "value"=> 1
+                            "name" => "coursedisplay",
+                            "value" => 1
                         ]
 
                     ]
@@ -125,33 +125,33 @@ class MockResponses
     {
         return [
             [
-                "id"=>1,
-                "name"=> "General",
-                "visible"=> 1,
-                "summary"=> "<p>The summary for this course contents</p>",
-                "summaryformat"=> 1,
-                "section"=> 0,
-                "hiddenbynumsections"=> 0,
-                "uservisible"=> true,
-                "modules"=> [
+                "id" => 1,
+                "name" => "General",
+                "visible" => 1,
+                "summary" => "<p>The summary for this course contents</p>",
+                "summaryformat" => 1,
+                "section" => 0,
+                "hiddenbynumsections" => 0,
+                "uservisible" => true,
+                "modules" => [
                     [
-                        "id"=> 1,
-                        "url"=> "http://moodle.test/mod/forum/view.php?id=1",
-                        "name"=> "Announcements",
-                        "instance"=> 1,
-                        "visible"=> 1,
-                        "uservisible"=> true,
-                        "visibleoncoursepage"=> 1,
-                        "modicon"=> "http://moodle.test/theme/image.php/moove/forum/1590132460/icon",
-                        "modname"=> "forum",
-                        "modplural"=> "Forums",
-                        "availability"=> null,
-                        "indent"=> 0,
-                        "onclick"=> "",
-                        "afterlink"=> null,
-                        "customdata"=> "\"\"",
-                        "noviewlink"=> false,
-                        "completion"=> 0
+                        "id" => 1,
+                        "url" => "http://moodle.test/mod/forum/view.php?id=1",
+                        "name" => "Announcements",
+                        "instance" => 1,
+                        "visible" => 1,
+                        "uservisible" => true,
+                        "visibleoncoursepage" => 1,
+                        "modicon" => "http://moodle.test/theme/image.php/moove/forum/1590132460/icon",
+                        "modname" => "forum",
+                        "modplural" => "Forums",
+                        "availability" => null,
+                        "indent" => 0,
+                        "onclick" => "",
+                        "afterlink" => null,
+                        "customdata" => "\"\"",
+                        "noviewlink" => false,
+                        "completion" => 0
                     ]
                 ]
             ]
@@ -198,32 +198,32 @@ class MockResponses
     public static function getCourseModule()
     {
         return [
-            "cm" =>  [
-                "id"=>  11,
-                "course"=>  2,
-                "module"=>  3,
-                "name"=>  "My first module",
-                "modname"=>  "book",
-                "instance"=>  2,
-                "section"=>  3,
-                "sectionnum"=>  2,
-                "groupmode"=>  0,
-                "groupingid"=>  0,
-                "completion"=>  2,
-                "idnumber"=>  "",
-                "added"=>  1589878397,
-                "score"=>  0,
-                "indent"=>  0,
-                "visible"=>  1,
-                "visibleoncoursepage"=>  1,
-                "visibleold"=>  1,
-                "completiongradeitemnumber"=>  null,
-                "completionview"=>  1,
-                "completionexpected"=>  0,
-                "showdescription"=>  1,
-                "availability"=>  null
+            "cm" => [
+                "id" => 11,
+                "course" => 2,
+                "module" => 3,
+                "name" => "My first module",
+                "modname" => "book",
+                "instance" => 2,
+                "section" => 3,
+                "sectionnum" => 2,
+                "groupmode" => 0,
+                "groupingid" => 0,
+                "completion" => 2,
+                "idnumber" => "",
+                "added" => 1589878397,
+                "score" => 0,
+                "indent" => 0,
+                "visible" => 1,
+                "visibleoncoursepage" => 1,
+                "visibleold" => 1,
+                "completiongradeitemnumber" => null,
+                "completionview" => 1,
+                "completionexpected" => 0,
+                "showdescription" => 1,
+                "availability" => null
             ],
-            "warnings"=>  []
+            "warnings" => []
         ];
     }
 
@@ -232,36 +232,36 @@ class MockResponses
         return [
             'pages' => [
                 [
-                    "id"=>  1,
-                    "coursemodule"=>  2,
-                    "course"=>  2,
-                    "name"=>  "My First Page",
-                    "intro"=>  "",
-                    "introformat"=>  1,
-                    "introfiles"=>  [],
-                    "content"=>  "<p>The page content</p>",
-                    "contentformat"=>  1,
-                    "contentfiles"=>  [
+                    "id" => 1,
+                    "coursemodule" => 2,
+                    "course" => 2,
+                    "name" => "My First Page",
+                    "intro" => "",
+                    "introformat" => 1,
+                    "introfiles" => [],
+                    "content" => "<p>The page content</p>",
+                    "contentformat" => 1,
+                    "contentfiles" => [
                         [
-                            "filename"=>  "Page Image.png",
-                            "filepath"=>  "/",
-                            "filesize"=>  11837,
-                            "fileurl"=>  "http://moodle.test/webservice/pluginfile.php/47/mod_page/content/0/page%20image.png",
-                            "timemodified"=>  1589874079,
-                            "mimetype"=>  "image/png",
-                            "isexternalfile"=>  false
+                            "filename" => "Page Image.png",
+                            "filepath" => "/",
+                            "filesize" => 11837,
+                            "fileurl" => "http://moodle.test/webservice/pluginfile.php/47/mod_page/content/0/page%20image.png",
+                            "timemodified" => 1589874079,
+                            "mimetype" => "image/png",
+                            "isexternalfile" => false
                         ]
                     ],
-                    "legacyfiles"=>  0,
-                    "legacyfileslast"=>  null,
-                    "display"=>  5,
-                    "displayoptions"=>  "a=> 3=> {s=> 12=> \"printheading\";s=> 1=> \"1\";s=> 10=> \"printintro\";s=> 1=> \"0\";s=> 17=> \"printlastmodified\";s=> 1=> \"1\";}",
-                    "revision"=>  1,
-                    "timemodified"=>  1589874079,
-                    "section"=>  1,
-                    "visible"=>  1,
-                    "groupmode"=>  0,
-                    "groupingid"=>  0
+                    "legacyfiles" => 0,
+                    "legacyfileslast" => null,
+                    "display" => 5,
+                    "displayoptions" => "a=> 3=> {s=> 12=> \"printheading\";s=> 1=> \"1\";s=> 10=> \"printintro\";s=> 1=> \"0\";s=> 17=> \"printlastmodified\";s=> 1=> \"1\";}",
+                    "revision" => 1,
+                    "timemodified" => 1589874079,
+                    "section" => 1,
+                    "visible" => 1,
+                    "groupmode" => 0,
+                    "groupingid" => 0
                 ]
             ],
             'warnings' => []
@@ -452,6 +452,95 @@ class MockResponses
                 "path" => "/1",
                 "theme" => ""
             ]
+        ];
+    }
+
+    public static function courseAssignments()
+    {
+        return [
+            "courses" => [
+                [
+                    "id" => 3,
+                    "fullname" => "My First Course",
+                    "shortname" => "Short Course",
+                    "timemodified" => 1591624712,
+                    "assignments" => [
+                        [
+                            "id" => 1,
+                            "cmid" => 16,
+                            "course" => 3,
+                            "name" => "Example course assignment",
+                            "nosubmissions" => 0,
+                            "submissiondrafts" => 0,
+                            "sendnotifications" => 0,
+                            "sendlatenotifications" => 0,
+                            "sendstudentnotifications" => 1,
+                            "duedate" => 1590447600,
+                            "allowsubmissionsfromdate" => 1589842800,
+                            "grade" => 100,
+                            "timemodified" => 1589882566,
+                            "completionsubmit" => 1,
+                            "cutoffdate" => 0,
+                            "gradingduedate" => 1591052400,
+                            "teamsubmission" => 0,
+                            "requireallteammemberssubmit" => 0,
+                            "teamsubmissiongroupingid" => 0,
+                            "blindmarking" => 0,
+                            "hidegrader" => 0,
+                            "revealidentities" => 0,
+                            "attemptreopenmethod" => "none",
+                            "maxattempts" => -1,
+                            "markingworkflow" => 0,
+                            "markingallocation" => 0,
+                            "requiresubmissionstatement" => 0,
+                            "preventsubmissionnotingroup" => 0,
+                            "configs" => [
+                                [
+                                    "plugin" => "onlinetext",
+                                    "subtype" => "assignsubmission",
+                                    "name" => "enabled",
+                                    "value" => "1"
+                                ],
+                                [
+                                    "plugin" => "onlinetext",
+                                    "subtype" => "assignsubmission",
+                                    "name" => "wordlimit",
+                                    "value" => "500"
+                                ],
+                                [
+                                    "plugin" => "onlinetext",
+                                    "subtype" => "assignsubmission",
+                                    "name" => "wordlimitenabled",
+                                    "value" => "1"
+                                ],
+                                [
+                                    "plugin" => "comments",
+                                    "subtype" => "assignsubmission",
+                                    "name" => "enabled",
+                                    "value" => "1"
+                                ],
+                                [
+                                    "plugin" => "comments",
+                                    "subtype" => "assignfeedback",
+                                    "name" => "enabled",
+                                    "value" => "1"
+                                ],
+                                [
+                                    "plugin" => "comments",
+                                    "subtype" => "assignfeedback",
+                                    "name" => "commentinline",
+                                    "value" => "0"
+                                ]
+                            ],
+                            "intro" => "Your assignment is to read the files and then submit your response below within 500 words.",
+                            "introformat" => 1,
+                            "introfiles" => [],
+                            "introattachments" => []
+                        ]
+                    ]
+                ]
+            ],
+            "warnings" => []
         ];
     }
 }

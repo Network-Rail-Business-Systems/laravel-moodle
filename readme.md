@@ -75,6 +75,8 @@ In order to access data from Moodle, it needs to be configured first as the web 
         * core_enrol_get_enrolled_users
         * core_user_get_users
         * enrol_manual_enrol_users
+        * mod_assign_get_assignments
+        * mod_assign_save_submission
         * mod_page_get_pages_by_courses
         * mod_page_view_page
         * mod_book_get_books_by_courses
@@ -209,7 +211,37 @@ You can get details of a course's activities completion by passing in the user i
 ```php
 $activities = LaraMoodle::getCourseActivitiesCompletion(2, 2);
 
-echo $activities->
+echo $activities->statuses[0]->state;
+```
+
+### Get Course Assignments
+
+Get the assignments for a specific course by passing in the course id. 
+
+```php
+$data = LaraMoodle::getCourseAssignments(2);
+
+echo $data->courses[0]->assignments[0]->name;
+echo $data->courses[0]->assignments[0]->id;
+```
+
+### Save Course Assignment
+
+Submit the online text for a specific assignment. Returns true on success.
+
+```php
+$submit = LaraMoodle::saveCourseAssignment($assignmentId, 'The content');
+
+echo $submit; // true
+```
+
+If there is an issue submitting then an array of warnings will be returned, with the error details in the item and message. 
+
+```php
+$submit = LaraMoodle::saveCourseAssignment($assignmentId, '');
+
+echo $submit[0]->item; // Nothing was submitted
+echo $submit[0]->message; // Could not save submission
 ```
 
 ### Search Users

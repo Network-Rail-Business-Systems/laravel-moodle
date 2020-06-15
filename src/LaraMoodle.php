@@ -12,9 +12,11 @@ use NRBusinessSystems\LaraMoodle\DataTransferObjects\CourseModuleById;
 use NRBusinessSystems\LaraMoodle\DataTransferObjects\CoursePages;
 use NRBusinessSystems\LaraMoodle\DataTransferObjects\CourseSearch;
 use NRBusinessSystems\LaraMoodle\DataTransferObjects\GetBadges;
+use NRBusinessSystems\LaraMoodle\DataTransferObjects\GetCourseAssignments;
 use NRBusinessSystems\LaraMoodle\DataTransferObjects\GetCoursesByField;
 use NRBusinessSystems\LaraMoodle\DataTransferObjects\getScorms;
 use NRBusinessSystems\LaraMoodle\DataTransferObjects\GetUsers;
+use NRBusinessSystems\LaraMoodle\DataTransferObjects\Warning;
 use NRBusinessSystems\LaraMoodle\Exceptions\MoodleException;
 use NRBusinessSystems\LaraMoodle\Exceptions\MoodleTokenMissingException;
 use NRBusinessSystems\LaraMoodle\DataTransferObjects\Course;
@@ -245,6 +247,63 @@ class LaraMoodle
         }
 
         return new CourseActivityStatuses($completion);
+    }
+
+    /**
+     * @param $courseId
+     * @return GetCourseAssignments
+     */
+    public function getCourseAssignments($courseId)
+    {
+        $assignments = $this->http->asForm()
+            ->post(
+                "/webservice/rest/server.php?wstoken={$this->token}&moodlewsrestformat=json&wsfunction=mod_assign_get_assignments",
+                [
+                    'courseids' => [$courseId]
+                ]
+            )
+            ->json();
+
+        return new GetCourseAssignments($assignments);
+    }
+
+    /**
+     * @param int $assignmentId
+     * @param string $content
+     * @param int $format
+     * @param int $itemId
+     * @return bool|\Illuminate\Support\Collection
+     * @throws MoodleException
+     */
+    public function saveCourseAssignment(int $assignmentId, string $content = '', int $format = 1, int $itemId = 1)
+    {
+        $assignment = $this->http->asForm()
+            ->post(
+                "/webservice/rest/server.php?wstoken={$this->token}&moodlewsrestformat=json&wsfunction=mod_assign_save_submission",
+                [
+                    'assignmentid' => $assignmentId,
+                    'plugindata' => [
+                        'onlinetext_editor' => [
+                            'text' => $content,
+                            'format' => $format,
+                            'itemid' => $itemId
+                        ]
+                    ]
+                ]
+            )
+            ->json();
+
+        if(isset($assignment['exception'])) {
+            throw new MoodleException($assignment['message']);
+        }
+
+        if(count($assignment) > 0) {
+            return collect($assignment)->map(function($warning) {
+                return new Warning($warning);
+            });
+        }
+
+        return true;
     }
 
     /**
