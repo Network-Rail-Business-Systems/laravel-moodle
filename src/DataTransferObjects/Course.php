@@ -53,76 +53,76 @@ class Course extends DataTransferObject
     /** @var \NRBusinessSystems\LaraMoodle\DataTransferObjects\CustomField[] */
     public $customfields;
 
-    /** @var string */
+    /** @var string|null */
     public $idnumber;
 
-    /** @var string */
+    /** @var string|null */
     public $format;
 
-    /** @var integer */
+    /** @var integer|null */
     public $showgrades;
 
-    /** @var integer */
+    /** @var integer|null */
     public $newsitems;
 
-    /** @var integer */
+    /** @var integer|null */
     public $startdate;
 
-    /** @var integer */
+    /** @var integer|null */
     public $enddate;
 
-    /** @var integer */
+    /** @var integer|null */
     public $maxbytes;
 
-    /** @var integer */
+    /** @var integer|null */
     public $showreports;
 
-    /** @var integer */
+    /** @var integer|null */
     public $visible;
 
-    /** @var integer */
+    /** @var integer|null */
     public $groupmode;
 
-    /** @var integer */
+    /** @var integer|null */
     public $groupmodeforce;
 
-    /** @var integer */
+    /** @var integer|null */
     public $defaultgroupingid;
 
-    /** @var integer */
+    /** @var integer|null */
     public $enablecompletion;
 
-    /** @var integer */
+    /** @var integer|null */
     public $completionnotify;
 
-    /** @var string */
+    /** @var string|null */
     public $lang;
 
-    /** @var string */
+    /** @var string|null */
     public $theme;
 
-    /** @var integer */
+    /** @var integer|null */
     public $marker;
 
-    /** @var integer */
+    /** @var integer|null */
     public $legacyfiles;
 
-    /** @var string */
+    /** @var string|null */
     public $calendartype;
 
-    /** @var integer */
+    /** @var integer|null */
     public $timecreated;
 
-    /** @var integer */
+    /** @var integer|null */
     public $timemodified;
 
-    /** @var integer */
+    /** @var integer|null */
     public $requested;
 
-    /** @var integer */
+    /** @var integer|null */
     public $cacherev;
 
-    /** @var array */
+    /** @var array|null */
     public $filters;
 
     /** @var mixed|null|array */

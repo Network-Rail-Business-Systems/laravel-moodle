@@ -16,10 +16,10 @@ class User extends FlexibleDataTransferObject
     /** @var string **/
     public $username;
 
-    /** @var string **/
+    /** @var string|null **/
     public $firstname;
 
-    /** @var string **/
+    /** @var string|null **/
     public $lastname;
 
     /** @var string */

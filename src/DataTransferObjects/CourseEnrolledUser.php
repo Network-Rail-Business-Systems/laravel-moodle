@@ -9,13 +9,13 @@ class CourseEnrolledUser extends FlexibleDataTransferObject
     /** @var integer **/
     public $id;
 
-    /** @var string **/
+    /** @var string|null **/
     public $username;
 
-    /** @var string **/
+    /** @var string|null **/
     public $firstname;
 
-    /** @var string **/
+    /** @var string|null **/
     public $lastname;
 
     /** @var string */
@@ -24,7 +24,7 @@ class CourseEnrolledUser extends FlexibleDataTransferObject
     /** @var string **/
     public $email;
 
-    /** @var string **/
+    /** @var string|null **/
     public $department;
 
     /** @var integer **/
@@ -48,7 +48,7 @@ class CourseEnrolledUser extends FlexibleDataTransferObject
     /** @var string **/
     public $profileimageurl;
 
-    /** @var array */
+    /** @var array|null */
     public $groups;
 
     /** @var \NRBusinessSystems\LaraMoodle\DataTransferObjects\Role[] */

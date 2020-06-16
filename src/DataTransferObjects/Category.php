@@ -34,13 +34,13 @@ class Category extends DataTransferObject
     /** @var integer **/
     public $coursecount;
 
-    /** @var integer **/
+    /** @var integer|null **/
     public $visible;
 
-    /** @var integer **/
+    /** @var integer|null **/
     public $visibleold;
 
-    /** @var integer **/
+    /** @var integer|null **/
     public $timemodified;
 
     /** @var integer **/
@@ -49,6 +49,6 @@ class Category extends DataTransferObject
     /** @var string **/
     public $path;
 
-    /** @var string **/
+    /** @var string|null **/
     public $theme;
 }

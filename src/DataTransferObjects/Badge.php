@@ -25,10 +25,10 @@ class Badge extends DataTransferObject
     /** @var integer **/
     public $timemodified;
 
-    /** @var integer **/
+    /** @var integer|null **/
     public $usercreated;
 
-    /** @var integer **/
+    /** @var integer|null **/
     public $usermodified;
 
     /** @var string **/
@@ -49,13 +49,13 @@ class Badge extends DataTransferObject
     /** @var integer **/
     public $type;
 
-    /** @var int **/
+    /** @var int|null **/
     public $courseid;
 
-    /** @var string **/
+    /** @var string|null **/
     public $message;
 
-    /** @var string **/
+    /** @var string|null **/
     public $messagesubject;
 
     /** @var integer **/
@@ -70,7 +70,7 @@ class Badge extends DataTransferObject
     /** @var integer **/
     public $status;
 
-    /** @var integer **/
+    /** @var integer|null **/
     public $issuedid;
 
     /** @var string **/
@@ -85,7 +85,7 @@ class Badge extends DataTransferObject
     /** @var integer **/
     public $visible;
 
-    /** @var string **/
+    /** @var string|null **/
     public $email;
 
     /** @var string **/

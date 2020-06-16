@@ -87,6 +87,11 @@ In order to access data from Moodle, it needs to be configured first as the web 
         * Search for the admin user you want to use
         * Select your Web Service
         * Save changes
+4. Allow users to create tokens for the new Web Service so they can create a token when they log in
+    * Site Administration > Users > Define Roles
+    * Edit Authenticated user
+    * Capabilities > Create a web service token > Allow
+    * Save
 
 ## Endpoints
 
@@ -261,6 +266,8 @@ echo $users->users[0]->fullname; // Test User
 ### Enrol User On A Course
 
 You can enrol a user onto a course by specifying the user id then the course id. By default they have the student role, but you can specify the role id.
+
+The user performing the call must be an Admin or Manager in Moodle or a teacher in the course.
 
 There is a `null` response from Moodle when successful, but enrolUserOnCourse returns `true` when successful and MoodleException if it fails.
 

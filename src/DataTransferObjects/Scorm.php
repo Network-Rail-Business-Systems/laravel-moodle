@@ -127,10 +127,10 @@ class Scorm extends DataTransferObject
     /** @var boolean **/
     public $protectpackagedownloads;
 
-    /** @var integer **/
+    /** @var integer|null **/
     public $updatefreq;
 
-    /** @var string **/
+    /** @var string|null **/
     public $options;
 
     /** @var mixed|null|boolean **/
@@ -139,24 +139,24 @@ class Scorm extends DataTransferObject
     /** @var mixed|null|boolean **/
     public $completionscorerequired;
 
-    /** @var integer **/
+    /** @var integer|null **/
     public $completionstatusallscos;
 
-    /** @var boolean **/
+    /** @var boolean|null **/
     public $autocommit;
 
-    /** @var integer **/
+    /** @var integer|null **/
     public $timemodified;
 
-    /** @var integer **/
+    /** @var integer|null **/
     public $section;
 
-    /** @var boolean **/
+    /** @var boolean|null **/
     public $visible;
 
-    /** @var integer **/
+    /** @var integer|null **/
     public $groupmode;
 
-    /** @var integer **/
+    /** @var integer|null **/
     public $groupingid;
 }

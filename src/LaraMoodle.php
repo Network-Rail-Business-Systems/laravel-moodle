@@ -141,6 +141,10 @@ class LaraMoodle
             )
             ->json();
 
+        if(isset($courseContents['exception'])) {
+            throw new MoodleException($courseContents['message']);
+        }
+
         return collect($courseContents)->map(function($content) {
             return new CourseContent($content);
         });
@@ -152,7 +156,7 @@ class LaraMoodle
      * @param $id
      * @return CourseModuleById
      */
-    public function getCourseModule($id)
+    public function getCourseModule(int $id)
     {
         $module = $this->http
             ->get(
@@ -168,13 +172,13 @@ class LaraMoodle
      * @param $id
      * @return CoursePages
      */
-    public function getCoursePages(int $id)
+    public function getCoursePages(int $courseId)
     {
         $pages = $this->http->asForm()
             ->post(
                 "/webservice/rest/server.php?wstoken={$this->token}&moodlewsrestformat=json&wsfunction=mod_page_get_pages_by_courses",
                 [
-                    'courseids' => [$id]
+                    'courseids' => [$courseId]
                 ]
             )
             ->json();
@@ -182,13 +186,13 @@ class LaraMoodle
         return new CoursePages($pages);
     }
 
-    public function getCourseScorms(int $id)
+    public function getCourseScorms(int $courseId)
     {
         $scorms = $this->http->asForm()
             ->post(
                 "/webservice/rest/server.php?wstoken={$this->token}&moodlewsrestformat=json&wsfunction=mod_scorm_get_scorms_by_courses",
                 [
-                    'courseids' => [$id]
+                    'courseids' => [$courseId]
                 ]
             )
             ->json();
@@ -335,6 +339,7 @@ class LaraMoodle
 
     /**
      * Enrol user on a course, default role of student, but can be overwritten
+     * User must be Admin or Manager site role in Moodle or a Course Teacher
      *
      * @param int $userId
      * @param int $courseId
@@ -432,7 +437,7 @@ class LaraMoodle
     }
 
     /**
-     * Search categories
+     * Search categories with exact match only
      *
      * @param string $searchTerm
      * @param string $field
