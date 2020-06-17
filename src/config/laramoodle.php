@@ -22,6 +22,7 @@ return [
      * db field name => moodle field name
      */
     'sync_attributes' => [
+        'moodle_id' => 'id',
         'name' => 'fullname',
         'email' => 'email'
     ],

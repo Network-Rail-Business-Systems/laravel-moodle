@@ -15,7 +15,8 @@ class UpdateUsersTable extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->string('password')->nullable()->change();
-            $table->string('username')->unique()->nullable();
+            $table->string('username')->unique()->nullable()->after('email');
+            $table->unsignedBigInteger('moodle_id')->nullable()->after('username');
         });
     }
 
@@ -29,6 +30,7 @@ class UpdateUsersTable extends Migration
         Schema::table('users', function (Blueprint $table) {
             $table->string('password')->change();
             $table->dropColumn('username');
+            $table->dropColumn('moodle_id');
         });
     }
 }

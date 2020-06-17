@@ -12,6 +12,6 @@ class User extends Eloquent
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'username',
+        'name', 'email', 'password', 'username', 'moodle_id',
     ];
 }

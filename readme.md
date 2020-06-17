@@ -30,6 +30,14 @@ Update your auth.php config file, providers > users > drivers to `moodle`
 
 Update the .env file with the `MOODLE_BASE_URL` with the url of your Moodle installation and `MOODLE_ADMIN_TOKEN` with a token for an existing user that has permission to search existing users. 
 
+### User Model
+
+When a user logs in for the first time their email, username and id are set from Moodle in the user model. If you want to customise the fields that are synchronised then publish the laramoodle config file and update the sync_attributes array. 
+
+Any fields that you synchronise will need to added to the `protected $fillable` array in your User model. 
+
+If you want to use a different model to `App\User` then update the `user_model` in the laramoodle config file.
+
 ### Credentials
 
 The package expects the credentials from the LoginController to be an array containing `username` and `password`, but if you want to use `username` instead then add `MOODLE_LOGIN_ATTRIBUTE=username` to your .env file.
