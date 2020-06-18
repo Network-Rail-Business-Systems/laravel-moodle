@@ -186,6 +186,22 @@ class LaraMoodle
         return new CoursePages($pages);
     }
 
+    /**
+     * Get a specific page for a course
+     *
+     * @param int $courseId
+     * @param int $pageId
+     * @return mixed
+     */
+    public function getCoursePage(int $courseId, int $pageId)
+    {
+        return collect($this->getCoursePages($courseId, $pageId)->pages)
+            ->filter( function ($value) use ($pageId) {
+                return $value->coursemodule == $pageId;
+            })
+            ->first();
+    }
+
     public function getCourseScorms(int $courseId)
     {
         $scorms = $this->http->asForm()
