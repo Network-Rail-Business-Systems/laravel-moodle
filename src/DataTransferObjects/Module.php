@@ -5,11 +5,14 @@ namespace NRBusinessSystems\LaraMoodle\DataTransferObjects;
 
 
 use NRBusinessSystems\LaraMoodle\Traits\HasDates;
+use NRBusinessSystems\LaraMoodle\Traits\HasActivity;
 use Spatie\DataTransferObject\DataTransferObject;
 
 class Module extends DataTransferObject
 {
     use HasDates;
+    use HasActivity;
+
     protected $dates = ['added'];
 
     /** @var integer */

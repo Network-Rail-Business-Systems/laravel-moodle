@@ -165,6 +165,25 @@ class MockResponses
                         "customdata" => "\"\"",
                         "noviewlink" => false,
                         "completion" => 0
+                    ],
+                    [
+                        "id" => 2,
+                        "url" => "http://moodle.test/mod/page/view.php?id=3",
+                        "name" => "Example Page",
+                        "instance" => 1,
+                        "visible" => 1,
+                        "uservisible" => true,
+                        "visibleoncoursepage" => 1,
+                        "modicon" => "http://moodle.test/theme/image.php/boost/page/1592292950/icon",
+                        "modname" => "page",
+                        "modplural" => "Pages",
+                        "availability" => null,
+                        "indent" => 0,
+                        "onclick" => "",
+                        "afterlink" => null,
+                        "customdata" => "\"\"",
+                        "noviewlink" => false,
+                        "completion" => 0
                     ]
                 ]
             ]
