@@ -78,7 +78,20 @@ class MockResponses
                     ],
                     "contacts" => [],
                     "enrollmentmethods" => [],
-                    "customfields" => [],
+                    "customfields" => [
+                        [
+                            "name" => "Course Duration",
+                            "shortname" => "duration",
+                            "type" => "text",
+                            "value" => "1 week"
+                        ],
+                        [
+                            "name" => "Course Type",
+                            "shortname" => "course_type",
+                            "type" => "text",
+                            "value" => "Online"
+                        ]
+                    ],
                     "idnumber" => "",
                     "format" => "topics",
                     "showgrades" => 1,

@@ -147,4 +147,31 @@ class CoursesTest extends TestCase
         $this->assertEquals('page', $activityStatuses->statuses[0]->modname);
         $this->assertEquals('1', $activityStatuses->statuses[0]->state);
     }
+
+    public function test_has_course_images()
+    {
+        Http::fake([
+            '*' => Http::response(MockResponses::getCourses(), 200)
+        ]);
+
+        $data = LaraMoodle::getCourses();
+
+        $this->assertEquals('4251.png', $data->courses[0]->getImage()->filename);
+        $this->assertCount(1, $data->courses[0]->getImages());
+    }
+
+    public function test_has_custom_fields()
+    {
+        Http::fake([
+            '*' => Http::response(MockResponses::getCourses(), 200)
+        ]);
+
+        $data = LaraMoodle::getCourses();
+
+        //dd($data->courses[0]->getCustomFields());
+
+        $this->assertCount(2, $data->courses[0]->getCustomFields());
+        $this->assertEquals('1 week', $data->courses[0]->getCustomField('duration'));
+        $this->assertEquals(null, $data->courses[0]->getCustomField('nonmatchingfield'));
+    }
 }
