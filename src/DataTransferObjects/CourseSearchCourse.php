@@ -2,10 +2,15 @@
 
 namespace NRBusinessSystems\LaraMoodle\DataTransferObjects;
 
+use NRBusinessSystems\LaraMoodle\Traits\HasCourseImages;
+use NRBusinessSystems\LaraMoodle\Traits\HasCustomFields;
 use Spatie\DataTransferObject\DataTransferObject;
 
 class CourseSearchCourse extends DataTransferObject
 {
+    use HasCourseImages;
+    use HasCustomFields;
+    
     /** @var integer */
     public $id;
 
