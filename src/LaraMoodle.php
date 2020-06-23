@@ -226,7 +226,7 @@ class LaraMoodle
      */
     public function getCourseScorm(int $courseId, int $moduleId)
     {
-        collect($this->getCourseScorms($courseId)->scorms)->filter(function($item) use ($moduleId) {
+        return collect($this->getCourseScorms($courseId)->scorms)->filter(function($item) use ($moduleId) {
             return $item->coursemodule == $moduleId;
         })->first();
     }
