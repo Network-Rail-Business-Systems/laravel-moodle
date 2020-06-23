@@ -193,15 +193,19 @@ class LaraMoodle
      * @param int $pageId
      * @return mixed
      */
-    public function getCoursePage(int $courseId, int $pageId)
+    public function getCoursePage(int $courseId, int $moduleId)
     {
-        return collect($this->getCoursePages($courseId, $pageId)->pages)
-            ->filter( function ($value) use ($pageId) {
-                return $value->coursemodule == $pageId;
+        return collect($this->getCoursePages($courseId)->pages)
+            ->filter( function ($value) use ($moduleId) {
+                return $value->coursemodule == $moduleId;
             })
             ->first();
     }
 
+    /**
+     * @param int $courseId
+     * @return getScorms
+     */
     public function getCourseScorms(int $courseId)
     {
         $scorms = $this->http->asForm()
@@ -214,6 +218,17 @@ class LaraMoodle
             ->json();
 
         return new getScorms($scorms);
+    }
+
+    /**
+     * @param int $courseId
+     * @param int $moduleId
+     */
+    public function getCourseScorm(int $courseId, int $moduleId)
+    {
+        collect($this->getCourseScorms($courseId)->scorms)->filter(function($item) use ($moduleId) {
+            return $item->coursemodule == $moduleId;
+        })->first();
     }
 
     /**

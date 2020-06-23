@@ -199,6 +199,14 @@ $pages = LaraMoodle::getCoursePages(1);
 echo $pages->pages[0]->name; // Page name
 ```
 
+### Get Course Page
+
+Get a specific course page by module id.
+
+```php
+$page = LaraMoodle::getCoursePage($courseId, $moduleId);
+```
+
 ### Get Course Scorms
 
 Once you know the course id you can get the scorms for the course.
@@ -207,6 +215,14 @@ Once you know the course id you can get the scorms for the course.
 $scorms = LaraMoodle::getCourseScorms(1);
 
 echo $scorms->scorms[0]->name; // Example scorm
+```
+
+### Get Course Scorm
+
+Get a specific course scorm by module id.
+
+```php
+$scorm = LaraMoodle::getCourseScorm($courseId, $moduleId);
 ```
 
 ### Get Course Completion

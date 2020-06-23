@@ -10,7 +10,7 @@ class CourseSearchCourse extends DataTransferObject
 {
     use HasCourseImages;
     use HasCustomFields;
-    
+
     /** @var integer */
     public $id;
 
