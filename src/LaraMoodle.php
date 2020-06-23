@@ -288,7 +288,7 @@ class LaraMoodle
      * @param $courseId
      * @return GetCourseAssignments
      */
-    public function getCourseAssignments($courseId)
+    public function getCourseAssignments(int $courseId)
     {
         $assignments = $this->http->asForm()
             ->post(
@@ -300,6 +300,14 @@ class LaraMoodle
             ->json();
 
         return new GetCourseAssignments($assignments);
+    }
+
+    public function getCourseAssignment(int $courseId, int $moduleId)
+    {
+        return collect($this->getCourseAssignments($courseId)->courses[0]->assignments)
+            ->filter(function($item) use ($moduleId) {
+                return $item->cmid == $moduleId;
+            })->first();
     }
 
     /**

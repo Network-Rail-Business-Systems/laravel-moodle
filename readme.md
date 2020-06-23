@@ -254,6 +254,14 @@ echo $data->courses[0]->assignments[0]->name;
 echo $data->courses[0]->assignments[0]->id;
 ```
 
+### Get Course Assignment
+
+Get a specific course assignment by the module id.
+
+```php
+$assignment = LaraMoodle::getCourseAssignment($courseId, $moduleId);
+``` 
+
 ### Save Course Assignment
 
 Submit the online text for a specific assignment. Returns true on success.
