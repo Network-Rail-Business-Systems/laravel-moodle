@@ -77,4 +77,16 @@ class CourseModule extends DataTransferObject
 
     /** @var mixed|null|integer **/
     public $availability;
+
+    /** @var null|integer */
+    public $grade;
+
+    /** @var null|string */
+    public $gradepass;
+
+    /** @var null|integer */
+    public $gradecat;
+
+    /** @var null|array */
+    public $advancedgrading;
 }
