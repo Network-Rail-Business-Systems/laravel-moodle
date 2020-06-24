@@ -16,6 +16,7 @@ use NRBusinessSystems\LaraMoodle\DataTransferObjects\GetCourseAssignments;
 use NRBusinessSystems\LaraMoodle\DataTransferObjects\GetCoursesByField;
 use NRBusinessSystems\LaraMoodle\DataTransferObjects\getScorms;
 use NRBusinessSystems\LaraMoodle\DataTransferObjects\GetUsers;
+use NRBusinessSystems\LaraMoodle\DataTransferObjects\SelfEnrol;
 use NRBusinessSystems\LaraMoodle\DataTransferObjects\Warning;
 use NRBusinessSystems\LaraMoodle\Exceptions\MoodleException;
 use NRBusinessSystems\LaraMoodle\Exceptions\MoodleTokenMissingException;
@@ -408,6 +409,33 @@ class LaraMoodle
         }
 
         return true;
+    }
+
+    /**
+     * Self enrol current user on a course with optional enrollment key
+     *
+     * @param int $courseId
+     * @return SelfEnrol
+     * @throws MoodleException
+     */
+    public function selfEnrolOnCourse(int $courseId, $enrollmentKey = '', $instanceId = 0)
+    {
+        $enrol = $this->http->asForm()
+            ->post(
+                "/webservice/rest/server.php?wstoken={$this->token}&moodlewsrestformat=json&wsfunction=enrol_self_enrol_user",
+                [
+                    'courseid' => $courseId,
+                    'password' => $enrollmentKey,
+                    'instanceid' => $instanceId
+                ]
+            )
+            ->json();
+
+        if (isset($enrol['exception'])) {
+            throw new MoodleException($enrol['message']);
+        }
+
+        return new SelfEnrol($enrol);
     }
 
     /**

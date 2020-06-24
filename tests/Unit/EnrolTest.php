@@ -67,4 +67,19 @@ class EnrolTest extends TestCase
         $this->assertEquals('My First Course', $enrolledUsers[0]->enrolledcourses[0]->fullname);
         $this->assertEquals('Short Course', $enrolledUsers[0]->enrolledcourses[0]->shortname);
     }
+
+    public function test_self_enrol_user_on_course()
+    {
+        Http::fake([
+            '*' => Http::response([
+                'status' => 1,
+                'warnings' => []
+            ])
+        ]);
+
+        $selfEnrol = LaraMoodle::selfEnrolOnCourse(2);
+
+        $this->assertNotNull($selfEnrol);
+        $this->assertEquals(1, $selfEnrol->status);
+    }
 }

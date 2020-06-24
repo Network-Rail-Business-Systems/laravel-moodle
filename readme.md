@@ -83,6 +83,7 @@ In order to access data from Moodle, it needs to be configured first as the web 
         * core_enrol_get_enrolled_users
         * core_user_get_users
         * enrol_manual_enrol_users
+        * enrol_self_enrol_user
         * mod_assign_get_assignments
         * mod_assign_save_submission
         * mod_page_get_pages_by_courses
