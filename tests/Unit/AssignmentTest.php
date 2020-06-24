@@ -29,6 +29,19 @@ class AssignmentTest extends TestCase
         $this->assertEquals('Example course assignment', $data->courses[0]->assignments[0]->name);
     }
 
+    public function test_get_course_assignment()
+    {
+        Http::fake([
+            '*' => Http::response(MockResponses::courseAssignments(), 200)
+        ]);
+
+        $assignment = LaraMoodle::getCourseAssignment(3, 16);
+
+        $this->assertNotNull($assignment);
+        $this->assertEquals(3, $assignment->course);
+        $this->assertEquals('Example course assignment', $assignment->name);
+    }
+
     public function test_save_course_assignment()
     {
         Http::fake([

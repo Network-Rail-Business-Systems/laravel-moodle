@@ -125,7 +125,20 @@ class CoursesTest extends TestCase
         $this->assertEquals('Page Image.png', $pages->pages[0]->contentfiles[0]->filename);
     }
 
-    public function test_get_course_scorm()
+    public function test_get_course_page()
+    {
+        Http::fake([
+            '*' => Http::response(MockResponses::coursePages(), 200)
+        ]);
+
+        $page = LaraMoodle::getCoursePage(2, 2);
+
+        $this->assertNotNull($page);
+        $this->assertEquals('My First Page', $page->name);
+        $this->assertEquals('Page Image.png', $page->contentfiles[0]->filename);
+    }
+
+    public function test_get_course_scorms()
     {
         Http::fake([
             '*' => Http::response(MockResponses::getScorms(), 200)
@@ -136,6 +149,19 @@ class CoursesTest extends TestCase
         $this->assertNotNull($scorms);
         $this->assertEquals('Example scorm', $scorms->scorms[0]->name);
         $this->assertEquals(3, $scorms->scorms[0]->course);
+    }
+
+    public function test_get_course_scorm()
+    {
+        Http::fake([
+            '*' => Http::response(MockResponses::getScorms(), 200)
+        ]);
+
+        $scorm = LaraMoodle::getCourseScorm(3, 17);
+
+        $this->assertNotNull($scorm);
+        $this->assertEquals('Example scorm', $scorm->name);
+        $this->assertEquals(3, $scorm->course);
     }
 
     public function test_course_completion_activities()
