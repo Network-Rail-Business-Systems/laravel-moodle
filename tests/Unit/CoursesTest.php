@@ -67,6 +67,7 @@ class CoursesTest extends TestCase
         $this->assertNotNull($course);
         $this->assertEquals('My First Course', $course->fullname);
         $this->assertEquals('Intro Course', $course->shortname);
+        $this->assertTrue($course->selfEnrol());
     }
 
     public function test_get_course_contents()

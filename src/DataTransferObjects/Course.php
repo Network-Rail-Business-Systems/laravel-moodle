@@ -5,6 +5,7 @@ namespace NRBusinessSystems\LaraMoodle\DataTransferObjects;
 use NRBusinessSystems\LaraMoodle\Traits\HasCourseImages;
 use NRBusinessSystems\LaraMoodle\Traits\HasCustomFields;
 use NRBusinessSystems\LaraMoodle\Traits\HasDates;
+use NRBusinessSystems\LaraMoodle\Traits\HasEnrollements;
 use Spatie\DataTransferObject\DataTransferObject;
 
 class Course extends DataTransferObject
@@ -12,6 +13,7 @@ class Course extends DataTransferObject
     use HasDates;
     use HasCourseImages;
     use HasCustomFields;
+    use HasEnrollements;
 
     protected $dates = ['startdate', 'enddate', 'timecreated', 'timemodified'];
 

@@ -77,7 +77,7 @@ class MockResponses
                         ]
                     ],
                     "contacts" => [],
-                    "enrollmentmethods" => [],
+                    "enrollmentmethods" => ['manual', 'self'],
                     "customfields" => [
                         [
                             "name" => "Course Duration",
