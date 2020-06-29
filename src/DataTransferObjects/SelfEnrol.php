@@ -6,7 +6,7 @@ use Spatie\DataTransferObject\DataTransferObject;
 
 class SelfEnrol extends DataTransferObject
 {
-    /** @var integer */
+    /** @var boolean */
     public $status;
 
     /** @var \NRBusinessSystems\LaraMoodle\DataTransferObjects\Warning[] */

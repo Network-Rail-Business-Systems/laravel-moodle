@@ -58,10 +58,10 @@ class User extends FlexibleDataTransferObject
     /** @var integer **/
     public $mailformat;
 
-    /** @var string **/
+    /** @var string|null **/
     public $description;
 
-    /** @var integer **/
+    /** @var integer|null **/
     public $descriptionformat;
 
     /** @var string **/

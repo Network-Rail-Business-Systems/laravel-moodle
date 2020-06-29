@@ -72,7 +72,7 @@ class EnrolTest extends TestCase
     {
         Http::fake([
             '*' => Http::response([
-                'status' => 1,
+                'status' => true,
                 'warnings' => []
             ])
         ]);
