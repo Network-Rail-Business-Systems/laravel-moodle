@@ -17,7 +17,8 @@
         "laravel/framework": "^7.0",
         "orchestra/testbench": "^5.3",
         "guzzlehttp/guzzle": "^6.3",
-        "laravel/ui": "^2.0"
+        "laravel/ui": "^2.0",
+        "hannesvdvreken/guzzle-debugbar": "^2.0"
     },
     "autoload": {
         "psr-4": {

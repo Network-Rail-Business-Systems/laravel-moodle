@@ -2,6 +2,9 @@
 
 namespace NRBusinessSystems\LaraMoodle;
 
+use GuzzleHttp\Profiling\Debugbar\Profiler;
+use GuzzleHttp\Profiling\Middleware;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Http;
 use NRBusinessSystems\LaraMoodle\DataTransferObjects\Category;
 use NRBusinessSystems\LaraMoodle\DataTransferObjects\CourseActivityStatuses;
@@ -29,15 +32,20 @@ class LaraMoodle
 
     public function __construct()
     {
-        $this->http = Http::withOptions([
-            'base_uri' => config('laramoodle.base_url')
-        ]);
-
         if(!session()->has('moodle-token')) {
             throw new MoodleTokenMissingException();
         }
 
         $this->token = session('moodle-token');
+
+        $this->http = Http::withOptions([
+            'base_uri' => config('laramoodle.base_url')
+        ]);
+
+        if(config('laramoodle.debug')) {
+            $debugbar = App::make('debugbar');
+            $this->http->withMiddleware(new Middleware(new Profiler($debugbar->getCollector('time'))));
+        }
     }
 
     /**

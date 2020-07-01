@@ -37,4 +37,10 @@ return [
      * Overwrite in the env file if you would like a different default role id when a user is enrolled onto a course
      */
     'student_role_id' => env('MOODLE_STUDENT_ROLE_ID', 5),
+
+    /**
+     * Whether to debug. Requires the Laravel Debugbar to be installed
+     * Requests will appear in the debugbar Timeline
+     */
+    'debug' => env('DEBUGBAR_ENABLED', null)
 ];
