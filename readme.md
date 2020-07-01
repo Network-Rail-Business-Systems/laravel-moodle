@@ -88,6 +88,8 @@ In order to access data from Moodle, it needs to be configured first as the web 
         * mod_assign_save_submission
         * mod_page_get_pages_by_courses
         * mod_page_view_page
+        * mod_resource_get_resources_by_courses
+        * mod_resource_view_resource
         * mod_book_get_books_by_courses
         * mod_scorm_get_scorms_by_courses
 3. Create a token for the admin user (used in the Laravel .env file)
@@ -224,6 +226,23 @@ Get a specific course scorm by module id.
 
 ```php
 $scorm = LaraMoodle::getCourseScorm($courseId, $moduleId);
+```
+
+### Get Course Resources
+
+Once you know the course id you can get the resources.
+
+```php
+$resources = LaraMoodle::getCourseResources(1);
+echo $resources->resources[0]->name;
+```
+
+### Get Course Resource
+
+Get a specific course resource by module id.
+
+```php
+$resource = LaraMoodle::getCourseResource($courseId, $moduleId);
 ```
 
 ### Get Course Completion

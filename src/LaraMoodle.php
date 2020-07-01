@@ -17,6 +17,7 @@ use NRBusinessSystems\LaraMoodle\DataTransferObjects\CourseSearch;
 use NRBusinessSystems\LaraMoodle\DataTransferObjects\GetBadges;
 use NRBusinessSystems\LaraMoodle\DataTransferObjects\GetCourseAssignments;
 use NRBusinessSystems\LaraMoodle\DataTransferObjects\GetCoursesByField;
+use NRBusinessSystems\LaraMoodle\DataTransferObjects\GetResources;
 use NRBusinessSystems\LaraMoodle\DataTransferObjects\getScorms;
 use NRBusinessSystems\LaraMoodle\DataTransferObjects\GetUsers;
 use NRBusinessSystems\LaraMoodle\DataTransferObjects\SelfEnrol;
@@ -241,7 +242,37 @@ class LaraMoodle
     }
 
     /**
-     * TODO implement data transfer object for response
+     * @param int $courseId
+     * @return GetResources
+     */
+    public function getCourseResources(int $courseId)
+    {
+        $resources = $this->http->asForm()
+            ->post(
+                "/webservice/rest/server.php?wstoken={$this->token}&moodlewsrestformat=json&wsfunction=mod_resource_get_resources_by_courses",
+                [
+                    'courseids' => [$courseId]
+                ]
+            )
+            ->json();
+
+        return new GetResources($resources);
+    }
+
+    /**
+     * @param int $courseId
+     * @param int $moduleId
+     * @return mixed
+     */
+    public function getCourseResource(int $courseId, int $moduleId)
+    {
+        return collect($this->getCourseResources($courseId)->resources)->filter(function($item) use ($moduleId) {
+            return $item->coursemodule == $moduleId;
+        })->first();
+    }
+
+    /**
+     *
      * @param int $userId
      * @param int $courseId
      * @return CourseCompletion
@@ -562,5 +593,30 @@ class LaraMoodle
         }
 
         return $page['status'];
+    }
+
+    /**
+     * Mark a resource as viewed
+     *
+     * @param int $resourceId
+     * @return mixed
+     * @throws MoodleException
+     */
+    public function viewResourceEvent(int $resourceId)
+    {
+        $resource = $this->http->asForm()
+            ->post(
+                "/webservice/rest/server.php?wstoken={$this->token}&wsfunction=mod_resource_view_resource&moodlewsrestformat=json",
+                [
+                    'resourceid' => $resourceId
+                ]
+            )
+            ->json();
+
+        if (isset($resource['exception'])) {
+            throw new MoodleException($resource['message']);
+        }
+
+        return $resource['status'];
     }
 }
