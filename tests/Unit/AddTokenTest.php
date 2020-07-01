@@ -47,4 +47,12 @@ class AddTokenTest extends TestCase
             ]
         ];
     }
+
+    public function test_add_token_to_url()
+    {
+        $this->assertEquals(
+            'http://moodle.test/download/spreadsheet.xlsx?token=ABC123',
+            AddToken::toUrl('http://moodle.test/download/spreadsheet.xlsx')
+        );
+    }
 }

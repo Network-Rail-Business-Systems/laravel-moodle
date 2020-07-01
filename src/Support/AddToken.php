@@ -32,4 +32,13 @@ class AddToken
             ]
         );
     }
+
+    /**
+     * @param $url
+     * @return string
+     */
+    public function toUrl($url)
+    {
+        return $url . '?token=' . session('moodle-token');
+    }
 }
