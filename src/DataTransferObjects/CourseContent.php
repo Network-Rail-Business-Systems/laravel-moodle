@@ -32,5 +32,4 @@ class CourseContent extends DataTransferObject
 
     /** @var \NRBusinessSystems\LaraMoodle\DataTransferObjects\Module[] */
     public $modules;
-
 }

@@ -11,9 +11,8 @@ trait HasCustomFields
     {
         $customFields = collect();
 
-        if($this->customfields) {
-            $customFields = collect($this->customfields)
-            ->pluck('value', 'shortname');
+        if ($this->customfields) {
+            $customFields = collect($this->customfields)->pluck('value', 'shortname');
         }
 
         return $customFields;

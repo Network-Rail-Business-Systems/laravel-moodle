@@ -19,7 +19,7 @@ class AssignmentTest extends TestCase
     public function test_get_course_assignments()
     {
         Http::fake([
-            '*' => Http::response(MockResponses::courseAssignments(), 200)
+            '*' => Http::response(MockResponses::courseAssignments(), 200),
         ]);
 
         $data = LaraMoodle::getCourseAssignments(3);
@@ -32,7 +32,7 @@ class AssignmentTest extends TestCase
     public function test_get_course_assignment()
     {
         Http::fake([
-            '*' => Http::response(MockResponses::courseAssignments(), 200)
+            '*' => Http::response(MockResponses::courseAssignments(), 200),
         ]);
 
         $assignment = LaraMoodle::getCourseAssignment(3, 16);
@@ -45,7 +45,7 @@ class AssignmentTest extends TestCase
     public function test_save_course_assignment()
     {
         Http::fake([
-            '*' => Http::response([], 200)
+            '*' => Http::response([], 200),
         ]);
 
         $this->assertTrue(LaraMoodle::saveCourseAssignment(1, 'The assessment text content'));
@@ -54,12 +54,14 @@ class AssignmentTest extends TestCase
     public function test_unsuccessful_course_assignment()
     {
         Http::fake([
-            '*' => Http::response([[
-                'item' => 'Nothing was submitted',
-                'itemid' => 1,
-                'warningcode' => 'couldnotsavesubmission',
-                'message' => 'Could not save submission'
-            ]])
+            '*' => Http::response([
+                [
+                    'item' => 'Nothing was submitted',
+                    'itemid' => 1,
+                    'warningcode' => 'couldnotsavesubmission',
+                    'message' => 'Could not save submission',
+                ],
+            ]),
         ]);
 
         $submit = LaraMoodle::saveCourseAssignment(1, '');

@@ -3,9 +3,9 @@
 namespace NRBusinessSystems\LaraMoodle\Tests\Unit;
 
 use Illuminate\Support\Facades\Http;
+use NRBusinessSystems\LaraMoodle\Facades\LaraMoodle;
 use NRBusinessSystems\LaraMoodle\Tests\Stubs\MockResponses;
 use NRBusinessSystems\LaraMoodle\Tests\TestCase;
-use NRBusinessSystems\LaraMoodle\Facades\LaraMoodle;
 
 class CoursesTest extends TestCase
 {
@@ -19,7 +19,7 @@ class CoursesTest extends TestCase
     public function test_get_courses()
     {
         Http::fake([
-            '*' => Http::response(MockResponses::getCourses(), 200)
+            '*' => Http::response(MockResponses::getCourses(), 200),
         ]);
 
         $data = LaraMoodle::getCourses();
@@ -33,7 +33,7 @@ class CoursesTest extends TestCase
     public function test_get_course_dates()
     {
         Http::fake([
-            '*' => Http::response(MockResponses::getCourses(), 200)
+            '*' => Http::response(MockResponses::getCourses(), 200),
         ]);
 
         $data = LaraMoodle::getCourses();
@@ -45,7 +45,7 @@ class CoursesTest extends TestCase
     public function test_get_courses_by_category()
     {
         Http::fake([
-            '*' => Http::response(MockResponses::getCourses(), 200)
+            '*' => Http::response(MockResponses::getCourses(), 200),
         ]);
 
         $data = LaraMoodle::getCoursesByCategory(1);
@@ -59,7 +59,7 @@ class CoursesTest extends TestCase
     public function test_get_course()
     {
         Http::fake([
-            '*' => Http::response(MockResponses::getCourses(), 200)
+            '*' => Http::response(MockResponses::getCourses(), 200),
         ]);
 
         $course = LaraMoodle::getCourse(2);
@@ -73,7 +73,7 @@ class CoursesTest extends TestCase
     public function test_get_course_contents()
     {
         Http::fake([
-            '*' => Http::response(MockResponses::getCourseContents(), 200)
+            '*' => Http::response(MockResponses::getCourseContents(), 200),
         ]);
 
         $contents = LaraMoodle::getCourseContents(2);
@@ -90,7 +90,7 @@ class CoursesTest extends TestCase
     public function test_search_courses()
     {
         Http::fake([
-            '*' => Http::response(MockResponses::searchCourses(), 200)
+            '*' => Http::response(MockResponses::searchCourses(), 200),
         ]);
 
         $searchResults = LaraMoodle::searchCourses('my first course');
@@ -104,7 +104,7 @@ class CoursesTest extends TestCase
     public function test_get_course_module_by_id()
     {
         Http::fake([
-            '*' => Http::response(MockResponses::getCourseModule(), 200)
+            '*' => Http::response(MockResponses::getCourseModule(), 200),
         ]);
 
         $module = LaraMoodle::getCourseModule(1);
@@ -116,7 +116,7 @@ class CoursesTest extends TestCase
     public function test_get_course_pages()
     {
         Http::fake([
-            '*' => Http::response(MockResponses::coursePages(), 200)
+            '*' => Http::response(MockResponses::coursePages(), 200),
         ]);
 
         $pages = LaraMoodle::getCoursePages(2);
@@ -129,7 +129,7 @@ class CoursesTest extends TestCase
     public function test_get_course_page()
     {
         Http::fake([
-            '*' => Http::response(MockResponses::coursePages(), 200)
+            '*' => Http::response(MockResponses::coursePages(), 200),
         ]);
 
         $page = LaraMoodle::getCoursePage(2, 2);
@@ -142,7 +142,7 @@ class CoursesTest extends TestCase
     public function test_get_course_scorms()
     {
         Http::fake([
-            '*' => Http::response(MockResponses::getScorms(), 200)
+            '*' => Http::response(MockResponses::getScorms(), 200),
         ]);
 
         $scorms = LaraMoodle::getCourseScorms(3);
@@ -155,7 +155,7 @@ class CoursesTest extends TestCase
     public function test_get_course_scorm()
     {
         Http::fake([
-            '*' => Http::response(MockResponses::getScorms(), 200)
+            '*' => Http::response(MockResponses::getScorms(), 200),
         ]);
 
         $scorm = LaraMoodle::getCourseScorm(3, 17);
@@ -168,7 +168,7 @@ class CoursesTest extends TestCase
     public function test_course_completion_activities()
     {
         Http::fake([
-            '*' => Http::response(MockResponses::courseActivityStatuses(), 200)
+            '*' => Http::response(MockResponses::courseActivityStatuses(), 200),
         ]);
 
         $activityStatuses = LaraMoodle::getCourseActivitiesCompletion(2, 2);
@@ -181,7 +181,7 @@ class CoursesTest extends TestCase
     public function test_has_course_images()
     {
         Http::fake([
-            '*' => Http::response(MockResponses::getCourses(), 200)
+            '*' => Http::response(MockResponses::getCourses(), 200),
         ]);
 
         $data = LaraMoodle::getCourses();
@@ -193,7 +193,7 @@ class CoursesTest extends TestCase
     public function test_has_custom_fields()
     {
         Http::fake([
-            '*' => Http::response(MockResponses::getCourses(), 200)
+            '*' => Http::response(MockResponses::getCourses(), 200),
         ]);
 
         $data = LaraMoodle::getCourses();

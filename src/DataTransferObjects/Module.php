@@ -1,11 +1,9 @@
 <?php
 
-
 namespace NRBusinessSystems\LaraMoodle\DataTransferObjects;
 
-
-use NRBusinessSystems\LaraMoodle\Traits\HasDates;
 use NRBusinessSystems\LaraMoodle\Traits\HasActivity;
+use NRBusinessSystems\LaraMoodle\Traits\HasDates;
 use Spatie\DataTransferObject\DataTransferObject;
 
 class Module extends DataTransferObject
@@ -16,7 +14,7 @@ class Module extends DataTransferObject
     protected $dates = ['added'];
 
     /** @var integer */
-     public $id;
+    public $id;
 
     /** @var string **/
     public $url;

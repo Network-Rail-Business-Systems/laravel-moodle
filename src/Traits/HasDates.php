@@ -15,7 +15,7 @@ trait HasDates
     {
         $dateObject = new \stdClass();
 
-        foreach($this->dates as $date) {
+        foreach ($this->dates as $date) {
             $dateObject->{$date} = Carbon::parse($this->{$date});
         }
 

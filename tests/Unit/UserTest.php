@@ -3,16 +3,16 @@
 namespace NRBusinessSystems\LaraMoodle\Tests\Unit;
 
 use Illuminate\Support\Facades\Http;
+use NRBusinessSystems\LaraMoodle\Facades\LaraMoodle;
 use NRBusinessSystems\LaraMoodle\Tests\Stubs\MockResponses;
 use NRBusinessSystems\LaraMoodle\Tests\TestCase;
-use NRBusinessSystems\LaraMoodle\Facades\LaraMoodle;
 
 class UserTest extends TestCase
 {
     public function test_search_users()
     {
         Http::fake([
-            '*' => Http::response(MockResponses::userSearch(), 200)
+            '*' => Http::response(MockResponses::userSearch(), 200),
         ]);
 
         session(['moodle-token' => 'ABC123']);

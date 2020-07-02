@@ -6,7 +6,6 @@ trait HasEnrollements
 {
     public function selfEnrol()
     {
-        return collect($this->enrollmentmethods)
-            ->contains('self');
+        return collect($this->enrollmentmethods)->contains('self');
     }
 }

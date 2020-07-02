@@ -13,7 +13,7 @@ class UserProviderTest extends TestCase
     public function test_retrieve_by_credentials()
     {
         Http::fake([
-            '*' => Http::response(MockResponses::userSearch(), 200)
+            '*' => Http::response(MockResponses::userSearch(), 200),
         ]);
 
         $userProvider = new MoodleUserProvider();
@@ -25,47 +25,45 @@ class UserProviderTest extends TestCase
         $this->assertDatabaseHas('users', [
             'username' => 'testuser',
             'email' => 'test.user@fake.email',
-            'name' => 'Test User'
+            'name' => 'Test User',
         ]);
     }
 
     public function test_validate_credentials_success()
     {
         Http::fake([
-            '*' => Http::response(MockResponses::loginSuccess(), 200)
+            '*' => Http::response(MockResponses::loginSuccess(), 200),
         ]);
 
         $user = User::create([
             'name' => 'Test User',
             'username' => 'testuser',
-            'email' => 'test.user@fake.email'
+            'email' => 'test.user@fake.email',
         ]);
 
         $userProvider = new MoodleUserProvider();
 
-        $this->assertTrue($userProvider->validateCredentials(
-            $user,
-            ['email' => 'test.user@fake.email', 'password' => 'secret']
-        ));
+        $this->assertTrue(
+            $userProvider->validateCredentials($user, ['email' => 'test.user@fake.email', 'password' => 'secret'])
+        );
     }
 
     public function test_validate_credentials_failure()
     {
         Http::fake([
-            '*' => Http::response(MockResponses::loginFailure(), 200)
+            '*' => Http::response(MockResponses::loginFailure(), 200),
         ]);
 
         $user = User::create([
             'name' => 'Test User',
             'username' => 'testuser',
-            'email' => 'test.user@fake.email'
+            'email' => 'test.user@fake.email',
         ]);
 
         $userProvider = new MoodleUserProvider();
 
-        $this->assertFalse($userProvider->validateCredentials(
-            $user,
-            ['email' => 'test.user@fake.email', 'password' => 'secret']
-        ));
+        $this->assertFalse(
+            $userProvider->validateCredentials($user, ['email' => 'test.user@fake.email', 'password' => 'secret'])
+        );
     }
 }

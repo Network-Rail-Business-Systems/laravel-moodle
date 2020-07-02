@@ -4,18 +4,21 @@ namespace NRBusinessSystems\LaraMoodle\Tests\Unit;
 
 use Illuminate\Support\Facades\Http;
 use NRBusinessSystems\LaraMoodle\Exceptions\MoodleException;
-use NRBusinessSystems\LaraMoodle\Tests\TestCase;
 use NRBusinessSystems\LaraMoodle\Facades\LaraMoodle;
+use NRBusinessSystems\LaraMoodle\Tests\TestCase;
 
 class PageTest extends TestCase
 {
     public function test_view_page_event()
     {
         Http::fake([
-            '*' => Http::response([
-                'status' => true,
-                'warnings' => []
-            ], 200)
+            '*' => Http::response(
+                [
+                    'status' => true,
+                    'warnings' => [],
+                ],
+                200
+            ),
         ]);
 
         session(['moodle-token' => 'ABC123']);
@@ -28,11 +31,14 @@ class PageTest extends TestCase
         $this->expectException(MoodleException::class);
 
         Http::fake([
-            '*' => Http::response([
-                "exception" => "invalid_parameter_exception",
-                "errorcode" => "invalidparameter",
-                "message" => "Invalid parameter value detected (Missing required key in single structure: pageid)"
-            ], 200)
+            '*' => Http::response(
+                [
+                    'exception' => 'invalid_parameter_exception',
+                    'errorcode' => 'invalidparameter',
+                    'message' => 'Invalid parameter value detected (Missing required key in single structure: pageid)',
+                ],
+                200
+            ),
         ]);
 
         session(['moodle-token' => 'ABC123']);

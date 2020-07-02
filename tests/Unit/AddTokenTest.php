@@ -37,14 +37,8 @@ class AddTokenTest extends TestCase
     public function images()
     {
         return [
-            'jpg' => [
-                'test.jpg',
-                'test.jpg?token=ABC123'
-            ],
-            'png' => [
-                'test.png',
-                'test.png?token=ABC123'
-            ]
+            'jpg' => ['test.jpg', 'test.jpg?token=ABC123'],
+            'png' => ['test.png', 'test.png?token=ABC123'],
         ];
     }
 
