@@ -58,7 +58,11 @@ Route::get('/', function () {})->middleware('laramoodle');
 
 In order to access data from Moodle, it needs to be configured first as the web service features are disabled by default.
 
-1. Create new webservice
+1. Enable Web Services for mobile devices
+    - Site Administration > Mobile app > Mobile settings
+    - Enable web services for mobile devices - yes
+    - Save changes
+2. Create new webservice
     - Site Administration > Plugins > Web services > External Services
     - Add Custom Service or use an existing custom service
         - Name: Web Service
@@ -67,7 +71,7 @@ In order to access data from Moodle, it needs to be configured first as the web 
         - Authorised users only: false
         - Can download files: true
         - Save changes
-2. Enable the following functions in the new Moodle web service
+3. Enable the following functions in the new Moodle web service
     - Site Administration > Plugins > Web services > External Services
     - On the newly created Web Service, click functions and add the following
         - core_badges_get_user_badges
@@ -90,13 +94,13 @@ In order to access data from Moodle, it needs to be configured first as the web 
         - mod_resource_view_resource
         - mod_book_get_books_by_courses
         - mod_scorm_get_scorms_by_courses
-3. Create a token for the admin user (used in the Laravel .env file)
+4. Create a token for the admin user (used in the Laravel .env file)
     - Site Administration > Plugins > Web services > Manage tokens
     - Click Add
         - Search for the admin user you want to use
         - Select your Web Service
         - Save changes
-4. Allow users to create tokens for the new Web Service so they can create a token when they log in
+5. Allow users to create tokens for the new Web Service so they can create a token when they log in
     - Site Administration > Users > Define Roles
     - Edit Authenticated user
     - Capabilities > Create a web service token > Allow
