@@ -24,7 +24,7 @@ return [
     'sync_attributes' => [
         'moodle_id' => 'id',
         'name' => 'fullname',
-        'email' => 'email'
+        'email' => 'email',
     ],
 
     /**
@@ -42,5 +42,5 @@ return [
      * Whether to debug. Requires the Laravel Debugbar to be installed
      * Requests will appear in the debugbar Timeline
      */
-    'debug' => env('DEBUGBAR_ENABLED', null)
+    'debug' => env('DEBUGBAR_ENABLED', null),
 ];

@@ -18,7 +18,8 @@
         "orchestra/testbench": "^5.3",
         "guzzlehttp/guzzle": "^6.3",
         "laravel/ui": "^2.0",
-        "hannesvdvreken/guzzle-debugbar": "^2.0"
+        "hannesvdvreken/guzzle-debugbar": "^2.0",
+        "friendsofphp/php-cs-fixer": "^2.16"
     },
     "autoload": {
         "psr-4": {

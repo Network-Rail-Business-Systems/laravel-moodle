@@ -12,7 +12,7 @@ class BadgeTest extends TestCase
     public function test_get_badges()
     {
         Http::fake([
-            '*' => Http::response(MockResponses::badges(), 200)
+            '*' => Http::response(MockResponses::badges(), 200),
         ]);
 
         session(['moodle-token' => 'ABC123']);

@@ -4,9 +4,9 @@ namespace NRBusinessSystems\LaraMoodle\Tests\Unit;
 
 use Illuminate\Support\Facades\Http;
 use NRBusinessSystems\LaraMoodle\Exceptions\MoodleException;
+use NRBusinessSystems\LaraMoodle\Facades\LaraMoodle;
 use NRBusinessSystems\LaraMoodle\Tests\Stubs\MockResponses;
 use NRBusinessSystems\LaraMoodle\Tests\TestCase;
-use NRBusinessSystems\LaraMoodle\Facades\LaraMoodle;
 
 class EnrolTest extends TestCase
 {
@@ -19,7 +19,7 @@ class EnrolTest extends TestCase
     public function test_successful_enrol_user_on_course()
     {
         Http::fake([
-            '*' => Http::response(null, 200)
+            '*' => Http::response(null, 200),
         ]);
 
         $enrol = LaraMoodle::enrolUserOnCourse(1, 1, 5);
@@ -30,7 +30,7 @@ class EnrolTest extends TestCase
     public function test_enrol_user_on_course_without_role_id()
     {
         Http::fake([
-            '*' => Http::response(null, 200)
+            '*' => Http::response(null, 200),
         ]);
 
         $enrol = LaraMoodle::enrolUserOnCourse(1, 1);
@@ -41,11 +41,14 @@ class EnrolTest extends TestCase
     public function test_unsuccessful_enrol_user_on_course()
     {
         Http::fake([
-            '*' => Http::response([
-                "exception" => "invalid_parameter_exception",
-                "errorcode" => "invalidparameter",
-                "message" => "Invalid parameter value detected (Context does not exist)"
-            ], 200)
+            '*' => Http::response(
+                [
+                    'exception' => 'invalid_parameter_exception',
+                    'errorcode' => 'invalidparameter',
+                    'message' => 'Invalid parameter value detected (Context does not exist)',
+                ],
+                200
+            ),
         ]);
 
         $this->expectException(MoodleException::class);
@@ -56,7 +59,7 @@ class EnrolTest extends TestCase
     public function test_get_enrolled_users_for_course()
     {
         Http::fake([
-            '*' => Http::response(MockResponses::enrolledUsers(), 200)
+            '*' => Http::response(MockResponses::enrolledUsers(), 200),
         ]);
 
         $enrolledUsers = LaraMoodle::getEnrolledUsersForCourse(2);
@@ -73,8 +76,8 @@ class EnrolTest extends TestCase
         Http::fake([
             '*' => Http::response([
                 'status' => true,
-                'warnings' => []
-            ])
+                'warnings' => [],
+            ]),
         ]);
 
         $selfEnrol = LaraMoodle::selfEnrolOnCourse(2);

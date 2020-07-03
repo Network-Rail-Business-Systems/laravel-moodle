@@ -16,7 +16,7 @@ class MoodleUserProvider implements UserProvider
     public function __construct()
     {
         $this->http = Http::withOptions([
-            'base_uri' => config('laramoodle.base_url')
+            'base_uri' => config('laramoodle.base_url'),
         ]);
 
         $this->adminToken = config('laramoodle.admin_token');
@@ -37,12 +37,10 @@ class MoodleUserProvider implements UserProvider
 
     public function retrieveByToken($identifier, $token)
     {
-
     }
 
     public function updateRememberToken(Authenticatable $user, $token)
     {
-
     }
 
     /**
@@ -54,16 +52,17 @@ class MoodleUserProvider implements UserProvider
      */
     public function retrieveByCredentials(array $credentials)
     {
-        $data = $this->http->asForm()
+        $data = $this->http
+            ->asForm()
             ->post(
                 "/webservice/rest/server.php?wstoken={$this->adminToken}&wsfunction=core_user_get_users&moodlewsrestformat=json",
                 [
                     'criteria' => [
                         [
                             'key' => config('laramoodle.login_attribute'),
-                            'value' => $credentials[config('laramoodle.login_attribute')]
-                        ]
-                    ]
+                            'value' => $credentials[config('laramoodle.login_attribute')],
+                        ],
+                    ],
                 ]
             )
             ->json();
@@ -72,7 +71,7 @@ class MoodleUserProvider implements UserProvider
             return $this->syncUser($data['users'][0]);
         }
 
-        return new $this->userModel;
+        return new $this->userModel();
     }
 
     /**
@@ -114,7 +113,7 @@ class MoodleUserProvider implements UserProvider
 
         return $this->userModel::firstOrCreate(
             [
-                'username' => $data['username']
+                'username' => $data['username'],
             ],
             $userSync
         );

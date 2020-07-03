@@ -1,14 +1,11 @@
 <?php
 
-
 namespace NRBusinessSystems\LaraMoodle\DataTransferObjects;
-
 
 use Spatie\DataTransferObject\DataTransferObject;
 
 class CourseModule extends DataTransferObject
 {
-
     /** @var integer **/
     public $id;
 

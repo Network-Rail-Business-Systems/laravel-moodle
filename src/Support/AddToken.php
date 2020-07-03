@@ -9,8 +9,7 @@ class AddToken
 {
     public function __construct()
     {
-        if(!session()->has('moodle-token'))
-        {
+        if (!session()->has('moodle-token')) {
             throw new MoodleTokenMissingException();
         }
     }
@@ -22,14 +21,8 @@ class AddToken
     public function toImages($content)
     {
         return Str::of($content)->replace(
-            [
-                '.png',
-                '.jpg'
-            ],
-            [
-                '.png?token=' . session('moodle-token'),
-                '.jpg?token=' . session('moodle-token')
-            ]
+            ['.png', '.jpg'],
+            ['.png?token=' . session('moodle-token'), '.jpg?token=' . session('moodle-token')]
         );
     }
 

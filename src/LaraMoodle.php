@@ -7,6 +7,7 @@ use GuzzleHttp\Profiling\Middleware;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Http;
 use NRBusinessSystems\LaraMoodle\DataTransferObjects\Category;
+use NRBusinessSystems\LaraMoodle\DataTransferObjects\Course;
 use NRBusinessSystems\LaraMoodle\DataTransferObjects\CourseActivityStatuses;
 use NRBusinessSystems\LaraMoodle\DataTransferObjects\CourseCompletion;
 use NRBusinessSystems\LaraMoodle\DataTransferObjects\CourseContent;
@@ -24,7 +25,6 @@ use NRBusinessSystems\LaraMoodle\DataTransferObjects\SelfEnrol;
 use NRBusinessSystems\LaraMoodle\DataTransferObjects\Warning;
 use NRBusinessSystems\LaraMoodle\Exceptions\MoodleException;
 use NRBusinessSystems\LaraMoodle\Exceptions\MoodleTokenMissingException;
-use NRBusinessSystems\LaraMoodle\DataTransferObjects\Course;
 
 class LaraMoodle
 {
@@ -33,17 +33,17 @@ class LaraMoodle
 
     public function __construct()
     {
-        if(!session()->has('moodle-token')) {
+        if (!session()->has('moodle-token')) {
             throw new MoodleTokenMissingException();
         }
 
         $this->token = session('moodle-token');
 
         $this->http = Http::withOptions([
-            'base_uri' => config('laramoodle.base_url')
+            'base_uri' => config('laramoodle.base_url'),
         ]);
 
-        if(config('laramoodle.debug')) {
+        if (config('laramoodle.debug')) {
             $debugbar = App::make('debugbar');
             $this->http->withMiddleware(new Middleware(new Profiler($debugbar->getCollector('time'))));
         }
@@ -58,12 +58,13 @@ class LaraMoodle
      */
     public function getCourses(string $term = '', string $field = '')
     {
-        $courses = $this->http->asForm()
+        $courses = $this->http
+            ->asForm()
             ->post(
                 "/webservice/rest/server.php?wstoken={$this->token}&moodlewsrestformat=json&wsfunction=core_course_get_courses_by_field",
                 [
                     'field' => $field,
-                    'value' => $term
+                    'value' => $term,
                 ]
             )
             ->json();
@@ -79,12 +80,13 @@ class LaraMoodle
      */
     public function getCoursesByCategory($categoryId)
     {
-        $courses = $this->http->asForm()
+        $courses = $this->http
+            ->asForm()
             ->post(
                 "/webservice/rest/server.php?wstoken={$this->token}&wsfunction=core_course_get_courses_by_field&moodlewsrestformat=json",
                 [
                     'field' => 'category',
-                    'value' => $categoryId
+                    'value' => $categoryId,
                 ]
             )
             ->json();
@@ -100,12 +102,13 @@ class LaraMoodle
      */
     public function getCourse(int $id)
     {
-        $courses = $this->http->asForm()
+        $courses = $this->http
+            ->asForm()
             ->post(
                 "/webservice/rest/server.php?wstoken={$this->token}&wsfunction=core_course_get_courses_by_field&moodlewsrestformat=json",
                 [
                     'field' => 'id',
-                    'value' => $id
+                    'value' => $id,
                 ]
             )
             ->json();
@@ -122,7 +125,8 @@ class LaraMoodle
      */
     public function searchCourses(string $term, int $page = 0, int $perPage = 15, int $onlyEnrolled = 0)
     {
-        $courses = $this->http->asForm()
+        $courses = $this->http
+            ->asForm()
             ->post(
                 "/webservice/rest/server.php?wstoken={$this->token}&moodlewsrestformat=json&wsfunction=core_course_search_courses",
                 [
@@ -130,7 +134,7 @@ class LaraMoodle
                     'criteriavalue' => $term,
                     'page' => $page,
                     'perpage' => $perPage,
-                    'limittoenrolled' => $onlyEnrolled
+                    'limittoenrolled' => $onlyEnrolled,
                 ]
             )
             ->json();
@@ -146,16 +150,17 @@ class LaraMoodle
      */
     public function getCourseContents(int $id)
     {
-        $courseContents = $this->http->get(
+        $courseContents = $this->http
+            ->get(
                 "/webservice/rest/server.php?wstoken={$this->token}&moodlewsrestformat=json&wsfunction=core_course_get_contents&courseid={$id}"
             )
             ->json();
 
-        if(isset($courseContents['exception'])) {
+        if (isset($courseContents['exception'])) {
             throw new MoodleException($courseContents['message']);
         }
 
-        return collect($courseContents)->map(function($content) {
+        return collect($courseContents)->map(function ($content) {
             return new CourseContent($content);
         });
     }
@@ -171,7 +176,8 @@ class LaraMoodle
         $module = $this->http
             ->get(
                 "/webservice/rest/server.php?wstoken=3a52dd83512957fc724122bf4853a2a8&moodlewsrestformat=json&wsfunction=core_course_get_course_module&cmid={$id}"
-            )->json();
+            )
+            ->json();
 
         return new CourseModuleById($module);
     }
@@ -184,11 +190,12 @@ class LaraMoodle
      */
     public function getCoursePages(int $courseId)
     {
-        $pages = $this->http->asForm()
+        $pages = $this->http
+            ->asForm()
             ->post(
                 "/webservice/rest/server.php?wstoken={$this->token}&moodlewsrestformat=json&wsfunction=mod_page_get_pages_by_courses",
                 [
-                    'courseids' => [$courseId]
+                    'courseids' => [$courseId],
                 ]
             )
             ->json();
@@ -206,7 +213,7 @@ class LaraMoodle
     public function getCoursePage(int $courseId, int $moduleId)
     {
         return collect($this->getCoursePages($courseId)->pages)
-            ->filter( function ($value) use ($moduleId) {
+            ->filter(function ($value) use ($moduleId) {
                 return $value->coursemodule == $moduleId;
             })
             ->first();
@@ -218,11 +225,12 @@ class LaraMoodle
      */
     public function getCourseScorms(int $courseId)
     {
-        $scorms = $this->http->asForm()
+        $scorms = $this->http
+            ->asForm()
             ->post(
                 "/webservice/rest/server.php?wstoken={$this->token}&moodlewsrestformat=json&wsfunction=mod_scorm_get_scorms_by_courses",
                 [
-                    'courseids' => [$courseId]
+                    'courseids' => [$courseId],
                 ]
             )
             ->json();
@@ -236,9 +244,11 @@ class LaraMoodle
      */
     public function getCourseScorm(int $courseId, int $moduleId)
     {
-        return collect($this->getCourseScorms($courseId)->scorms)->filter(function($item) use ($moduleId) {
-            return $item->coursemodule == $moduleId;
-        })->first();
+        return collect($this->getCourseScorms($courseId)->scorms)
+            ->filter(function ($item) use ($moduleId) {
+                return $item->coursemodule == $moduleId;
+            })
+            ->first();
     }
 
     /**
@@ -247,11 +257,12 @@ class LaraMoodle
      */
     public function getCourseResources(int $courseId)
     {
-        $resources = $this->http->asForm()
+        $resources = $this->http
+            ->asForm()
             ->post(
                 "/webservice/rest/server.php?wstoken={$this->token}&moodlewsrestformat=json&wsfunction=mod_resource_get_resources_by_courses",
                 [
-                    'courseids' => [$courseId]
+                    'courseids' => [$courseId],
                 ]
             )
             ->json();
@@ -266,9 +277,11 @@ class LaraMoodle
      */
     public function getCourseResource(int $courseId, int $moduleId)
     {
-        return collect($this->getCourseResources($courseId)->resources)->filter(function($item) use ($moduleId) {
-            return $item->coursemodule == $moduleId;
-        })->first();
+        return collect($this->getCourseResources($courseId)->resources)
+            ->filter(function ($item) use ($moduleId) {
+                return $item->coursemodule == $moduleId;
+            })
+            ->first();
     }
 
     /**
@@ -280,17 +293,18 @@ class LaraMoodle
      */
     public function getCourseCompletion(int $userId, int $courseId)
     {
-        $completion = $this->http->asForm()
+        $completion = $this->http
+            ->asForm()
             ->post(
                 "/webservice/rest/server.php?wstoken={$this->token}&moodlewsrestformat=json&wsfunction=core_completion_get_course_completion_status",
                 [
                     'courseid' => $courseId,
-                    'userid' => $userId
+                    'userid' => $userId,
                 ]
             )
             ->json();
 
-        if(isset($completion['exception'])) {
+        if (isset($completion['exception'])) {
             throw new MoodleException($completion['message']);
         }
 
@@ -307,17 +321,18 @@ class LaraMoodle
      */
     public function getCourseActivitiesCompletion(int $userId, int $courseId)
     {
-        $completion = $this->http->asForm()
+        $completion = $this->http
+            ->asForm()
             ->post(
                 "/webservice/rest/server.php?wstoken={$this->token}&moodlewsrestformat=json&wsfunction=core_completion_get_activities_completion_status",
                 [
                     'courseid' => $courseId,
-                    'userid' => $userId
+                    'userid' => $userId,
                 ]
             )
             ->json();
 
-        if(isset($completion['exception'])) {
+        if (isset($completion['exception'])) {
             throw new MoodleException($completion['message']);
         }
 
@@ -330,11 +345,12 @@ class LaraMoodle
      */
     public function getCourseAssignments(int $courseId)
     {
-        $assignments = $this->http->asForm()
+        $assignments = $this->http
+            ->asForm()
             ->post(
                 "/webservice/rest/server.php?wstoken={$this->token}&moodlewsrestformat=json&wsfunction=mod_assign_get_assignments",
                 [
-                    'courseids' => [$courseId]
+                    'courseids' => [$courseId],
                 ]
             )
             ->json();
@@ -345,9 +361,10 @@ class LaraMoodle
     public function getCourseAssignment(int $courseId, int $moduleId)
     {
         return collect($this->getCourseAssignments($courseId)->courses[0]->assignments)
-            ->filter(function($item) use ($moduleId) {
+            ->filter(function ($item) use ($moduleId) {
                 return $item->cmid == $moduleId;
-            })->first();
+            })
+            ->first();
     }
 
     /**
@@ -360,7 +377,8 @@ class LaraMoodle
      */
     public function saveCourseAssignment(int $assignmentId, string $content = '', int $format = 1, int $itemId = 1)
     {
-        $assignment = $this->http->asForm()
+        $assignment = $this->http
+            ->asForm()
             ->post(
                 "/webservice/rest/server.php?wstoken={$this->token}&moodlewsrestformat=json&wsfunction=mod_assign_save_submission",
                 [
@@ -369,19 +387,19 @@ class LaraMoodle
                         'onlinetext_editor' => [
                             'text' => $content,
                             'format' => $format,
-                            'itemid' => $itemId
-                        ]
-                    ]
+                            'itemid' => $itemId,
+                        ],
+                    ],
                 ]
             )
             ->json();
 
-        if(isset($assignment['exception'])) {
+        if (isset($assignment['exception'])) {
             throw new MoodleException($assignment['message']);
         }
 
-        if(count($assignment) > 0) {
-            return collect($assignment)->map(function($warning) {
+        if (count($assignment) > 0) {
+            return collect($assignment)->map(function ($warning) {
                 return new Warning($warning);
             });
         }
@@ -398,23 +416,23 @@ class LaraMoodle
      */
     public function searchUsers(string $searchTerm, string $field = 'username')
     {
-        $users = $this->http->asForm()
+        $users = $this->http
+            ->asForm()
             ->post(
                 "/webservice/rest/server.php?wstoken={$this->token}&wsfunction=core_user_get_users&moodlewsrestformat=json",
                 [
                     'criteria' => [
                         [
                             'key' => $field,
-                            'value' => $searchTerm
-                        ]
-                    ]
+                            'value' => $searchTerm,
+                        ],
+                    ],
                 ]
             )
             ->json();
 
         return new GetUsers($users);
     }
-
 
     /**
      * Enrol user on a course, default role of student, but can be overwritten
@@ -428,7 +446,8 @@ class LaraMoodle
      */
     public function enrolUserOnCourse(int $userId, int $courseId, $roleId = null)
     {
-        $enrol = $this->http->asForm()
+        $enrol = $this->http
+            ->asForm()
             ->post(
                 "/webservice/rest/server.php?wstoken={$this->token}&wsfunction=enrol_manual_enrol_users&moodlewsrestformat=json",
                 [
@@ -436,9 +455,9 @@ class LaraMoodle
                         [
                             'roleid' => $roleId ?? config('laramoodle.student_role_id'),
                             'userid' => $userId,
-                            'courseid' => $courseId
-                        ]
-                    ]
+                            'courseid' => $courseId,
+                        ],
+                    ],
                 ]
             )
             ->json();
@@ -459,13 +478,14 @@ class LaraMoodle
      */
     public function selfEnrolOnCourse(int $courseId, $enrollmentKey = '', $instanceId = 0)
     {
-        $enrol = $this->http->asForm()
+        $enrol = $this->http
+            ->asForm()
             ->post(
                 "/webservice/rest/server.php?wstoken={$this->token}&moodlewsrestformat=json&wsfunction=enrol_self_enrol_user",
                 [
                     'courseid' => $courseId,
                     'password' => $enrollmentKey,
-                    'instanceid' => $instanceId
+                    'instanceid' => $instanceId,
                 ]
             )
             ->json();
@@ -485,16 +505,17 @@ class LaraMoodle
      */
     public function getEnrolledUsersForCourse(int $courseId)
     {
-        $enrolledUsers = $this->http->asForm()
+        $enrolledUsers = $this->http
+            ->asForm()
             ->post(
                 "/webservice/rest/server.php?wstoken={$this->token}&wsfunction=core_enrol_get_enrolled_users&moodlewsrestformat=json",
                 [
-                    'courseid' => $courseId
+                    'courseid' => $courseId,
                 ]
             )
             ->json();
 
-        return collect($enrolledUsers)->map(function($user) {
+        return collect($enrolledUsers)->map(function ($user) {
             return new CourseEnrolledUser($user);
         });
     }
@@ -510,13 +531,14 @@ class LaraMoodle
      */
     public function getBadges(int $userId = 0, int $courseId = 0, string $search = '')
     {
-        $badges = $this->http->asForm()
+        $badges = $this->http
+            ->asForm()
             ->post(
                 "/webservice/rest/server.php?wstoken={$this->token}&wsfunction=core_badges_get_user_badges&moodlewsrestformat=json",
                 [
                     'userid' => $userId,
                     'courseid' => $courseId,
-                    'search' => $search
+                    'search' => $search,
                 ]
             )
             ->json();
@@ -531,13 +553,14 @@ class LaraMoodle
      */
     public function getCategories()
     {
-        $categories = $this->http->asForm()
+        $categories = $this->http
+            ->asForm()
             ->get(
                 "/webservice/rest/server.php?wstoken={$this->token}&wsfunction=core_course_get_categories&moodlewsrestformat=json"
             )
             ->json();
 
-        return collect($categories)->map(function($category) {
+        return collect($categories)->map(function ($category) {
             return new Category($category);
         });
     }
@@ -551,21 +574,22 @@ class LaraMoodle
      */
     public function searchCategories(string $searchTerm, string $field = 'name')
     {
-        $categories = $this->http->asForm()
+        $categories = $this->http
+            ->asForm()
             ->post(
                 "/webservice/rest/server.php?wstoken={$this->token}&wsfunction=core_course_get_categories&moodlewsrestformat=json",
                 [
                     'criteria' => [
                         [
                             'key' => $field,
-                            'value' => $searchTerm
-                        ]
-                    ]
+                            'value' => $searchTerm,
+                        ],
+                    ],
                 ]
             )
             ->json();
 
-        return collect($categories)->map(function($category) {
+        return collect($categories)->map(function ($category) {
             return new Category($category);
         });
     }
@@ -579,11 +603,12 @@ class LaraMoodle
      */
     public function viewPageEvent(int $pageId)
     {
-        $page = $this->http->asForm()
+        $page = $this->http
+            ->asForm()
             ->post(
                 "/webservice/rest/server.php?wstoken={$this->token}&wsfunction=mod_page_view_page&moodlewsrestformat=json",
                 [
-                    'pageid' => $pageId
+                    'pageid' => $pageId,
                 ]
             )
             ->json();
@@ -604,11 +629,12 @@ class LaraMoodle
      */
     public function viewResourceEvent(int $resourceId)
     {
-        $resource = $this->http->asForm()
+        $resource = $this->http
+            ->asForm()
             ->post(
                 "/webservice/rest/server.php?wstoken={$this->token}&wsfunction=mod_resource_view_resource&moodlewsrestformat=json",
                 [
-                    'resourceid' => $resourceId
+                    'resourceid' => $resourceId,
                 ]
             )
             ->json();

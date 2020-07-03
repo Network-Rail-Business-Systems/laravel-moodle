@@ -27,7 +27,7 @@ class TestCase extends Orchestra
         return [
             'NRBusinessSystems\LaraMoodle\ServiceProvider',
             'NRBusinessSystems\LaraMoodle\AuthServiceProvider',
-            'Laravel\Ui\UiServiceProvider'
+            'Laravel\Ui\UiServiceProvider',
         ];
     }
 
@@ -35,7 +35,7 @@ class TestCase extends Orchestra
     {
         return [
             'LaraMoodle' => 'NRBusinessSystems\LaraMoodle\Facades\LaraMoodle',
-            'AddToken' => 'NRBusinessSystems\LaraMoodle\Facades\AddToken'
+            'AddToken' => 'NRBusinessSystems\LaraMoodle\Facades\AddToken',
         ];
     }
 

@@ -2,10 +2,10 @@
 image: networkrail/networkrail:7.4
 
 pipelines:
-  default:
-      - step:
-          caches:
-            - composer
-          script:
-            - composer install --no-progress --no-suggest --prefer-dist
-            - vendor/bin/phpunit
+    default:
+        - step:
+              caches:
+                  - composer
+              script:
+                  - composer install --no-progress --no-suggest --prefer-dist
+                  - vendor/bin/phpunit

@@ -14,9 +14,19 @@ class UpdateUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('password')->nullable()->change();
-            $table->string('username')->unique()->nullable()->after('email');
-            $table->unsignedBigInteger('moodle_id')->nullable()->after('username');
+            $table
+                ->string('password')
+                ->nullable()
+                ->change();
+            $table
+                ->string('username')
+                ->unique()
+                ->nullable()
+                ->after('email');
+            $table
+                ->unsignedBigInteger('moodle_id')
+                ->nullable()
+                ->after('username');
         });
     }
 

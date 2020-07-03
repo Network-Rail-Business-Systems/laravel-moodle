@@ -25,7 +25,7 @@ trait HasActivity
      */
     public function getActivityId()
     {
-        if($this->url) {
+        if ($this->url) {
             parse_str(parse_url($this->url)['query'], $query);
             return $query['id'];
         }
