@@ -21,8 +21,13 @@ class AddToken
     public function toImages($content)
     {
         return Str::of($content)->replace(
-            ['.png', '.jpg'],
-            ['.png?token=' . session('moodle-token'), '.jpg?token=' . session('moodle-token')]
+            ['.png', '.PNG', '.jpg', '.JPG'],
+            [
+                '.png?token=' . session('moodle-token'),
+                '.PNG?token=' . session('moodle-token'),
+                '.jpg?token=' . session('moodle-token'),
+                '.JPG?token=' . session('moodle-token'),
+            ]
         );
     }
 
