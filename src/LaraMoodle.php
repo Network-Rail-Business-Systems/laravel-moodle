@@ -113,7 +113,7 @@ class LaraMoodle
             )
             ->json();
 
-        abort_unless(!empty($courses['courses']), '404', 'Course not found');
+        abort_if(empty($courses['courses']), '404', 'Course not found');
 
         return new Course($courses['courses'][0]);
     }

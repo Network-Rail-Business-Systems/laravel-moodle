@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Http;
 use NRBusinessSystems\LaraMoodle\Facades\LaraMoodle;
 use NRBusinessSystems\LaraMoodle\Tests\Stubs\MockResponses;
 use NRBusinessSystems\LaraMoodle\Tests\TestCase;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class CoursesTest extends TestCase
 {
@@ -68,6 +69,17 @@ class CoursesTest extends TestCase
         $this->assertEquals('My First Course', $course->fullname);
         $this->assertEquals('Intro Course', $course->shortname);
         $this->assertTrue($course->selfEnrol());
+    }
+
+    public function test_get_course_not_found()
+    {
+        Http::fake([
+            '*' => Http::response(['courses' => [], 'warnings' => []]),
+        ]);
+
+        $this->expectException(NotFoundHttpException::class);
+
+        LaraMoodle::getCourse(999);
     }
 
     public function test_get_course_contents()
