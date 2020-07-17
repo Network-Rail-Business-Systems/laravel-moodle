@@ -609,4 +609,59 @@ class MockResponses
             'warnings' => [],
         ];
     }
+
+    public static function assessmentStatus()
+    {
+        return [
+            'lastattempt' => [
+                'submission' => [
+                    'id' => 3,
+                    'userid' => 4,
+                    'attemptnumber' => 0,
+                    'timecreated' => 1592295803,
+                    'timemodified' => 1594914156,
+                    'status' => 'submitted',
+                    'groupid' => 0,
+                    'assignment' => 1,
+                    'latest' => 1,
+                    'plugins' => [
+                        [
+                            'type' => 'onlinetext',
+                            'name' => 'Online text',
+                            'fileareas' => [
+                                [
+                                    'area' => 'submissions_onlinetext',
+                                    'files' => [],
+                                ],
+                            ],
+                            'editorfields' => [
+                                [
+                                    'name' => 'onlinetext',
+                                    'description' => 'Online text submissions',
+                                    'text' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+                                    'format' => 1,
+                                ],
+                            ],
+                        ],
+                        [
+                            'type' => 'comments',
+                            'name' => 'Submission comments',
+                        ],
+                    ],
+                ],
+                'submissiongroupmemberswhoneedtosubmit' => [],
+                'submissionsenabled' => true,
+                'locked' => false,
+                'graded' => false,
+                'canedit' => true,
+                'caneditowner' => true,
+                'cansubmit' => false,
+                'extensionduedate' => null,
+                'blindmarking' => false,
+                'gradingstatus' => 'notgraded',
+                'usergroups' => [],
+            ],
+            'warnings' => [],
+        ];
+    }
 }

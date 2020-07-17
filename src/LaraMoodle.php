@@ -22,6 +22,7 @@ use NRBusinessSystems\LaraMoodle\DataTransferObjects\GetResources;
 use NRBusinessSystems\LaraMoodle\DataTransferObjects\getScorms;
 use NRBusinessSystems\LaraMoodle\DataTransferObjects\GetUsers;
 use NRBusinessSystems\LaraMoodle\DataTransferObjects\SelfEnrol;
+use NRBusinessSystems\LaraMoodle\DataTransferObjects\SubmissionStatus;
 use NRBusinessSystems\LaraMoodle\DataTransferObjects\Warning;
 use NRBusinessSystems\LaraMoodle\Exceptions\MoodleException;
 use NRBusinessSystems\LaraMoodle\Exceptions\MoodleTokenMissingException;
@@ -367,6 +368,22 @@ class LaraMoodle
                 return $item->cmid == $moduleId;
             })
             ->first();
+    }
+
+    public function getAssignmentSubmissionStatus(int $assignmentId, int $userId = 0)
+    {
+        $submissionStatus = $this->http
+            ->asForm()
+            ->post(
+                "/webservice/rest/server.php?wstoken={$this->token}&moodlewsrestformat=json&wsfunction=mod_assign_get_submission_status",
+                [
+                    'assignid' => $assignmentId,
+                    'userid' => $userId,
+                ]
+            )
+            ->json();
+
+        return new SubmissionStatus($submissionStatus);
     }
 
     /**
