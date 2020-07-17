@@ -6,7 +6,7 @@ use Spatie\DataTransferObject\DataTransferObject;
 
 class LastAttempt extends DataTransferObject
 {
-    /** @var \NRBusinessSystems\LaraMoodle\DataTransferObjects\Submission */
+    /** @var null|\NRBusinessSystems\LaraMoodle\DataTransferObjects\Submission */
     public $submission;
 
     /** @var null|\NRBusinessSystems\LaraMoodle\DataTransferObjects\Submission */
