@@ -91,6 +91,8 @@ In order to access data from Moodle, it needs to be configured first as the web 
         - enrol_manual_enrol_users
         - enrol_self_enrol_user
         - mod_assign_get_assignments
+        - mod_assign_get_submissions
+        - mod_assign_get_submission_status
         - mod_assign_save_submission
         - mod_page_get_pages_by_courses
         - mod_page_view_page
@@ -287,6 +289,15 @@ Get a specific course assignment by the module id.
 ```php
 $assignment = LaraMoodle::getCourseAssignment($courseId, $moduleId);
 ```
+
+### Get Assignment Submission Status
+
+Provides information on the previous attempts for an assignment. User id is optional as it defaults to the current user.  
+
+```php
+LaraMoodle::getAssignmentSubmissionStatus($assignmentId, $userId);
+```
+
 
 ### Save Course Assignment
 
