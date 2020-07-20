@@ -12,7 +12,7 @@ class GradingSummary extends DataTransferObject
     /** @var int */
     public $submissiondraftscount;
 
-    /** @var int */
+    /** @var int|boolean */
     public $submissionsenabled;
 
     /** @var int */
@@ -21,6 +21,6 @@ class GradingSummary extends DataTransferObject
     /** @var int */
     public $submissionsneedgradingcount;
 
-    /** @var int */
+    /** @var int|string */
     public $warnofungroupedusers;
 }
