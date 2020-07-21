@@ -85,7 +85,11 @@ class MoodleUserProvider implements UserProvider
     public function validateCredentials(Authenticatable $user, array $credentials)
     {
         $attempt = $this->http
-            ->get("/login/token.php?username={$user->username}&password={$credentials['password']}&service=web_service")
+            ->asForm()
+            ->post('/login/token.php?service=web_service', [
+                'username' => $user->username,
+                'password' => $credentials['password'],
+            ])
             ->json();
 
         if (!isset($attempt['error']) && isset($attempt['token'])) {
