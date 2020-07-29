@@ -18,9 +18,11 @@ use NRBusinessSystems\LaraMoodle\DataTransferObjects\CourseSearch;
 use NRBusinessSystems\LaraMoodle\DataTransferObjects\GetBadges;
 use NRBusinessSystems\LaraMoodle\DataTransferObjects\GetCourseAssignments;
 use NRBusinessSystems\LaraMoodle\DataTransferObjects\GetCoursesByField;
+use NRBusinessSystems\LaraMoodle\DataTransferObjects\GetGrades;
 use NRBusinessSystems\LaraMoodle\DataTransferObjects\GetResources;
 use NRBusinessSystems\LaraMoodle\DataTransferObjects\getScorms;
 use NRBusinessSystems\LaraMoodle\DataTransferObjects\GetUsers;
+use NRBusinessSystems\LaraMoodle\DataTransferObjects\Grade;
 use NRBusinessSystems\LaraMoodle\DataTransferObjects\SelfEnrol;
 use NRBusinessSystems\LaraMoodle\DataTransferObjects\SubmissionStatus;
 use NRBusinessSystems\LaraMoodle\DataTransferObjects\Warning;
@@ -424,6 +426,43 @@ class LaraMoodle
         }
 
         return true;
+    }
+
+    /**
+     * Get a user's grades
+     *
+     * @param int $userId
+     * @return GetGrades
+     */
+    public function getUserGrades($userId = 0)
+    {
+        $grades = $this->http
+            ->asForm()
+            ->post(
+                "/webservice/rest/server.php?wstoken={$this->token}&moodlewsrestformat=json&wsfunction=gradereport_overview_get_course_grades",
+                [
+                    'userid' => $userId,
+                ]
+            )
+            ->json();
+
+        return new GetGrades($grades);
+    }
+
+    public function getCourseGrade($courseId, $userId = 0)
+    {
+        return collect($this->getUserGrades($userId)->grades)
+            ->where('courseid', '=', $courseId)
+            ->whenEmpty(function ($collection) use ($courseId) {
+                return $collection->push(
+                    new Grade([
+                        'grade' => null,
+                        'courseid' => $courseId,
+                        'rawgrade' => null,
+                    ])
+                );
+            })
+            ->first();
     }
 
     /**

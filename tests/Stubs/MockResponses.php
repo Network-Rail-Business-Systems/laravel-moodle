@@ -664,4 +664,23 @@ class MockResponses
             'warnings' => [],
         ];
     }
+
+    public static function getGrades()
+    {
+        return [
+            'grades' => [
+                [
+                    'courseid' => 2,
+                    'grade' => 'B',
+                    'rawgrade' => null,
+                ],
+                [
+                    'courseid' => 3,
+                    'grade' => 'A',
+                    'rawgrade' => null,
+                ],
+            ],
+            'warnings' => [],
+        ];
+    }
 }
