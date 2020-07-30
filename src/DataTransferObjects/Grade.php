@@ -12,6 +12,6 @@ class Grade extends DataTransferObject
     /** @var null|string */
     public $grade;
 
-    /** @var null|integer */
+    /** @var null|string */
     public $rawgrade;
 }
