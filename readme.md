@@ -90,6 +90,7 @@ In order to access data from Moodle, it needs to be configured first as the web 
         - core_user_get_users
         - enrol_manual_enrol_users
         - enrol_self_enrol_user
+        - gradereport_overview_get_course_grades
         - mod_assign_get_assignments
         - mod_assign_get_submissions
         - mod_assign_get_submission_status
@@ -316,6 +317,29 @@ $submit = LaraMoodle::saveCourseAssignment($assignmentId, '');
 
 echo $submit[0]->item; // Nothing was submitted
 echo $submit[0]->message; // Could not save submission
+```
+
+### Get User Grades
+
+Get the grades for a user. Default to 0 for the current logged in user. 
+
+```php
+$grades = LaraMoodle::getUserGrades();
+
+echo $grades->grades[0]->courseid; // 2
+echo $grades->grades[0]->grade; // A
+```
+
+
+### Get Course Grade for User
+
+Get the grade for a user for a specific course. Default to 0 for the current logged in user. Returns null for grade if course not found.
+
+```php
+$grade = LaraMoodle::getCourseGrade(2);
+
+echo $grade->courseid; // 2
+echo $grade->grade; // A
 ```
 
 ### Search Users
