@@ -6,6 +6,7 @@ use GuzzleHttp\Profiling\Debugbar\Profiler;
 use GuzzleHttp\Profiling\Middleware;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Http;
+use NRBusinessSystems\LaraMoodle\DataTransferObjects\CalendarMonthly;
 use NRBusinessSystems\LaraMoodle\DataTransferObjects\Category;
 use NRBusinessSystems\LaraMoodle\DataTransferObjects\Course;
 use NRBusinessSystems\LaraMoodle\DataTransferObjects\CourseActivityStatuses;
@@ -702,5 +703,22 @@ class LaraMoodle
         }
 
         return $resource['status'];
+    }
+
+    public function calendarMonthlyView(int $year, int $month, int $courseId = 0)
+    {
+        $calendar = $this->http
+            ->asForm()
+            ->post(
+                "/webservice/rest/server.php?wstoken={$this->token}&moodlewsrestformat=json&wsfunction=core_calendar_get_calendar_monthly_view",
+                [
+                    'courseid' => $courseId,
+                    'year' => $year,
+                    'month' => $month,
+                ]
+            )
+            ->json();
+
+        return new CalendarMonthly($calendar);
     }
 }
