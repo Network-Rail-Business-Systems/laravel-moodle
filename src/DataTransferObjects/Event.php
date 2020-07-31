@@ -123,6 +123,12 @@ class Event extends DataTransferObject
     /** @var null|string */
     public $mindayerror;
 
+    /** @var null|integer */
+    public $maxdaytimestamp;
+
+    /** @var null|string */
+    public $maxdayerror;
+
     /** @var boolean **/
     public $draggable;
 }
