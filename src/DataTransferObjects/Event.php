@@ -66,7 +66,7 @@ class Event extends DataTransferObject
     /** @var array **/
     public $icon;
 
-    /** @var null|array **/
+    /** @var null|\NRBusinessSystems\LaraMoodle\DataTransferObjects\EventCourse **/
     public $course;
 
     /** @var array **/
