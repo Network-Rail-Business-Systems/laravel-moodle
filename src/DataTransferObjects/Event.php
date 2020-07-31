@@ -117,6 +117,12 @@ class Event extends DataTransferObject
     /** @var string **/
     public $popupname;
 
+    /** @var null|integer */
+    public $mindaytimestamp;
+
+    /** @var null|string */
+    public $mindayerror;
+
     /** @var boolean **/
     public $draggable;
 }
