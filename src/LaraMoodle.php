@@ -435,7 +435,7 @@ class LaraMoodle
      * @param int $userId
      * @return GetGrades
      */
-    public function getUserGrades($userId = 0)
+    public function getUserGrades(int $userId = 0)
     {
         $grades = $this->http
             ->asForm()
@@ -450,7 +450,7 @@ class LaraMoodle
         return new GetGrades($grades);
     }
 
-    public function getCourseGrade($courseId, $userId = 0)
+    public function getCourseGrade(int $courseId, int $userId = 0)
     {
         return collect($this->getUserGrades($userId)->grades)
             ->where('courseid', '=', $courseId)
