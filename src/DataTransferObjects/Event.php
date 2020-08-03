@@ -93,6 +93,9 @@ class Event extends DataTransferObject
     /** @var boolean **/
     public $isactionevent;
 
+    /** @var null|array */
+    public $action;
+
     /** @var boolean **/
     public $iscourseevent;
 
