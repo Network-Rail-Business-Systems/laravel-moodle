@@ -85,6 +85,7 @@ In order to access data from Moodle, it needs to be configured first as the web 
         - core_course_get_contents
         - core_course_get_course_module
         - core_course_get_courses
+        - core_course_get_courses_by_field
         - core_course_search_courses
         - core_enrol_get_enrolled_users
         - core_user_get_users
