@@ -580,6 +580,38 @@ class LaraMoodle
     }
 
     /**
+     * @param int $userId
+     * @param int $courseId
+     * @param null $roleId
+     * @return bool
+     * @throws MoodleException
+     */
+    public function unenrolUserOnCourse(int $userId, int $courseId, $roleId = null)
+    {
+        $unenrol = $this->http
+            ->asForm()
+            ->post(
+                "/webservice/rest/server.php?wstoken={$this->token}&wsfunction=enrol_manual_unenrol_users&moodlewsrestformat=json",
+                [
+                    'enrolments' => [
+                        [
+                            'roleid' => $roleId ?? config('laramoodle.student_role_id'),
+                            'userid' => $userId,
+                            'courseid' => $courseId,
+                        ],
+                    ],
+                ]
+            )
+            ->json();
+
+        if (isset($unenrol['exception'])) {
+            throw new MoodleException($unenrol['message']);
+        }
+
+        return true;
+    }
+
+    /**
      * Get badges for a specific user.
      * By default it will search for the current user and all courses without any parameters
      *

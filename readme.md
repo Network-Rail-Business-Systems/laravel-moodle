@@ -91,6 +91,7 @@ In order to access data from Moodle, it needs to be configured first as the web 
         - core_enrol_get_enrolled_users
         - core_user_get_users
         - enrol_manual_enrol_users
+        - enrol_manual_unenrol_users 
         - enrol_self_enrol_user
         - gradereport_overview_get_course_grades
         - mod_assign_get_assignments
@@ -372,6 +373,14 @@ LaraMoodle::enrolUserOnCourse(2, 2);
 
 // Override role to editing teacher
 LaraMoodle::enrolUserOnCourse(2, 2, 3);
+```
+
+### Unenrol User On A Course
+
+You can unenrol a user on a course. Role id is not required. It will default to the student role. 
+
+```php
+LaraMoodle::unenrolUserOnCourse($userId, $courseId, $roleId);
 ```
 
 ### Get Enrolled Users For A Course
