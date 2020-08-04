@@ -561,6 +561,7 @@ class LaraMoodle
      *
      * @param int $courseId
      * @return \Illuminate\Support\Collection
+     * @throws MoodleException
      */
     public function getEnrolledUsersForCourse(int $courseId)
     {
@@ -573,6 +574,10 @@ class LaraMoodle
                 ]
             )
             ->json();
+
+        if (isset($enrolledUsers['exception'])) {
+            throw new MoodleException($enrolledUsers['message']);
+        }
 
         return collect($enrolledUsers)->map(function ($user) {
             return new CourseEnrolledUser($user);
