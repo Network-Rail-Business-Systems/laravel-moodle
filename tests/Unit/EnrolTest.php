@@ -85,4 +85,26 @@ class EnrolTest extends TestCase
         $this->assertNotNull($selfEnrol);
         $this->assertEquals(1, $selfEnrol->status);
     }
+
+    public function test_unenrol_user_from_course()
+    {
+        Http::fake([
+            '*' => Http::response(null, 200),
+        ]);
+
+        $enrol = LaraMoodle::unenrolUserOnCourse(1, 1, 5);
+
+        $this->assertTrue($enrol);
+    }
+
+    public function test_unenrol_user_from_course_without_role_id()
+    {
+        Http::fake([
+            '*' => Http::response(null, 200),
+        ]);
+
+        $enrol = LaraMoodle::unenrolUserOnCourse(1, 1);
+
+        $this->assertTrue($enrol);
+    }
 }
