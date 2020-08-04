@@ -79,6 +79,7 @@ In order to access data from Moodle, it needs to be configured first as the web 
     - Site Administration > Plugins > Web services > External Services
     - On the newly created Web Service, click functions and add the following
         - core_badges_get_user_badges
+        - core_calendar_get_calendar_monthly_view
         - core_completion_get_activities_completion_status
         - core_completion_get_course_completion_status
         - core_course_get_categories
