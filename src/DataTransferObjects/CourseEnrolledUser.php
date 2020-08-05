@@ -36,10 +36,10 @@ class CourseEnrolledUser extends FlexibleDataTransferObject
     /** @var integer */
     public $lastcourseaccess;
 
-    /** @var string **/
+    /** @var null|string **/
     public $description;
 
-    /** @var integer **/
+    /** @var null|integer **/
     public $descriptionformat;
 
     /** @var string **/
