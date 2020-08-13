@@ -6,6 +6,7 @@ use GuzzleHttp\Profiling\Debugbar\Profiler;
 use GuzzleHttp\Profiling\Middleware;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Http;
+use NRBusinessSystems\LaraMoodle\DataTransferObjects\CalendarMonthly;
 use NRBusinessSystems\LaraMoodle\DataTransferObjects\Category;
 use NRBusinessSystems\LaraMoodle\DataTransferObjects\Course;
 use NRBusinessSystems\LaraMoodle\DataTransferObjects\CourseActivityStatuses;
@@ -18,10 +19,13 @@ use NRBusinessSystems\LaraMoodle\DataTransferObjects\CourseSearch;
 use NRBusinessSystems\LaraMoodle\DataTransferObjects\GetBadges;
 use NRBusinessSystems\LaraMoodle\DataTransferObjects\GetCourseAssignments;
 use NRBusinessSystems\LaraMoodle\DataTransferObjects\GetCoursesByField;
+use NRBusinessSystems\LaraMoodle\DataTransferObjects\GetGrades;
 use NRBusinessSystems\LaraMoodle\DataTransferObjects\GetResources;
 use NRBusinessSystems\LaraMoodle\DataTransferObjects\getScorms;
 use NRBusinessSystems\LaraMoodle\DataTransferObjects\GetUsers;
+use NRBusinessSystems\LaraMoodle\DataTransferObjects\Grade;
 use NRBusinessSystems\LaraMoodle\DataTransferObjects\SelfEnrol;
+use NRBusinessSystems\LaraMoodle\DataTransferObjects\SubmissionStatus;
 use NRBusinessSystems\LaraMoodle\DataTransferObjects\Warning;
 use NRBusinessSystems\LaraMoodle\Exceptions\MoodleException;
 use NRBusinessSystems\LaraMoodle\Exceptions\MoodleTokenMissingException;
@@ -369,6 +373,22 @@ class LaraMoodle
             ->first();
     }
 
+    public function getAssignmentSubmissionStatus(int $assignmentId, int $userId = 0)
+    {
+        $submissionStatus = $this->http
+            ->asForm()
+            ->post(
+                "/webservice/rest/server.php?wstoken={$this->token}&moodlewsrestformat=json&wsfunction=mod_assign_get_submission_status",
+                [
+                    'assignid' => $assignmentId,
+                    'userid' => $userId,
+                ]
+            )
+            ->json();
+
+        return new SubmissionStatus($submissionStatus);
+    }
+
     /**
      * @param int $assignmentId
      * @param string $content
@@ -407,6 +427,43 @@ class LaraMoodle
         }
 
         return true;
+    }
+
+    /**
+     * Get a user's grades
+     *
+     * @param int $userId
+     * @return GetGrades
+     */
+    public function getUserGrades(int $userId = 0)
+    {
+        $grades = $this->http
+            ->asForm()
+            ->post(
+                "/webservice/rest/server.php?wstoken={$this->token}&moodlewsrestformat=json&wsfunction=gradereport_overview_get_course_grades",
+                [
+                    'userid' => $userId,
+                ]
+            )
+            ->json();
+
+        return new GetGrades($grades);
+    }
+
+    public function getCourseGrade(int $courseId, int $userId = 0)
+    {
+        return collect($this->getUserGrades($userId)->grades)
+            ->where('courseid', '=', $courseId)
+            ->whenEmpty(function ($collection) use ($courseId) {
+                return $collection->push(
+                    new Grade([
+                        'grade' => null,
+                        'courseid' => $courseId,
+                        'rawgrade' => null,
+                    ])
+                );
+            })
+            ->first();
     }
 
     /**
@@ -504,6 +561,7 @@ class LaraMoodle
      *
      * @param int $courseId
      * @return \Illuminate\Support\Collection
+     * @throws MoodleException
      */
     public function getEnrolledUsersForCourse(int $courseId)
     {
@@ -517,9 +575,45 @@ class LaraMoodle
             )
             ->json();
 
+        if (isset($enrolledUsers['exception'])) {
+            throw new MoodleException($enrolledUsers['message']);
+        }
+
         return collect($enrolledUsers)->map(function ($user) {
             return new CourseEnrolledUser($user);
         });
+    }
+
+    /**
+     * @param int $userId
+     * @param int $courseId
+     * @param null $roleId
+     * @return bool
+     * @throws MoodleException
+     */
+    public function unenrolUserOnCourse(int $userId, int $courseId, $roleId = null)
+    {
+        $unenrol = $this->http
+            ->asForm()
+            ->post(
+                "/webservice/rest/server.php?wstoken={$this->token}&wsfunction=enrol_manual_unenrol_users&moodlewsrestformat=json",
+                [
+                    'enrolments' => [
+                        [
+                            'roleid' => $roleId ?? config('laramoodle.student_role_id'),
+                            'userid' => $userId,
+                            'courseid' => $courseId,
+                        ],
+                    ],
+                ]
+            )
+            ->json();
+
+        if (isset($unenrol['exception'])) {
+            throw new MoodleException($unenrol['message']);
+        }
+
+        return true;
     }
 
     /**
@@ -646,5 +740,22 @@ class LaraMoodle
         }
 
         return $resource['status'];
+    }
+
+    public function calendarMonthlyView(int $year, int $month, int $courseId = 0)
+    {
+        $calendar = $this->http
+            ->asForm()
+            ->post(
+                "/webservice/rest/server.php?wstoken={$this->token}&moodlewsrestformat=json&wsfunction=core_calendar_get_calendar_monthly_view",
+                [
+                    'courseid' => $courseId,
+                    'year' => $year,
+                    'month' => $month,
+                ]
+            )
+            ->json();
+
+        return new CalendarMonthly($calendar);
     }
 }

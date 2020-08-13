@@ -69,4 +69,19 @@ class AssignmentTest extends TestCase
         $this->assertNotEmpty($submit);
         $this->assertEquals('Nothing was submitted', $submit[0]->item);
     }
+
+    public function test_get_assignment_submission_attempts()
+    {
+        Http::fake([
+            '*' => Http::response(MockResponses::assessmentStatus()),
+        ]);
+
+        $status = LaraMoodle::getAssignmentSubmissionStatus(1);
+
+        $this->assertNotNull($status);
+        $this->assertEquals(
+            'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+            $status->lastattempt->submission->plugins[0]->editorfields[0]->text
+        );
+    }
 }

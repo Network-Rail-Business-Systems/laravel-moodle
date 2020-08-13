@@ -79,18 +79,24 @@ In order to access data from Moodle, it needs to be configured first as the web 
     - Site Administration > Plugins > Web services > External Services
     - On the newly created Web Service, click functions and add the following
         - core_badges_get_user_badges
+        - core_calendar_get_calendar_monthly_view
         - core_completion_get_activities_completion_status
         - core_completion_get_course_completion_status
         - core_course_get_categories
         - core_course_get_contents
         - core_course_get_course_module
         - core_course_get_courses
+        - core_course_get_courses_by_field
         - core_course_search_courses
         - core_enrol_get_enrolled_users
         - core_user_get_users
         - enrol_manual_enrol_users
+        - enrol_manual_unenrol_users 
         - enrol_self_enrol_user
+        - gradereport_overview_get_course_grades
         - mod_assign_get_assignments
+        - mod_assign_get_submissions
+        - mod_assign_get_submission_status
         - mod_assign_save_submission
         - mod_page_get_pages_by_courses
         - mod_page_view_page
@@ -288,6 +294,15 @@ Get a specific course assignment by the module id.
 $assignment = LaraMoodle::getCourseAssignment($courseId, $moduleId);
 ```
 
+### Get Assignment Submission Status
+
+Provides information on the previous attempts for an assignment. User id is optional as it defaults to the current user.  
+
+```php
+LaraMoodle::getAssignmentSubmissionStatus($assignmentId, $userId);
+```
+
+
 ### Save Course Assignment
 
 Submit the online text for a specific assignment. Returns true on success.
@@ -305,6 +320,29 @@ $submit = LaraMoodle::saveCourseAssignment($assignmentId, '');
 
 echo $submit[0]->item; // Nothing was submitted
 echo $submit[0]->message; // Could not save submission
+```
+
+### Get User Grades
+
+Get the grades for a user. Default to 0 for the current logged in user. 
+
+```php
+$grades = LaraMoodle::getUserGrades();
+
+echo $grades->grades[0]->courseid; // 2
+echo $grades->grades[0]->grade; // A
+```
+
+
+### Get Course Grade for User
+
+Get the grade for a user for a specific course. Default to 0 for the current logged in user. Returns null for grade if course not found.
+
+```php
+$grade = LaraMoodle::getCourseGrade(2);
+
+echo $grade->courseid; // 2
+echo $grade->grade; // A
 ```
 
 ### Search Users
@@ -335,6 +373,14 @@ LaraMoodle::enrolUserOnCourse(2, 2);
 
 // Override role to editing teacher
 LaraMoodle::enrolUserOnCourse(2, 2, 3);
+```
+
+### Unenrol User On A Course
+
+You can unenrol a user on a course. Role id is not required. It will default to the student role. 
+
+```php
+LaraMoodle::unenrolUserOnCourse($userId, $courseId, $roleId);
 ```
 
 ### Get Enrolled Users For A Course
