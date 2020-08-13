@@ -36,7 +36,7 @@ class Event extends DataTransferObject
     /** @var null|integer **/
     public $eventcount;
 
-    /** @var string **/
+    /** @var null|string **/
     public $component;
 
     /** @var string **/
