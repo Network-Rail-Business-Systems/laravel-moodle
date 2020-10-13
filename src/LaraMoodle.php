@@ -21,6 +21,7 @@ use NRBusinessSystems\LaraMoodle\DataTransferObjects\GetCourseAssignments;
 use NRBusinessSystems\LaraMoodle\DataTransferObjects\GetCoursesByField;
 use NRBusinessSystems\LaraMoodle\DataTransferObjects\GetGrades;
 use NRBusinessSystems\LaraMoodle\DataTransferObjects\GetResources;
+use NRBusinessSystems\LaraMoodle\DataTransferObjects\GetScoes;
 use NRBusinessSystems\LaraMoodle\DataTransferObjects\getScorms;
 use NRBusinessSystems\LaraMoodle\DataTransferObjects\GetUsers;
 use NRBusinessSystems\LaraMoodle\DataTransferObjects\Grade;
@@ -255,6 +256,21 @@ class LaraMoodle
                 return $item->coursemodule == $moduleId;
             })
             ->first();
+    }
+
+    public function getScormScoes($scormId)
+    {
+        $scoes = $this->http
+            ->asForm()
+            ->post(
+                "/webservice/rest/server.php?wstoken={$this->token}&moodlewsrestformat=json&wsfunction=mod_scorm_get_scorm_scoes",
+                [
+                    'scormid' => $scormId,
+                ]
+            )
+            ->json();
+
+        return new GetScoes($scoes);
     }
 
     /**
