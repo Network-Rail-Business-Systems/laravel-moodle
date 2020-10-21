@@ -133,4 +133,9 @@ class Course extends DataTransferObject
 
     /** @var mixed|null|array */
     public $courseformatoptions;
+
+    public function fullname()
+    {
+        return html_entity_decode($this->fullname);
+    }
 }
