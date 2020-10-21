@@ -103,6 +103,7 @@ In order to access data from Moodle, it needs to be configured first as the web 
         - mod_resource_get_resources_by_courses
         - mod_resource_view_resource
         - mod_book_get_books_by_courses
+        - mod_scorm_get_scorm_scoes
         - mod_scorm_get_scorms_by_courses
 5. Create a token for the admin user (used in the Laravel .env file)
     - Site Administration > Plugins > Web services > Manage tokens
