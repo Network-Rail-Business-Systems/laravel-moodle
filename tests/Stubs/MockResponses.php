@@ -133,6 +133,88 @@ class MockResponses
         ];
     }
 
+    public static function getHtmlCourses()
+    {
+        return [
+            'courses' => [
+                [
+                    'id' => 2,
+                    'fullname' => 'Course With &amp; &lt; html &gt;',
+                    'shortname' => 'Intro Course',
+                    'displayname' => 'My First Course',
+                    'categoryid' => 2,
+                    'categoryname' => 'Miscellaneous',
+                    'sortorder' => 10001,
+                    'summary' => '<p>This course is aimed at all staff</p>',
+                    'summaryformat' => 1,
+                    'summaryfiles' => [],
+                    'overviewfiles' => [
+                        [
+                            'filename' => '4251.png',
+                            'filepath' => '/',
+                            'filesize' => 37306,
+                            'fileurl' =>
+                                'http://moodle.test/webservice/pluginfile.php/45/course/overviewfiles/4251.png',
+                            'timemodified' => 1589882661,
+                            'mimetype' => 'image/png',
+                        ],
+                    ],
+                    'contacts' => [],
+                    'enrollmentmethods' => ['manual', 'self'],
+                    'customfields' => [
+                        [
+                            'name' => 'Course Duration',
+                            'shortname' => 'duration',
+                            'type' => 'text',
+                            'value' => '1 week',
+                        ],
+                        [
+                            'name' => 'Course Type',
+                            'shortname' => 'course_type',
+                            'type' => 'text',
+                            'value' => 'Online',
+                        ],
+                    ],
+                    'idnumber' => '',
+                    'format' => 'topics',
+                    'showgrades' => 1,
+                    'newsitems' => 5,
+                    'startdate' => 1589929200,
+                    'enddate' => 1621465200,
+                    'maxbytes' => 0,
+                    'showreports' => 0,
+                    'visible' => 1,
+                    'groupmode' => 0,
+                    'groupmodeforce' => 0,
+                    'defaultgroupingid' => 0,
+                    'enablecompletion' => 1,
+                    'completionnotify' => 0,
+                    'lang' => 'en',
+                    'theme' => '',
+                    'marker' => 0,
+                    'legacyfiles' => 0,
+                    'calendartype' => '',
+                    'timecreated' => 1589873173,
+                    'timemodified' => 1589882661,
+                    'requested' => 0,
+                    'cacherev' => 1591624713,
+                    'filters' => [],
+                    'courseformatoptions' => [
+                        [
+                            'name' => 'hiddensections',
+                            'value' => 0,
+                        ],
+                        [
+                            'name' => 'coursedisplay',
+                            'value' => 1,
+                        ],
+                    ],
+                ],
+            ],
+            'warnings' => [],
+        ];
+    }
+
     public static function getCourseContents()
     {
         return [

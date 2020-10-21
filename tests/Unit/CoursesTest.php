@@ -210,10 +210,19 @@ class CoursesTest extends TestCase
 
         $data = LaraMoodle::getCourses();
 
-        //dd($data->courses[0]->getCustomFields());
-
         $this->assertCount(2, $data->courses[0]->getCustomFields());
         $this->assertEquals('1 week', $data->courses[0]->getCustomField('duration'));
         $this->assertEquals(null, $data->courses[0]->getCustomField('nonmatchingfield'));
+    }
+
+    public function test_course_name_with_html_entities()
+    {
+        Http::fake([
+            '*' => Http::response(MockResponses::getHtmlCourses(), 200),
+        ]);
+
+        $data = LaraMoodle::getCourses();
+
+        $this->assertEquals('Course With & < html >', $data->courses[0]->fullname());
     }
 }
