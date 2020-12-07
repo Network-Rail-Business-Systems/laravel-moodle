@@ -107,4 +107,15 @@ class EnrolTest extends TestCase
 
         $this->assertTrue($enrol);
     }
+
+    public function test_grades_return_as_null()
+    {
+        Http::fake([
+            '*' => Http::response(['grades' => null], 200),
+        ]);
+
+        $userGrades = Laramoodle::getUserGrades(1);
+
+        $this->assertNotNull($userGrades);
+    }
 }
