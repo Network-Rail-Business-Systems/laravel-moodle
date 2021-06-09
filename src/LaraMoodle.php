@@ -146,6 +146,10 @@ class LaraMoodle
             )
             ->json();
 
+        if (isset($courses['exception'])) {
+            throw new MoodleException($courses['message']);
+        }
+
         return new CourseSearch($courses);
     }
 
