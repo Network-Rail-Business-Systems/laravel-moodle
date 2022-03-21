@@ -42,6 +42,8 @@ If you want to use a different model to `App\User` then update the `user_model` 
 
 The package expects the credentials from the LoginController to be an array containing `username` and `password`, but if you want to use `username` instead then add `MOODLE_LOGIN_ATTRIBUTE=username` to your .env file.
 
+**Users set as a Site Administrator in Moodle will not be able to login using LaraMoodle until they manually generate a token for their account as per step #5 below.**
+
 ### Middleware
 
 The package contains a middleware that you can use to check if the user has a moodle token in their session. If they don't it will log the user out from their Laravel session and redirect the user ot the login page.
