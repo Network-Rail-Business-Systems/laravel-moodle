@@ -69,4 +69,13 @@ class User extends FlexibleDataTransferObject
 
     /** @var string **/
     public $profileimageurl;
+
+    /** @var string **/
+    public $institution;
+
+    /** @var string **/
+    public $city;
+
+    /** @var string **/
+    public $address;
 }
