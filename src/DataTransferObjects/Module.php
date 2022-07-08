@@ -1,9 +1,9 @@
 <?php
 
-namespace NRBusinessSystems\LaraMoodle\DataTransferObjects;
+namespace NetworkRailBusinessSystems\LaraMoodle\DataTransferObjects;
 
-use NRBusinessSystems\LaraMoodle\Traits\HasActivity;
-use NRBusinessSystems\LaraMoodle\Traits\HasDates;
+use NetworkRailBusinessSystems\LaraMoodle\Traits\HasActivity;
+use NetworkRailBusinessSystems\LaraMoodle\Traits\HasDates;
 use Spatie\DataTransferObject\DataTransferObject;
 
 class Module extends DataTransferObject
@@ -67,7 +67,7 @@ class Module extends DataTransferObject
     /** @var integer **/
     public $completion;
 
-    /** @var mixed|null|\NRBusinessSystems\LaraMoodle\DataTransferObjects\CompletionData */
+    /** @var mixed|null|\NetworkRailBusinessSystems\LaraMoodle\DataTransferObjects\CompletionData */
     public $completiondata;
 
     /** @var mixed|null|array */

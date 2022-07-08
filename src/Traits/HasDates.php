@@ -1,6 +1,6 @@
 <?php
 
-namespace NRBusinessSystems\LaraMoodle\Traits;
+namespace NetworkRailBusinessSystems\LaraMoodle\Traits;
 
 use Illuminate\Support\Carbon;
 

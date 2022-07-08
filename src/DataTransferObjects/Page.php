@@ -1,8 +1,8 @@
 <?php
 
-namespace NRBusinessSystems\LaraMoodle\DataTransferObjects;
+namespace NetworkRailBusinessSystems\LaraMoodle\DataTransferObjects;
 
-use NRBusinessSystems\LaraMoodle\Traits\HasDates;
+use NetworkRailBusinessSystems\LaraMoodle\Traits\HasDates;
 use Spatie\DataTransferObject\DataTransferObject;
 
 class Page extends DataTransferObject
@@ -28,7 +28,7 @@ class Page extends DataTransferObject
     /** @var integer **/
     public $introformat;
 
-    /** @var \NRBusinessSystems\LaraMoodle\DataTransferObjects\FileObject[] **/
+    /** @var \NetworkRailBusinessSystems\LaraMoodle\DataTransferObjects\FileObject[] **/
     public $introfiles;
 
     /** @var string **/
@@ -37,7 +37,7 @@ class Page extends DataTransferObject
     /** @var integer **/
     public $contentformat;
 
-    /** @var \NRBusinessSystems\LaraMoodle\DataTransferObjects\FileObject[] **/
+    /** @var \NetworkRailBusinessSystems\LaraMoodle\DataTransferObjects\FileObject[] **/
     public $contentfiles;
 
     /** @var integer **/

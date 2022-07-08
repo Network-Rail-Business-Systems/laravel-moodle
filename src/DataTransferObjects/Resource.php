@@ -1,6 +1,6 @@
 <?php
 
-namespace NRBusinessSystems\LaraMoodle\DataTransferObjects;
+namespace NetworkRailBusinessSystems\LaraMoodle\DataTransferObjects;
 
 use Spatie\DataTransferObject\DataTransferObject;
 
@@ -24,10 +24,10 @@ class Resource extends DataTransferObject
     /** @var integer **/
     public $introformat;
 
-    /** @var \NRBusinessSystems\LaraMoodle\DataTransferObjects\FileObject[] **/
+    /** @var \NetworkRailBusinessSystems\LaraMoodle\DataTransferObjects\FileObject[] **/
     public $introfiles;
 
-    /** @var \NRBusinessSystems\LaraMoodle\DataTransferObjects\FileObject[] **/
+    /** @var \NetworkRailBusinessSystems\LaraMoodle\DataTransferObjects\FileObject[] **/
     public $contentfiles;
 
     /** @var integer **/

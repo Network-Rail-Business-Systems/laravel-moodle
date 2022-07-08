@@ -1,8 +1,8 @@
 <?php
 
-namespace NRBusinessSystems\LaraMoodle\DataTransferObjects;
+namespace NetworkRailBusinessSystems\LaraMoodle\DataTransferObjects;
 
-use NRBusinessSystems\LaraMoodle\Traits\HasDates;
+use NetworkRailBusinessSystems\LaraMoodle\Traits\HasDates;
 use Spatie\DataTransferObject\FlexibleDataTransferObject;
 
 class User extends FlexibleDataTransferObject

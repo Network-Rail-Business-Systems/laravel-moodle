@@ -1,6 +1,6 @@
 <?php
 
-namespace NRBusinessSystems\LaraMoodle\DataTransferObjects;
+namespace NetworkRailBusinessSystems\LaraMoodle\DataTransferObjects;
 
 use Spatie\DataTransferObject\DataTransferObject;
 
@@ -30,6 +30,6 @@ class CourseContent extends DataTransferObject
     /** @var boolean */
     public $uservisible;
 
-    /** @var \NRBusinessSystems\LaraMoodle\DataTransferObjects\Module[] */
+    /** @var \NetworkRailBusinessSystems\LaraMoodle\DataTransferObjects\Module[] */
     public $modules;
 }

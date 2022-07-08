@@ -1,12 +1,12 @@
 <?php
 
-namespace NRBusinessSystems\LaraMoodle\DataTransferObjects;
+namespace NetworkRailBusinessSystems\LaraMoodle\DataTransferObjects;
 
 use Spatie\DataTransferObject\DataTransferObject;
 
 class GetCoursesByField extends DataTransferObject
 {
-    /** @var \NRBusinessSystems\LaraMoodle\DataTransferObjects\Course[] */
+    /** @var \NetworkRailBusinessSystems\LaraMoodle\DataTransferObjects\Course[] */
     public $courses;
 
     /** @var array */

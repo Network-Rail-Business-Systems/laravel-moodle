@@ -1,10 +1,10 @@
 <?php
 
-namespace NRBusinessSystems\LaraMoodle\Tests\Unit;
+namespace NetworkRailBusinessSystems\LaraMoodle\Tests\Unit;
 
-use NRBusinessSystems\LaraMoodle\Exceptions\MoodleTokenMissingException;
-use NRBusinessSystems\LaraMoodle\Facades\LaraMoodle;
-use NRBusinessSystems\LaraMoodle\Tests\TestCase;
+use NetworkRailBusinessSystems\LaraMoodle\Exceptions\MoodleTokenMissingException;
+use NetworkRailBusinessSystems\LaraMoodle\Facades\LaraMoodle;
+use NetworkRailBusinessSystems\LaraMoodle\Tests\TestCase;
 
 class FacadeTest extends TestCase
 {

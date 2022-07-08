@@ -5,7 +5,7 @@ A Laravel package to authenticate with Moodle and retrieve course information.
 ## Installation
 
 ```bash
-composer require nrbusinesssystems/laramoodle
+composer require networkrailbusinesssystems/laramoodle
 ```
 
 The package should auto register the service providers.
@@ -48,9 +48,9 @@ The package expects the credentials from the LoginController to be an array cont
 
 The package contains a middleware that you can use to check if the user has a moodle token in their session. If they don't it will log the user out from their Laravel session and redirect the user ot the login page.
 
-To use globally list the `NRBusinessSystems\LaraMoodle\Middleware\MoodleToken::class` in the `$middleware` property of `app/Http/Kernel.php`.
+To use globally list the `NetworkRailBusinessSystems\LaraMoodle\Middleware\MoodleToken::class` in the `$middleware` property of `app/Http/Kernel.php`.
 
-To use on specific routes add `'laramoodle' => \NRBusinessSystems\LaraMoodle\Middleware\MoodleToken::class` to the `$routeMiddleware` in `app/Http/Kernel.php` and then add to your route.
+To use on specific routes add `'laramoodle' => \NetworkRailBusinessSystems\LaraMoodle\Middleware\MoodleToken::class` to the `$routeMiddleware` in `app/Http/Kernel.php` and then add to your route.
 
 ```php
 Route::get('/', function () {})->middleware('laramoodle');
@@ -124,7 +124,7 @@ In order to access data from Moodle, it needs to be configured first as the web 
 Use the LaraMoodle facade to access the web service data.
 
 ```php
-use NRBusinessSystems\LaraMoodle\LaraMoodle as LaraMoodle;
+use NetworkRailBusinessSystems\LaraMoodle\LaraMoodle as LaraMoodle;
 ```
 
 The package uses [Spatie Data Transfer Objects](https://github.com/spatie/data-transfer-object) to format the response into objects.

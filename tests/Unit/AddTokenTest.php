@@ -1,10 +1,10 @@
 <?php
 
-namespace NRBusinessSystems\LaraMoodle\Tests\Unit;
+namespace NetworkRailBusinessSystems\LaraMoodle\Tests\Unit;
 
-use NRBusinessSystems\LaraMoodle\Exceptions\MoodleTokenMissingException;
-use NRBusinessSystems\LaraMoodle\Facades\AddToken;
-use NRBusinessSystems\LaraMoodle\Tests\TestCase;
+use NetworkRailBusinessSystems\LaraMoodle\Exceptions\MoodleTokenMissingException;
+use NetworkRailBusinessSystems\LaraMoodle\Facades\AddToken;
+use NetworkRailBusinessSystems\LaraMoodle\Tests\TestCase;
 
 class AddTokenTest extends TestCase
 {

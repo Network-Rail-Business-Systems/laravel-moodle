@@ -1,6 +1,6 @@
 <?php
 
-namespace NRBusinessSystems\LaraMoodle\DataTransferObjects;
+namespace NetworkRailBusinessSystems\LaraMoodle\DataTransferObjects;
 
 use Spatie\DataTransferObject\FlexibleDataTransferObject;
 
@@ -51,9 +51,9 @@ class CourseEnrolledUser extends FlexibleDataTransferObject
     /** @var array|null */
     public $groups;
 
-    /** @var \NRBusinessSystems\LaraMoodle\DataTransferObjects\Role[] */
+    /** @var \NetworkRailBusinessSystems\LaraMoodle\DataTransferObjects\Role[] */
     public $roles;
 
-    /** @var \NRBusinessSystems\LaraMoodle\DataTransferObjects\EnrolledCourse[] */
+    /** @var \NetworkRailBusinessSystems\LaraMoodle\DataTransferObjects\EnrolledCourse[] */
     public $enrolledcourses;
 }

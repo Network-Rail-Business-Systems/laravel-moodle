@@ -1,6 +1,6 @@
 <?php
 
-namespace NRBusinessSystems\LaraMoodle;
+namespace NetworkRailBusinessSystems\LaraMoodle;
 
 use App\User;
 use Illuminate\Contracts\Auth\Authenticatable;

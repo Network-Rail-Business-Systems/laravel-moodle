@@ -1,6 +1,6 @@
 <?php
 
-namespace NRBusinessSystems\LaraMoodle\DataTransferObjects;
+namespace NetworkRailBusinessSystems\LaraMoodle\DataTransferObjects;
 
 use Spatie\DataTransferObject\DataTransferObject;
 
@@ -9,6 +9,6 @@ class SelfEnrol extends DataTransferObject
     /** @var boolean */
     public $status;
 
-    /** @var \NRBusinessSystems\LaraMoodle\DataTransferObjects\Warning[] */
+    /** @var \NetworkRailBusinessSystems\LaraMoodle\DataTransferObjects\Warning[] */
     public $warnings;
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace NRBusinessSystems\LaraMoodle\DataTransferObjects;
+namespace NetworkRailBusinessSystems\LaraMoodle\DataTransferObjects;
 
 use Spatie\DataTransferObject\DataTransferObject;
 
@@ -9,7 +9,7 @@ class PreviousAttempts extends DataTransferObject
     /** @var int */
     public $attemptnumber;
 
-    /** @var \NRBusinessSystems\LaraMoodle\DataTransferObjects\Submission */
+    /** @var \NetworkRailBusinessSystems\LaraMoodle\DataTransferObjects\Submission */
     public $submission;
 
     public $grade;

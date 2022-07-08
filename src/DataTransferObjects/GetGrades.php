@@ -1,14 +1,14 @@
 <?php
 
-namespace NRBusinessSystems\LaraMoodle\DataTransferObjects;
+namespace NetworkRailBusinessSystems\LaraMoodle\DataTransferObjects;
 
 use Spatie\DataTransferObject\DataTransferObject;
 
 class GetGrades extends DataTransferObject
 {
-    /** @var null|\NRBusinessSystems\LaraMoodle\DataTransferObjects\Grade[] */
+    /** @var null|\NetworkRailBusinessSystems\LaraMoodle\DataTransferObjects\Grade[] */
     public $grades;
 
-    /** @var null|\NRBusinessSystems\LaraMoodle\DataTransferObjects\Warning[] */
+    /** @var null|\NetworkRailBusinessSystems\LaraMoodle\DataTransferObjects\Warning[] */
     public $warnings;
 }

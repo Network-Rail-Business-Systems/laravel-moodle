@@ -1,14 +1,14 @@
 <?php
 
-namespace NRBusinessSystems\LaraMoodle\DataTransferObjects;
+namespace NetworkRailBusinessSystems\LaraMoodle\DataTransferObjects;
 
 use Spatie\DataTransferObject\DataTransferObject;
 
 class GetResources extends DataTransferObject
 {
-    /** @var \NRBusinessSystems\LaraMoodle\DataTransferObjects\Resource[] */
+    /** @var \NetworkRailBusinessSystems\LaraMoodle\DataTransferObjects\Resource[] */
     public $resources;
 
-    /** @var \NRBusinessSystems\LaraMoodle\DataTransferObjects\Warning[] */
+    /** @var \NetworkRailBusinessSystems\LaraMoodle\DataTransferObjects\Warning[] */
     public $warnings;
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace NRBusinessSystems\LaraMoodle\DataTransferObjects;
+namespace NetworkRailBusinessSystems\LaraMoodle\DataTransferObjects;
 
 use Spatie\DataTransferObject\DataTransferObject;
 
@@ -12,6 +12,6 @@ class Week extends DataTransferObject
     /** @var array */
     public $postpadding;
 
-    /** @var \NRBusinessSystems\LaraMoodle\DataTransferObjects\Day[] */
+    /** @var \NetworkRailBusinessSystems\LaraMoodle\DataTransferObjects\Day[] */
     public $days;
 }

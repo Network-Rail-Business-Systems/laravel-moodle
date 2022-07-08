@@ -1,12 +1,12 @@
 <?php
 
-namespace NRBusinessSystems\LaraMoodle\DataTransferObjects;
+namespace NetworkRailBusinessSystems\LaraMoodle\DataTransferObjects;
 
 use Spatie\DataTransferObject\DataTransferObject;
 
 class CourseCompletion extends DataTransferObject
 {
-    /** @var \NRBusinessSystems\LaraMoodle\DataTransferObjects\CompletionStatus */
+    /** @var \NetworkRailBusinessSystems\LaraMoodle\DataTransferObjects\CompletionStatus */
     public $completionstatus;
 
     /** @var array */

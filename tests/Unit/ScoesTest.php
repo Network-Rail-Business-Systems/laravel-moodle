@@ -1,10 +1,10 @@
 <?php
 
-namespace NRBusinessSystems\LaraMoodle\Tests\Unit;
+namespace NetworkRailBusinessSystems\LaraMoodle\Tests\Unit;
 
 use Illuminate\Support\Facades\Http;
-use NRBusinessSystems\LaraMoodle\Facades\LaraMoodle;
-use NRBusinessSystems\LaraMoodle\Tests\TestCase;
+use NetworkRailBusinessSystems\LaraMoodle\Facades\LaraMoodle;
+use NetworkRailBusinessSystems\LaraMoodle\Tests\TestCase;
 
 class ScoesTest extends TestCase
 {

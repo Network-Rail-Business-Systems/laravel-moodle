@@ -1,6 +1,6 @@
 <?php
 
-namespace NRBusinessSystems\LaraMoodle\DataTransferObjects;
+namespace NetworkRailBusinessSystems\LaraMoodle\DataTransferObjects;
 
 use Spatie\DataTransferObject\DataTransferObject;
 
@@ -12,9 +12,9 @@ class Plugin extends DataTransferObject
     /** @var string */
     public $name;
 
-    /** @var null|\NRBusinessSystems\LaraMoodle\DataTransferObjects\FileArea[] */
+    /** @var null|\NetworkRailBusinessSystems\LaraMoodle\DataTransferObjects\FileArea[] */
     public $fileareas;
 
-    /** @var null|\NRBusinessSystems\LaraMoodle\DataTransferObjects\EditorFields[] */
+    /** @var null|\NetworkRailBusinessSystems\LaraMoodle\DataTransferObjects\EditorFields[] */
     public $editorfields;
 }

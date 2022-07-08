@@ -1,12 +1,12 @@
 <?php
 
-namespace NRBusinessSystems\LaraMoodle\Tests\Unit;
+namespace NetworkRailBusinessSystems\LaraMoodle\Tests\Unit;
 
 use Illuminate\Support\Facades\Http;
-use NRBusinessSystems\LaraMoodle\MoodleUserProvider;
-use NRBusinessSystems\LaraMoodle\Tests\Stubs\MockResponses;
-use NRBusinessSystems\LaraMoodle\Tests\Stubs\User;
-use NRBusinessSystems\LaraMoodle\Tests\TestCase;
+use NetworkRailBusinessSystems\LaraMoodle\MoodleUserProvider;
+use NetworkRailBusinessSystems\LaraMoodle\Tests\Stubs\MockResponses;
+use NetworkRailBusinessSystems\LaraMoodle\Tests\Stubs\User;
+use NetworkRailBusinessSystems\LaraMoodle\Tests\TestCase;
 
 class UserProviderTest extends TestCase
 {

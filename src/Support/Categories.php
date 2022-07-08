@@ -1,6 +1,6 @@
 <?php
 
-namespace NRBusinessSystems\LaraMoodle\Support;
+namespace NetworkRailBusinessSystems\LaraMoodle\Support;
 
 use Illuminate\Support\Collection;
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace NRBusinessSystems\LaraMoodle\Facades;
+namespace NetworkRailBusinessSystems\LaraMoodle\Facades;
 
 class LaraMoodle extends \Illuminate\Support\Facades\Facade
 {
@@ -9,6 +9,6 @@ class LaraMoodle extends \Illuminate\Support\Facades\Facade
      */
     protected static function getFacadeAccessor()
     {
-        return \NRBusinessSystems\LaraMoodle\LaraMoodle::class;
+        return \NetworkRailBusinessSystems\LaraMoodle\LaraMoodle::class;
     }
 }

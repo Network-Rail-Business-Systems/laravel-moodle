@@ -1,6 +1,4 @@
 .idea
 vendor
 node_modules
-composer.lock
-package-lock.json
 .php_cs.cache

@@ -1,6 +1,6 @@
 <?php
 
-namespace NRBusinessSystems\LaraMoodle\Facades;
+namespace NetworkRailBusinessSystems\LaraMoodle\Facades;
 
 class AddToken extends \Illuminate\Support\Facades\Facade
 {
@@ -9,6 +9,6 @@ class AddToken extends \Illuminate\Support\Facades\Facade
      */
     protected static function getFacadeAccessor()
     {
-        return \NRBusinessSystems\LaraMoodle\Support\AddToken::class;
+        return \NetworkRailBusinessSystems\LaraMoodle\Support\AddToken::class;
     }
 }

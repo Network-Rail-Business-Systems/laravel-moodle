@@ -1,6 +1,6 @@
 <?php
 
-namespace NRBusinessSystems\LaraMoodle\Tests\Stubs;
+namespace NetworkRailBusinessSystems\LaraMoodle\Tests\Stubs;
 
 use Illuminate\Foundation\Auth\User as Eloquent;
 

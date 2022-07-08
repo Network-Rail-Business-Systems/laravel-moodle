@@ -1,35 +1,35 @@
 <?php
 
-namespace NRBusinessSystems\LaraMoodle;
+namespace NetworkRailBusinessSystems\LaraMoodle;
 
 use GuzzleHttp\Profiling\Debugbar\Profiler;
 use GuzzleHttp\Profiling\Middleware;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Http;
-use NRBusinessSystems\LaraMoodle\DataTransferObjects\CalendarMonthly;
-use NRBusinessSystems\LaraMoodle\DataTransferObjects\Category;
-use NRBusinessSystems\LaraMoodle\DataTransferObjects\Course;
-use NRBusinessSystems\LaraMoodle\DataTransferObjects\CourseActivityStatuses;
-use NRBusinessSystems\LaraMoodle\DataTransferObjects\CourseCompletion;
-use NRBusinessSystems\LaraMoodle\DataTransferObjects\CourseContent;
-use NRBusinessSystems\LaraMoodle\DataTransferObjects\CourseEnrolledUser;
-use NRBusinessSystems\LaraMoodle\DataTransferObjects\CourseModuleById;
-use NRBusinessSystems\LaraMoodle\DataTransferObjects\CoursePages;
-use NRBusinessSystems\LaraMoodle\DataTransferObjects\CourseSearch;
-use NRBusinessSystems\LaraMoodle\DataTransferObjects\GetBadges;
-use NRBusinessSystems\LaraMoodle\DataTransferObjects\GetCourseAssignments;
-use NRBusinessSystems\LaraMoodle\DataTransferObjects\GetCoursesByField;
-use NRBusinessSystems\LaraMoodle\DataTransferObjects\GetGrades;
-use NRBusinessSystems\LaraMoodle\DataTransferObjects\GetResources;
-use NRBusinessSystems\LaraMoodle\DataTransferObjects\GetScoes;
-use NRBusinessSystems\LaraMoodle\DataTransferObjects\getScorms;
-use NRBusinessSystems\LaraMoodle\DataTransferObjects\GetUsers;
-use NRBusinessSystems\LaraMoodle\DataTransferObjects\Grade;
-use NRBusinessSystems\LaraMoodle\DataTransferObjects\SelfEnrol;
-use NRBusinessSystems\LaraMoodle\DataTransferObjects\SubmissionStatus;
-use NRBusinessSystems\LaraMoodle\DataTransferObjects\Warning;
-use NRBusinessSystems\LaraMoodle\Exceptions\MoodleException;
-use NRBusinessSystems\LaraMoodle\Exceptions\MoodleTokenMissingException;
+use NetworkRailBusinessSystems\LaraMoodle\DataTransferObjects\CalendarMonthly;
+use NetworkRailBusinessSystems\LaraMoodle\DataTransferObjects\Category;
+use NetworkRailBusinessSystems\LaraMoodle\DataTransferObjects\Course;
+use NetworkRailBusinessSystems\LaraMoodle\DataTransferObjects\CourseActivityStatuses;
+use NetworkRailBusinessSystems\LaraMoodle\DataTransferObjects\CourseCompletion;
+use NetworkRailBusinessSystems\LaraMoodle\DataTransferObjects\CourseContent;
+use NetworkRailBusinessSystems\LaraMoodle\DataTransferObjects\CourseEnrolledUser;
+use NetworkRailBusinessSystems\LaraMoodle\DataTransferObjects\CourseModuleById;
+use NetworkRailBusinessSystems\LaraMoodle\DataTransferObjects\CoursePages;
+use NetworkRailBusinessSystems\LaraMoodle\DataTransferObjects\CourseSearch;
+use NetworkRailBusinessSystems\LaraMoodle\DataTransferObjects\GetBadges;
+use NetworkRailBusinessSystems\LaraMoodle\DataTransferObjects\GetCourseAssignments;
+use NetworkRailBusinessSystems\LaraMoodle\DataTransferObjects\GetCoursesByField;
+use NetworkRailBusinessSystems\LaraMoodle\DataTransferObjects\GetGrades;
+use NetworkRailBusinessSystems\LaraMoodle\DataTransferObjects\GetResources;
+use NetworkRailBusinessSystems\LaraMoodle\DataTransferObjects\GetScoes;
+use NetworkRailBusinessSystems\LaraMoodle\DataTransferObjects\getScorms;
+use NetworkRailBusinessSystems\LaraMoodle\DataTransferObjects\GetUsers;
+use NetworkRailBusinessSystems\LaraMoodle\DataTransferObjects\Grade;
+use NetworkRailBusinessSystems\LaraMoodle\DataTransferObjects\SelfEnrol;
+use NetworkRailBusinessSystems\LaraMoodle\DataTransferObjects\SubmissionStatus;
+use NetworkRailBusinessSystems\LaraMoodle\DataTransferObjects\Warning;
+use NetworkRailBusinessSystems\LaraMoodle\Exceptions\MoodleException;
+use NetworkRailBusinessSystems\LaraMoodle\Exceptions\MoodleTokenMissingException;
 
 class LaraMoodle
 {

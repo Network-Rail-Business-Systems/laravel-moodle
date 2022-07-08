@@ -1,12 +1,12 @@
 <?php
 
-namespace NRBusinessSystems\LaraMoodle\DataTransferObjects;
+namespace NetworkRailBusinessSystems\LaraMoodle\DataTransferObjects;
 
 use Spatie\DataTransferObject\DataTransferObject;
 
 class CourseModuleById extends DataTransferObject
 {
-    /** @var \NRBusinessSystems\LaraMoodle\DataTransferObjects\CourseModule */
+    /** @var \NetworkRailBusinessSystems\LaraMoodle\DataTransferObjects\CourseModule */
     public $cm;
 
     /** @var array */

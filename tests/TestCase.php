@@ -1,10 +1,10 @@
 <?php
 
-namespace NRBusinessSystems\LaraMoodle\Tests;
+namespace NetworkRailBusinessSystems\LaraMoodle\Tests;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
-use NRBusinessSystems\LaraMoodle\Tests\Stubs\User;
+use NetworkRailBusinessSystems\LaraMoodle\Tests\Stubs\User;
 use Orchestra\Testbench\TestCase as Orchestra;
 
 class TestCase extends Orchestra
@@ -25,8 +25,8 @@ class TestCase extends Orchestra
     protected function getPackageProviders($app)
     {
         return [
-            'NRBusinessSystems\LaraMoodle\ServiceProvider',
-            'NRBusinessSystems\LaraMoodle\AuthServiceProvider',
+            'NetworkRailBusinessSystems\LaraMoodle\ServiceProvider',
+            'NetworkRailBusinessSystems\LaraMoodle\AuthServiceProvider',
             'Laravel\Ui\UiServiceProvider',
         ];
     }
@@ -34,8 +34,8 @@ class TestCase extends Orchestra
     protected function getPackageAliases($app)
     {
         return [
-            'LaraMoodle' => 'NRBusinessSystems\LaraMoodle\Facades\LaraMoodle',
-            'AddToken' => 'NRBusinessSystems\LaraMoodle\Facades\AddToken',
+            'LaraMoodle' => 'NetworkRailBusinessSystems\LaraMoodle\Facades\LaraMoodle',
+            'AddToken' => 'NetworkRailBusinessSystems\LaraMoodle\Facades\AddToken',
         ];
     }
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace NRBusinessSystems\LaraMoodle\Exceptions;
+namespace NetworkRailBusinessSystems\LaraMoodle\Exceptions;
 
 use Exception;
 

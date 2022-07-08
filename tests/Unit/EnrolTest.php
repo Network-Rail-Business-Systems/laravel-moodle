@@ -1,12 +1,12 @@
 <?php
 
-namespace NRBusinessSystems\LaraMoodle\Tests\Unit;
+namespace NetworkRailBusinessSystems\LaraMoodle\Tests\Unit;
 
 use Illuminate\Support\Facades\Http;
-use NRBusinessSystems\LaraMoodle\Exceptions\MoodleException;
-use NRBusinessSystems\LaraMoodle\Facades\LaraMoodle;
-use NRBusinessSystems\LaraMoodle\Tests\Stubs\MockResponses;
-use NRBusinessSystems\LaraMoodle\Tests\TestCase;
+use NetworkRailBusinessSystems\LaraMoodle\Exceptions\MoodleException;
+use NetworkRailBusinessSystems\LaraMoodle\Facades\LaraMoodle;
+use NetworkRailBusinessSystems\LaraMoodle\Tests\Stubs\MockResponses;
+use NetworkRailBusinessSystems\LaraMoodle\Tests\TestCase;
 
 class EnrolTest extends TestCase
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace NRBusinessSystems\LaraMoodle\DataTransferObjects;
+namespace NetworkRailBusinessSystems\LaraMoodle\DataTransferObjects;
 
 use Spatie\DataTransferObject\DataTransferObject;
 
@@ -90,7 +90,7 @@ class Assignment extends DataTransferObject
     /** @var integer **/
     public $preventsubmissionnotingroup;
 
-    /** @var \NRBusinessSystems\LaraMoodle\DataTransferObjects\AssignmentConfig[] **/
+    /** @var \NetworkRailBusinessSystems\LaraMoodle\DataTransferObjects\AssignmentConfig[] **/
     public $configs;
 
     /** @var string **/
@@ -99,9 +99,9 @@ class Assignment extends DataTransferObject
     /** @var integer **/
     public $introformat;
 
-    /** @var \NRBusinessSystems\LaraMoodle\DataTransferObjects\FileObject[] **/
+    /** @var \NetworkRailBusinessSystems\LaraMoodle\DataTransferObjects\FileObject[] **/
     public $introfiles;
 
-    /** @var \NRBusinessSystems\LaraMoodle\DataTransferObjects\FileObject[] **/
+    /** @var \NetworkRailBusinessSystems\LaraMoodle\DataTransferObjects\FileObject[] **/
     public $introattachments;
 }

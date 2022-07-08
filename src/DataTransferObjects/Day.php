@@ -1,6 +1,6 @@
 <?php
 
-namespace NRBusinessSystems\LaraMoodle\DataTransferObjects;
+namespace NetworkRailBusinessSystems\LaraMoodle\DataTransferObjects;
 
 use Spatie\DataTransferObject\DataTransferObject;
 
@@ -45,7 +45,7 @@ class Day extends DataTransferObject
     /** @var null|string */
     public $viewdaylinktitle;
 
-    /** @var null|\NRBusinessSystems\LaraMoodle\DataTransferObjects\Event[] */
+    /** @var null|\NetworkRailBusinessSystems\LaraMoodle\DataTransferObjects\Event[] */
     public $events;
 
     /** @var boolean */

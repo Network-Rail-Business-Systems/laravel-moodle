@@ -1,6 +1,6 @@
 <?php
 
-namespace NRBusinessSystems\LaraMoodle;
+namespace NetworkRailBusinessSystems\LaraMoodle;
 
 class ServiceProvider extends \Illuminate\Support\ServiceProvider
 {
