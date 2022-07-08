@@ -115,7 +115,7 @@ class MoodleUserProvider implements UserProvider
             })
             ->toArray();
 
-        return $this->userModel::firstOrCreate(
+        return $this->userModel::updateOrCreate(
             [
                 'username' => $data['username'],
             ],
