@@ -1,12 +1,12 @@
 <?php
 
-namespace NetworkRailBusinessSystems\LaraMoodle\Tests\Unit;
+namespace NetworkRailBusinessSystems\LaravelMoodle\Tests\Unit;
 
 use Illuminate\Support\Facades\Http;
-use NetworkRailBusinessSystems\LaraMoodle\Exceptions\MoodleException;
-use NetworkRailBusinessSystems\LaraMoodle\Facades\LaraMoodle;
-use NetworkRailBusinessSystems\LaraMoodle\Tests\Stubs\MockResponses;
-use NetworkRailBusinessSystems\LaraMoodle\Tests\TestCase;
+use NetworkRailBusinessSystems\LaravelMoodle\Exceptions\MoodleException;
+use NetworkRailBusinessSystems\LaravelMoodle\Facades\LaravelMoodle;
+use NetworkRailBusinessSystems\LaravelMoodle\Tests\Stubs\MockResponses;
+use NetworkRailBusinessSystems\LaravelMoodle\Tests\TestCase;
 
 class EnrolTest extends TestCase
 {
@@ -22,7 +22,7 @@ class EnrolTest extends TestCase
             '*' => Http::response(null, 200),
         ]);
 
-        $enrol = LaraMoodle::enrolUserOnCourse(1, 1, 5);
+        $enrol = LaravelMoodle::enrolUserOnCourse(1, 1, 5);
 
         $this->assertTrue($enrol);
     }
@@ -33,7 +33,7 @@ class EnrolTest extends TestCase
             '*' => Http::response(null, 200),
         ]);
 
-        $enrol = LaraMoodle::enrolUserOnCourse(1, 1);
+        $enrol = LaravelMoodle::enrolUserOnCourse(1, 1);
 
         $this->assertTrue($enrol);
     }
@@ -53,7 +53,7 @@ class EnrolTest extends TestCase
 
         $this->expectException(MoodleException::class);
 
-        LaraMoodle::enrolUserOnCourse(1, 1, 5);
+        LaravelMoodle::enrolUserOnCourse(1, 1, 5);
     }
 
     public function test_get_enrolled_users_for_course()
@@ -62,7 +62,7 @@ class EnrolTest extends TestCase
             '*' => Http::response(MockResponses::enrolledUsers(), 200),
         ]);
 
-        $enrolledUsers = LaraMoodle::getEnrolledUsersForCourse(2);
+        $enrolledUsers = LaravelMoodle::getEnrolledUsersForCourse(2);
 
         $this->assertNotNull($enrolledUsers);
         $this->assertEquals('Test User', $enrolledUsers[0]->fullname);
@@ -80,7 +80,7 @@ class EnrolTest extends TestCase
             ]),
         ]);
 
-        $selfEnrol = LaraMoodle::selfEnrolOnCourse(2);
+        $selfEnrol = LaravelMoodle::selfEnrolOnCourse(2);
 
         $this->assertNotNull($selfEnrol);
         $this->assertEquals(1, $selfEnrol->status);
@@ -92,7 +92,7 @@ class EnrolTest extends TestCase
             '*' => Http::response(null, 200),
         ]);
 
-        $enrol = LaraMoodle::unenrolUserOnCourse(1, 1, 5);
+        $enrol = LaravelMoodle::unenrolUserOnCourse(1, 1, 5);
 
         $this->assertTrue($enrol);
     }
@@ -103,7 +103,7 @@ class EnrolTest extends TestCase
             '*' => Http::response(null, 200),
         ]);
 
-        $enrol = LaraMoodle::unenrolUserOnCourse(1, 1);
+        $enrol = LaravelMoodle::unenrolUserOnCourse(1, 1);
 
         $this->assertTrue($enrol);
     }

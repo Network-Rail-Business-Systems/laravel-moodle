@@ -1,10 +1,10 @@
 <?php
 
-namespace NetworkRailBusinessSystems\LaraMoodle\Tests\Unit;
+namespace NetworkRailBusinessSystems\LaravelMoodle\Tests\Unit;
 
 use Illuminate\Support\Facades\Http;
-use NetworkRailBusinessSystems\LaraMoodle\Facades\LaraMoodle;
-use NetworkRailBusinessSystems\LaraMoodle\Tests\TestCase;
+use NetworkRailBusinessSystems\LaravelMoodle\Facades\LaravelMoodle;
+use NetworkRailBusinessSystems\LaravelMoodle\Tests\TestCase;
 
 class ScoesTest extends TestCase
 {
@@ -63,7 +63,7 @@ class ScoesTest extends TestCase
 
     public function test_scoes()
     {
-        $scoes = LaraMoodle::getScormScoes(1);
+        $scoes = LaravelMoodle::getScormScoes(1);
 
         $this->assertEquals('imsmanifest_ORG', $scoes->scoes[0]->identifier);
         $this->assertEquals('sco', $scoes->scoes[1]->scormtype);
@@ -71,7 +71,7 @@ class ScoesTest extends TestCase
 
     public function test_get_sco()
     {
-        $sco = LaraMoodle::getScormScoes(1)->getSco();
+        $sco = LaravelMoodle::getScormScoes(1)->getSco();
 
         $this->assertNotNull($sco);
         $this->assertEquals('sco', $sco->scormtype);

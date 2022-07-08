@@ -1,12 +1,12 @@
 <?php
 
-namespace NetworkRailBusinessSystems\LaraMoodle\Tests\Unit;
+namespace NetworkRailBusinessSystems\LaravelMoodle\Tests\Unit;
 
 use Illuminate\Support\Facades\Http;
-use NetworkRailBusinessSystems\LaraMoodle\Facades\LaraMoodle;
-use NetworkRailBusinessSystems\LaraMoodle\Support\Categories;
-use NetworkRailBusinessSystems\LaraMoodle\Tests\Stubs\MockResponses;
-use NetworkRailBusinessSystems\LaraMoodle\Tests\TestCase;
+use NetworkRailBusinessSystems\LaravelMoodle\Facades\LaravelMoodle;
+use NetworkRailBusinessSystems\LaravelMoodle\Support\Categories;
+use NetworkRailBusinessSystems\LaravelMoodle\Tests\Stubs\MockResponses;
+use NetworkRailBusinessSystems\LaravelMoodle\Tests\TestCase;
 
 class CategoriesTest extends TestCase
 {
@@ -17,7 +17,7 @@ class CategoriesTest extends TestCase
         ]);
         session(['moodle-token' => 'ABC123']);
 
-        $categories = LaraMoodle::getCategories();
+        $categories = LaravelMoodle::getCategories();
 
         $this->assertEquals(
             [

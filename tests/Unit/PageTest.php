@@ -1,11 +1,11 @@
 <?php
 
-namespace NetworkRailBusinessSystems\LaraMoodle\Tests\Unit;
+namespace NetworkRailBusinessSystems\LaravelMoodle\Tests\Unit;
 
 use Illuminate\Support\Facades\Http;
-use NetworkRailBusinessSystems\LaraMoodle\Exceptions\MoodleException;
-use NetworkRailBusinessSystems\LaraMoodle\Facades\LaraMoodle;
-use NetworkRailBusinessSystems\LaraMoodle\Tests\TestCase;
+use NetworkRailBusinessSystems\LaravelMoodle\Exceptions\MoodleException;
+use NetworkRailBusinessSystems\LaravelMoodle\Facades\LaravelMoodle;
+use NetworkRailBusinessSystems\LaravelMoodle\Tests\TestCase;
 
 class PageTest extends TestCase
 {
@@ -23,7 +23,7 @@ class PageTest extends TestCase
 
         session(['moodle-token' => 'ABC123']);
 
-        $this->assertTrue(LaraMoodle::viewPageEvent(1));
+        $this->assertTrue(LaravelMoodle::viewPageEvent(1));
     }
 
     public function test_unsuccessful_page_view_event()
@@ -43,6 +43,6 @@ class PageTest extends TestCase
 
         session(['moodle-token' => 'ABC123']);
 
-        LaraMoodle::viewPageEvent(1);
+        LaravelMoodle::viewPageEvent(1);
     }
 }

@@ -2,13 +2,13 @@
 
 namespace NetworkRailBusinessSystems\LaravelMoodle\Facades;
 
-class AddToken extends \Illuminate\Support\Facades\Facade
+class LaravelMoodle extends \Illuminate\Support\Facades\Facade
 {
     /**
      * {@inheritDoc}
      */
     protected static function getFacadeAccessor()
     {
-        return \NetworkRailBusinessSystems\LaravelMoodle\Support\AddToken::class;
+        return \NetworkRailBusinessSystems\LaravelMoodle\LaravelMoodle::class;
     }
 }

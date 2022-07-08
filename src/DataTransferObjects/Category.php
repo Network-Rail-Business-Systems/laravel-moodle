@@ -1,8 +1,8 @@
 <?php
 
-namespace NetworkRailBusinessSystems\LaraMoodle\DataTransferObjects;
+namespace NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects;
 
-use NetworkRailBusinessSystems\LaraMoodle\Traits\HasDates;
+use NetworkRailBusinessSystems\LaravelMoodle\Traits\HasDates;
 use Spatie\DataTransferObject\DataTransferObject;
 
 class Category extends DataTransferObject

@@ -1,11 +1,11 @@
 <?php
 
-namespace NetworkRailBusinessSystems\LaraMoodle\Tests\Unit;
+namespace NetworkRailBusinessSystems\LaravelMoodle\Tests\Unit;
 
 use Illuminate\Support\Facades\Http;
-use NetworkRailBusinessSystems\LaraMoodle\Facades\LaraMoodle;
-use NetworkRailBusinessSystems\LaraMoodle\Tests\Stubs\MockResponses;
-use NetworkRailBusinessSystems\LaraMoodle\Tests\TestCase;
+use NetworkRailBusinessSystems\LaravelMoodle\Facades\LaravelMoodle;
+use NetworkRailBusinessSystems\LaravelMoodle\Tests\Stubs\MockResponses;
+use NetworkRailBusinessSystems\LaravelMoodle\Tests\TestCase;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class CoursesTest extends TestCase
@@ -23,7 +23,7 @@ class CoursesTest extends TestCase
             '*' => Http::response(MockResponses::getCourses(), 200),
         ]);
 
-        $data = LaraMoodle::getCourses();
+        $data = LaravelMoodle::getCourses();
 
         $this->assertNotNull($data->courses);
         $this->assertCount(1, $data->courses);
@@ -37,7 +37,7 @@ class CoursesTest extends TestCase
             '*' => Http::response(MockResponses::getCourses(), 200),
         ]);
 
-        $data = LaraMoodle::getCourses();
+        $data = LaravelMoodle::getCourses();
 
         $this->assertEquals('19/05/2020', $data->courses[0]->asDate('startdate')->format('d/m/Y'));
         $this->assertEquals('19/05/2020', $data->courses[0]->dates()->startdate->format('d/m/Y'));
@@ -49,7 +49,7 @@ class CoursesTest extends TestCase
             '*' => Http::response(MockResponses::getCourses(), 200),
         ]);
 
-        $data = LaraMoodle::getCoursesByCategory(1);
+        $data = LaravelMoodle::getCoursesByCategory(1);
 
         $this->assertNotNull($data->courses);
         $this->assertCount(1, $data->courses);
@@ -63,7 +63,7 @@ class CoursesTest extends TestCase
             '*' => Http::response(MockResponses::getCourses(), 200),
         ]);
 
-        $course = LaraMoodle::getCourse(2);
+        $course = LaravelMoodle::getCourse(2);
 
         $this->assertNotNull($course);
         $this->assertEquals('My First Course', $course->fullname);
@@ -79,7 +79,7 @@ class CoursesTest extends TestCase
 
         $this->expectException(NotFoundHttpException::class);
 
-        LaraMoodle::getCourse(999);
+        LaravelMoodle::getCourse(999);
     }
 
     public function test_get_course_contents()
@@ -88,7 +88,7 @@ class CoursesTest extends TestCase
             '*' => Http::response(MockResponses::getCourseContents(), 200),
         ]);
 
-        $contents = LaraMoodle::getCourseContents(2);
+        $contents = LaravelMoodle::getCourseContents(2);
 
         $this->assertNotNull($contents);
         $this->assertCount(1, $contents);
@@ -105,7 +105,7 @@ class CoursesTest extends TestCase
             '*' => Http::response(MockResponses::searchCourses(), 200),
         ]);
 
-        $searchResults = LaraMoodle::searchCourses('my first course');
+        $searchResults = LaravelMoodle::searchCourses('my first course');
 
         $this->assertNotNull($searchResults);
         $this->assertEquals(1, $searchResults->total);
@@ -119,7 +119,7 @@ class CoursesTest extends TestCase
             '*' => Http::response(MockResponses::getCourseModule(), 200),
         ]);
 
-        $module = LaraMoodle::getCourseModule(1);
+        $module = LaravelMoodle::getCourseModule(1);
 
         $this->assertNotNull($module);
         $this->assertEquals('My first module', $module->cm->name);
@@ -131,7 +131,7 @@ class CoursesTest extends TestCase
             '*' => Http::response(MockResponses::coursePages(), 200),
         ]);
 
-        $pages = LaraMoodle::getCoursePages(2);
+        $pages = LaravelMoodle::getCoursePages(2);
 
         $this->assertNotNull($pages);
         $this->assertEquals('My First Page', $pages->pages[0]->name);
@@ -144,7 +144,7 @@ class CoursesTest extends TestCase
             '*' => Http::response(MockResponses::coursePages(), 200),
         ]);
 
-        $page = LaraMoodle::getCoursePage(2, 2);
+        $page = LaravelMoodle::getCoursePage(2, 2);
 
         $this->assertNotNull($page);
         $this->assertEquals('My First Page', $page->name);
@@ -157,7 +157,7 @@ class CoursesTest extends TestCase
             '*' => Http::response(MockResponses::getScorms(), 200),
         ]);
 
-        $scorms = LaraMoodle::getCourseScorms(3);
+        $scorms = LaravelMoodle::getCourseScorms(3);
 
         $this->assertNotNull($scorms);
         $this->assertEquals('Example scorm', $scorms->scorms[0]->name);
@@ -170,7 +170,7 @@ class CoursesTest extends TestCase
             '*' => Http::response(MockResponses::getScorms(), 200),
         ]);
 
-        $scorm = LaraMoodle::getCourseScorm(3, 17);
+        $scorm = LaravelMoodle::getCourseScorm(3, 17);
 
         $this->assertNotNull($scorm);
         $this->assertEquals('Example scorm', $scorm->name);
@@ -183,7 +183,7 @@ class CoursesTest extends TestCase
             '*' => Http::response(MockResponses::courseActivityStatuses(), 200),
         ]);
 
-        $activityStatuses = LaraMoodle::getCourseActivitiesCompletion(2, 2);
+        $activityStatuses = LaravelMoodle::getCourseActivitiesCompletion(2, 2);
 
         $this->assertNotNull($activityStatuses);
         $this->assertEquals('page', $activityStatuses->statuses[0]->modname);
@@ -196,7 +196,7 @@ class CoursesTest extends TestCase
             '*' => Http::response(MockResponses::getCourses(), 200),
         ]);
 
-        $data = LaraMoodle::getCourses();
+        $data = LaravelMoodle::getCourses();
 
         $this->assertEquals('4251.png', $data->courses[0]->getImage()->filename);
         $this->assertCount(1, $data->courses[0]->getImages());
@@ -208,7 +208,7 @@ class CoursesTest extends TestCase
             '*' => Http::response(MockResponses::getCourses(), 200),
         ]);
 
-        $data = LaraMoodle::getCourses();
+        $data = LaravelMoodle::getCourses();
 
         $this->assertCount(2, $data->courses[0]->getCustomFields());
         $this->assertEquals('1 week', $data->courses[0]->getCustomField('duration'));
@@ -221,7 +221,7 @@ class CoursesTest extends TestCase
             '*' => Http::response(MockResponses::getHtmlCourses(), 200),
         ]);
 
-        $data = LaraMoodle::getCourses();
+        $data = LaravelMoodle::getCourses();
 
         $this->assertEquals('Course With & < html >', $data->courses[0]->fullname());
     }

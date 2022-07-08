@@ -1,12 +1,12 @@
 <?php
 
-namespace NetworkRailBusinessSystems\LaraMoodle\DataTransferObjects;
+namespace NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects;
 
 use Spatie\DataTransferObject\DataTransferObject;
 
 class GetCourseAssignments extends DataTransferObject
 {
-    /** @var \NetworkRailBusinessSystems\LaraMoodle\DataTransferObjects\CourseAssignment[] */
+    /** @var \NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\CourseAssignment[] */
     public $courses;
 
     /** @var array */

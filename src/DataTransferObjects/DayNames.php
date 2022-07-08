@@ -1,6 +1,6 @@
 <?php
 
-namespace NetworkRailBusinessSystems\LaraMoodle\DataTransferObjects;
+namespace NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects;
 
 use Spatie\DataTransferObject\DataTransferObject;
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace NetworkRailBusinessSystems\LaraMoodle\DataTransferObjects;
+namespace NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects;
 
 use Spatie\DataTransferObject\DataTransferObject;
 
@@ -12,6 +12,6 @@ class CompletionStatus extends DataTransferObject
     /** @var integer */
     public $aggregation;
 
-    /** @var \NetworkRailBusinessSystems\LaraMoodle\DataTransferObjects\Completion[] */
+    /** @var \NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\Completion[] */
     public $completions;
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace NetworkRailBusinessSystems\LaraMoodle\DataTransferObjects;
+namespace NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects;
 
 use Spatie\DataTransferObject\DataTransferObject;
 
@@ -90,7 +90,7 @@ class Assignment extends DataTransferObject
     /** @var integer **/
     public $preventsubmissionnotingroup;
 
-    /** @var \NetworkRailBusinessSystems\LaraMoodle\DataTransferObjects\AssignmentConfig[] **/
+    /** @var \NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\AssignmentConfig[] **/
     public $configs;
 
     /** @var string **/
@@ -99,9 +99,9 @@ class Assignment extends DataTransferObject
     /** @var integer **/
     public $introformat;
 
-    /** @var \NetworkRailBusinessSystems\LaraMoodle\DataTransferObjects\FileObject[] **/
+    /** @var \NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\FileObject[] **/
     public $introfiles;
 
-    /** @var \NetworkRailBusinessSystems\LaraMoodle\DataTransferObjects\FileObject[] **/
+    /** @var \NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\FileObject[] **/
     public $introattachments;
 }

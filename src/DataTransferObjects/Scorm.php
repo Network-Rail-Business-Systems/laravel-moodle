@@ -1,8 +1,8 @@
 <?php
 
-namespace NetworkRailBusinessSystems\LaraMoodle\DataTransferObjects;
+namespace NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects;
 
-use NetworkRailBusinessSystems\LaraMoodle\Traits\HasDates;
+use NetworkRailBusinessSystems\LaravelMoodle\Traits\HasDates;
 use Spatie\DataTransferObject\DataTransferObject;
 
 class Scorm extends DataTransferObject
@@ -28,7 +28,7 @@ class Scorm extends DataTransferObject
     /** @var integer **/
     public $introformat;
 
-    /** @var \NetworkRailBusinessSystems\LaraMoodle\DataTransferObjects\FileObject[] **/
+    /** @var \NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\FileObject[] **/
     public $introfiles;
 
     /** @var integer **/

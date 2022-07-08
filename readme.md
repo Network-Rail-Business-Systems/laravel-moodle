@@ -1,11 +1,11 @@
-# LaraMoodle
+# LaravelMoodle
 
 A Laravel package to authenticate with Moodle and retrieve course information.
 
 ## Installation
 
 ```bash
-composer require networkrailbusinesssystems/laramoodle
+composer require networkrailbusinesssystems/laravel-moodle
 ```
 
 The package should auto register the service providers.
@@ -32,28 +32,28 @@ Update the .env file with the `MOODLE_BASE_URL` with the url of your Moodle inst
 
 ### User Model
 
-When a user logs in for the first time their email, username and id are set from Moodle in the user model. If you want to customise the fields that are synchronised then publish the laramoodle config file and update the sync_attributes array.
+When a user logs in for the first time their email, username and id are set from Moodle in the user model. If you want to customise the fields that are synchronised then publish the `laravel-moodle` config file and update the sync_attributes array.
 
 Any fields that you synchronise will need to added to the `protected $fillable` array in your User model.
 
-If you want to use a different model to `App\User` then update the `user_model` in the laramoodle config file.
+If you want to use a different model to `App\User` then update the `user_model` in the `laravel-moodle` config file.
 
 ### Credentials
 
 The package expects the credentials from the LoginController to be an array containing `username` and `password`, but if you want to use `username` instead then add `MOODLE_LOGIN_ATTRIBUTE=username` to your .env file.
 
-**Users set as a Site Administrator in Moodle will not be able to login using LaraMoodle until they manually generate a token for their account as per step #5 below.**
+**Users set as a Site Administrator in Moodle will not be able to login using LaravelMoodle until they manually generate a token for their account as per step #5 below.**
 
 ### Middleware
 
 The package contains a middleware that you can use to check if the user has a moodle token in their session. If they don't it will log the user out from their Laravel session and redirect the user ot the login page.
 
-To use globally list the `NetworkRailBusinessSystems\LaraMoodle\Middleware\MoodleToken::class` in the `$middleware` property of `app/Http/Kernel.php`.
+To use globally list the `NetworkRailBusinessSystems\LaravelMoodle\Middleware\MoodleToken::class` in the `$middleware` property of `app/Http/Kernel.php`.
 
-To use on specific routes add `'laramoodle' => \NetworkRailBusinessSystems\LaraMoodle\Middleware\MoodleToken::class` to the `$routeMiddleware` in `app/Http/Kernel.php` and then add to your route.
+To use on specific routes add `'laravel-moodle' => \NetworkRailBusinessSystems\LaravelMoodle\Middleware\MoodleToken::class` to the `$routeMiddleware` in `app/Http/Kernel.php` and then add to your route.
 
 ```php
-Route::get('/', function () {})->middleware('laramoodle');
+Route::get('/', function () {})->middleware('laravel-moodle');
 ```
 
 ## Moodle Configuration
@@ -121,10 +121,10 @@ In order to access data from Moodle, it needs to be configured first as the web 
 
 ## Endpoints
 
-Use the LaraMoodle facade to access the web service data.
+Use the LaravelMoodle facade to access the web service data.
 
 ```php
-use NetworkRailBusinessSystems\LaraMoodle\LaraMoodle as LaraMoodle;
+use NetworkRailBusinessSystems\LaravelMoodle\LaravelMoodle as LaravelMoodle;
 ```
 
 The package uses [Spatie Data Transfer Objects](https://github.com/spatie/data-transfer-object) to format the response into objects.
@@ -134,7 +134,7 @@ The package uses [Spatie Data Transfer Objects](https://github.com/spatie/data-t
 Returns a collection of courses.
 
 ```php
-$data = LaraMoodle::getCourses();
+$data = LaravelMoodle::getCourses();
 
 foreach ($data->courses as $course) {
     echo $course->fullname; // My First Course
@@ -147,10 +147,10 @@ To filter the list of courses pass in the term and the field. you can use id, id
 
 ```php
 // Get course with id 3
-$data = LaraMoodle::getCourses('2', 'id');
+$data = LaravelMoodle::getCourses('2', 'id');
 
 // Get courses with ids 2 & 3
-$data = LaraMoodle::getCourses('2,3', 'ids');
+$data = LaravelMoodle::getCourses('2,3', 'ids');
 ```
 
 ### Get Course By Id
@@ -158,7 +158,7 @@ $data = LaraMoodle::getCourses('2,3', 'ids');
 Once you know the course ID (int) you can get a specific course.
 
 ```php
-$course = LaraMoodle::getCourse(2);
+$course = LaravelMoodle::getCourse(2);
 
 echo $course->fullname; // My First Course
 ```
@@ -168,7 +168,7 @@ echo $course->fullname; // My First Course
 Pass in your search term as the first parameter (string).
 
 ```php
-$searchResults = LaraMoodle::searchCourses('search term');
+$searchResults = LaravelMoodle::searchCourses('search term');
 
 echo $searchResults->total; // 1
 echo $searchResults->courses[0]->fullname; // My First Course
@@ -177,13 +177,13 @@ echo $searchResults->courses[0]->fullname; // My First Course
 Optionally pass in page number (integer) and per page (integer).
 
 ```php
-$searchResults = LaraMoodle::searchCourses('search term', 2, 15);
+$searchResults = LaravelMoodle::searchCourses('search term', 2, 15);
 ```
 
 You can also limit the search to only enrolled courses by specifying 1 as the 4th parameter.
 
 ```php
-$searchResults = LaraMoodle::searchCourses('search term', 2, 15, 1);
+$searchResults = LaravelMoodle::searchCourses('search term', 2, 15, 1);
 ```
 
 ### Get Course Contents By Id
@@ -191,7 +191,7 @@ $searchResults = LaraMoodle::searchCourses('search term', 2, 15, 1);
 Once you know the course Id you can get the contents of a specific course.
 
 ```php
-$courseContents = LaraMoodle::getCourseContents(1);
+$courseContents = LaravelMoodle::getCourseContents(1);
 
 echo $courseContents[0]->name; // Topic name
 echo $courseContents[0]->modules[0]->name; // Activity name
@@ -202,7 +202,7 @@ echo $courseContents[0]->modules[0]->name; // Activity name
 Once you know the module id from the course contents you can get more details about the module.
 
 ```php
-$module = LaraMoodle::getCourseModule(11);
+$module = LaravelMoodle::getCourseModule(11);
 
 echo $module->cm->name; // Topic name
 ```
@@ -212,7 +212,7 @@ echo $module->cm->name; // Topic name
 Once you know the course id you can get the pages for the course.
 
 ```php
-$pages = LaraMoodle::getCoursePages(1);
+$pages = LaravelMoodle::getCoursePages(1);
 
 echo $pages->pages[0]->name; // Page name
 ```
@@ -222,7 +222,7 @@ echo $pages->pages[0]->name; // Page name
 Get a specific course page by module id.
 
 ```php
-$page = LaraMoodle::getCoursePage($courseId, $moduleId);
+$page = LaravelMoodle::getCoursePage($courseId, $moduleId);
 ```
 
 ### Get Course Scorms
@@ -230,7 +230,7 @@ $page = LaraMoodle::getCoursePage($courseId, $moduleId);
 Once you know the course id you can get the scorms for the course.
 
 ```php
-$scorms = LaraMoodle::getCourseScorms(1);
+$scorms = LaravelMoodle::getCourseScorms(1);
 
 echo $scorms->scorms[0]->name; // Example scorm
 ```
@@ -240,7 +240,7 @@ echo $scorms->scorms[0]->name; // Example scorm
 Get a specific course scorm by module id.
 
 ```php
-$scorm = LaraMoodle::getCourseScorm($courseId, $moduleId);
+$scorm = LaravelMoodle::getCourseScorm($courseId, $moduleId);
 ```
 
 ### Get Course Resources
@@ -248,7 +248,7 @@ $scorm = LaraMoodle::getCourseScorm($courseId, $moduleId);
 Once you know the course id you can get the resources.
 
 ```php
-$resources = LaraMoodle::getCourseResources(1);
+$resources = LaravelMoodle::getCourseResources(1);
 echo $resources->resources[0]->name;
 ```
 
@@ -257,7 +257,7 @@ echo $resources->resources[0]->name;
 Get a specific course resource by module id.
 
 ```php
-$resource = LaraMoodle::getCourseResource($courseId, $moduleId);
+$resource = LaravelMoodle::getCourseResource($courseId, $moduleId);
 ```
 
 ### Get Course Completion
@@ -265,7 +265,7 @@ $resource = LaraMoodle::getCourseResource($courseId, $moduleId);
 You can get the course completion status by passing in the user id and the course id.
 
 ```php
-$completion = LaraMoodle::getCourseCompletion(2, 2);
+$completion = LaravelMoodle::getCourseCompletion(2, 2);
 ```
 
 ### Get Course Activities Completion
@@ -273,7 +273,7 @@ $completion = LaraMoodle::getCourseCompletion(2, 2);
 You can get details of a course's activities completion by passing in the user id and the course id.
 
 ```php
-$activities = LaraMoodle::getCourseActivitiesCompletion(2, 2);
+$activities = LaravelMoodle::getCourseActivitiesCompletion(2, 2);
 
 echo $activities->statuses[0]->state;
 ```
@@ -283,7 +283,7 @@ echo $activities->statuses[0]->state;
 Get the assignments for a specific course by passing in the course id.
 
 ```php
-$data = LaraMoodle::getCourseAssignments(2);
+$data = LaravelMoodle::getCourseAssignments(2);
 
 echo $data->courses[0]->assignments[0]->name;
 echo $data->courses[0]->assignments[0]->id;
@@ -294,7 +294,7 @@ echo $data->courses[0]->assignments[0]->id;
 Get a specific course assignment by the module id.
 
 ```php
-$assignment = LaraMoodle::getCourseAssignment($courseId, $moduleId);
+$assignment = LaravelMoodle::getCourseAssignment($courseId, $moduleId);
 ```
 
 ### Get Assignment Submission Status
@@ -302,7 +302,7 @@ $assignment = LaraMoodle::getCourseAssignment($courseId, $moduleId);
 Provides information on the previous attempts for an assignment. User id is optional as it defaults to the current user.  
 
 ```php
-LaraMoodle::getAssignmentSubmissionStatus($assignmentId, $userId);
+LaravelMoodle::getAssignmentSubmissionStatus($assignmentId, $userId);
 ```
 
 
@@ -311,7 +311,7 @@ LaraMoodle::getAssignmentSubmissionStatus($assignmentId, $userId);
 Submit the online text for a specific assignment. Returns true on success.
 
 ```php
-$submit = LaraMoodle::saveCourseAssignment($assignmentId, 'The content');
+$submit = LaravelMoodle::saveCourseAssignment($assignmentId, 'The content');
 
 echo $submit; // true
 ```
@@ -319,7 +319,7 @@ echo $submit; // true
 If there is an issue submitting then an array of warnings will be returned, with the error details in the item and message.
 
 ```php
-$submit = LaraMoodle::saveCourseAssignment($assignmentId, '');
+$submit = LaravelMoodle::saveCourseAssignment($assignmentId, '');
 
 echo $submit[0]->item; // Nothing was submitted
 echo $submit[0]->message; // Could not save submission
@@ -330,7 +330,7 @@ echo $submit[0]->message; // Could not save submission
 Get the grades for a user. Default to 0 for the current logged in user. 
 
 ```php
-$grades = LaraMoodle::getUserGrades();
+$grades = LaravelMoodle::getUserGrades();
 
 echo $grades->grades[0]->courseid; // 2
 echo $grades->grades[0]->grade; // A
@@ -342,7 +342,7 @@ echo $grades->grades[0]->grade; // A
 Get the grade for a user for a specific course. Default to 0 for the current logged in user. Returns null for grade if course not found.
 
 ```php
-$grade = LaraMoodle::getCourseGrade(2);
+$grade = LaravelMoodle::getCourseGrade(2);
 
 echo $grade->courseid; // 2
 echo $grade->grade; // A
@@ -354,10 +354,10 @@ Search for users. Default search field is username if not provided.
 
 ```php
 // Defaults to searching by username
-$users = LaraMoodle::searchUsers('testuser');
+$users = LaravelMoodle::searchUsers('testuser');
 
 // Override to search by email address
-$users = LaraMoodle::searchUsers('test.user@fake.email', 'email');
+$users = LaravelMoodle::searchUsers('test.user@fake.email', 'email');
 
 echo $users->users[0]->fullname; // Test User
 ```
@@ -372,10 +372,10 @@ There is a `null` response from Moodle when successful, but enrolUserOnCourse re
 
 ```php
 // Defaults role to student
-LaraMoodle::enrolUserOnCourse(2, 2);
+LaravelMoodle::enrolUserOnCourse(2, 2);
 
 // Override role to editing teacher
-LaraMoodle::enrolUserOnCourse(2, 2, 3);
+LaravelMoodle::enrolUserOnCourse(2, 2, 3);
 ```
 
 ### Unenrol User On A Course
@@ -383,7 +383,7 @@ LaraMoodle::enrolUserOnCourse(2, 2, 3);
 You can unenrol a user on a course. Role id is not required. It will default to the student role. 
 
 ```php
-LaraMoodle::unenrolUserOnCourse($userId, $courseId, $roleId);
+LaravelMoodle::unenrolUserOnCourse($userId, $courseId, $roleId);
 ```
 
 ### Get Enrolled Users For A Course
@@ -391,7 +391,7 @@ LaraMoodle::unenrolUserOnCourse($userId, $courseId, $roleId);
 You can get a collection of users enrolled on a course. These are Moodle users and not Laravel user models.
 
 ```php
-$enrolledUsers = LaraMoodle::getEnrolledUsersForCourse(2);
+$enrolledUsers = LaravelMoodle::getEnrolledUsersForCourse(2);
 
 echo $enrolledUsers[0]->fullname; // Test User
 echo $enrolledUsers[0]->roles[0]->shortname; // Student
@@ -402,7 +402,7 @@ echo $enrolledUsers[0]->roles[0]->shortname; // Student
 Get all categories.
 
 ```php
-$categories = LaraMoodle::getCategories();
+$categories = LaravelMoodle::getCategories();
 
 echo $categories[0]->name; // Category name
 ```
@@ -412,7 +412,7 @@ echo $categories[0]->name; // Category name
 Search for categories. Defaults to searching name if second parameter isn't passed. The search term is an exact match only.
 
 ```php
-$categories = LaraMoodle::searchCategories('Business Briefing System');
+$categories = LaravelMoodle::searchCategories('Business Briefing System');
 
 echo $categories[0]->name; // Business Briefing System
 ```
@@ -422,7 +422,7 @@ echo $categories[0]->name; // Business Briefing System
 Trigger the view page event for activity auto completion. Pass in the page id. Returns true if successful and MoodleException if unsuccessful.
 
 ```php
-$pageViewed = LaraMoodle::viewPageEvent(1);
+$pageViewed = LaravelMoodle::viewPageEvent(1);
 
 dd($pageViewed); // true
 ```
@@ -432,7 +432,7 @@ dd($pageViewed); // true
 The package has a HasDates trait that can be added to DataTransferObjects to convert the timestamp from Moodle into a Carbon instance to allow easier formatting for presentation.
 
 ```php
-$data = LaraMoodle::getCourses();
+$data = LaravelMoodle::getCourses();
 
 $data->courses[0]->asDate('startdate')->format('d/m/Y');
 $data->courses[0]->dates()->startdate->format('d/m/Y');

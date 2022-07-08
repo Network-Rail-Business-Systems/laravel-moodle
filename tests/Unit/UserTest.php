@@ -1,11 +1,11 @@
 <?php
 
-namespace NetworkRailBusinessSystems\LaraMoodle\Tests\Unit;
+namespace NetworkRailBusinessSystems\LaravelMoodle\Tests\Unit;
 
 use Illuminate\Support\Facades\Http;
-use NetworkRailBusinessSystems\LaraMoodle\Facades\LaraMoodle;
-use NetworkRailBusinessSystems\LaraMoodle\Tests\Stubs\MockResponses;
-use NetworkRailBusinessSystems\LaraMoodle\Tests\TestCase;
+use NetworkRailBusinessSystems\LaravelMoodle\Facades\LaravelMoodle;
+use NetworkRailBusinessSystems\LaravelMoodle\Tests\Stubs\MockResponses;
+use NetworkRailBusinessSystems\LaravelMoodle\Tests\TestCase;
 
 class UserTest extends TestCase
 {
@@ -17,7 +17,7 @@ class UserTest extends TestCase
 
         session(['moodle-token' => 'ABC123']);
 
-        $users = LaraMoodle::searchUsers('testuser');
+        $users = LaravelMoodle::searchUsers('testuser');
 
         $this->assertNotNull($users);
         $this->assertEquals('testuser', $users->users[0]->username);

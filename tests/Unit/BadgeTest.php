@@ -1,11 +1,11 @@
 <?php
 
-namespace NetworkRailBusinessSystems\LaraMoodle\Tests\Unit;
+namespace NetworkRailBusinessSystems\LaravelMoodle\Tests\Unit;
 
 use Illuminate\Support\Facades\Http;
-use NetworkRailBusinessSystems\LaraMoodle\Facades\LaraMoodle;
-use NetworkRailBusinessSystems\LaraMoodle\Tests\Stubs\MockResponses;
-use NetworkRailBusinessSystems\LaraMoodle\Tests\TestCase;
+use NetworkRailBusinessSystems\LaravelMoodle\Facades\LaravelMoodle;
+use NetworkRailBusinessSystems\LaravelMoodle\Tests\Stubs\MockResponses;
+use NetworkRailBusinessSystems\LaravelMoodle\Tests\TestCase;
 
 class BadgeTest extends TestCase
 {
@@ -17,7 +17,7 @@ class BadgeTest extends TestCase
 
         session(['moodle-token' => 'ABC123']);
 
-        $data = LaraMoodle::getBadges();
+        $data = LaravelMoodle::getBadges();
 
         $this->assertNotNull($data);
         $this->assertEquals('BBS Complete', $data->badges[0]->name);

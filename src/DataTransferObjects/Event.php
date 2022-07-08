@@ -1,6 +1,6 @@
 <?php
 
-namespace NetworkRailBusinessSystems\LaraMoodle\DataTransferObjects;
+namespace NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects;
 
 use Spatie\DataTransferObject\DataTransferObject;
 
@@ -66,7 +66,7 @@ class Event extends DataTransferObject
     /** @var array **/
     public $icon;
 
-    /** @var null|\NetworkRailBusinessSystems\LaraMoodle\DataTransferObjects\EventCourse **/
+    /** @var null|\NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\EventCourse **/
     public $course;
 
     /** @var array **/

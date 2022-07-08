@@ -1,11 +1,11 @@
 <?php
 
-namespace NetworkRailBusinessSystems\LaraMoodle\DataTransferObjects;
+namespace NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects;
 
-use NetworkRailBusinessSystems\LaraMoodle\Traits\HasCourseImages;
-use NetworkRailBusinessSystems\LaraMoodle\Traits\HasCustomFields;
-use NetworkRailBusinessSystems\LaraMoodle\Traits\HasDates;
-use NetworkRailBusinessSystems\LaraMoodle\Traits\HasEnrollements;
+use NetworkRailBusinessSystems\LaravelMoodle\Traits\HasCourseImages;
+use NetworkRailBusinessSystems\LaravelMoodle\Traits\HasCustomFields;
+use NetworkRailBusinessSystems\LaravelMoodle\Traits\HasDates;
+use NetworkRailBusinessSystems\LaravelMoodle\Traits\HasEnrollements;
 use Spatie\DataTransferObject\DataTransferObject;
 
 class Course extends DataTransferObject
@@ -44,10 +44,10 @@ class Course extends DataTransferObject
     /** @var integer */
     public $summaryformat;
 
-    /** @var \NetworkRailBusinessSystems\LaraMoodle\DataTransferObjects\FileObject[] */
+    /** @var \NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\FileObject[] */
     public $summaryfiles;
 
-    /** @var \NetworkRailBusinessSystems\LaraMoodle\DataTransferObjects\FileObject[] */
+    /** @var \NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\FileObject[] */
     public $overviewfiles;
 
     /** @var array */
@@ -56,7 +56,7 @@ class Course extends DataTransferObject
     /** @var array */
     public $enrollmentmethods;
 
-    /** @var \NetworkRailBusinessSystems\LaraMoodle\DataTransferObjects\CustomField[] */
+    /** @var \NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\CustomField[] */
     public $customfields;
 
     /** @var string|null */

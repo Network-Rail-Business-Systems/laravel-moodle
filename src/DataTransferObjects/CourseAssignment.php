@@ -1,6 +1,6 @@
 <?php
 
-namespace NetworkRailBusinessSystems\LaraMoodle\DataTransferObjects;
+namespace NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects;
 
 use Spatie\DataTransferObject\DataTransferObject;
 
@@ -18,6 +18,6 @@ class CourseAssignment extends DataTransferObject
     /** @var integer */
     public $timemodified;
 
-    /** @var \NetworkRailBusinessSystems\LaraMoodle\DataTransferObjects\Assignment[] */
+    /** @var \NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\Assignment[] */
     public $assignments;
 }

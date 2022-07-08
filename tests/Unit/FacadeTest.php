@@ -1,10 +1,10 @@
 <?php
 
-namespace NetworkRailBusinessSystems\LaraMoodle\Tests\Unit;
+namespace NetworkRailBusinessSystems\LaravelMoodle\Tests\Unit;
 
-use NetworkRailBusinessSystems\LaraMoodle\Exceptions\MoodleTokenMissingException;
-use NetworkRailBusinessSystems\LaraMoodle\Facades\LaraMoodle;
-use NetworkRailBusinessSystems\LaraMoodle\Tests\TestCase;
+use NetworkRailBusinessSystems\LaravelMoodle\Exceptions\MoodleTokenMissingException;
+use NetworkRailBusinessSystems\LaravelMoodle\Facades\LaravelMoodle;
+use NetworkRailBusinessSystems\LaravelMoodle\Tests\TestCase;
 
 class FacadeTest extends TestCase
 {
@@ -12,6 +12,6 @@ class FacadeTest extends TestCase
     {
         $this->expectException(MoodleTokenMissingException::class);
 
-        LaraMoodle::getCourses();
+        LaravelMoodle::getCourses();
     }
 }

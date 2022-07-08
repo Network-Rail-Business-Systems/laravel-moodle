@@ -1,11 +1,11 @@
 <?php
 
-namespace NetworkRailBusinessSystems\LaraMoodle\Tests\Unit;
+namespace NetworkRailBusinessSystems\LaravelMoodle\Tests\Unit;
 
 use Illuminate\Support\Facades\Http;
-use NetworkRailBusinessSystems\LaraMoodle\Facades\LaraMoodle;
-use NetworkRailBusinessSystems\LaraMoodle\Tests\Stubs\MockResponses;
-use NetworkRailBusinessSystems\LaraMoodle\Tests\TestCase;
+use NetworkRailBusinessSystems\LaravelMoodle\Facades\LaravelMoodle;
+use NetworkRailBusinessSystems\LaravelMoodle\Tests\Stubs\MockResponses;
+use NetworkRailBusinessSystems\LaravelMoodle\Tests\TestCase;
 
 class AssignmentTest extends TestCase
 {
@@ -22,7 +22,7 @@ class AssignmentTest extends TestCase
             '*' => Http::response(MockResponses::courseAssignments(), 200),
         ]);
 
-        $data = LaraMoodle::getCourseAssignments(3);
+        $data = LaravelMoodle::getCourseAssignments(3);
 
         $this->assertNotNull($data);
         $this->assertEquals('My First Course', $data->courses[0]->fullname);
@@ -35,7 +35,7 @@ class AssignmentTest extends TestCase
             '*' => Http::response(MockResponses::courseAssignments(), 200),
         ]);
 
-        $assignment = LaraMoodle::getCourseAssignment(3, 16);
+        $assignment = LaravelMoodle::getCourseAssignment(3, 16);
 
         $this->assertNotNull($assignment);
         $this->assertEquals(3, $assignment->course);
@@ -48,7 +48,7 @@ class AssignmentTest extends TestCase
             '*' => Http::response([], 200),
         ]);
 
-        $this->assertTrue(LaraMoodle::saveCourseAssignment(1, 'The assessment text content'));
+        $this->assertTrue(LaravelMoodle::saveCourseAssignment(1, 'The assessment text content'));
     }
 
     public function test_unsuccessful_course_assignment()
@@ -64,7 +64,7 @@ class AssignmentTest extends TestCase
             ]),
         ]);
 
-        $submit = LaraMoodle::saveCourseAssignment(1, '');
+        $submit = LaravelMoodle::saveCourseAssignment(1, '');
 
         $this->assertNotEmpty($submit);
         $this->assertEquals('Nothing was submitted', $submit[0]->item);
@@ -76,7 +76,7 @@ class AssignmentTest extends TestCase
             '*' => Http::response(MockResponses::assessmentStatus()),
         ]);
 
-        $status = LaraMoodle::getAssignmentSubmissionStatus(1);
+        $status = LaravelMoodle::getAssignmentSubmissionStatus(1);
 
         $this->assertNotNull($status);
         $this->assertEquals(

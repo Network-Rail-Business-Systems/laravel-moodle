@@ -1,6 +1,6 @@
 <?php
 
-namespace NetworkRailBusinessSystems\LaraMoodle\DataTransferObjects;
+namespace NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects;
 
 use Spatie\DataTransferObject\DataTransferObject;
 
@@ -18,10 +18,10 @@ class CalendarMonthly extends DataTransferObject
     /** @var string */
     public $filter_selector;
 
-    /** @var \NetworkRailBusinessSystems\LaraMoodle\DataTransferObjects\Week[] */
+    /** @var \NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\Week[] */
     public $weeks;
 
-    /** @var \NetworkRailBusinessSystems\LaraMoodle\DataTransferObjects\DayNames[] */
+    /** @var \NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\DayNames[] */
     public $daynames;
 
     /** @var string */

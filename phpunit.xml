@@ -10,7 +10,7 @@
          processIsolation="false"
          stopOnFailure="false">
     <testsuites>
-        <testsuite name="LaraMoodle Test Suite">
+        <testsuite name="LaravelMoodle Test Suite">
             <directory suffix="Test.php">tests</directory>
         </testsuite>
     </testsuites>

@@ -1,9 +1,9 @@
 <?php
 
-namespace NetworkRailBusinessSystems\LaraMoodle\Support;
+namespace NetworkRailBusinessSystems\LaravelMoodle\Support;
 
 use Illuminate\Support\Str;
-use NetworkRailBusinessSystems\LaraMoodle\Exceptions\MoodleTokenMissingException;
+use NetworkRailBusinessSystems\LaravelMoodle\Exceptions\MoodleTokenMissingException;
 
 class AddToken
 {

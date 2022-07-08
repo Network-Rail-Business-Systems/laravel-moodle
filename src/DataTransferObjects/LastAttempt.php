@@ -1,15 +1,15 @@
 <?php
 
-namespace NetworkRailBusinessSystems\LaraMoodle\DataTransferObjects;
+namespace NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects;
 
 use Spatie\DataTransferObject\DataTransferObject;
 
 class LastAttempt extends DataTransferObject
 {
-    /** @var null|\NetworkRailBusinessSystems\LaraMoodle\DataTransferObjects\Submission */
+    /** @var null|\NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\Submission */
     public $submission;
 
-    /** @var null|\NetworkRailBusinessSystems\LaraMoodle\DataTransferObjects\Submission */
+    /** @var null|\NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\Submission */
     public $teamsubmission;
 
     /** @var null|int */

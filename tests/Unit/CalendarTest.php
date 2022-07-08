@@ -1,11 +1,11 @@
 <?php
 
-namespace NetworkRailBusinessSystems\LaraMoodle\Tests\Unit;
+namespace NetworkRailBusinessSystems\LaravelMoodle\Tests\Unit;
 
 use Illuminate\Support\Facades\Http;
-use NetworkRailBusinessSystems\LaraMoodle\Facades\LaraMoodle;
-use NetworkRailBusinessSystems\LaraMoodle\Tests\Stubs\CalendarResponses;
-use NetworkRailBusinessSystems\LaraMoodle\Tests\TestCase;
+use NetworkRailBusinessSystems\LaravelMoodle\Facades\LaravelMoodle;
+use NetworkRailBusinessSystems\LaravelMoodle\Tests\Stubs\CalendarResponses;
+use NetworkRailBusinessSystems\LaravelMoodle\Tests\TestCase;
 
 class CalendarTest extends TestCase
 {
@@ -22,7 +22,7 @@ class CalendarTest extends TestCase
             '*' => Http::response(CalendarResponses::calendarResponse(), 200),
         ]);
 
-        $calendar = LaraMoodle::calendarMonthlyView('2020', '8', 1);
+        $calendar = LaravelMoodle::calendarMonthlyView('2020', '8', 1);
 
         $this->assertNotNull($calendar);
         $this->assertEquals('month', $calendar->view);

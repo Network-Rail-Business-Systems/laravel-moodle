@@ -1,5 +1,5 @@
 {
-  "name": "laramoodle",
+  "name": "laravel-moodle",
   "version": "0.1.0",
   "description": "A Laravel package to login to Moodle and retrieve data",
   "main": "index.js",
@@ -12,15 +12,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@bitbucket.org/nrbusinesssystems/laramoodle.git"
+    "url": "https://github.com/Network-Rail-Business-Systems/laravel-moodle"
   },
   "keywords": [
     "Laravel",
     "Moodle"
   ],
-  "author": "nrbusinesssystems",
-  "license": "ISC",
-  "homepage": "https://bitbucket.org/nrbusinesssystems/laramoodle#readme",
+  "author": "networkrailbusinesssystems",
+  "license": "MIT",
+  "homepage": "https://github.com/Network-Rail-Business-Systems/laravel-moodle",
   "devDependencies": {
     "@prettier/plugin-php": "^0.14.2",
     "husky": "^4.2.5",

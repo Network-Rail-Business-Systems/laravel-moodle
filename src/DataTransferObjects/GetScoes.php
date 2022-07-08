@@ -1,15 +1,15 @@
 <?php
 
-namespace NetworkRailBusinessSystems\LaraMoodle\DataTransferObjects;
+namespace NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects;
 
 use Spatie\DataTransferObject\DataTransferObject;
 
 class GetScoes extends DataTransferObject
 {
-    /** @var \NetworkRailBusinessSystems\LaraMoodle\DataTransferObjects\Scoe[] */
+    /** @var \NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\Scoe[] */
     public $scoes;
 
-    /** @var \NetworkRailBusinessSystems\LaraMoodle\DataTransferObjects\Warning[] */
+    /** @var \NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\Warning[] */
     public $warnings;
 
     public function getSco()

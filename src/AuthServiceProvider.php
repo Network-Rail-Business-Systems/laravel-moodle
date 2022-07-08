@@ -1,6 +1,6 @@
 <?php
 
-namespace NetworkRailBusinessSystems\LaraMoodle;
+namespace NetworkRailBusinessSystems\LaravelMoodle;
 
 use Illuminate\Support\Facades\Auth;
 

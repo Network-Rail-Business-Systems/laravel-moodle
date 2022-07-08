@@ -1,37 +1,37 @@
 <?php
 
-namespace NetworkRailBusinessSystems\LaraMoodle;
+namespace NetworkRailBusinessSystems\LaravelMoodle;
 
 use GuzzleHttp\Profiling\Debugbar\Profiler;
 use GuzzleHttp\Profiling\Middleware;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Http;
-use NetworkRailBusinessSystems\LaraMoodle\DataTransferObjects\CalendarMonthly;
-use NetworkRailBusinessSystems\LaraMoodle\DataTransferObjects\Category;
-use NetworkRailBusinessSystems\LaraMoodle\DataTransferObjects\Course;
-use NetworkRailBusinessSystems\LaraMoodle\DataTransferObjects\CourseActivityStatuses;
-use NetworkRailBusinessSystems\LaraMoodle\DataTransferObjects\CourseCompletion;
-use NetworkRailBusinessSystems\LaraMoodle\DataTransferObjects\CourseContent;
-use NetworkRailBusinessSystems\LaraMoodle\DataTransferObjects\CourseEnrolledUser;
-use NetworkRailBusinessSystems\LaraMoodle\DataTransferObjects\CourseModuleById;
-use NetworkRailBusinessSystems\LaraMoodle\DataTransferObjects\CoursePages;
-use NetworkRailBusinessSystems\LaraMoodle\DataTransferObjects\CourseSearch;
-use NetworkRailBusinessSystems\LaraMoodle\DataTransferObjects\GetBadges;
-use NetworkRailBusinessSystems\LaraMoodle\DataTransferObjects\GetCourseAssignments;
-use NetworkRailBusinessSystems\LaraMoodle\DataTransferObjects\GetCoursesByField;
-use NetworkRailBusinessSystems\LaraMoodle\DataTransferObjects\GetGrades;
-use NetworkRailBusinessSystems\LaraMoodle\DataTransferObjects\GetResources;
-use NetworkRailBusinessSystems\LaraMoodle\DataTransferObjects\GetScoes;
-use NetworkRailBusinessSystems\LaraMoodle\DataTransferObjects\getScorms;
-use NetworkRailBusinessSystems\LaraMoodle\DataTransferObjects\GetUsers;
-use NetworkRailBusinessSystems\LaraMoodle\DataTransferObjects\Grade;
-use NetworkRailBusinessSystems\LaraMoodle\DataTransferObjects\SelfEnrol;
-use NetworkRailBusinessSystems\LaraMoodle\DataTransferObjects\SubmissionStatus;
-use NetworkRailBusinessSystems\LaraMoodle\DataTransferObjects\Warning;
-use NetworkRailBusinessSystems\LaraMoodle\Exceptions\MoodleException;
-use NetworkRailBusinessSystems\LaraMoodle\Exceptions\MoodleTokenMissingException;
+use NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\CalendarMonthly;
+use NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\Category;
+use NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\Course;
+use NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\CourseActivityStatuses;
+use NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\CourseCompletion;
+use NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\CourseContent;
+use NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\CourseEnrolledUser;
+use NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\CourseModuleById;
+use NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\CoursePages;
+use NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\CourseSearch;
+use NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\GetBadges;
+use NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\GetCourseAssignments;
+use NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\GetCoursesByField;
+use NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\GetGrades;
+use NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\GetResources;
+use NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\GetScoes;
+use NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\getScorms;
+use NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\GetUsers;
+use NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\Grade;
+use NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\SelfEnrol;
+use NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\SubmissionStatus;
+use NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\Warning;
+use NetworkRailBusinessSystems\LaravelMoodle\Exceptions\MoodleException;
+use NetworkRailBusinessSystems\LaravelMoodle\Exceptions\MoodleTokenMissingException;
 
-class LaraMoodle
+class LaravelMoodle
 {
     private $http;
     private $token;
@@ -45,10 +45,10 @@ class LaraMoodle
         $this->token = session('moodle-token');
 
         $this->http = Http::withOptions([
-            'base_uri' => config('laramoodle.base_url'),
+            'base_uri' => config('laravel-moodle.base_url'),
         ]);
 
-        if (config('laramoodle.debug')) {
+        if (config('laravel-moodle.debug')) {
             $debugbar = App::make('debugbar');
             $this->http->withMiddleware(new Middleware(new Profiler($debugbar->getCollector('time'))));
         }
@@ -532,7 +532,7 @@ class LaraMoodle
                 [
                     'enrolments' => [
                         [
-                            'roleid' => $roleId ?? config('laramoodle.student_role_id'),
+                            'roleid' => $roleId ?? config('laravel-moodle.student_role_id'),
                             'userid' => $userId,
                             'courseid' => $courseId,
                         ],
@@ -620,7 +620,7 @@ class LaraMoodle
                 [
                     'enrolments' => [
                         [
-                            'roleid' => $roleId ?? config('laramoodle.student_role_id'),
+                            'roleid' => $roleId ?? config('laravel-moodle.student_role_id'),
                             'userid' => $userId,
                             'courseid' => $courseId,
                         ],

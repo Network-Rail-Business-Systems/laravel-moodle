@@ -1,6 +1,6 @@
 <?php
 
-namespace NetworkRailBusinessSystems\LaraMoodle;
+namespace NetworkRailBusinessSystems\LaravelMoodle;
 
 use App\User;
 use Illuminate\Contracts\Auth\Authenticatable;
@@ -16,12 +16,12 @@ class MoodleUserProvider implements UserProvider
     public function __construct()
     {
         $this->http = Http::withOptions([
-            'base_uri' => config('laramoodle.base_url'),
+            'base_uri' => config('laravel-moodle.base_url'),
         ]);
 
-        $this->adminToken = config('laramoodle.admin_token');
+        $this->adminToken = config('laravel-moodle.admin_token');
 
-        $this->userModel = config('laramoodle.user_model');
+        $this->userModel = config('laravel-moodle.user_model');
     }
 
     /**
@@ -59,8 +59,8 @@ class MoodleUserProvider implements UserProvider
                 [
                     'criteria' => [
                         [
-                            'key' => config('laramoodle.login_attribute'),
-                            'value' => $credentials[config('laramoodle.login_attribute')],
+                            'key' => config('laravel-moodle.login_attribute'),
+                            'value' => $credentials[config('laravel-moodle.login_attribute')],
                         ],
                     ],
                 ]
@@ -109,7 +109,7 @@ class MoodleUserProvider implements UserProvider
      */
     public function syncUser(array $data)
     {
-        $userSync = collect(config('laramoodle.sync_attributes'))
+        $userSync = collect(config('laravel-moodle.sync_attributes'))
             ->map(function ($item) use ($data) {
                 return $data[$item];
             })

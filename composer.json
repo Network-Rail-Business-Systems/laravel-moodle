@@ -1,5 +1,5 @@
 {
-    "name": "networkrailbusinesssystems/laramoodle",
+    "name": "networkrailbusinesssystems/laravel-moodle",
     "description": "A Laravel package to authenticate against Moodle and retreive course data",
     "type": "library",
     "authors": [
@@ -23,23 +23,23 @@
     },
     "autoload": {
         "psr-4": {
-            "NetworkRailBusinessSystems\\LaraMoodle\\": "src/"
+            "NetworkRailBusinessSystems\\LaravelMoodle\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "NetworkRailBusinessSystems\\LaraMoodle\\Tests\\": "tests/"
+            "NetworkRailBusinessSystems\\LaravelMoodle\\Tests\\": "tests/"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "NetworkRailBusinessSystems\\LaraMoodle\\ServiceProvider",
-                "NetworkRailBusinessSystems\\LaraMoodle\\AuthServiceProvider"
+                "NetworkRailBusinessSystems\\LaravelMoodle\\ServiceProvider",
+                "NetworkRailBusinessSystems\\LaravelMoodle\\AuthServiceProvider"
             ],
             "aliases": {
-                "LaraMoodle": "NetworkRailBusinessSystems\\LaraMoodle\\Facades\\LaraMoodle",
-                "AddToken": "NetworkRailBusinessSystems\\LaraMoodle\\Facades\\AddToken"
+                "LaravelMoodle": "NetworkRailBusinessSystems\\LaravelMoodle\\Facades\\LaravelMoodle",
+                "AddToken": "NetworkRailBusinessSystems\\LaravelMoodle\\Facades\\AddToken"
             }
         }
     },

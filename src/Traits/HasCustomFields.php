@@ -1,6 +1,6 @@
 <?php
 
-namespace NetworkRailBusinessSystems\LaraMoodle\Traits;
+namespace NetworkRailBusinessSystems\LaravelMoodle\Traits;
 
 trait HasCustomFields
 {

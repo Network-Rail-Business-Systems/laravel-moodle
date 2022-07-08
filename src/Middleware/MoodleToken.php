@@ -1,6 +1,6 @@
 <?php
 
-namespace NetworkRailBusinessSystems\LaraMoodle\Middleware;
+namespace NetworkRailBusinessSystems\LaravelMoodle\Middleware;
 
 use Closure;
 

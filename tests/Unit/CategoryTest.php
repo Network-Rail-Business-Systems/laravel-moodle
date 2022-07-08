@@ -1,11 +1,11 @@
 <?php
 
-namespace NetworkRailBusinessSystems\LaraMoodle\Tests\Unit;
+namespace NetworkRailBusinessSystems\LaravelMoodle\Tests\Unit;
 
 use Illuminate\Support\Facades\Http;
-use NetworkRailBusinessSystems\LaraMoodle\Facades\LaraMoodle;
-use NetworkRailBusinessSystems\LaraMoodle\Tests\Stubs\MockResponses;
-use NetworkRailBusinessSystems\LaraMoodle\Tests\TestCase;
+use NetworkRailBusinessSystems\LaravelMoodle\Facades\LaravelMoodle;
+use NetworkRailBusinessSystems\LaravelMoodle\Tests\Stubs\MockResponses;
+use NetworkRailBusinessSystems\LaravelMoodle\Tests\TestCase;
 
 class CategoryTest extends TestCase
 {
@@ -22,7 +22,7 @@ class CategoryTest extends TestCase
 
     public function test_get_categories()
     {
-        $categories = LaraMoodle::getCategories();
+        $categories = LaravelMoodle::getCategories();
 
         $this->assertNotNull($categories);
         $this->assertEquals('Miscellaneous', $categories[0]->name);
@@ -30,7 +30,7 @@ class CategoryTest extends TestCase
 
     public function test_search_categories()
     {
-        $categories = LaraMoodle::searchCategories('misc');
+        $categories = LaravelMoodle::searchCategories('misc');
 
         $this->assertNotNull($categories);
         $this->assertEquals('Miscellaneous', $categories[0]->name);

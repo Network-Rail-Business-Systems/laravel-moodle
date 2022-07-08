@@ -1,6 +1,6 @@
 <?php
 
-namespace NetworkRailBusinessSystems\LaraMoodle\DataTransferObjects;
+namespace NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects;
 
 use Spatie\DataTransferObject\DataTransferObject;
 
@@ -33,7 +33,7 @@ class Submission extends DataTransferObject
     /** @var int */
     public $latest;
 
-    /** @var \NetworkRailBusinessSystems\LaraMoodle\DataTransferObjects\Plugin[] */
+    /** @var \NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\Plugin[] */
     public $plugins;
 
     /** @var null|string */

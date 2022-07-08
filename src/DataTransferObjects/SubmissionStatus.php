@@ -1,23 +1,23 @@
 <?php
 
-namespace NetworkRailBusinessSystems\LaraMoodle\DataTransferObjects;
+namespace NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects;
 
 use Spatie\DataTransferObject\DataTransferObject;
 
 class SubmissionStatus extends DataTransferObject
 {
-    /** @var null|\NetworkRailBusinessSystems\LaraMoodle\DataTransferObjects\GradingSummary */
+    /** @var null|\NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\GradingSummary */
     public $gradingsummary;
 
-    /** @var null|\NetworkRailBusinessSystems\LaraMoodle\DataTransferObjects\LastAttempt */
+    /** @var null|\NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\LastAttempt */
     public $lastattempt;
 
     /** @var null|array */
     public $feedback;
 
-    /** @var null|\NetworkRailBusinessSystems\LaraMoodle\DataTransferObjects\PreviousAttempts[] */
+    /** @var null|\NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\PreviousAttempts[] */
     public $previousattempts;
 
-    /** @var \NetworkRailBusinessSystems\LaraMoodle\DataTransferObjects\Warning[] */
+    /** @var \NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\Warning[] */
     public $warnings;
 }
