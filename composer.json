@@ -1,6 +1,6 @@
 {
     "name": "networkrailbusinesssystems/laravel-moodle",
-    "description": "A Laravel package to authenticate against Moodle and retreive course data",
+    "description": "A Laravel package to authenticate against Moodle and retrieve course data",
     "type": "library",
     "authors": [
         {

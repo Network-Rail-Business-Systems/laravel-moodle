@@ -114,7 +114,7 @@ class EnrolTest extends TestCase
             '*' => Http::response(['grades' => null], 200),
         ]);
 
-        $userGrades = Laramoodle::getUserGrades(1);
+        $userGrades = LaravelMoodle::getUserGrades(1);
 
         $this->assertNotNull($userGrades);
     }
