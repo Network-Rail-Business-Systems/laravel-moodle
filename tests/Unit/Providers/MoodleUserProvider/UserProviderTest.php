@@ -1,6 +1,6 @@
 <?php
 
-namespace NetworkRailBusinessSystems\LaravelMoodle\Tests\Unit;
+namespace NetworkRailBusinessSystems\LaravelMoodle\Tests\Unit\Providers\MoodleUserProvider;
 
 use Illuminate\Support\Facades\Http;
 use NetworkRailBusinessSystems\LaravelMoodle\MoodleUserProvider;

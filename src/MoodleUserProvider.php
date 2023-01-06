@@ -111,7 +111,7 @@ class MoodleUserProvider implements UserProvider
     {
         $userSync = collect(config('laravel-moodle.sync_attributes'))
             ->map(function ($item) use ($data) {
-                return $data[$item];
+                return $data[$item] ?? null;
             })
             ->toArray();
 
