@@ -2,9 +2,9 @@
 
 namespace NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects;
 
-use Spatie\DataTransferObject\DataTransferObject;
+use Spatie\DataTransferObject\FlexibleDataTransferObject;
 
-class FileArea extends DataTransferObject
+class FileArea extends FlexibleDataTransferObject
 {
     /** @var string */
     public $area;

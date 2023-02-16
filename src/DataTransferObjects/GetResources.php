@@ -2,9 +2,9 @@
 
 namespace NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects;
 
-use Spatie\DataTransferObject\DataTransferObject;
+use Spatie\DataTransferObject\FlexibleDataTransferObject;
 
-class GetResources extends DataTransferObject
+class GetResources extends FlexibleDataTransferObject
 {
     /** @var \NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\Resource[] */
     public $resources;

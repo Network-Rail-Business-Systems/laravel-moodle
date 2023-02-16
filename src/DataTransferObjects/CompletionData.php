@@ -2,9 +2,9 @@
 
 namespace NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects;
 
-use Spatie\DataTransferObject\DataTransferObject;
+use Spatie\DataTransferObject\FlexibleDataTransferObject;
 
-class CompletionData extends DataTransferObject
+class CompletionData extends FlexibleDataTransferObject
 {
     /** @var integer */
     public $state;

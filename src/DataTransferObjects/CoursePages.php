@@ -2,9 +2,9 @@
 
 namespace NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects;
 
-use Spatie\DataTransferObject\DataTransferObject;
+use Spatie\DataTransferObject\FlexibleDataTransferObject;
 
-class CoursePages extends DataTransferObject
+class CoursePages extends FlexibleDataTransferObject
 {
     /** @var \NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\Page[] */
     public $pages;

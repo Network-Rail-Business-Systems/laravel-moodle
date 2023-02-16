@@ -2,9 +2,9 @@
 
 namespace NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects;
 
-use Spatie\DataTransferObject\DataTransferObject;
+use Spatie\DataTransferObject\FlexibleDataTransferObject;
 
-class SelfEnrol extends DataTransferObject
+class SelfEnrol extends FlexibleDataTransferObject
 {
     /** @var boolean */
     public $status;

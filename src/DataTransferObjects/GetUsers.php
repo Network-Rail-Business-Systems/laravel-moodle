@@ -2,9 +2,9 @@
 
 namespace NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects;
 
-use Spatie\DataTransferObject\DataTransferObject;
+use Spatie\DataTransferObject\FlexibleDataTransferObject;
 
-class GetUsers extends DataTransferObject
+class GetUsers extends FlexibleDataTransferObject
 {
     /** @var \NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\User[] */
     public $users;

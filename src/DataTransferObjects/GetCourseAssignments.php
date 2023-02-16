@@ -2,9 +2,9 @@
 
 namespace NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects;
 
-use Spatie\DataTransferObject\DataTransferObject;
+use Spatie\DataTransferObject\FlexibleDataTransferObject;
 
-class GetCourseAssignments extends DataTransferObject
+class GetCourseAssignments extends FlexibleDataTransferObject
 {
     /** @var \NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\CourseAssignment[] */
     public $courses;

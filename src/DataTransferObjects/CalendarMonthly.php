@@ -2,9 +2,9 @@
 
 namespace NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects;
 
-use Spatie\DataTransferObject\DataTransferObject;
+use Spatie\DataTransferObject\FlexibleDataTransferObject;
 
-class CalendarMonthly extends DataTransferObject
+class CalendarMonthly extends FlexibleDataTransferObject
 {
     /** @var string */
     public $url;

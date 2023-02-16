@@ -4,9 +4,9 @@ namespace NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects;
 
 use NetworkRailBusinessSystems\LaravelMoodle\Traits\HasActivity;
 use NetworkRailBusinessSystems\LaravelMoodle\Traits\HasDates;
-use Spatie\DataTransferObject\DataTransferObject;
+use Spatie\DataTransferObject\FlexibleDataTransferObject;
 
-class Module extends DataTransferObject
+class Module extends FlexibleDataTransferObject
 {
     use HasDates;
     use HasActivity;

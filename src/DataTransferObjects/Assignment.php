@@ -2,9 +2,9 @@
 
 namespace NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects;
 
-use Spatie\DataTransferObject\DataTransferObject;
+use Spatie\DataTransferObject\FlexibleDataTransferObject;
 
-class Assignment extends DataTransferObject
+class Assignment extends FlexibleDataTransferObject
 {
     /** @var integer **/
     public $id;

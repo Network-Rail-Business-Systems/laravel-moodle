@@ -2,9 +2,9 @@
 
 namespace NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects;
 
-use Spatie\DataTransferObject\DataTransferObject;
+use Spatie\DataTransferObject\FlexibleDataTransferObject;
 
-class DayNames extends DataTransferObject
+class DayNames extends FlexibleDataTransferObject
 {
     /** @var integer */
     public $dayno;

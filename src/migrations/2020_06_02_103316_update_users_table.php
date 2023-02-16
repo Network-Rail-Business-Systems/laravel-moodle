@@ -6,23 +6,20 @@ use Illuminate\Support\Facades\Schema;
 
 class UpdateUsersTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
-    public function up()
+    public function up(): void
     {
         Schema::table('users', function (Blueprint $table) {
             $table
                 ->string('password')
                 ->nullable()
                 ->change();
+
             $table
                 ->string('username')
                 ->unique()
                 ->nullable()
                 ->after('email');
+
             $table
                 ->unsignedBigInteger('moodle_id')
                 ->nullable()
@@ -30,12 +27,7 @@ class UpdateUsersTable extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
+    public function down(): void
     {
         Schema::table('users', function (Blueprint $table) {
             $table->string('password')->change();

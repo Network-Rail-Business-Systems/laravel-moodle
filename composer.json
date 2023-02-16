@@ -9,17 +9,17 @@
         }
     ],
     "require": {
-        "php": ">=7.4",
-        "doctrine/dbal": "^2.10",
-        "spatie/data-transfer-object": "^2.0"
+        "php": "^8",
+        "doctrine/dbal": "^3",
+        "spatie/data-transfer-object": "^2"
     },
     "require-dev": {
-        "laravel/framework": "^7.0",
-        "orchestra/testbench": "^5.3",
-        "guzzlehttp/guzzle": "^6.3",
-        "laravel/ui": "^2.0",
-        "hannesvdvreken/guzzle-debugbar": "^2.0",
-        "friendsofphp/php-cs-fixer": "^2.16"
+        "laravel/framework": "^9",
+        "orchestra/testbench": "^7",
+        "guzzlehttp/guzzle": "^7",
+        "laravel/ui": "^4",
+        "hannesvdvreken/guzzle-debugbar": "^3",
+        "friendsofphp/php-cs-fixer": "^3"
     },
     "autoload": {
         "psr-4": {
