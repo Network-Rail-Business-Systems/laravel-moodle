@@ -4,9 +4,9 @@ namespace NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects;
 
 use NetworkRailBusinessSystems\LaravelMoodle\Traits\HasCourseImages;
 use NetworkRailBusinessSystems\LaravelMoodle\Traits\HasCustomFields;
-use Spatie\DataTransferObject\DataTransferObject;
+use Spatie\DataTransferObject\FlexibleDataTransferObject;
 
-class CourseSearchCourse extends DataTransferObject
+class CourseSearchCourse extends FlexibleDataTransferObject
 {
     use HasCourseImages;
     use HasCustomFields;

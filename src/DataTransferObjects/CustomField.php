@@ -2,9 +2,9 @@
 
 namespace NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects;
 
-use Spatie\DataTransferObject\DataTransferObject;
+use Spatie\DataTransferObject\FlexibleDataTransferObject;
 
-class CustomField extends DataTransferObject
+class CustomField extends FlexibleDataTransferObject
 {
     /** @var string */
     public $name;

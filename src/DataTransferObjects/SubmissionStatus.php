@@ -2,9 +2,9 @@
 
 namespace NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects;
 
-use Spatie\DataTransferObject\DataTransferObject;
+use Spatie\DataTransferObject\FlexibleDataTransferObject;
 
-class SubmissionStatus extends DataTransferObject
+class SubmissionStatus extends FlexibleDataTransferObject
 {
     /** @var null|\NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\GradingSummary */
     public $gradingsummary;

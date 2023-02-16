@@ -429,7 +429,7 @@ dd($pageViewed); // true
 
 ## HasDates Trait
 
-The package has a HasDates trait that can be added to DataTransferObjects to convert the timestamp from Moodle into a Carbon instance to allow easier formatting for presentation.
+The package has a HasDates trait that can be added to FlexibleDataTransferObjects to convert the timestamp from Moodle into a Carbon instance to allow easier formatting for presentation.
 
 ```php
 $data = LaravelMoodle::getCourses();

@@ -2,9 +2,9 @@
 
 namespace NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects;
 
-use Spatie\DataTransferObject\DataTransferObject;
+use Spatie\DataTransferObject\FlexibleDataTransferObject;
 
-class PreviousAttempts extends DataTransferObject
+class PreviousAttempts extends FlexibleDataTransferObject
 {
     /** @var int */
     public $attemptnumber;

@@ -2,9 +2,9 @@
 
 namespace NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects;
 
-use Spatie\DataTransferObject\DataTransferObject;
+use Spatie\DataTransferObject\FlexibleDataTransferObject;
 
-class Grade extends DataTransferObject
+class Grade extends FlexibleDataTransferObject
 {
     /** @var integer */
     public $courseid;

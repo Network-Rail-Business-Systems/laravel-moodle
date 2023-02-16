@@ -6,9 +6,9 @@ use NetworkRailBusinessSystems\LaravelMoodle\Traits\HasCourseImages;
 use NetworkRailBusinessSystems\LaravelMoodle\Traits\HasCustomFields;
 use NetworkRailBusinessSystems\LaravelMoodle\Traits\HasDates;
 use NetworkRailBusinessSystems\LaravelMoodle\Traits\HasEnrollements;
-use Spatie\DataTransferObject\DataTransferObject;
+use Spatie\DataTransferObject\FlexibleDataTransferObject;
 
-class Course extends DataTransferObject
+class Course extends FlexibleDataTransferObject
 {
     use HasDates;
     use HasCourseImages;

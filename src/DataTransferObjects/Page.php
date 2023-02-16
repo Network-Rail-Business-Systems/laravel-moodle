@@ -3,9 +3,9 @@
 namespace NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects;
 
 use NetworkRailBusinessSystems\LaravelMoodle\Traits\HasDates;
-use Spatie\DataTransferObject\DataTransferObject;
+use Spatie\DataTransferObject\FlexibleDataTransferObject;
 
-class Page extends DataTransferObject
+class Page extends FlexibleDataTransferObject
 {
     use HasDates;
     protected $dates = ['timemodified'];

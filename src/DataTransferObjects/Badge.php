@@ -3,9 +3,9 @@
 namespace NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects;
 
 use NetworkRailBusinessSystems\LaravelMoodle\Traits\HasDates;
-use Spatie\DataTransferObject\DataTransferObject;
+use Spatie\DataTransferObject\FlexibleDataTransferObject;
 
-class Badge extends DataTransferObject
+class Badge extends FlexibleDataTransferObject
 {
     use HasDates;
     protected $dates = ['timecreated', 'timemodified', 'dateissued'];

@@ -2,9 +2,9 @@
 
 namespace NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects;
 
-use Spatie\DataTransferObject\DataTransferObject;
+use Spatie\DataTransferObject\FlexibleDataTransferObject;
 
-class CompletionStatus extends DataTransferObject
+class CompletionStatus extends FlexibleDataTransferObject
 {
     /** @var boolean */
     public $completed;

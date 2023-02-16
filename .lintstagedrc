@@ -1,6 +1,6 @@
 {
     "*.php": [
-        "php ./vendor/bin/php-cs-fixer fix --config .php_cs",
+        "php ./vendor/bin/php-cs-fixer fix --config .php-cs-fixer.php",
         "prettier --write"
     ]
 }

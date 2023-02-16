@@ -2,9 +2,9 @@
 
 namespace NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects;
 
-use Spatie\DataTransferObject\DataTransferObject;
+use Spatie\DataTransferObject\FlexibleDataTransferObject;
 
-class Week extends DataTransferObject
+class Week extends FlexibleDataTransferObject
 {
     /** @var array */
     public $prepadding;

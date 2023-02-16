@@ -2,9 +2,9 @@
 
 namespace NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects;
 
-use Spatie\DataTransferObject\DataTransferObject;
+use Spatie\DataTransferObject\FlexibleDataTransferObject;
 
-class Plugin extends DataTransferObject
+class Plugin extends FlexibleDataTransferObject
 {
     /** @var string */
     public $type;
