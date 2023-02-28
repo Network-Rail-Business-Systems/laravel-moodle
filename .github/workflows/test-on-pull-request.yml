@@ -9,7 +9,7 @@ concurrency:
 jobs:
   test:
     runs-on: ubuntu-latest
-    timeout-minutes: 12
+    timeout-minutes: 5
     steps:
       - uses: actions/checkout@v3
 
@@ -36,29 +36,8 @@ jobs:
       - name: Install NPM...
         run: npm install
 
-      - name: Create .env...
-        run: cp .env.example .env
-
-      - name: Generate key...
-        run: php artisan key:generate
-
       - name: Run Laravel Mix...
         run: npm run prod
 
-      - name: Run PHPUnit for Fuel Cards...
-        run: php artisan test --parallel --testsuite fc
-
-      - name: Run PHPUnit for Short Term Hire...
-        run: php artisan test --parallel --testsuite sth
-
-      - name: Run PHPUnit for Support...
-        run: php artisan test --parallel --testsuite support
-
-      - name: Run PHPUnit for Vehicle Details Change Form...
-        run: php artisan test --parallel --testsuite vdcf
-
-      - name: Run PHPUnit for Vehicle Orders Form...
-        run: php artisan test --parallel --testsuite vof
-
-      - name: Run PHPUnit for Vehicle Returns Form...
-        run: php artisan test --parallel --testsuite vrf
+      - name: Run PHPUnit...
+        run: ./vendor/bin/phpunit
