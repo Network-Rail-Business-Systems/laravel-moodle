@@ -115,8 +115,7 @@ class Scorm extends FlexibleDataTransferObject
     /** @var integer **/
     public $timeclose;
 
-    /** @var boolean **/
-    public $displayactivityname;
+    public Have not implemented kind undefined yet. $displayactivityname;
 
     /** @var string **/
     public $scormtype;
