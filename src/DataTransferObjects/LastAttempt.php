@@ -18,28 +18,28 @@ class LastAttempt extends FlexibleDataTransferObject
     /** @var array */
     public $submissiongroupmemberswhoneedtosubmit;
 
-    /** @var int|boolean */
+    /** @var int|bool */
     public $submissionsenabled;
 
-    /** @var int|boolean */
+    /** @var int|bool */
     public $locked;
 
-    /** @var int|boolean */
+    /** @var int|bool */
     public $graded;
 
-    /** @var int|boolean */
+    /** @var int|bool */
     public $canedit;
 
-    /** @var int|boolean */
+    /** @var int|bool */
     public $caneditowner;
 
-    /** @var int|boolean */
+    /** @var int|bool */
     public $cansubmit;
 
     /** @var null|int */
     public $extensionduedate;
 
-    /** @var int|boolean */
+    /** @var int|bool */
     public $blindmarking;
 
     /** @var string */

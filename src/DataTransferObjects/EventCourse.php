@@ -6,57 +6,57 @@ use Spatie\DataTransferObject\FlexibleDataTransferObject;
 
 class EventCourse extends FlexibleDataTransferObject
 {
-    /** @var integer **/
+    /** @var int * */
     public $id;
 
-    /** @var string **/
+    /** @var string * */
     public $fullname;
 
-    /** @var string **/
+    /** @var string * */
     public $shortname;
 
-    /** @var null|string **/
+    /** @var null|string * */
     public $idnumber;
 
-    /** @var string **/
+    /** @var string * */
     public $summary;
 
-    /** @var integer **/
+    /** @var int * */
     public $summaryformat;
 
-    /** @var integer **/
+    /** @var int * */
     public $startdate;
 
-    /** @var integer **/
+    /** @var int * */
     public $enddate;
 
-    /** @var boolean **/
+    /** @var bool * */
     public $visible;
 
-    /** @var string **/
+    /** @var string * */
     public $fullnamedisplay;
 
-    /** @var string **/
+    /** @var string * */
     public $viewurl;
 
-    /** @var string **/
+    /** @var string * */
     public $courseimage;
 
-    /** @var null|integer **/
+    /** @var null|int * */
     public $progress;
 
-    /** @var boolean **/
+    /** @var bool * */
     public $hasprogress;
 
-    /** @var boolean **/
+    /** @var bool * */
     public $isfavourite;
 
-    /** @var boolean **/
+    /** @var bool * */
     public $hidden;
 
-    /** @var boolean **/
+    /** @var bool * */
     public $showshortname;
 
-    /** @var string **/
+    /** @var string * */
     public $coursecategory;
 }

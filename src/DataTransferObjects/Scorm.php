@@ -8,154 +8,155 @@ use Spatie\DataTransferObject\FlexibleDataTransferObject;
 class Scorm extends FlexibleDataTransferObject
 {
     use HasDates;
+
     protected $dates = ['timemodified'];
 
-    /** @var integer **/
+    /** @var int * */
     public $id;
 
-    /** @var integer **/
+    /** @var int * */
     public $coursemodule;
 
-    /** @var integer **/
+    /** @var int * */
     public $course;
 
-    /** @var string **/
+    /** @var string * */
     public $name;
 
-    /** @var string **/
+    /** @var string * */
     public $intro;
 
-    /** @var integer **/
+    /** @var int * */
     public $introformat;
 
-    /** @var \NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\FileObject[] **/
+    /** @var \NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\FileObject[] * */
     public $introfiles;
 
-    /** @var integer **/
+    /** @var int * */
     public $packagesize;
 
     /** @var string */
     public $packageurl;
 
-    /** @var string **/
+    /** @var string * */
     public $version;
 
-    /** @var integer **/
+    /** @var int * */
     public $maxgrade;
 
-    /** @var integer **/
+    /** @var int * */
     public $grademethod;
 
-    /** @var integer **/
+    /** @var int * */
     public $whatgrade;
 
-    /** @var integer **/
+    /** @var int * */
     public $maxattempt;
 
-    /** @var boolean **/
+    /** @var bool * */
     public $forcecompleted;
 
-    /** @var integer **/
+    /** @var int * */
     public $forcenewattempt;
 
-    /** @var boolean **/
+    /** @var bool * */
     public $lastattemptlock;
 
-    /** @var integer **/
+    /** @var int * */
     public $displayattemptstatus;
 
-    /** @var boolean **/
+    /** @var bool * */
     public $displaycoursestructure;
 
-    /** @var string **/
+    /** @var string * */
     public $sha1hash;
 
-    /** @var string **/
+    /** @var string * */
     public $md5hash;
 
-    /** @var integer **/
+    /** @var int * */
     public $revision;
 
-    /** @var integer **/
+    /** @var int * */
     public $launch;
 
-    /** @var integer **/
+    /** @var int * */
     public $skipview;
 
-    /** @var boolean **/
+    /** @var bool * */
     public $hidebrowse;
 
-    /** @var integer **/
+    /** @var int * */
     public $hidetoc;
 
-    /** @var integer **/
+    /** @var int * */
     public $nav;
 
-    /** @var integer **/
+    /** @var int * */
     public $navpositionleft;
 
-    /** @var integer **/
+    /** @var int * */
     public $navpositiontop;
 
-    /** @var boolean **/
+    /** @var bool * */
     public $auto;
 
-    /** @var integer **/
+    /** @var int * */
     public $popup;
 
-    /** @var integer **/
+    /** @var int * */
     public $width;
 
-    /** @var integer **/
+    /** @var int * */
     public $height;
 
-    /** @var integer **/
+    /** @var int * */
     public $timeopen;
 
-    /** @var integer **/
+    /** @var int * */
     public $timeclose;
 
     public bool|null $displayactivityname;
 
-    /** @var string **/
+    /** @var string * */
     public $scormtype;
 
-    /** @var string **/
+    /** @var string * */
     public $reference;
 
-    /** @var boolean **/
+    /** @var bool * */
     public $protectpackagedownloads;
 
-    /** @var integer|null **/
+    /** @var int|null * */
     public $updatefreq;
 
-    /** @var string|null **/
+    /** @var string|null * */
     public $options;
 
-    /** @var mixed|null|boolean **/
+    /** @var mixed|null|bool * */
     public $completionstatusrequired;
 
-    /** @var mixed|null|boolean **/
+    /** @var mixed|null|bool * */
     public $completionscorerequired;
 
-    /** @var integer|null **/
+    /** @var int|null * */
     public $completionstatusallscos;
 
-    /** @var boolean|null **/
+    /** @var bool|null * */
     public $autocommit;
 
-    /** @var integer|null **/
+    /** @var int|null * */
     public $timemodified;
 
-    /** @var integer|null **/
+    /** @var int|null * */
     public $section;
 
-    /** @var boolean|null **/
+    /** @var bool|null * */
     public $visible;
 
-    /** @var integer|null **/
+    /** @var int|null * */
     public $groupmode;
 
-    /** @var integer|null **/
+    /** @var int|null * */
     public $groupingid;
 }

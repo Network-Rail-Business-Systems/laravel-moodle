@@ -11,7 +11,7 @@ class CourseSearchCourse extends FlexibleDataTransferObject
     use HasCourseImages;
     use HasCustomFields;
 
-    /** @var integer */
+    /** @var int */
     public $id;
 
     /** @var string */
@@ -23,7 +23,7 @@ class CourseSearchCourse extends FlexibleDataTransferObject
     /** @var string */
     public $shortname;
 
-    /** @var integer */
+    /** @var int */
     public $categoryid;
 
     /** @var string */
@@ -32,10 +32,10 @@ class CourseSearchCourse extends FlexibleDataTransferObject
     /** @var string */
     public $summary;
 
-    /** @var integer */
+    /** @var int */
     public $sortorder;
 
-    /** @var integer */
+    /** @var int */
     public $summaryformat;
 
     /** @var \NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\FileObject[] */

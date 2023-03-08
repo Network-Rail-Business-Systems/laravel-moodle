@@ -9,10 +9,10 @@ class CalendarMonthly extends FlexibleDataTransferObject
     /** @var string */
     public $url;
 
-    /** @var integer */
+    /** @var int */
     public $courseid;
 
-    /** @var integer */
+    /** @var int */
     public $categoryid;
 
     /** @var string */
@@ -33,10 +33,10 @@ class CalendarMonthly extends FlexibleDataTransferObject
     /** @var string */
     public $periodname;
 
-    /** @var boolean */
+    /** @var bool */
     public $includenavigation;
 
-    /** @var boolean */
+    /** @var bool */
     public $initialeventsloaded;
 
     /** @var array */
@@ -63,6 +63,6 @@ class CalendarMonthly extends FlexibleDataTransferObject
     /** @var string */
     public $rarrow;
 
-    /** @var integer */
+    /** @var int */
     public $defaulteventcontext;
 }

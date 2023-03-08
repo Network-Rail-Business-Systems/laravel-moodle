@@ -6,7 +6,7 @@ use Spatie\DataTransferObject\FlexibleDataTransferObject;
 
 class SelfEnrol extends FlexibleDataTransferObject
 {
-    /** @var boolean */
+    /** @var bool */
     public $status;
 
     /** @var \NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\Warning[] */

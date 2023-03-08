@@ -6,37 +6,37 @@ use Spatie\DataTransferObject\FlexibleDataTransferObject;
 
 class Day extends FlexibleDataTransferObject
 {
-    /** @var integer */
+    /** @var int */
     public $seconds;
 
-    /** @var integer */
+    /** @var int */
     public $minutes;
 
-    /** @var integer */
+    /** @var int */
     public $hours;
 
-    /** @var integer */
+    /** @var int */
     public $mday;
 
-    /** @var integer */
+    /** @var int */
     public $wday;
 
-    /** @var integer */
+    /** @var int */
     public $year;
 
-    /** @var integer */
+    /** @var int */
     public $yday;
 
-    /** @var boolean */
+    /** @var bool */
     public $istoday;
 
-    /** @var boolean */
+    /** @var bool */
     public $isweekend;
 
-    /** @var integer */
+    /** @var int */
     public $timestamp;
 
-    /** @var integer */
+    /** @var int */
     public $neweventtimestamp;
 
     /** @var string */
@@ -48,22 +48,22 @@ class Day extends FlexibleDataTransferObject
     /** @var null|\NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\Event[] */
     public $events;
 
-    /** @var boolean */
+    /** @var bool */
     public $hasevents;
 
     /** @var array */
     public $calendareventtypes;
 
-    /** @var integer */
+    /** @var int */
     public $previousperiod;
 
-    /** @var integer */
+    /** @var int */
     public $nextperiod;
 
     /** @var string */
     public $navigation;
 
-    /** @var boolean */
+    /** @var bool */
     public $haslastdayofevent;
 
     /** @var string */

@@ -1,35 +1,41 @@
 {
-  "name": "laravel-moodle",
-  "version": "0.1.0",
-  "description": "A Laravel package to login to Moodle and retrieve data",
-  "main": "index.js",
-  "directories": {
-    "test": "tests"
-  },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "prettier": "prettier"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/Network-Rail-Business-Systems/laravel-moodle"
-  },
-  "keywords": [
-    "Laravel",
-    "Moodle"
-  ],
-  "author": "networkrailbusinesssystems",
-  "license": "MIT",
-  "homepage": "https://github.com/Network-Rail-Business-Systems/laravel-moodle",
-  "devDependencies": {
-    "@prettier/plugin-php": "^0.14.2",
-    "husky": "^4.2.5",
-    "lint-staged": "^10.2.11",
-    "prettier": "^2.0.5"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
+    "name": "laravel-moodle",
+    "version": "0.1.0",
+    "description": "A Laravel package to login to Moodle and retrieve data",
+    "main": "index.js",
+    "directories": {
+        "test": "tests"
+    },
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "prettier": "prettier"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/Network-Rail-Business-Systems/laravel-moodle"
+    },
+    "keywords": [
+        "Laravel",
+        "Moodle"
+    ],
+    "author": "networkrailbusinesssystems",
+    "license": "MIT",
+    "homepage": "https://github.com/Network-Rail-Business-Systems/laravel-moodle",
+    "lint-staged" : {
+        "src/**/*.php": [
+            "npm run-script pint",
+            "npm run-script larastan"
+        ]
+    },
+    "scripts": {
+        "larastan": "php ./vendor/bin/phpstan analyse",
+        "pint": "php ./vendor/bin/pint",
+        "test": "php ./vendor/bin/phpunit"
+    },
+    "devDependencies": {
+        "@prettier/plugin-php": "^0",
+        "husky": "^8",
+        "lint-staged": "^13",
+        "prettier": "^2"
     }
-  }
 }

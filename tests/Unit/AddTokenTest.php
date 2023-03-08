@@ -25,8 +25,6 @@ class AddTokenTest extends TestCase
     }
 
     /**
-     * @param $content
-     * @param $expected
      * @dataProvider images
      */
     public function test_add_token_to_images($content, $expected)

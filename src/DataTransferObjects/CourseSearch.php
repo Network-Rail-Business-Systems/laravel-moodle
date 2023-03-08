@@ -6,7 +6,7 @@ use Spatie\DataTransferObject\FlexibleDataTransferObject;
 
 class CourseSearch extends FlexibleDataTransferObject
 {
-    /** @var integer */
+    /** @var int */
     public $total;
 
     /** @var \NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\CourseSearchCourse[] */

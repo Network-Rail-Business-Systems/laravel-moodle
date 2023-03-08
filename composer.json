@@ -19,7 +19,8 @@
         "guzzlehttp/guzzle": "^7",
         "laravel/ui": "^4",
         "hannesvdvreken/guzzle-debugbar": "^3",
-        "friendsofphp/php-cs-fixer": "^3"
+        "laravel/pint": "^1",
+        "nunomaduro/larastan": "^2"
     },
     "autoload": {
         "psr-4": {

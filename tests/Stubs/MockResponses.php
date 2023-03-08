@@ -4,7 +4,7 @@ namespace NetworkRailBusinessSystems\LaravelMoodle\Tests\Stubs;
 
 class MockResponses
 {
-    public static function userSearch()
+    public static function userSearch(): array
     {
         return [
             'users' => [
@@ -38,14 +38,14 @@ class MockResponses
         ];
     }
 
-    public static function loginSuccess()
+    public static function loginSuccess(): array
     {
         return [
             'token' => 'ABC123',
         ];
     }
 
-    public static function loginFailure()
+    public static function loginFailure(): array
     {
         return [
             'error' => 'Invalid login, please try again',
@@ -54,7 +54,7 @@ class MockResponses
         ];
     }
 
-    public static function getCourses()
+    public static function getCourses(): array
     {
         return [
             'courses' => [
@@ -74,8 +74,7 @@ class MockResponses
                             'filename' => '4251.png',
                             'filepath' => '/',
                             'filesize' => 37306,
-                            'fileurl' =>
-                                'http://moodle.test/webservice/pluginfile.php/45/course/overviewfiles/4251.png',
+                            'fileurl' => 'http://moodle.test/webservice/pluginfile.php/45/course/overviewfiles/4251.png',
                             'timemodified' => 1589882661,
                             'mimetype' => 'image/png',
                         ],
@@ -136,7 +135,7 @@ class MockResponses
         ];
     }
 
-    public static function getHtmlCourses()
+    public static function getHtmlCourses(): array
     {
         return [
             'courses' => [
@@ -156,8 +155,7 @@ class MockResponses
                             'filename' => '4251.png',
                             'filepath' => '/',
                             'filesize' => 37306,
-                            'fileurl' =>
-                                'http://moodle.test/webservice/pluginfile.php/45/course/overviewfiles/4251.png',
+                            'fileurl' => 'http://moodle.test/webservice/pluginfile.php/45/course/overviewfiles/4251.png',
                             'timemodified' => 1589882661,
                             'mimetype' => 'image/png',
                         ],
@@ -218,7 +216,7 @@ class MockResponses
         ];
     }
 
-    public static function getCourseContents()
+    public static function getCourseContents(): array
     {
         return [
             [
@@ -246,7 +244,7 @@ class MockResponses
                         'indent' => 0,
                         'onclick' => '',
                         'afterlink' => null,
-                        'customdata' => "\"\"",
+                        'customdata' => '""',
                         'noviewlink' => false,
                         'completion' => 0,
                     ],
@@ -265,7 +263,7 @@ class MockResponses
                         'indent' => 0,
                         'onclick' => '',
                         'afterlink' => null,
-                        'customdata' => "\"\"",
+                        'customdata' => '""',
                         'noviewlink' => false,
                         'completion' => 0,
                     ],
@@ -274,7 +272,7 @@ class MockResponses
         ];
     }
 
-    public static function searchCourses()
+    public static function searchCourses(): array
     {
         return [
             'total' => 1,
@@ -295,8 +293,7 @@ class MockResponses
                             'filename' => '4251.png',
                             'filepath' => '/',
                             'filesize' => 37306,
-                            'fileurl' =>
-                                'http=> //moodle.test/webservice/pluginfile.php/45/course/overviewfiles/4251.png',
+                            'fileurl' => 'http=> //moodle.test/webservice/pluginfile.php/45/course/overviewfiles/4251.png',
                             'timemodified' => 1589882661,
                             'mimetype' => 'image/png',
                         ],
@@ -309,7 +306,7 @@ class MockResponses
         ];
     }
 
-    public static function getCourseModule()
+    public static function getCourseModule(): array
     {
         return [
             'cm' => [
@@ -341,7 +338,7 @@ class MockResponses
         ];
     }
 
-    public static function coursePages()
+    public static function coursePages(): array
     {
         return [
             'pages' => [
@@ -360,8 +357,7 @@ class MockResponses
                             'filename' => 'Page Image.png',
                             'filepath' => '/',
                             'filesize' => 11837,
-                            'fileurl' =>
-                                'http://moodle.test/webservice/pluginfile.php/47/mod_page/content/0/page%20image.png',
+                            'fileurl' => 'http://moodle.test/webservice/pluginfile.php/47/mod_page/content/0/page%20image.png',
                             'timemodified' => 1589874079,
                             'mimetype' => 'image/png',
                             'isexternalfile' => false,
@@ -370,8 +366,7 @@ class MockResponses
                     'legacyfiles' => 0,
                     'legacyfileslast' => null,
                     'display' => 5,
-                    'displayoptions' =>
-                        "a=> 3=> {s=> 12=> \"printheading\";s=> 1=> \"1\";s=> 10=> \"printintro\";s=> 1=> \"0\";s=> 17=> \"printlastmodified\";s=> 1=> \"1\";}",
+                    'displayoptions' => 'a=> 3=> {s=> 12=> "printheading";s=> 1=> "1";s=> 10=> "printintro";s=> 1=> "0";s=> 17=> "printlastmodified";s=> 1=> "1";}',
                     'revision' => 1,
                     'timemodified' => 1589874079,
                     'section' => 1,
@@ -384,7 +379,7 @@ class MockResponses
         ];
     }
 
-    public static function enrolledUsers()
+    public static function enrolledUsers(): array
     {
         return [
             [
@@ -423,7 +418,7 @@ class MockResponses
         ];
     }
 
-    public static function courseActivityStatuses()
+    public static function courseActivityStatuses(): array
     {
         return [
             'statuses' => [
@@ -442,7 +437,7 @@ class MockResponses
         ];
     }
 
-    public static function badges()
+    public static function badges(): array
     {
         return [
             'badges' => [
@@ -461,8 +456,7 @@ class MockResponses
                     'expireperiod' => null,
                     'type' => 2,
                     'courseid' => 2,
-                    'message' =>
-                        "<p>You have been awarded the badge \"%badgename%\"!</p>\n<p>More information about this badge can be found on the %badgelink% badge information page.</p>\n<p>You can manage and download the badge from your <a href=\"http =>//moodle.test/badges/mybadges.php\">Manage badges</a> page.</p>",
+                    'message' => "<p>You have been awarded the badge \"%badgename%\"!</p>\n<p>More information about this badge can be found on the %badgelink% badge information page.</p>\n<p>You can manage and download the badge from your <a href=\"http =>//moodle.test/badges/mybadges.php\">Manage badges</a> page.</p>",
                     'messagesubject' => 'Congratulations! You just earned a badge!',
                     'attachment' => 1,
                     'notification' => 0,
@@ -489,7 +483,7 @@ class MockResponses
         ];
     }
 
-    public static function getScorms()
+    public static function getScorms(): array
     {
         return [
             'scorms' => [
@@ -502,8 +496,7 @@ class MockResponses
                     'introformat' => 1,
                     'introfiles' => [],
                     'packagesize' => 8536684,
-                    'packageurl' =>
-                        'http =>//moodle.test/webservice/pluginfile.php/64/mod_scorm/package/0/EZMax%20Inventory%20Traing%20%5BTest%20Demo%20V2%5D.zip',
+                    'packageurl' => 'http =>//moodle.test/webservice/pluginfile.php/64/mod_scorm/package/0/EZMax%20Inventory%20Traing%20%5BTest%20Demo%20V2%5D.zip',
                     'version' => 'SCORM_1.2',
                     'maxgrade' => 100,
                     'grademethod' => 1,
@@ -551,7 +544,7 @@ class MockResponses
         ];
     }
 
-    public static function categories()
+    public static function categories(): array
     {
         return [
             [
@@ -605,7 +598,7 @@ class MockResponses
         ];
     }
 
-    public static function courseAssignments()
+    public static function courseAssignments(): array
     {
         return [
             'courses' => [
@@ -682,8 +675,7 @@ class MockResponses
                                     'value' => '0',
                                 ],
                             ],
-                            'intro' =>
-                                'Your assignment is to read the files and then submit your response below within 500 words.',
+                            'intro' => 'Your assignment is to read the files and then submit your response below within 500 words.',
                             'introformat' => 1,
                             'introfiles' => [],
                             'introattachments' => [],
@@ -695,7 +687,7 @@ class MockResponses
         ];
     }
 
-    public static function assessmentStatus()
+    public static function assessmentStatus(): array
     {
         return [
             'lastattempt' => [
@@ -750,7 +742,7 @@ class MockResponses
         ];
     }
 
-    public static function getGrades()
+    public static function getGrades(): array
     {
         return [
             'grades' => [

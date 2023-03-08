@@ -6,14 +6,14 @@ use Spatie\DataTransferObject\FlexibleDataTransferObject;
 
 class CompletionData extends FlexibleDataTransferObject
 {
-    /** @var integer */
+    /** @var int */
     public $state;
 
-    /** @var integer */
+    /** @var int */
     public $timecompleted;
 
     public $overrideby;
 
-    /** @var boolean */
+    /** @var bool */
     public $valueused;
 }

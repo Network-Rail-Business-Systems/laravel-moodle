@@ -17,6 +17,7 @@ class Categories
                     ->sortBy('name')
                     ->pluck('name', 'id')
                     ->toArray();
+
                 return [
                     $item->id => [
                         'name' => $item->name,

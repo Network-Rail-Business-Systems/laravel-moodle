@@ -8,6 +8,7 @@ use Spatie\DataTransferObject\FlexibleDataTransferObject;
 class FileObject extends FlexibleDataTransferObject
 {
     use HasDates;
+
     protected $dates = ['timemodified'];
 
     /** @var string */
@@ -16,18 +17,18 @@ class FileObject extends FlexibleDataTransferObject
     /** @var string */
     public $filepath;
 
-    /** @var integer */
+    /** @var int */
     public $filesize;
 
     /** @var string */
     public $fileurl;
 
-    /** @var integer */
+    /** @var int */
     public $timemodified;
 
     /** @var mixed|null|string */
     public $mimetype;
 
-    /** @var mixed|null|boolean */
+    /** @var mixed|null|bool */
     public $isexternalfile;
 }

@@ -6,10 +6,10 @@ use Spatie\DataTransferObject\FlexibleDataTransferObject;
 
 class CompletionStatus extends FlexibleDataTransferObject
 {
-    /** @var boolean */
+    /** @var bool */
     public $completed;
 
-    /** @var integer */
+    /** @var int */
     public $aggregation;
 
     /** @var \NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\Completion[] */

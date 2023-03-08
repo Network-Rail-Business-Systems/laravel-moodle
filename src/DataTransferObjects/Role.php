@@ -6,7 +6,7 @@ use Spatie\DataTransferObject\FlexibleDataTransferObject;
 
 class Role extends FlexibleDataTransferObject
 {
-    /** @var integer */
+    /** @var int */
     public $roleid;
 
     /** @var string */
@@ -15,6 +15,6 @@ class Role extends FlexibleDataTransferObject
     /** @var string */
     public $shortname;
 
-    /** @var integer */
+    /** @var int */
     public $sortorder;
 }

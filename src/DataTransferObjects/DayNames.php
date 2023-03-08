@@ -6,7 +6,7 @@ use Spatie\DataTransferObject\FlexibleDataTransferObject;
 
 class DayNames extends FlexibleDataTransferObject
 {
-    /** @var integer */
+    /** @var int */
     public $dayno;
 
     /** @var string */

@@ -6,63 +6,63 @@ use Spatie\DataTransferObject\FlexibleDataTransferObject;
 
 class Resource extends FlexibleDataTransferObject
 {
-    /** @var integer **/
+    /** @var int * */
     public $id;
 
-    /** @var integer **/
+    /** @var int * */
     public $coursemodule;
 
-    /** @var integer **/
+    /** @var int * */
     public $course;
 
-    /** @var string **/
+    /** @var string * */
     public $name;
 
-    /** @var string **/
+    /** @var string * */
     public $intro;
 
-    /** @var integer **/
+    /** @var int * */
     public $introformat;
 
-    /** @var \NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\FileObject[] **/
+    /** @var \NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\FileObject[] * */
     public $introfiles;
 
-    /** @var \NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\FileObject[] **/
+    /** @var \NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\FileObject[] * */
     public $contentfiles;
 
-    /** @var integer **/
+    /** @var int * */
     public $tobemigrated;
 
-    /** @var integer **/
+    /** @var int * */
     public $legacyfiles;
 
-    /** @var mixed **/
+    /** @var mixed * */
     public $legacyfileslast;
 
-    /** @var integer **/
+    /** @var int * */
     public $display;
 
-    /** @var string **/
+    /** @var string * */
     public $displayoptions;
 
-    /** @var integer **/
+    /** @var int * */
     public $filterfiles;
 
-    /** @var integer **/
+    /** @var int * */
     public $revision;
 
-    /** @var integer **/
+    /** @var int * */
     public $timemodified;
 
-    /** @var integer **/
+    /** @var int * */
     public $section;
 
-    /** @var integer **/
+    /** @var int * */
     public $visible;
 
-    /** @var integer **/
+    /** @var int * */
     public $groupmode;
 
-    /** @var integer **/
+    /** @var int * */
     public $groupingid;
 }

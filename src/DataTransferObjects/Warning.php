@@ -9,7 +9,7 @@ class Warning extends FlexibleDataTransferObject
     /** @var string */
     public $item;
 
-    /** @var integer */
+    /** @var int */
     public $itemid;
 
     /** @var string */

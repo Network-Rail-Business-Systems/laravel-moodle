@@ -19,7 +19,6 @@ trait HasCustomFields
     }
 
     /**
-     * @param string $shortname
      * @return string|null
      */
     public function getCustomField(string $shortname)

@@ -34,11 +34,12 @@ use NetworkRailBusinessSystems\LaravelMoodle\Exceptions\MoodleTokenMissingExcept
 class LaravelMoodle
 {
     private $http;
+
     private $token;
 
     public function __construct()
     {
-        if (!session()->has('moodle-token')) {
+        if (! session()->has('moodle-token')) {
             throw new MoodleTokenMissingException();
         }
 
@@ -57,8 +58,6 @@ class LaravelMoodle
     /**
      * Get a collection course objects
      *
-     * @param string $term
-     * @param string $field
      * @return GetCoursesByField
      */
     public function getCourses(string $term = '', string $field = '')
@@ -80,7 +79,6 @@ class LaravelMoodle
     /**
      * Get courses for a specific category ID
      *
-     * @param $categoryId
      * @return GetCoursesByField
      */
     public function getCoursesByCategory($categoryId)
@@ -102,7 +100,6 @@ class LaravelMoodle
     /**
      * Return a course object for the id
      *
-     * @param $id
      * @return Course
      */
     public function getCourse(int $id)
@@ -124,10 +121,6 @@ class LaravelMoodle
     }
 
     /**
-     * @param string $term
-     * @param int $page
-     * @param int $perPage
-     * @param int $onlyEnrolled
      * @return CourseSearch
      */
     public function searchCourses(string $term, int $page = 0, int $perPage = 15, int $onlyEnrolled = 0)
@@ -156,7 +149,6 @@ class LaravelMoodle
     /**
      * Get the contents for a course
      *
-     * @param $id
      * @return \Illuminate\Support\Collection
      */
     public function getCourseContents(int $id)
@@ -179,7 +171,6 @@ class LaravelMoodle
     /**
      * Get a course module by the module id
      *
-     * @param $id
      * @return CourseModuleById
      */
     public function getCourseModule(int $id)
@@ -214,13 +205,6 @@ class LaravelMoodle
         return new CoursePages($pages);
     }
 
-    /**
-     * Get a specific page for a course
-     *
-     * @param int $courseId
-     * @param int $pageId
-     * @return mixed
-     */
     public function getCoursePage(int $courseId, int $moduleId)
     {
         return collect($this->getCoursePages($courseId)->pages)
@@ -231,7 +215,6 @@ class LaravelMoodle
     }
 
     /**
-     * @param int $courseId
      * @return getScorms
      */
     public function getCourseScorms(int $courseId)
@@ -249,10 +232,6 @@ class LaravelMoodle
         return new getScorms($scorms);
     }
 
-    /**
-     * @param int $courseId
-     * @param int $moduleId
-     */
     public function getCourseScorm(int $courseId, int $moduleId)
     {
         return collect($this->getCourseScorms($courseId)->scorms)
@@ -278,7 +257,6 @@ class LaravelMoodle
     }
 
     /**
-     * @param int $courseId
      * @return GetResources
      */
     public function getCourseResources(int $courseId)
@@ -297,8 +275,6 @@ class LaravelMoodle
     }
 
     /**
-     * @param int $courseId
-     * @param int $moduleId
      * @return mixed
      */
     public function getCourseResource(int $courseId, int $moduleId)
@@ -311,10 +287,8 @@ class LaravelMoodle
     }
 
     /**
-     *
-     * @param int $userId
-     * @param int $courseId
      * @return CourseCompletion
+     *
      * @throws MoodleException
      */
     public function getCourseCompletion(int $userId, int $courseId)
@@ -340,9 +314,8 @@ class LaravelMoodle
     /**
      * Get course activities completion
      *
-     * @param int $userId
-     * @param int $courseId
      * @return CourseActivityStatuses
+     *
      * @throws MoodleException
      */
     public function getCourseActivitiesCompletion(int $userId, int $courseId)
@@ -366,7 +339,6 @@ class LaravelMoodle
     }
 
     /**
-     * @param $courseId
      * @return GetCourseAssignments
      */
     public function getCourseAssignments(int $courseId)
@@ -410,11 +382,8 @@ class LaravelMoodle
     }
 
     /**
-     * @param int $assignmentId
-     * @param string $content
-     * @param int $format
-     * @param int $itemId
      * @return bool|\Illuminate\Support\Collection
+     *
      * @throws MoodleException
      */
     public function saveCourseAssignment(int $assignmentId, string $content = '', int $format = 1, int $itemId = 1)
@@ -452,7 +421,6 @@ class LaravelMoodle
     /**
      * Get a user's grades
      *
-     * @param int $userId
      * @return GetGrades
      */
     public function getUserGrades(int $userId = 0)
@@ -489,8 +457,6 @@ class LaravelMoodle
     /**
      * Get a list of users matching the search term and the field
      *
-     * @param string $searchTerm
-     * @param string $field
      * @return GetUsers
      */
     public function searchUsers(string $searchTerm, string $field = 'username')
@@ -517,10 +483,9 @@ class LaravelMoodle
      * Enrol user on a course, default role of student, but can be overwritten
      * User must be Admin or Manager site role in Moodle or a Course Teacher
      *
-     * @param int $userId
-     * @param int $courseId
-     * @param int $roleId
+     * @param  int  $roleId
      * @return bool
+     *
      * @throws MoodleException
      */
     public function enrolUserOnCourse(int $userId, int $courseId, $roleId = null)
@@ -551,8 +516,8 @@ class LaravelMoodle
     /**
      * Self enrol current user on a course with optional enrollment key
      *
-     * @param int $courseId
      * @return SelfEnrol
+     *
      * @throws MoodleException
      */
     public function selfEnrolOnCourse(int $courseId, $enrollmentKey = '', $instanceId = 0)
@@ -579,8 +544,8 @@ class LaravelMoodle
     /**
      * Get a collection of users enrolled on a course
      *
-     * @param int $courseId
      * @return \Illuminate\Support\Collection
+     *
      * @throws MoodleException
      */
     public function getEnrolledUsersForCourse(int $courseId)
@@ -605,13 +570,12 @@ class LaravelMoodle
     }
 
     /**
-     * @param int $userId
-     * @param int $courseId
-     * @param null $roleId
+     * @param  null  $roleId
      * @return bool
+     *
      * @throws MoodleException
      */
-    public function unenrolUserOnCourse(int $userId, int $courseId, $roleId = null)
+    public function unenrolUserOnCourse(int $userId, int $courseId, int|null $roleId = null)
     {
         $unenrol = $this->http
             ->asForm()
@@ -640,9 +604,6 @@ class LaravelMoodle
      * Get badges for a specific user.
      * By default it will search for the current user and all courses without any parameters
      *
-     * @param int $userId
-     * @param int $courseId
-     * @param string $search
      * @return GetBadges
      */
     public function getBadges(int $userId = 0, int $courseId = 0, string $search = '')
@@ -684,8 +645,6 @@ class LaravelMoodle
     /**
      * Search categories with exact match only
      *
-     * @param string $searchTerm
-     * @param string $field
      * @return \Illuminate\Support\Collection
      */
     public function searchCategories(string $searchTerm, string $field = 'name')
@@ -713,8 +672,8 @@ class LaravelMoodle
     /**
      * Simulate the page viewed event
      *
-     * @param $pageId
      * @return bool
+     *
      * @throws MoodleException
      */
     public function viewPageEvent(int $pageId)
@@ -739,8 +698,8 @@ class LaravelMoodle
     /**
      * Mark a resource as viewed
      *
-     * @param int $resourceId
      * @return mixed
+     *
      * @throws MoodleException
      */
     public function viewResourceEvent(int $resourceId)

@@ -15,7 +15,7 @@ return [
     /**
      * The login attribute to use. Default is email, but can be overwritten, for example, username
      */
-    'login_attribute' => env('MOODLE_LOGIN_ATTRIBUTE', 'email'),
+    'login_attribute' => env('MOODLE_LOGIN_ATTRIBUTE', 'username'),
 
     /**
      * User attributes to sync to the user model
@@ -30,7 +30,7 @@ return [
     /**
      * The user model in your app
      */
-    'user_model' => App\User::class,
+    'user_model' => \App\Models\User::class,
 
     /**
      * The default ID of student.
