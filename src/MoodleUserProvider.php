@@ -68,7 +68,7 @@ class MoodleUserProvider implements UserProvider
         return false;
     }
 
-    public function syncUser(Model $user): void
+    public function syncUser(Model $user, string $userKey = 'username', string $moodleKey = null): void
     {
         $data = $this->http
             ->asForm()
@@ -77,8 +77,8 @@ class MoodleUserProvider implements UserProvider
                 [
                     'criteria' => [
                         [
-                            'key' => config('laravel-moodle.login_attribute'),
-                            'value' => $user->username,
+                            'key' => $moodleKey ?? config('laravel-moodle.login_attribute'),
+                            'value' => $user->$userKey,
                         ],
                     ],
                 ]
