@@ -6,7 +6,7 @@ use Spatie\DataTransferObject\FlexibleDataTransferObject;
 
 class CourseAssignment extends FlexibleDataTransferObject
 {
-    /** @var integer */
+    /** @var int */
     public $id;
 
     /** @var string */
@@ -15,7 +15,7 @@ class CourseAssignment extends FlexibleDataTransferObject
     /** @var string */
     public $shortname;
 
-    /** @var integer */
+    /** @var int */
     public $timemodified;
 
     /** @var \NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\Assignment[] */

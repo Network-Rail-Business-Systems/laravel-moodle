@@ -4,29 +4,21 @@ namespace NetworkRailBusinessSystems\LaravelMoodle\Traits;
 
 trait HasActivity
 {
-    /**
-     * @return bool
-     */
-    public function hasPage()
+    public function hasPage(): bool
     {
         return $this->modname === 'page';
     }
 
-    /**
-     * @return string
-     */
-    public function hasScorm()
+    public function hasScorm(): bool
     {
         return $this->modname === 'scorm';
     }
 
-    /**
-     * @return mixed|null
-     */
-    public function getActivityId()
+    public function getActivityId(): mixed
     {
         if ($this->url) {
             parse_str(parse_url($this->url)['query'], $query);
+
             return $query['id'];
         }
 

@@ -10,13 +10,13 @@ class MoodleToken
      * Handle an incoming request.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
      * @return mixed
      */
     public function handle($request, Closure $next)
     {
-        if (!session()->has('moodle-token')) {
+        if (! session()->has('moodle-token')) {
             auth()->logout();
+
             return redirect('login');
         }
 

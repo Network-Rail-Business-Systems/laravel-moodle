@@ -8,47 +8,48 @@ use Spatie\DataTransferObject\FlexibleDataTransferObject;
 class Category extends FlexibleDataTransferObject
 {
     use HasDates;
+
     protected $dates = ['timemodified'];
 
-    /** @var integer **/
+    /** @var int * */
     public $id;
 
-    /** @var string **/
+    /** @var string * */
     public $name;
 
-    /** @var mixed|null|integer **/
+    /** @var mixed|null|int * */
     public $idnumber;
 
-    /** @var string **/
+    /** @var string * */
     public $description;
 
-    /** @var integer **/
+    /** @var int * */
     public $descriptionformat;
 
-    /** @var integer **/
+    /** @var int * */
     public $parent;
 
-    /** @var integer **/
+    /** @var int * */
     public $sortorder;
 
-    /** @var integer **/
+    /** @var int * */
     public $coursecount;
 
-    /** @var integer|null **/
+    /** @var int|null * */
     public $visible;
 
-    /** @var integer|null **/
+    /** @var int|null * */
     public $visibleold;
 
-    /** @var integer|null **/
+    /** @var int|null * */
     public $timemodified;
 
-    /** @var integer **/
+    /** @var int * */
     public $depth;
 
-    /** @var string **/
+    /** @var string * */
     public $path;
 
-    /** @var string|null **/
+    /** @var string|null * */
     public $theme;
 }

@@ -13,58 +13,58 @@ class Module extends FlexibleDataTransferObject
 
     protected $dates = ['added'];
 
-    /** @var integer */
+    /** @var int */
     public $id;
 
-    /** @var string **/
+    /** @var string * */
     public $url;
 
-    /** @var string **/
+    /** @var string * */
     public $name;
 
-    /** @var integer **/
+    /** @var int * */
     public $instance;
 
     /** @var mixed|null|string */
     public $description;
 
-    /** @var integer */
+    /** @var int */
     public $visible;
 
-    /** @var boolean **/
+    /** @var bool * */
     public $uservisible;
 
-    /** @var integer **/
+    /** @var int * */
     public $visibleoncoursepage;
 
-    /** @var string **/
+    /** @var string * */
     public $modicon;
 
-    /** @var string **/
+    /** @var string * */
     public $modname;
 
-    /** @var string **/
+    /** @var string * */
     public $modplural;
 
-    /** @var mixed|null|string **/
+    /** @var mixed|null|string * */
     public $availability;
 
-    /** @var integer **/
+    /** @var int * */
     public $indent;
 
-    /** @var string **/
+    /** @var string * */
     public $onclick;
 
-    /** @var mixed|null|string **/
+    /** @var mixed|null|string * */
     public $afterlink;
 
-    /** @var string **/
+    /** @var string * */
     public $customdata;
 
-    /** @var boolean **/
+    /** @var bool * */
     public $noviewlink;
 
-    /** @var integer **/
+    /** @var int * */
     public $completion;
 
     /** @var mixed|null|\NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\CompletionData */

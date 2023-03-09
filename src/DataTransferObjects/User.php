@@ -8,74 +8,75 @@ use Spatie\DataTransferObject\FlexibleDataTransferObject;
 class User extends FlexibleDataTransferObject
 {
     use HasDates;
+
     protected $dates = ['firstaccess', 'lastaccess'];
 
-    /** @var integer **/
+    /** @var int * */
     public $id;
 
-    /** @var string **/
+    /** @var string * */
     public $username;
 
-    /** @var string|null **/
+    /** @var string|null * */
     public $firstname;
 
-    /** @var string|null **/
+    /** @var string|null * */
     public $lastname;
 
     /** @var string */
     public $fullname;
 
-    /** @var string **/
+    /** @var string * */
     public $email;
 
-    /** @var string **/
+    /** @var string * */
     public $department;
 
-    /** @var integer **/
+    /** @var int * */
     public $firstaccess;
 
-    /** @var integer **/
+    /** @var int * */
     public $lastaccess;
 
-    /** @var string **/
+    /** @var string * */
     public $auth;
 
-    /** @var boolean **/
+    /** @var bool * */
     public $suspended;
 
-    /** @var boolean **/
+    /** @var bool * */
     public $confirmed;
 
-    /** @var string **/
+    /** @var string * */
     public $lang;
 
-    /** @var string **/
+    /** @var string * */
     public $theme;
 
-    /** @var string **/
+    /** @var string * */
     public $timezone;
 
-    /** @var integer **/
+    /** @var int * */
     public $mailformat;
 
-    /** @var string|null **/
+    /** @var string|null * */
     public $description;
 
-    /** @var integer|null **/
+    /** @var int|null * */
     public $descriptionformat;
 
-    /** @var string **/
+    /** @var string * */
     public $profileimageurlsmall;
 
-    /** @var string **/
+    /** @var string * */
     public $profileimageurl;
 
-    /** @var string|null **/
+    /** @var string|null * */
     public $institution;
 
-    /** @var string|null **/
+    /** @var string|null * */
     public $city;
 
-    /** @var string|null **/
+    /** @var string|null * */
     public $address;
 }

@@ -6,7 +6,7 @@ use Spatie\DataTransferObject\FlexibleDataTransferObject;
 
 class Grade extends FlexibleDataTransferObject
 {
-    /** @var integer */
+    /** @var int */
     public $courseid;
 
     /** @var null|string */

@@ -17,7 +17,7 @@ class Course extends FlexibleDataTransferObject
 
     protected $dates = ['startdate', 'enddate', 'timecreated', 'timemodified'];
 
-    /** @var integer */
+    /** @var int */
     public $id;
 
     /** @var string */
@@ -29,19 +29,19 @@ class Course extends FlexibleDataTransferObject
     /** @var string */
     public $displayname;
 
-    /** @var integer */
+    /** @var int */
     public $categoryid;
 
     /** @var string */
     public $categoryname;
 
-    /** @var integer */
+    /** @var int */
     public $sortorder;
 
     /** @var string */
     public $summary;
 
-    /** @var integer */
+    /** @var int */
     public $summaryformat;
 
     /** @var \NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\FileObject[] */
@@ -65,40 +65,40 @@ class Course extends FlexibleDataTransferObject
     /** @var string|null */
     public $format;
 
-    /** @var integer|null */
+    /** @var int|null */
     public $showgrades;
 
-    /** @var integer|null */
+    /** @var int|null */
     public $newsitems;
 
-    /** @var integer|null */
+    /** @var int|null */
     public $startdate;
 
-    /** @var integer|null */
+    /** @var int|null */
     public $enddate;
 
-    /** @var integer|null */
+    /** @var int|null */
     public $maxbytes;
 
-    /** @var integer|null */
+    /** @var int|null */
     public $showreports;
 
-    /** @var integer|null */
+    /** @var int|null */
     public $visible;
 
-    /** @var integer|null */
+    /** @var int|null */
     public $groupmode;
 
-    /** @var integer|null */
+    /** @var int|null */
     public $groupmodeforce;
 
-    /** @var integer|null */
+    /** @var int|null */
     public $defaultgroupingid;
 
-    /** @var integer|null */
+    /** @var int|null */
     public $enablecompletion;
 
-    /** @var integer|null */
+    /** @var int|null */
     public $completionnotify;
 
     /** @var string|null */
@@ -107,25 +107,25 @@ class Course extends FlexibleDataTransferObject
     /** @var string|null */
     public $theme;
 
-    /** @var integer|null */
+    /** @var int|null */
     public $marker;
 
-    /** @var integer|null */
+    /** @var int|null */
     public $legacyfiles;
 
     /** @var string|null */
     public $calendartype;
 
-    /** @var integer|null */
+    /** @var int|null */
     public $timecreated;
 
-    /** @var integer|null */
+    /** @var int|null */
     public $timemodified;
 
-    /** @var integer|null */
+    /** @var int|null */
     public $requested;
 
-    /** @var integer|null */
+    /** @var int|null */
     public $cacherev;
 
     /** @var array|null */

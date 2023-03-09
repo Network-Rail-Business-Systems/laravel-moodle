@@ -8,29 +8,30 @@ use Spatie\DataTransferObject\FlexibleDataTransferObject;
 class Statuses extends FlexibleDataTransferObject
 {
     use HasDates;
+
     protected $dates = ['timecompleted'];
 
-    /** @var integer **/
+    /** @var int * */
     public $cmid;
 
-    /** @var string **/
+    /** @var string * */
     public $modname;
 
-    /** @var integer **/
+    /** @var int * */
     public $instance;
 
-    /** @var integer **/
+    /** @var int * */
     public $state;
 
-    /** @var integer **/
+    /** @var int * */
     public $timecompleted;
 
-    /** @var integer **/
+    /** @var int * */
     public $tracking;
 
-    /** @var mixed|null **/
+    /** @var mixed|null * */
     public $overrideby;
 
-    /** @var boolean **/
+    /** @var bool * */
     public $valueused;
 }

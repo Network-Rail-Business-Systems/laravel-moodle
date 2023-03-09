@@ -6,46 +6,46 @@ use Spatie\DataTransferObject\FlexibleDataTransferObject;
 
 class CourseEnrolledUser extends FlexibleDataTransferObject
 {
-    /** @var integer **/
+    /** @var int * */
     public $id;
 
-    /** @var string|null **/
+    /** @var string|null * */
     public $username;
 
-    /** @var string|null **/
+    /** @var string|null * */
     public $firstname;
 
-    /** @var string|null **/
+    /** @var string|null * */
     public $lastname;
 
     /** @var string */
     public $fullname;
 
-    /** @var string **/
+    /** @var string * */
     public $email;
 
-    /** @var string|null **/
+    /** @var string|null * */
     public $department;
 
-    /** @var integer **/
+    /** @var int * */
     public $firstaccess;
 
-    /** @var integer **/
+    /** @var int * */
     public $lastaccess;
 
-    /** @var integer */
+    /** @var int */
     public $lastcourseaccess;
 
-    /** @var null|string **/
+    /** @var null|string * */
     public $description;
 
-    /** @var null|integer **/
+    /** @var null|int * */
     public $descriptionformat;
 
-    /** @var string **/
+    /** @var string * */
     public $profileimageurlsmall;
 
-    /** @var string **/
+    /** @var string * */
     public $profileimageurl;
 
     /** @var array|null */

@@ -8,65 +8,66 @@ use Spatie\DataTransferObject\FlexibleDataTransferObject;
 class Page extends FlexibleDataTransferObject
 {
     use HasDates;
+
     protected $dates = ['timemodified'];
 
-    /** @var integer **/
+    /** @var int * */
     public $id;
 
-    /** @var integer **/
+    /** @var int * */
     public $coursemodule;
 
-    /** @var integer **/
+    /** @var int * */
     public $course;
 
-    /** @var string **/
+    /** @var string * */
     public $name;
 
-    /** @var string **/
+    /** @var string * */
     public $intro;
 
-    /** @var integer **/
+    /** @var int * */
     public $introformat;
 
-    /** @var \NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\FileObject[] **/
+    /** @var \NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\FileObject[] * */
     public $introfiles;
 
-    /** @var string **/
+    /** @var string * */
     public $content;
 
-    /** @var integer **/
+    /** @var int * */
     public $contentformat;
 
-    /** @var \NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\FileObject[] **/
+    /** @var \NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\FileObject[] * */
     public $contentfiles;
 
-    /** @var integer **/
+    /** @var int * */
     public $legacyfiles;
 
-    /** @var mixed|null|integer **/
+    /** @var mixed|null|int * */
     public $legacyfileslast;
 
-    /** @var integer **/
+    /** @var int * */
     public $display;
 
-    /** @var string **/
+    /** @var string * */
     public $displayoptions;
 
-    /** @var integer **/
+    /** @var int * */
     public $revision;
 
-    /** @var integer **/
+    /** @var int * */
     public $timemodified;
 
-    /** @var integer **/
+    /** @var int * */
     public $section;
 
-    /** @var integer **/
+    /** @var int * */
     public $visible;
 
-    /** @var integer **/
+    /** @var int * */
     public $groupmode;
 
-    /** @var integer **/
+    /** @var int * */
     public $groupingid;
 }

@@ -2,16 +2,19 @@
 
 namespace NetworkRailBusinessSystems\LaravelMoodle;
 
-use App\Models\User;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Contracts\Auth\UserProvider;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\Client\PendingRequest;
 use Illuminate\Support\Facades\Http;
 
 class MoodleUserProvider implements UserProvider
 {
-    private $http;
-    private $adminToken;
-    private $userModel;
+    private PendingRequest $http;
+
+    private string $adminToken;
+
+    private string $userModel;
 
     public function __construct()
     {
@@ -20,69 +23,32 @@ class MoodleUserProvider implements UserProvider
         ]);
 
         $this->adminToken = config('laravel-moodle.admin_token');
-
         $this->userModel = config('laravel-moodle.user_model');
     }
 
-    /**
-     * Retrieve the user by their ID
-     *
-     * @param mixed $identifier
-     * @return Authenticatable|null
-     */
-    public function retrieveById($identifier)
+    public function retrieveById(mixed $identifier): Model
     {
-        return User::findOrFail($identifier);
+        return $this->userModel::findOrFail($identifier);
     }
 
     public function retrieveByToken($identifier, $token)
     {
+        //
     }
 
     public function updateRememberToken(Authenticatable $user, $token)
     {
+        //
     }
 
-    /**
-     * Retrieve the user from Moodle using the Admin token
-     * If successful, sync the user from the database
-     *
-     * @param array $credentials
-     * @return User|Authenticatable|mixed|null
-     */
-    public function retrieveByCredentials(array $credentials)
+    public function retrieveByCredentials(array $credentials): Model
     {
-        $data = $this->http
-            ->asForm()
-            ->post(
-                "/webservice/rest/server.php?wstoken={$this->adminToken}&wsfunction=core_user_get_users&moodlewsrestformat=json",
-                [
-                    'criteria' => [
-                        [
-                            'key' => config('laravel-moodle.login_attribute'),
-                            'value' => $credentials[config('laravel-moodle.login_attribute')],
-                        ],
-                    ],
-                ]
-            )
-            ->json();
-
-        if (isset($data['users'][0])) {
-            return $this->syncUser($data['users'][0]);
-        }
-
-        return new $this->userModel();
+        return $this->userModel::firstOrNew([
+            'username' => $credentials[config('laravel-moodle.login_attribute')],
+        ]);
     }
 
-    /**
-     * Send a request to the moodle login endpoint to verify the credentials
-     * If valid, store the returned token in the session and return true
-     *
-     * @param Authenticatable $user
-     * @param array $credentials
-     * @return bool
-     */
-    public function validateCredentials(Authenticatable $user, array $credentials)
+    public function validateCredentials(Authenticatable $user, array $credentials): bool
     {
         $attempt = $this->http
             ->asForm()
@@ -92,34 +58,38 @@ class MoodleUserProvider implements UserProvider
             ])
             ->json();
 
-        if (!isset($attempt['error']) && isset($attempt['token'])) {
+        if (! isset($attempt['error']) && isset($attempt['token'])) {
             session(['moodle-token' => $attempt['token']]);
+            $this->syncUser($user);
+
             return true;
         }
 
         return false;
     }
 
-    /**
-     * Find or create a user
-     * Syncs a users details from the provided moodle data
-     *
-     * @param array $data
-     * @return mixed
-     */
-    public function syncUser(array $data)
+    public function syncUser(Model $user): void
     {
-        $userSync = collect(config('laravel-moodle.sync_attributes'))
-            ->map(function ($item) use ($data) {
-                return $data[$item] ?? null;
-            })
-            ->toArray();
+        $data = $this->http
+            ->asForm()
+            ->post(
+                "/webservice/rest/server.php?wstoken={$this->adminToken}&wsfunction=core_user_get_users&moodlewsrestformat=json",
+                [
+                    'criteria' => [
+                        [
+                            'key' => config('laravel-moodle.login_attribute'),
+                            'value' => $user->username,
+                        ],
+                    ],
+                ]
+            )
+            ->json()['users'][0];
 
-        return $this->userModel::updateOrCreate(
-            [
-                'username' => $data['username'],
-            ],
-            $userSync
-        );
+        collect(config('laravel-moodle.sync_attributes'))
+            ->each(function ($item, $key) use ($data, $user) {
+                $user->$key = $data[$item] ?? null;
+            });
+
+        $user->save();
     }
 }

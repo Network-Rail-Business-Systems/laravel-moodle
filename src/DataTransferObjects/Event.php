@@ -6,132 +6,132 @@ use Spatie\DataTransferObject\FlexibleDataTransferObject;
 
 class Event extends FlexibleDataTransferObject
 {
-    /** @var integer **/
+    /** @var int * */
     public $id;
 
-    /** @var string **/
+    /** @var string * */
     public $name;
 
-    /** @var string **/
+    /** @var string * */
     public $description;
 
-    /** @var integer **/
+    /** @var int * */
     public $descriptionformat;
 
-    /** @var string **/
+    /** @var string * */
     public $location;
 
-    /** @var null|integer **/
+    /** @var null|int * */
     public $categoryid;
 
-    /** @var null|integer **/
+    /** @var null|int * */
     public $groupid;
 
-    /** @var integer **/
+    /** @var int * */
     public $userid;
 
-    /** @var null|integer **/
+    /** @var null|int * */
     public $repeatid;
 
-    /** @var null|integer **/
+    /** @var null|int * */
     public $eventcount;
 
-    /** @var null|string **/
+    /** @var null|string * */
     public $component;
 
-    /** @var string **/
+    /** @var string * */
     public $modulename;
 
-    /** @var integer **/
+    /** @var int * */
     public $instance;
 
-    /** @var string **/
+    /** @var string * */
     public $eventtype;
 
-    /** @var integer **/
+    /** @var int * */
     public $timestart;
 
-    /** @var integer **/
+    /** @var int * */
     public $timeduration;
 
-    /** @var integer **/
+    /** @var int * */
     public $timesort;
 
-    /** @var integer **/
+    /** @var int * */
     public $visible;
 
-    /** @var integer **/
+    /** @var int * */
     public $timemodified;
 
-    /** @var array **/
+    /** @var array * */
     public $icon;
 
-    /** @var null|\NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\EventCourse **/
+    /** @var null|\NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\EventCourse * */
     public $course;
 
-    /** @var array **/
+    /** @var array * */
     public $subscription;
 
-    /** @var boolean **/
+    /** @var bool * */
     public $canedit;
 
-    /** @var boolean **/
+    /** @var bool * */
     public $candelete;
 
-    /** @var string **/
+    /** @var string * */
     public $deleteurl;
 
-    /** @var string **/
+    /** @var string * */
     public $editurl;
 
-    /** @var string **/
+    /** @var string * */
     public $viewurl;
 
-    /** @var string **/
+    /** @var string * */
     public $formattedtime;
 
-    /** @var boolean **/
+    /** @var bool * */
     public $isactionevent;
 
     /** @var null|array */
     public $action;
 
-    /** @var boolean **/
+    /** @var bool * */
     public $iscourseevent;
 
-    /** @var boolean **/
+    /** @var bool * */
     public $iscategoryevent;
 
-    /** @var null|string **/
+    /** @var null|string * */
     public $groupname;
 
-    /** @var string **/
+    /** @var string * */
     public $normalisedeventtype;
 
-    /** @var string **/
+    /** @var string * */
     public $normalisedeventtypetext;
 
-    /** @var string **/
+    /** @var string * */
     public $url;
 
-    /** @var boolean **/
+    /** @var bool * */
     public $islastday;
 
-    /** @var string **/
+    /** @var string * */
     public $popupname;
 
-    /** @var null|integer */
+    /** @var null|int */
     public $mindaytimestamp;
 
     /** @var null|string */
     public $mindayerror;
 
-    /** @var null|integer */
+    /** @var null|int */
     public $maxdaytimestamp;
 
     /** @var null|string */
     public $maxdayerror;
 
-    /** @var boolean **/
+    /** @var bool * */
     public $draggable;
 }

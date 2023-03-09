@@ -12,7 +12,7 @@ class GradingSummary extends FlexibleDataTransferObject
     /** @var int */
     public $submissiondraftscount;
 
-    /** @var int|boolean */
+    /** @var int|bool */
     public $submissionsenabled;
 
     /** @var int */

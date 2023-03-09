@@ -6,10 +6,10 @@ use Spatie\DataTransferObject\FlexibleDataTransferObject;
 
 class Scoe extends FlexibleDataTransferObject
 {
-    /** @var integer */
+    /** @var int */
     public $id;
 
-    /** @var integer */
+    /** @var int */
     public $scorm;
 
     /** @var string` */
@@ -33,7 +33,7 @@ class Scoe extends FlexibleDataTransferObject
     /** @var string */
     public $title;
 
-    /** @var integer */
+    /** @var int */
     public $sortorder;
 
     /** @var array|null */

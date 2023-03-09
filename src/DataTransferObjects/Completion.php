@@ -6,7 +6,7 @@ use Spatie\DataTransferObject\FlexibleDataTransferObject;
 
 class Completion extends FlexibleDataTransferObject
 {
-    /** @var integer */
+    /** @var int */
     public $type;
 
     /** @var string */
@@ -15,10 +15,10 @@ class Completion extends FlexibleDataTransferObject
     /** @var string */
     public $status;
 
-    /** @var boolean */
+    /** @var bool */
     public $complete;
 
-    /** @var mixed|null|integer */
+    /** @var mixed|null|int */
     public $timecompleted;
 
     /** @var array */

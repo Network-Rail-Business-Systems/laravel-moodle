@@ -6,7 +6,7 @@ use Spatie\DataTransferObject\FlexibleDataTransferObject;
 
 class EnrolledCourse extends FlexibleDataTransferObject
 {
-    /** @var integer */
+    /** @var int */
     public $id;
 
     /** @var string */
