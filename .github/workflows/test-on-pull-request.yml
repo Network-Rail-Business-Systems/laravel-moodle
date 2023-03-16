@@ -8,4 +8,5 @@ jobs:
         with:
             artisan: false
             env: false
+            npm: false
             php: '8.0'
