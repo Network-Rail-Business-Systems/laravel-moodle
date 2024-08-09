@@ -52,4 +52,10 @@ class CourseSearchCourse extends FlexibleDataTransferObject
 
     /** @var mixed|null|\NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\CustomField[] */
     public $customfields;
+
+    public ?bool $completed = null;
+
+    public ?int $percentage = null;
+
+    public ?string $grade = null;
 }
