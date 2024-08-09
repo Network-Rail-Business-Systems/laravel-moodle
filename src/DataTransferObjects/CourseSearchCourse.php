@@ -2,6 +2,7 @@
 
 namespace NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects;
 
+use NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\Grade;
 use NetworkRailBusinessSystems\LaravelMoodle\Traits\HasCourseImages;
 use NetworkRailBusinessSystems\LaravelMoodle\Traits\HasCustomFields;
 use Spatie\DataTransferObject\FlexibleDataTransferObject;
@@ -52,4 +53,10 @@ class CourseSearchCourse extends FlexibleDataTransferObject
 
     /** @var mixed|null|\NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\CustomField[] */
     public $customfields;
+
+    public ?bool $completed = null;
+
+    public ?int $percentage = null;
+
+    public ?Grade $grade = null;
 }
