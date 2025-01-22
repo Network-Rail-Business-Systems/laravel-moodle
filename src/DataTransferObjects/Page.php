@@ -23,14 +23,14 @@ class Page extends FlexibleDataTransferObject
 
     public int $introformat;
 
-    /** @var \NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\FileObject[] * */
+    /** @var \NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\FileObject[] */
     public array $introfiles;
 
     public string $content;
 
     public int $contentformat;
 
-    /** @var \NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\FileObject[] * */
+    /** @var \NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\FileObject[] */
     public array $contentfiles;
 
     public int $legacyfiles;
