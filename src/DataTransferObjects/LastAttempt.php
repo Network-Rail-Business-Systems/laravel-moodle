@@ -6,7 +6,7 @@ use Spatie\DataTransferObject\FlexibleDataTransferObject;
 
 class LastAttempt extends FlexibleDataTransferObject
 {
-    public Submission $submission;
+    public ?Submission $submission;
 
     public ?Submission $teamsubmission;
 
