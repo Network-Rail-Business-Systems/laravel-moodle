@@ -14,7 +14,7 @@ class Completion extends FlexibleDataTransferObject
 
     public bool $complete;
 
-    public int $timecompleted;
+    public ?int $timecompleted;
 
     public array $details;
 }
