@@ -37,7 +37,7 @@ class CourseSearchCourse extends FlexibleDataTransferObject
 
     public array $enrollmentmethods;
 
-    public mixed $customfields;
+    public array $customfields;
 
     public ?bool $completed = null;
 
