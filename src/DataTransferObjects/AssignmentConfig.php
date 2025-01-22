@@ -12,5 +12,5 @@ class AssignmentConfig extends FlexibleDataTransferObject
 
     public string $name;
 
-    public string|int $value;
+    public string $value;
 }
