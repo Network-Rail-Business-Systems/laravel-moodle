@@ -24,7 +24,7 @@ use NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\GetCoursesByFie
 use NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\GetGrades;
 use NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\GetResources;
 use NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\GetScoes;
-use NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\getScorms;
+use NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\GetScorms;
 use NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\GetUsers;
 use NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\Grade;
 use NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\SelfEnrol;
@@ -42,7 +42,7 @@ class LaravelMoodle
     public function __construct()
     {
         if (session()->has('moodle-token') === false) {
-            throw new MoodleTokenMissingException();
+            throw new MoodleTokenMissingException;
         }
 
         $this->token = session('moodle-token');
@@ -184,7 +184,7 @@ class LaravelMoodle
             ->first();
     }
 
-    public function getCourseScorms(int $courseId): getScorms
+    public function getCourseScorms(int $courseId): GetScorms
     {
         $scorms = $this->http
             ->asForm()
@@ -196,7 +196,7 @@ class LaravelMoodle
             )
             ->json();
 
-        return new getScorms($scorms);
+        return new GetScorms($scorms);
     }
 
     public function getCourseScorm(int $courseId, int $moduleId): mixed
@@ -354,6 +354,7 @@ class LaravelMoodle
 
         if (count($assignment) > 0) {
             $assignments = new Collection($assignment);
+
             return $assignments->map(function ($warning) {
                 return new Warning($warning);
             });
@@ -558,6 +559,7 @@ class LaravelMoodle
             ->json();
 
         $category = new Collection($categories);
+
         return $category->map(function ($category) {
             return new Category($category);
         });
