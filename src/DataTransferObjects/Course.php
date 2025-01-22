@@ -10,9 +10,9 @@ use Spatie\DataTransferObject\FlexibleDataTransferObject;
 
 class Course extends FlexibleDataTransferObject
 {
-    use HasDates;
     use HasCourseImages;
     use HasCustomFields;
+    use HasDates;
     use HasEnrollements;
 
     protected array $dates = ['startdate', 'enddate', 'timecreated', 'timemodified'];
@@ -96,7 +96,7 @@ class Course extends FlexibleDataTransferObject
 
     public ?array $filters;
 
-    public array $courseformatoptions;
+    public ?array $courseformatoptions;
 
     public function fullname(): string
     {
