@@ -9,4 +9,4 @@ jobs:
             artisan: false
             env: false
             npm: false
-            php: '8.0'
+            php: '8.3'
