@@ -49,9 +49,9 @@ class Module extends FlexibleDataTransferObject
 
     public int $completion;
 
-    public array $completiondata;
+    public ?CompletionData $completiondata;
 
-    public mixed $contents;
+    public ?array $contents;
 
     public mixed $contentsinfo;
 }
