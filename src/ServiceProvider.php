@@ -11,7 +11,5 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
         ]);
 
         $this->mergeConfigFrom(__DIR__.'/config/laravel-moodle.php', 'laravel-moodle');
-
-        $this->loadMigrationsFrom(__DIR__.'/migrations');
     }
 }
