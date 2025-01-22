@@ -8,8 +8,8 @@ use Spatie\DataTransferObject\FlexibleDataTransferObject;
 
 class Module extends FlexibleDataTransferObject
 {
-    use HasDates;
     use HasActivity;
+    use HasDates;
 
     protected array $dates = ['added'];
 
@@ -49,7 +49,7 @@ class Module extends FlexibleDataTransferObject
 
     public int $completion;
 
-    public mixed $completiondata;
+    public array $completiondata;
 
     public mixed $contents;
 
