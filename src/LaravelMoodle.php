@@ -4,6 +4,8 @@ namespace NetworkRailBusinessSystems\LaravelMoodle;
 
 use GuzzleHttp\Profiling\Debugbar\Profiler;
 use GuzzleHttp\Profiling\Middleware;
+use Illuminate\Http\Client\PendingRequest;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Http;
 use NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\CalendarMonthly;
@@ -33,13 +35,13 @@ use NetworkRailBusinessSystems\LaravelMoodle\Exceptions\MoodleTokenMissingExcept
 
 class LaravelMoodle
 {
-    private $http;
+    private PendingRequest $http;
 
-    private $token;
+    private string $token;
 
     public function __construct()
     {
-        if (! session()->has('moodle-token')) {
+        if (session()->has('moodle-token') === false) {
             throw new MoodleTokenMissingException();
         }
 
@@ -55,12 +57,7 @@ class LaravelMoodle
         }
     }
 
-    /**
-     * Get a collection course objects
-     *
-     * @return GetCoursesByField
-     */
-    public function getCourses(string $term = '', string $field = '')
+    public function getCourses(string $term = '', string $field = ''): GetCoursesByField
     {
         $courses = $this->http
             ->asForm()
@@ -76,12 +73,7 @@ class LaravelMoodle
         return new GetCoursesByField($courses);
     }
 
-    /**
-     * Get courses for a specific category ID
-     *
-     * @return GetCoursesByField
-     */
-    public function getCoursesByCategory($categoryId)
+    public function getCoursesByCategory(int $categoryId): GetCoursesByField
     {
         $courses = $this->http
             ->asForm()
@@ -97,12 +89,7 @@ class LaravelMoodle
         return new GetCoursesByField($courses);
     }
 
-    /**
-     * Return a course object for the id
-     *
-     * @return Course
-     */
-    public function getCourse(int $id)
+    public function getCourse(int $id): Course
     {
         $courses = $this->http
             ->asForm()
@@ -115,15 +102,12 @@ class LaravelMoodle
             )
             ->json();
 
-        abort_if(empty($courses['courses']), '404', 'Course not found');
+        abort_if(empty($courses['courses']) === true, 404, 'Course not found');
 
         return new Course($courses['courses'][0]);
     }
 
-    /**
-     * @return CourseSearch
-     */
-    public function searchCourses(string $term, int $page = 0, int $perPage = 15, int $onlyEnrolled = 0)
+    public function searchCourses(string $term, int $page = 0, int $perPage = 15, int $onlyEnrolled = 0): CourseSearch
     {
         $courses = $this->http
             ->asForm()
@@ -146,12 +130,7 @@ class LaravelMoodle
         return new CourseSearch($courses);
     }
 
-    /**
-     * Get the contents for a course
-     *
-     * @return \Illuminate\Support\Collection
-     */
-    public function getCourseContents(int $id)
+    public function getCourseContents(int $id): Collection
     {
         $courseContents = $this->http
             ->get(
@@ -163,17 +142,14 @@ class LaravelMoodle
             throw new MoodleException($courseContents['message']);
         }
 
-        return collect($courseContents)->map(function ($content) {
+        $contents = new Collection($courseContents);
+
+        return $contents->map(function ($content) {
             return new CourseContent($content);
         });
     }
 
-    /**
-     * Get a course module by the module id
-     *
-     * @return CourseModuleById
-     */
-    public function getCourseModule(int $id)
+    public function getCourseModule(int $id): CourseModuleById
     {
         $module = $this->http
             ->get(
@@ -184,13 +160,7 @@ class LaravelMoodle
         return new CourseModuleById($module);
     }
 
-    /**
-     * Get the pages for a specific course
-     *
-     * @param $id
-     * @return CoursePages
-     */
-    public function getCoursePages(int $courseId)
+    public function getCoursePages(int $courseId): CoursePages
     {
         $pages = $this->http
             ->asForm()
@@ -205,7 +175,7 @@ class LaravelMoodle
         return new CoursePages($pages);
     }
 
-    public function getCoursePage(int $courseId, int $moduleId)
+    public function getCoursePage(int $courseId, int $moduleId): mixed
     {
         return collect($this->getCoursePages($courseId)->pages)
             ->filter(function ($value) use ($moduleId) {
@@ -214,10 +184,7 @@ class LaravelMoodle
             ->first();
     }
 
-    /**
-     * @return getScorms
-     */
-    public function getCourseScorms(int $courseId)
+    public function getCourseScorms(int $courseId): getScorms
     {
         $scorms = $this->http
             ->asForm()
@@ -232,7 +199,7 @@ class LaravelMoodle
         return new getScorms($scorms);
     }
 
-    public function getCourseScorm(int $courseId, int $moduleId)
+    public function getCourseScorm(int $courseId, int $moduleId): mixed
     {
         return collect($this->getCourseScorms($courseId)->scorms)
             ->filter(function ($item) use ($moduleId) {
@@ -241,7 +208,7 @@ class LaravelMoodle
             ->first();
     }
 
-    public function getScormScoes($scormId)
+    public function getScormScoes(int $scormId): GetScoes
     {
         $scoes = $this->http
             ->asForm()
@@ -256,10 +223,7 @@ class LaravelMoodle
         return new GetScoes($scoes);
     }
 
-    /**
-     * @return GetResources
-     */
-    public function getCourseResources(int $courseId)
+    public function getCourseResources(int $courseId): GetResources
     {
         $resources = $this->http
             ->asForm()
@@ -274,10 +238,7 @@ class LaravelMoodle
         return new GetResources($resources);
     }
 
-    /**
-     * @return mixed
-     */
-    public function getCourseResource(int $courseId, int $moduleId)
+    public function getCourseResource(int $courseId, int $moduleId): mixed
     {
         return collect($this->getCourseResources($courseId)->resources)
             ->filter(function ($item) use ($moduleId) {
@@ -286,12 +247,7 @@ class LaravelMoodle
             ->first();
     }
 
-    /**
-     * @return CourseCompletion
-     *
-     * @throws MoodleException
-     */
-    public function getCourseCompletion(int $userId, int $courseId)
+    public function getCourseCompletion(int $userId, int $courseId): CourseCompletion
     {
         $completion = $this->http
             ->asForm()
@@ -311,14 +267,7 @@ class LaravelMoodle
         return new CourseCompletion($completion);
     }
 
-    /**
-     * Get course activities completion
-     *
-     * @return CourseActivityStatuses
-     *
-     * @throws MoodleException
-     */
-    public function getCourseActivitiesCompletion(int $userId, int $courseId)
+    public function getCourseActivitiesCompletion(int $userId, int $courseId): CourseActivityStatuses
     {
         $completion = $this->http
             ->asForm()
@@ -338,10 +287,7 @@ class LaravelMoodle
         return new CourseActivityStatuses($completion);
     }
 
-    /**
-     * @return GetCourseAssignments
-     */
-    public function getCourseAssignments(int $courseId)
+    public function getCourseAssignments(int $courseId): GetCourseAssignments
     {
         $assignments = $this->http
             ->asForm()
@@ -356,16 +302,18 @@ class LaravelMoodle
         return new GetCourseAssignments($assignments);
     }
 
-    public function getCourseAssignment(int $courseId, int $moduleId)
+    public function getCourseAssignment(int $courseId, int $moduleId): mixed
     {
-        return collect($this->getCourseAssignments($courseId)->courses[0]->assignments)
+        $assignments = new Collection($this->getCourseAssignments($courseId)->courses[0]->assignments);
+
+        return $assignments
             ->filter(function ($item) use ($moduleId) {
                 return $item->cmid == $moduleId;
             })
             ->first();
     }
 
-    public function getAssignmentSubmissionStatus(int $assignmentId, int $userId = 0)
+    public function getAssignmentSubmissionStatus(int $assignmentId, int $userId = 0): SubmissionStatus
     {
         $submissionStatus = $this->http
             ->asForm()
@@ -381,12 +329,7 @@ class LaravelMoodle
         return new SubmissionStatus($submissionStatus);
     }
 
-    /**
-     * @return bool|\Illuminate\Support\Collection
-     *
-     * @throws MoodleException
-     */
-    public function saveCourseAssignment(int $assignmentId, string $content = '', int $format = 1, int $itemId = 1)
+    public function saveCourseAssignment(int $assignmentId, string $content = '', int $format = 1, int $itemId = 1): bool|Collection
     {
         $assignment = $this->http
             ->asForm()
@@ -410,7 +353,8 @@ class LaravelMoodle
         }
 
         if (count($assignment) > 0) {
-            return collect($assignment)->map(function ($warning) {
+            $assignments = new Collection($assignment);
+            return $assignments->map(function ($warning) {
                 return new Warning($warning);
             });
         }
@@ -418,12 +362,7 @@ class LaravelMoodle
         return true;
     }
 
-    /**
-     * Get a user's grades
-     *
-     * @return GetGrades
-     */
-    public function getUserGrades(int $userId = 0)
+    public function getUserGrades(int $userId = 0): GetGrades
     {
         $grades = $this->http
             ->asForm()
@@ -438,7 +377,7 @@ class LaravelMoodle
         return new GetGrades($grades);
     }
 
-    public function getCourseGrade(int $courseId, int $userId = 0)
+    public function getCourseGrade(int $courseId, int $userId = 0): mixed
     {
         return collect($this->getUserGrades($userId)->grades)
             ->where('courseid', '=', $courseId)
@@ -454,12 +393,7 @@ class LaravelMoodle
             ->first();
     }
 
-    /**
-     * Get a list of users matching the search term and the field
-     *
-     * @return GetUsers
-     */
-    public function searchUsers(string $searchTerm, string $field = 'username')
+    public function searchUsers(string $searchTerm, string $field = 'username'): GetUsers
     {
         $users = $this->http
             ->asForm()
@@ -479,16 +413,7 @@ class LaravelMoodle
         return new GetUsers($users);
     }
 
-    /**
-     * Enrol user on a course, default role of student, but can be overwritten
-     * User must be Admin or Manager site role in Moodle or a Course Teacher
-     *
-     * @param  int  $roleId
-     * @return bool
-     *
-     * @throws MoodleException
-     */
-    public function enrolUserOnCourse(int $userId, int $courseId, $roleId = null)
+    public function enrolUserOnCourse(int $userId, int $courseId, ?int $roleId = null): bool
     {
         $enrol = $this->http
             ->asForm()
@@ -513,14 +438,7 @@ class LaravelMoodle
         return true;
     }
 
-    /**
-     * Self enrol current user on a course with optional enrollment key
-     *
-     * @return SelfEnrol
-     *
-     * @throws MoodleException
-     */
-    public function selfEnrolOnCourse(int $courseId, $enrollmentKey = '', $instanceId = 0)
+    public function selfEnrolOnCourse(int $courseId, string $enrollmentKey = '', int $instanceId = 0): SelfEnrol
     {
         $enrol = $this->http
             ->asForm()
@@ -541,14 +459,7 @@ class LaravelMoodle
         return new SelfEnrol($enrol);
     }
 
-    /**
-     * Get a collection of users enrolled on a course
-     *
-     * @return \Illuminate\Support\Collection
-     *
-     * @throws MoodleException
-     */
-    public function getEnrolledUsersForCourse(int $courseId)
+    public function getEnrolledUsersForCourse(int $courseId): Collection
     {
         $enrolledUsers = $this->http
             ->asForm()
@@ -564,18 +475,14 @@ class LaravelMoodle
             throw new MoodleException($enrolledUsers['message']);
         }
 
-        return collect($enrolledUsers)->map(function ($user) {
+        $users = new Collection($enrolledUsers);
+
+        return $users->map(function ($user) {
             return new CourseEnrolledUser($user);
         });
     }
 
-    /**
-     * @param  null  $roleId
-     * @return bool
-     *
-     * @throws MoodleException
-     */
-    public function unenrolUserOnCourse(int $userId, int $courseId, int|null $roleId = null)
+    public function unenrolUserOnCourse(int $userId, int $courseId, ?int $roleId = null): bool
     {
         $unenrol = $this->http
             ->asForm()
@@ -600,13 +507,7 @@ class LaravelMoodle
         return true;
     }
 
-    /**
-     * Get badges for a specific user.
-     * By default it will search for the current user and all courses without any parameters
-     *
-     * @return GetBadges
-     */
-    public function getBadges(int $userId = 0, int $courseId = 0, string $search = '')
+    public function getBadges(int $userId = 0, int $courseId = 0, string $search = ''): GetBadges
     {
         $badges = $this->http
             ->asForm()
@@ -623,12 +524,7 @@ class LaravelMoodle
         return new GetBadges($badges);
     }
 
-    /**
-     * Return a collection of categories
-     *
-     * @return \Illuminate\Support\Collection
-     */
-    public function getCategories()
+    public function getCategories(): Collection
     {
         $categories = $this->http
             ->asForm()
@@ -637,17 +533,14 @@ class LaravelMoodle
             )
             ->json();
 
-        return collect($categories)->map(function ($category) {
+        $category = new Collection($categories);
+
+        return $category->map(function ($category) {
             return new Category($category);
         });
     }
 
-    /**
-     * Search categories with exact match only
-     *
-     * @return \Illuminate\Support\Collection
-     */
-    public function searchCategories(string $searchTerm, string $field = 'name')
+    public function searchCategories(string $searchTerm, string $field = 'name'): Collection
     {
         $categories = $this->http
             ->asForm()
@@ -664,19 +557,13 @@ class LaravelMoodle
             )
             ->json();
 
-        return collect($categories)->map(function ($category) {
+        $category = new Collection($categories);
+        return $category->map(function ($category) {
             return new Category($category);
         });
     }
 
-    /**
-     * Simulate the page viewed event
-     *
-     * @return bool
-     *
-     * @throws MoodleException
-     */
-    public function viewPageEvent(int $pageId)
+    public function viewPageEvent(int $pageId): bool
     {
         $page = $this->http
             ->asForm()
@@ -695,14 +582,7 @@ class LaravelMoodle
         return $page['status'];
     }
 
-    /**
-     * Mark a resource as viewed
-     *
-     * @return mixed
-     *
-     * @throws MoodleException
-     */
-    public function viewResourceEvent(int $resourceId)
+    public function viewResourceEvent(int $resourceId): mixed
     {
         $resource = $this->http
             ->asForm()
@@ -721,7 +601,7 @@ class LaravelMoodle
         return $resource['status'];
     }
 
-    public function calendarMonthlyView(int $year, int $month, int $courseId = 0)
+    public function calendarMonthlyView(int $year, int $month, int $courseId = 0): CalendarMonthly
     {
         $calendar = $this->http
             ->asForm()

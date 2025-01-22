@@ -7,8 +7,7 @@ use Spatie\DataTransferObject\FlexibleDataTransferObject;
 class CoursePages extends FlexibleDataTransferObject
 {
     /** @var \NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\Page[] */
-    public $pages;
+    public array $pages;
 
-    /** @var array */
-    public $warnings;
+    public array $warnings;
 }

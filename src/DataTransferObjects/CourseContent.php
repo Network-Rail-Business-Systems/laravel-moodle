@@ -6,30 +6,22 @@ use Spatie\DataTransferObject\FlexibleDataTransferObject;
 
 class CourseContent extends FlexibleDataTransferObject
 {
-    /** @var int */
-    public $id;
+    public int $id;
 
-    /** @var string */
-    public $name;
+    public string $name;
 
-    /** @var int */
-    public $visible;
+    public int $visible;
 
-    /** @var string */
-    public $summary;
+    public string $summary;
 
-    /** @var int */
-    public $summaryformat;
+    public int $summaryformat;
 
-    /** @var int */
-    public $section;
+    public int $section;
 
-    /** @var int */
-    public $hiddenbynumsections;
+    public int $hiddenbynumsections;
 
-    /** @var bool */
-    public $uservisible;
+    public bool $uservisible;
 
     /** @var \NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\Module[] */
-    public $modules;
+    public array $modules;
 }

@@ -9,29 +9,21 @@ class Statuses extends FlexibleDataTransferObject
 {
     use HasDates;
 
-    protected $dates = ['timecompleted'];
+    protected array $dates = ['timecompleted'];
 
-    /** @var int * */
-    public $cmid;
+    public int $cmid;
 
-    /** @var string * */
-    public $modname;
+    public string $modname;
 
-    /** @var int * */
-    public $instance;
+    public int $instance;
 
-    /** @var int * */
-    public $state;
+    public int $state;
 
-    /** @var int * */
-    public $timecompleted;
+    public int $timecompleted;
 
-    /** @var int * */
-    public $tracking;
+    public int $tracking;
 
-    /** @var mixed|null * */
-    public $overrideby;
+    public mixed $overrideby;
 
-    /** @var bool * */
-    public $valueused;
+    public bool $valueused;
 }

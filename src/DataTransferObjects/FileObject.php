@@ -9,26 +9,19 @@ class FileObject extends FlexibleDataTransferObject
 {
     use HasDates;
 
-    protected $dates = ['timemodified'];
+    protected array $dates = ['timemodified'];
 
-    /** @var string */
-    public $filename;
+    public string $filename;
 
-    /** @var string */
-    public $filepath;
+    public string $filepath;
 
-    /** @var int */
-    public $filesize;
+    public int $filesize;
 
-    /** @var string */
-    public $fileurl;
+    public string $fileurl;
 
-    /** @var int */
-    public $timemodified;
+    public int $timemodified;
 
-    /** @var mixed|null|string */
-    public $mimetype;
+    public string $mimetype;
 
-    /** @var mixed|null|bool */
-    public $isexternalfile;
+    public ?bool $isexternalfile;
 }

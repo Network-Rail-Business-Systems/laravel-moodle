@@ -6,84 +6,57 @@ use Spatie\DataTransferObject\FlexibleDataTransferObject;
 
 class CourseModule extends FlexibleDataTransferObject
 {
-    /** @var int * */
-    public $id;
+    public int $id;
 
-    /** @var int * */
-    public $course;
+    public int $course;
 
-    /** @var int * */
-    public $module;
+    public int $module;
 
-    /** @var string * */
-    public $name;
+    public string $name;
 
-    /** @var string * */
-    public $modname;
+    public string $modname;
 
-    /** @var int * */
-    public $instance;
+    public int $instance;
 
-    /** @var int * */
-    public $section;
+    public int $section;
 
-    /** @var int * */
-    public $sectionnum;
+    public int $sectionnum;
 
-    /** @var int * */
-    public $groupmode;
+    public int $groupmode;
 
-    /** @var int * */
-    public $groupingid;
+    public int $groupingid;
 
-    /** @var int * */
-    public $completion;
+    public int $completion;
 
-    /** @var string * */
-    public $idnumber;
+    public string $idnumber;
 
-    /** @var int * */
-    public $added;
+    public int $added;
 
-    /** @var int * */
-    public $score;
+    public int $score;
 
-    /** @var int * */
-    public $indent;
+    public int $indent;
 
-    /** @var int * */
-    public $visible;
+    public int $visible;
 
-    /** @var int * */
-    public $visibleoncoursepage;
+    public int $visibleoncoursepage;
 
-    /** @var int * */
-    public $visibleold;
+    public int $visibleold;
 
-    /** @var mixed|null|int * */
-    public $completiongradeitemnumber;
+    public mixed $completiongradeitemnumber;
 
-    /** @var int * */
-    public $completionview;
+    public int $completionview;
 
-    /** @var int * */
-    public $completionexpected;
+    public int $completionexpected;
 
-    /** @var int * */
-    public $showdescription;
+    public int $showdescription;
 
-    /** @var mixed|null|int * */
-    public $availability;
+    public mixed $availability;
 
-    /** @var null|int */
-    public $grade;
+    public ?int $grade;
 
-    /** @var null|string */
-    public $gradepass;
+    public ?string $gradepass;
 
-    /** @var null|int */
-    public $gradecat;
+    public ?int $gradecat;
 
-    /** @var null|array */
-    public $advancedgrading;
+    public ?array $advancedgrading;
 }

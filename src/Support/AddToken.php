@@ -3,21 +3,19 @@
 namespace NetworkRailBusinessSystems\LaravelMoodle\Support;
 
 use Illuminate\Support\Str;
+use Illuminate\Support\Stringable;
 use NetworkRailBusinessSystems\LaravelMoodle\Exceptions\MoodleTokenMissingException;
 
 class AddToken
 {
     public function __construct()
     {
-        if (! session()->has('moodle-token')) {
+        if (session()->has('moodle-token') === false) {
             throw new MoodleTokenMissingException();
         }
     }
 
-    /**
-     * @return \Illuminate\Support\Stringable
-     */
-    public function toImages($content)
+    public function toImages(string $content): Stringable
     {
         return Str::of($content)->replace(
             ['.png', '.PNG', '.jpg', '.JPG'],
@@ -30,10 +28,7 @@ class AddToken
         );
     }
 
-    /**
-     * @return string
-     */
-    public function toUrl($url)
+    public function toUrl(string $url): string
     {
         return $url.'?token='.session('moodle-token');
     }

@@ -6,18 +6,14 @@ use Spatie\DataTransferObject\FlexibleDataTransferObject;
 
 class CourseAssignment extends FlexibleDataTransferObject
 {
-    /** @var int */
-    public $id;
+    public int $id;
 
-    /** @var string */
-    public $fullname;
+    public string $fullname;
 
-    /** @var string */
-    public $shortname;
+    public string $shortname;
 
-    /** @var int */
-    public $timemodified;
+    public int $timemodified;
 
     /** @var \NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\Assignment[] */
-    public $assignments;
+    public array $assignments;
 }

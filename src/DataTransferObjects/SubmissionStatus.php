@@ -6,18 +6,15 @@ use Spatie\DataTransferObject\FlexibleDataTransferObject;
 
 class SubmissionStatus extends FlexibleDataTransferObject
 {
-    /** @var null|\NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\GradingSummary */
-    public $gradingsummary;
+    public ?GradingSummary $gradingsummary;
 
-    /** @var null|\NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\LastAttempt */
-    public $lastattempt;
+    public ?LastAttempt $lastattempt;
 
-    /** @var null|array */
-    public $feedback;
+    public ?array $feedback;
 
     /** @var null|\NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\PreviousAttempts[] */
-    public $previousattempts;
+    public ?array $previousattempts;
 
     /** @var \NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\Warning[] */
-    public $warnings;
+    public array $warnings;
 }

@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Contracts\Auth\UserProvider;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Client\PendingRequest;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Http;
 
 class MoodleUserProvider implements UserProvider
@@ -31,14 +32,14 @@ class MoodleUserProvider implements UserProvider
         return $this->userModel::findOrFail($identifier);
     }
 
-    public function retrieveByToken($identifier, $token)
+    public function retrieveByToken($identifier, $token): ?Authenticatable
     {
-        //
+        return $this->userModel::query()->where('remember_token', '=', $token)->first();
     }
 
-    public function updateRememberToken(Authenticatable $user, $token)
+    public function updateRememberToken(Authenticatable $user, $token): void
     {
-        //
+        $user->setRememberToken($token);
     }
 
     public function retrieveByCredentials(array $credentials): Model
@@ -48,7 +49,7 @@ class MoodleUserProvider implements UserProvider
         ]);
     }
 
-    public function validateCredentials(Authenticatable $user, array $credentials): bool
+    public function validateCredentials(Authenticatable|Model $user, array $credentials): bool
     {
         $attempt = $this->http
             ->asForm()
@@ -58,7 +59,10 @@ class MoodleUserProvider implements UserProvider
             ])
             ->json();
 
-        if (! isset($attempt['error']) && isset($attempt['token'])) {
+        if (
+            isset($attempt['error']) === false
+            && isset($attempt['token']) === true
+        ) {
             session(['moodle-token' => $attempt['token']]);
             $this->syncUser($user);
 
@@ -68,7 +72,7 @@ class MoodleUserProvider implements UserProvider
         return false;
     }
 
-    public function syncUser(Model $user, string $userKey = 'username', string $moodleKey = null): void
+    public function syncUser(Authenticatable|Model $user, string $userKey = 'username', string $moodleKey = null): void
     {
         $data = $this->http
             ->asForm()
@@ -85,11 +89,16 @@ class MoodleUserProvider implements UserProvider
             )
             ->json()['users'][0];
 
-        collect(config('laravel-moodle.sync_attributes'))
-            ->each(function ($item, $key) use ($data, $user) {
-                $user->$key = $data[$item] ?? null;
-            });
+        $config = new Collection(config('laravel-moodle.sync_attributes'));
+        $config->each(function ($item, $key) use ($data, $user) {
+            $user->$key = $data[$item] ?? null;
+        });
 
         $user->save();
+    }
+
+    public function rehashPasswordIfRequired(Authenticatable $user, array $credentials, bool $force = false): void
+    {
+        //
     }
 }

@@ -6,36 +6,26 @@ use Spatie\DataTransferObject\FlexibleDataTransferObject;
 
 class Submission extends FlexibleDataTransferObject
 {
-    /** @var int */
-    public $id;
+    public int $id;
 
-    /** @var int */
-    public $userid;
+    public int $userid;
 
-    /** @var int */
-    public $attemptnumber;
+    public int $attemptnumber;
 
-    /** @var int */
-    public $timecreated;
+    public int $timecreated;
 
-    /** @var int */
-    public $timemodified;
+    public int $timemodified;
 
-    /** @var string */
-    public $status;
+    public string $status;
 
-    /** @var int */
-    public $groupid;
+    public int $groupid;
 
-    /** @var int */
-    public $assignment;
+    public int $assignment;
 
-    /** @var int */
-    public $latest;
+    public int $latest;
 
     /** @var \NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\Plugin[] */
-    public $plugins;
+    public array $plugins;
 
-    /** @var null|string */
-    public $gradingstatus;
+    public ?string $gradingstatus;
 }

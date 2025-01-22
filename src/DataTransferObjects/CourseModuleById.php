@@ -6,9 +6,7 @@ use Spatie\DataTransferObject\FlexibleDataTransferObject;
 
 class CourseModuleById extends FlexibleDataTransferObject
 {
-    /** @var \NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\CourseModule */
-    public $cm;
+    public CourseModule $cm;
 
-    /** @var array */
-    public $warnings;
+    public array $warnings;
 }

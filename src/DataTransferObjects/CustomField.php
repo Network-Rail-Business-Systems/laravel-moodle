@@ -6,15 +6,11 @@ use Spatie\DataTransferObject\FlexibleDataTransferObject;
 
 class CustomField extends FlexibleDataTransferObject
 {
-    /** @var string */
-    public $name;
+    public string $name;
 
-    /** @var string */
-    public $shortname;
+    public string $shortname;
 
-    /** @var string */
-    public $type;
+    public string $type;
 
-    /** @var mixed|null|string */
-    public $value;
+    public ?string $value;
 }

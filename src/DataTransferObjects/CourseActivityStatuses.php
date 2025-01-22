@@ -7,8 +7,7 @@ use Spatie\DataTransferObject\FlexibleDataTransferObject;
 class CourseActivityStatuses extends FlexibleDataTransferObject
 {
     /** @var \NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\Statuses[] */
-    public $statuses;
+    public array $statuses;
 
-    /** @var array */
-    public $warnings;
+    public array $warnings;
 }

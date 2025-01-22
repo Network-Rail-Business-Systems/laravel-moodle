@@ -6,15 +6,11 @@ use Spatie\DataTransferObject\FlexibleDataTransferObject;
 
 class Warning extends FlexibleDataTransferObject
 {
-    /** @var string */
-    public $item;
+    public string $item;
 
-    /** @var int */
-    public $itemid;
+    public int $itemid;
 
-    /** @var string */
-    public $warningcode;
+    public string $warningcode;
 
-    /** @var string */
-    public $message;
+    public string $message;
 }

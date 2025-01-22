@@ -1,19 +1,17 @@
 includes:
-    - ./vendor/nunomaduro/larastan/extension.neon
+    - ./vendor/larastan/larastan/extension.neon
 
 parameters:
     paths:
         - src
 
     # The level 8 is the highest level
-    level: 4
+    level: 6
 
     ignoreErrors:
-        - '#Call to an undefined method#'
         - '#Access to an undefined property#'
+        - identifier: missingType.generics
+        - identifier: missingType.iterableValue
 
     excludePaths:
         - src/config
-
-    checkMissingIterableValueType: false
-    checkGenericClassInNonGenericObjectType: false

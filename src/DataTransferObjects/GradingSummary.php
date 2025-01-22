@@ -6,21 +6,15 @@ use Spatie\DataTransferObject\FlexibleDataTransferObject;
 
 class GradingSummary extends FlexibleDataTransferObject
 {
-    /** @var int */
-    public $participantcount;
+    public int $participantcount;
 
-    /** @var int */
-    public $submissiondraftscount;
+    public int $submissiondraftscount;
 
-    /** @var int|bool */
-    public $submissionsenabled;
+    public int|bool $submissionsenabled;
 
-    /** @var int */
-    public $submissionssubmittedcount;
+    public int $submissionssubmittedcount;
 
-    /** @var int */
-    public $submissionsneedgradingcount;
+    public int $submissionsneedgradingcount;
 
-    /** @var int|string */
-    public $warnofungroupedusers;
+    public string|int $warnofungroupedusers;
 }

@@ -2,7 +2,6 @@
 
 namespace NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects;
 
-use NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\Grade;
 use NetworkRailBusinessSystems\LaravelMoodle\Traits\HasCourseImages;
 use NetworkRailBusinessSystems\LaravelMoodle\Traits\HasCustomFields;
 use Spatie\DataTransferObject\FlexibleDataTransferObject;
@@ -12,47 +11,33 @@ class CourseSearchCourse extends FlexibleDataTransferObject
     use HasCourseImages;
     use HasCustomFields;
 
-    /** @var int */
-    public $id;
+    public int $id;
 
-    /** @var string */
-    public $fullname;
+    public string $fullname;
 
-    /** @var string */
-    public $displayname;
+    public string $displayname;
 
-    /** @var string */
-    public $shortname;
+    public string $shortname;
 
-    /** @var int */
-    public $categoryid;
+    public int $categoryid;
 
-    /** @var string */
-    public $categoryname;
+    public string $categoryname;
 
-    /** @var string */
-    public $summary;
+    public string $summary;
 
-    /** @var int */
-    public $sortorder;
+    public int $sortorder;
 
-    /** @var int */
-    public $summaryformat;
+    public int $summaryformat;
 
-    /** @var \NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\FileObject[] */
-    public $summaryfiles;
+    public array $summaryfiles;
 
-    /** @var \NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\FileObject[] */
-    public $overviewfiles;
+    public array $overviewfiles;
 
-    /** @var array */
-    public $contacts;
+    public array $contacts;
 
-    /** @var array */
-    public $enrollmentmethods;
+    public array $enrollmentmethods;
 
-    /** @var mixed|null|\NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\CustomField[] */
-    public $customfields;
+    public mixed $customfields;
 
     public ?bool $completed = null;
 

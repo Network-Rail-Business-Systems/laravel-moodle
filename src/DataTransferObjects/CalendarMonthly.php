@@ -6,63 +6,45 @@ use Spatie\DataTransferObject\FlexibleDataTransferObject;
 
 class CalendarMonthly extends FlexibleDataTransferObject
 {
-    /** @var string */
-    public $url;
+    public string $url;
 
-    /** @var int */
-    public $courseid;
+    public int $courseid;
 
-    /** @var int */
-    public $categoryid;
+    public int $categoryid;
 
-    /** @var string */
-    public $filter_selector;
+    public string $filter_selector;
 
     /** @var \NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\Week[] */
-    public $weeks;
+    public array $weeks;
 
     /** @var \NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\DayNames[] */
-    public $daynames;
+    public array $daynames;
 
-    /** @var string */
-    public $view;
+    public string $view;
 
-    /** @var array */
-    public $date;
+    public array $date;
 
-    /** @var string */
-    public $periodname;
+    public string $periodname;
 
-    /** @var bool */
-    public $includenavigation;
+    public bool $includenavigation;
 
-    /** @var bool */
-    public $initialeventsloaded;
+    public bool $initialeventsloaded;
 
-    /** @var array */
-    public $previousperiod;
+    public array $previousperiod;
 
-    /** @var string */
-    public $previousperiodlink;
+    public string $previousperiodlink;
 
-    /** @var string */
-    public $previousperiodname;
+    public string $previousperiodname;
 
-    /** @var array */
-    public $nextperiod;
+    public array $nextperiod;
 
-    /** @var string */
-    public $nextperiodname;
+    public string $nextperiodname;
 
-    /** @var string */
-    public $nextperiodlink;
+    public string $nextperiodlink;
 
-    /** @var string */
-    public $larrow;
+    public string $larrow;
 
-    /** @var string */
-    public $rarrow;
+    public string $rarrow;
 
-    /** @var int */
-    public $defaulteventcontext;
+    public int $defaulteventcontext;
 }

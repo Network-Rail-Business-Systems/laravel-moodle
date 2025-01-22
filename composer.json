@@ -9,18 +9,18 @@
         }
     ],
     "require": {
-        "php": "^8",
-        "doctrine/dbal": "^3",
+        "php": "^8.3",
+        "doctrine/dbal": "^4",
         "spatie/data-transfer-object": "^2"
     },
     "require-dev": {
-        "laravel/framework": "^9",
-        "orchestra/testbench": "^7",
+        "laravel/framework": "^11",
+        "orchestra/testbench": "^9",
         "guzzlehttp/guzzle": "^7",
         "laravel/ui": "^4",
         "hannesvdvreken/guzzle-debugbar": "^3",
         "laravel/pint": "^1",
-        "nunomaduro/larastan": "^2"
+        "larastan/larastan": "^3"
     },
     "autoload": {
         "psr-4": {

@@ -2,26 +2,24 @@
 
 namespace NetworkRailBusinessSystems\LaravelMoodle\Traits;
 
+use Illuminate\Support\Collection;
+
+/**
+ * @property ?array $customfields
+ */
 trait HasCustomFields
 {
-    /**
-     * @return \Illuminate\Support\Collection
-     */
-    public function getCustomFields()
+    public function getCustomFields(): Collection
     {
-        $customFields = collect();
-
-        if ($this->customfields) {
-            $customFields = collect($this->customfields)->pluck('value', 'shortname');
+        if ($this->customfields !== null) {
+            $customFields = new Collection($this->customfields);
+            return $customFields->pluck('value', 'shortname');
         }
 
-        return $customFields;
+        return new Collection();
     }
 
-    /**
-     * @return string|null
-     */
-    public function getCustomField(string $shortname)
+    public function getCustomField(string $shortname): ?string
     {
         return $this->getCustomFields()[$shortname] ?? null;
     }

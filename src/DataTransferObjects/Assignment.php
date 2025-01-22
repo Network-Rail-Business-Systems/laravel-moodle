@@ -6,102 +6,69 @@ use Spatie\DataTransferObject\FlexibleDataTransferObject;
 
 class Assignment extends FlexibleDataTransferObject
 {
-    /** @var int * */
-    public $id;
+    public int $id;
 
-    /** @var int * */
-    public $cmid;
+    public int $cmid;
 
-    /** @var int * */
-    public $course;
+    public int $course;
 
-    /** @var string * */
-    public $name;
+    public string $name;
 
-    /** @var int * */
-    public $nosubmissions;
+    public int $nosubmissions;
 
-    /** @var int * */
-    public $submissiondrafts;
+    public int $submissiondrafts;
 
-    /** @var int * */
-    public $sendnotifications;
+    public int $sendnotifications;
 
-    /** @var int * */
-    public $sendlatenotifications;
+    public int $sendlatenotifications;
 
-    /** @var int * */
-    public $sendstudentnotifications;
+    public int $sendstudentnotifications;
 
-    /** @var int * */
-    public $duedate;
+    public int $duedate;
 
-    /** @var int * */
-    public $allowsubmissionsfromdate;
+    public int $allowsubmissionsfromdate;
 
-    /** @var int * */
-    public $grade;
+    public int $grade;
 
-    /** @var int * */
-    public $timemodified;
+    public int $timemodified;
 
-    /** @var int * */
-    public $completionsubmit;
+    public int $completionsubmit;
 
-    /** @var int * */
-    public $cutoffdate;
+    public int $cutoffdate;
 
-    /** @var int * */
-    public $gradingduedate;
+    public int $gradingduedate;
 
-    /** @var int * */
-    public $teamsubmission;
+    public int $teamsubmission;
 
-    /** @var int * */
-    public $requireallteammemberssubmit;
+    public int $requireallteammemberssubmit;
 
-    /** @var int * */
-    public $teamsubmissiongroupingid;
+    public int $teamsubmissiongroupingid;
 
-    /** @var int * */
-    public $blindmarking;
+    public int $blindmarking;
 
-    /** @var int * */
-    public $hidegrader;
+    public int $hidegrader;
 
-    /** @var int * */
-    public $revealidentities;
+    public int $revealidentities;
 
-    /** @var string * */
-    public $attemptreopenmethod;
+    public string $attemptreopenmethod;
 
-    /** @var int * */
-    public $maxattempts;
+    public int $maxattempts;
 
-    /** @var int * */
-    public $markingworkflow;
+    public int $markingworkflow;
 
-    /** @var int * */
-    public $markingallocation;
+    public int $markingallocation;
 
-    /** @var int * */
-    public $requiresubmissionstatement;
+    public int $requiresubmissionstatement;
 
-    /** @var int * */
-    public $preventsubmissionnotingroup;
+    public int $preventsubmissionnotingroup;
 
-    /** @var \NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\AssignmentConfig[] * */
-    public $configs;
+    public array $configs;
 
-    /** @var string * */
-    public $intro;
+    public string $intro;
 
-    /** @var int * */
-    public $introformat;
+    public int $introformat;
 
-    /** @var \NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\FileObject[] * */
-    public $introfiles;
+    public array $introfiles;
 
-    /** @var \NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\FileObject[] * */
-    public $introattachments;
+    public array $introattachments;
 }

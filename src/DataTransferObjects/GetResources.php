@@ -7,8 +7,8 @@ use Spatie\DataTransferObject\FlexibleDataTransferObject;
 class GetResources extends FlexibleDataTransferObject
 {
     /** @var \NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\Resource[] */
-    public $resources;
+    public array $resources;
 
     /** @var \NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\Warning[] */
-    public $warnings;
+    public array $warnings;
 }

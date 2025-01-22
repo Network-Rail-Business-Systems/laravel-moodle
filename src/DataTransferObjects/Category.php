@@ -9,47 +9,33 @@ class Category extends FlexibleDataTransferObject
 {
     use HasDates;
 
-    protected $dates = ['timemodified'];
+    protected array $dates = ['timemodified'];
 
-    /** @var int * */
-    public $id;
+    public int $id;
 
-    /** @var string * */
-    public $name;
+    public string $name;
 
-    /** @var mixed|null|int * */
-    public $idnumber;
+    public mixed $idnumber;
 
-    /** @var string * */
-    public $description;
+    public string $description;
 
-    /** @var int * */
-    public $descriptionformat;
+    public int $descriptionformat;
 
-    /** @var int * */
-    public $parent;
+    public int $parent;
 
-    /** @var int * */
-    public $sortorder;
+    public int $sortorder;
 
-    /** @var int * */
-    public $coursecount;
+    public int $coursecount;
 
-    /** @var int|null * */
-    public $visible;
+    public ?int $visible;
 
-    /** @var int|null * */
-    public $visibleold;
+    public ?int $visibleold;
 
-    /** @var int|null * */
-    public $timemodified;
+    public ?int $timemodified;
 
-    /** @var int * */
-    public $depth;
+    public int $depth;
 
-    /** @var string * */
-    public $path;
+    public string $path;
 
-    /** @var string|null * */
-    public $theme;
+    public ?string $theme;
 }

@@ -6,15 +6,11 @@ use Spatie\DataTransferObject\FlexibleDataTransferObject;
 
 class Role extends FlexibleDataTransferObject
 {
-    /** @var int */
-    public $roleid;
+    public int $roleid;
 
-    /** @var string */
-    public $name;
+    public string $name;
 
-    /** @var string */
-    public $shortname;
+    public string $shortname;
 
-    /** @var int */
-    public $sortorder;
+    public int $sortorder;
 }

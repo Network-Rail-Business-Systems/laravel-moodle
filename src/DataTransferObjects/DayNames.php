@@ -6,12 +6,9 @@ use Spatie\DataTransferObject\FlexibleDataTransferObject;
 
 class DayNames extends FlexibleDataTransferObject
 {
-    /** @var int */
-    public $dayno;
+    public int $dayno;
 
-    /** @var string */
-    public $shortname;
+    public string $shortname;
 
-    /** @var string */
-    public $fullname;
+    public string $fullname;
 }

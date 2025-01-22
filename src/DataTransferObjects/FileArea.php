@@ -6,9 +6,8 @@ use Spatie\DataTransferObject\FlexibleDataTransferObject;
 
 class FileArea extends FlexibleDataTransferObject
 {
-    /** @var string */
-    public $area;
+    public string $area;
 
     /** @var \NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\FileObject[] */
-    public $files;
+    public array $files;
 }

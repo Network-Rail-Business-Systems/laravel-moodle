@@ -6,21 +6,15 @@ use Spatie\DataTransferObject\FlexibleDataTransferObject;
 
 class Completion extends FlexibleDataTransferObject
 {
-    /** @var int */
-    public $type;
+    public int $type;
 
-    /** @var string */
-    public $title;
+    public string $title;
 
-    /** @var string */
-    public $status;
+    public string $status;
 
-    /** @var bool */
-    public $complete;
+    public bool $complete;
 
-    /** @var mixed|null|int */
-    public $timecompleted;
+    public mixed $timecompleted;
 
-    /** @var array */
-    public $details;
+    public array $details;
 }

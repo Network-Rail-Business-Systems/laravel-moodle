@@ -9,65 +9,47 @@ class Page extends FlexibleDataTransferObject
 {
     use HasDates;
 
-    protected $dates = ['timemodified'];
+    protected array $dates = ['timemodified'];
 
-    /** @var int * */
-    public $id;
+    public int $id;
 
-    /** @var int * */
-    public $coursemodule;
+    public int $coursemodule;
 
-    /** @var int * */
-    public $course;
+    public int $course;
 
-    /** @var string * */
-    public $name;
+    public string $name;
 
-    /** @var string * */
-    public $intro;
+    public string $intro;
 
-    /** @var int * */
-    public $introformat;
+    public int $introformat;
 
     /** @var \NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\FileObject[] * */
-    public $introfiles;
+    public array $introfiles;
 
-    /** @var string * */
-    public $content;
+    public string $content;
 
-    /** @var int * */
-    public $contentformat;
+    public int $contentformat;
 
     /** @var \NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\FileObject[] * */
-    public $contentfiles;
+    public array $contentfiles;
 
-    /** @var int * */
-    public $legacyfiles;
+    public int $legacyfiles;
 
-    /** @var mixed|null|int * */
-    public $legacyfileslast;
+    public mixed $legacyfileslast;
 
-    /** @var int * */
-    public $display;
+    public int $display;
 
-    /** @var string * */
-    public $displayoptions;
+    public string $displayoptions;
 
-    /** @var int * */
-    public $revision;
+    public int $revision;
 
-    /** @var int * */
-    public $timemodified;
+    public int $timemodified;
 
-    /** @var int * */
-    public $section;
+    public int $section;
 
-    /** @var int * */
-    public $visible;
+    public int $visible;
 
-    /** @var int * */
-    public $groupmode;
+    public int $groupmode;
 
-    /** @var int * */
-    public $groupingid;
+    public int $groupingid;
 }
