@@ -10,7 +10,7 @@ class CompletionData extends FlexibleDataTransferObject
 
     public int $timecompleted;
 
-    public mixed $overrideby;
+    public ?int $overrideby;
 
     public bool $valueused;
 }
