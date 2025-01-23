@@ -21,7 +21,7 @@ class Module extends FlexibleDataTransferObject
 
     public int $instance;
 
-    public mixed $description;
+    public ?string $description;
 
     public int $visible;
 
@@ -35,13 +35,13 @@ class Module extends FlexibleDataTransferObject
 
     public string $modplural;
 
-    public mixed $availability;
+    public ?string $availability;
 
     public int $indent;
 
     public string $onclick;
 
-    public mixed $afterlink;
+    public ?string $afterlink;
 
     public string $customdata;
 
