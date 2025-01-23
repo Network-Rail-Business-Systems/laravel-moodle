@@ -43,7 +43,7 @@ class Day extends FlexibleDataTransferObject
 
     public int $nextperiod;
 
-    public string $navigation;
+    public ?string $navigation;
 
     public bool $haslastdayofevent;
 
