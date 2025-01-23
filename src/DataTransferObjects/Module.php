@@ -53,5 +53,5 @@ class Module extends FlexibleDataTransferObject
 
     public ?array $contents;
 
-    public mixed $contentsinfo;
+    public ?array $contentsinfo;
 }
