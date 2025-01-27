@@ -43,4 +43,7 @@ return [
      * Requests will appear in the debugbar Timeline
      */
     'debug' => env('DEBUGBAR_ENABLED', null),
+
+    // Whether to use the Moodle Emulator
+    'emulator_enabled' => env('MOODLE_EMULATOR_ENABLED', false),
 ];
