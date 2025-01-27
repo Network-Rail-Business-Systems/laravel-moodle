@@ -67,6 +67,14 @@ To use on specific routes add `'laravel-moodle' => \NetworkRailBusinessSystems\L
 Route::get('/', function () {})->middleware('laravel-moodle');
 ```
 
+## Emulator
+
+An emulator is provided for development purposes, which simulates some of Moodle's endpoint responses.
+
+You can enable it in your application while serving, set the `MOODLE_EMULATOR_ENABLED` env setting to `true`.
+
+For unit tests, add `NetworkRailBusinessSystems\LaravelMoodle\ServiceProvider::startEmulator()` to your `setup` function.
+
 ## Moodle Configuration
 
 In order to access data from Moodle, it needs to be configured first as the web service features are disabled by default.
