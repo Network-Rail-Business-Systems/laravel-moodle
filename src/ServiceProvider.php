@@ -27,11 +27,11 @@ class ServiceProvider extends BaseServiceProvider
         $this->mergeConfigFrom(__DIR__.'/config/laravel-moodle.php', 'laravel-moodle');
 
         if (config('laravel-moodle.emulator_enabled') === true) {
-            $this->startEmulator();
+            self::startEmulator();
         }
     }
 
-    protected function startEmulator(): void
+    public static function startEmulator(): void
     {
         config()->set('laravel-moodle.base_url', self::EMULATOR_URL);
 
