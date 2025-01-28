@@ -80,6 +80,9 @@ class ServiceProvider extends BaseServiceProvider
             '*core_course_search_courses*' => Http::response(
                 MockResponses::searchCourses(),
             ),
+            '*core_enrol_get_enrolled_users*' => Http::response(
+                MockResponses::enrolledUsers(),
+            ),
             '*mod_page_get_pages_by_courses*' => Http::response(
                 MockResponses::coursePages(),
             ),
