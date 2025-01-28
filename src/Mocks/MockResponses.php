@@ -272,6 +272,97 @@ class MockResponses
         ];
     }
 
+    public static function courseCompletion(): array
+    {
+        return [
+            'completionstatus' => [
+                'completed' => false,
+                'aggregation' => 1,
+                'completions' => [
+                    [
+                        'type' => 1,
+                        'title' => 'page',
+                        'status' => 'incomplete',
+                        'complete' => false,
+                        'timecompleted' => null,
+                        'details' => [],
+                    ],
+                    [
+                        'type' => 1,
+                        'title' => 'view page',
+                        'status' => 'complete',
+                        'complete' => true,
+                        'timecompleted' => 1591093732,
+                        'details' => [],
+                    ],
+                ],
+            ],
+            'warnings' => [],
+        ];
+    }
+
+    public static function courseModuleVisibility(): array
+    {
+        return [
+            [
+                'id' => 1,
+                'name' => 'Topic 1',
+                'visible' => 1,
+                'summary' => '<p>This is the first topic for the first course</p>',
+                'summaryformat' => 1,
+                'section' => 0,
+                'hiddenbynumsections' => 0,
+                'uservisible' => true,
+                'modules' => [
+                    [
+                        'id' => 1,
+                        'url' => 'http://moodle.test/mod/page/view.php?id=1',
+                        'name' => 'Example Page',
+                        'instance' => 1,
+                        'visible' => 0,
+                        'uservisible' => true,
+                        'visibleoncoursepage' => 1,
+                        'modicon' => 'http://moodle.test/theme/image.php/moove/page/1590132460/icon',
+                        'modname' => 'page',
+                        'modplural' => 'Pages',
+                        'availability' => null,
+                        'indent' => 0,
+                        'onclick' => '',
+                        'afterlink' => null,
+                        'customdata' => '""',
+                        'noviewlink' => false,
+                        'completion' => 1,
+                        'completiondata' => [
+                            'state' => 1,
+                            'timecompleted' => 1591093732,
+                            'overrideby' => null,
+                            'valueused' => true,
+                        ],
+                    ],
+                    [
+                        'id' => 2,
+                        'url' => 'http://moodle.test/mod/scorm/view.php?id=2',
+                        'name' => 'Example Scorm',
+                        'instance' => 1,
+                        'visible' => 1,
+                        'uservisible' => true,
+                        'visibleoncoursepage' => 1,
+                        'modicon' => 'http://moodle.test/theme/image.php/boost/page/1592292950/icon',
+                        'modname' => 'scorm',
+                        'modplural' => 'Scorms',
+                        'availability' => null,
+                        'indent' => 0,
+                        'onclick' => '',
+                        'afterlink' => null,
+                        'customdata' => '""',
+                        'noviewlink' => false,
+                        'completion' => 0,
+                    ],
+                ],
+            ],
+        ];
+    }
+
     public static function searchCourses(): array
     {
         return [
@@ -300,6 +391,83 @@ class MockResponses
                     ],
                     'contacts' => [],
                     'enrollmentmethods' => ['manual', 'self'],
+                ],
+            ],
+            'warnings' => [],
+        ];
+    }
+
+    public static function searchFirstCourse(): array
+    {
+        return [
+            'total' => 2,
+            'courses' => [
+                [
+                    'id' => 2,
+                    'fullname' => 'The First Course',
+                    'shortname' => 'first_course',
+                    'displayname' => 'The First Course',
+                    'categoryid' => 1,
+                    'categoryname' => 'First Category',
+                    'sortorder' => 1,
+                    'summary' => '<p>This is the summary for the first course</p>',
+                    'summaryformat' => 1,
+                    'summaryfiles' => [],
+                    'overviewfiles' => [],
+                    'contacts' => [],
+                    'enrollmentmethods' => ['manual'],
+                    'customfields' => [
+                        [
+                            'name' => 'Course Type',
+                            'shortname' => 'course_type',
+                            'type' => 'select',
+                            'value' => 'Online',
+                        ],
+                        [
+                            'name' => 'Course Duration',
+                            'shortname' => 'course_duration',
+                            'type' => 'text',
+                            'value' => '1 week',
+                        ],
+                    ],
+                ],
+            ],
+            'warnings' => [],
+        ];
+    }
+
+    public static function searchByCategory(): array
+    {
+        return [
+            'courses' => [
+                [
+                    'id' => 3,
+                    'fullname' => 'The Second Course',
+                    'shortname' => 'second_course',
+                    'displayname' => 'The Second Course',
+                    'categoryid' => 1,
+                    'categoryname' => 'Second Category',
+                    'sortorder' => 1,
+                    'summary' => '<p>This is the summary for the second course</p>',
+                    'summaryformat' => 1,
+                    'summaryfiles' => [],
+                    'overviewfiles' => [],
+                    'contacts' => [],
+                    'enrollmentmethods' => ['manual', 'self'],
+                    'customfields' => [
+                        [
+                            'name' => 'Course Type',
+                            'shortname' => 'course_type',
+                            'type' => 'select',
+                            'value' => 'Distance Learning',
+                        ],
+                        [
+                            'name' => 'Course Duration',
+                            'shortname' => 'course_duration',
+                            'type' => 'text',
+                            'value' => '4 weeks',
+                        ],
+                    ],
                 ],
             ],
             'warnings' => [],
