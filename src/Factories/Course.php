@@ -1,6 +1,6 @@
 <?php
 
-namespace NetworkRailBusinessSystems\LaravelMoodle\Tests\Factories;
+namespace NetworkRailBusinessSystems\LaravelMoodle\Factories;
 
 use NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\Course as MoodleCourse;
 

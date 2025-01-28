@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
 use NetworkRailBusinessSystems\LaravelMoodle\Middleware\MoodleToken;
-use NetworkRailBusinessSystems\LaravelMoodle\Tests\Stubs\MockResponses;
+use NetworkRailBusinessSystems\LaravelMoodle\Mocks\MockResponses;
 
 class ServiceProvider extends BaseServiceProvider
 {

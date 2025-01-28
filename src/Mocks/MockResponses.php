@@ -1,6 +1,6 @@
 <?php
 
-namespace NetworkRailBusinessSystems\LaravelMoodle\Tests\Stubs;
+namespace NetworkRailBusinessSystems\LaravelMoodle\Mocks;
 
 class MockResponses
 {

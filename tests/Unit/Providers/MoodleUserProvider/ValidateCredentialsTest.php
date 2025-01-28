@@ -3,8 +3,8 @@
 namespace NetworkRailBusinessSystems\LaravelMoodle\Tests\Unit\Providers\MoodleUserProvider;
 
 use Illuminate\Support\Facades\Http;
+use NetworkRailBusinessSystems\LaravelMoodle\Mocks\MockResponses;
 use NetworkRailBusinessSystems\LaravelMoodle\MoodleUserProvider;
-use NetworkRailBusinessSystems\LaravelMoodle\Tests\Stubs\MockResponses;
 use NetworkRailBusinessSystems\LaravelMoodle\Tests\Stubs\User;
 use NetworkRailBusinessSystems\LaravelMoodle\Tests\TestCase;
 
