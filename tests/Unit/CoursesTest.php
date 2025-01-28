@@ -92,11 +92,11 @@ class CoursesTest extends TestCase
 
         $this->assertNotNull($contents);
         $this->assertCount(1, $contents);
-        $this->assertEquals('General', $contents[0]->name);
-        $this->assertEquals('Announcements', $contents[0]->modules[0]->name);
-        $this->assertTrue($contents[0]->modules[1]->hasPage());
-        $this->assertFalse($contents[0]->modules[1]->hasScorm());
-        $this->assertEquals(3, $contents[0]->modules[1]->getActivityId());
+        $this->assertEquals('Topic 1', $contents[0]->name);
+        $this->assertEquals('Example Page', $contents[0]->modules[0]->name);
+        $this->assertTrue($contents[0]->modules[0]->hasPage());
+        $this->assertFalse($contents[0]->modules[0]->hasScorm());
+        $this->assertEquals(1, $contents[0]->modules[0]->getActivityId());
     }
 
     public function test_search_courses()
