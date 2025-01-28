@@ -1,6 +1,5 @@
 {
     "name": "laravel-moodle",
-    "version": "0.1.0",
     "description": "A Laravel package to login to Moodle and retrieve data",
     "main": "index.js",
     "directories": {
