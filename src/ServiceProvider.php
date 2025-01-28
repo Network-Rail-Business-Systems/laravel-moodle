@@ -89,6 +89,9 @@ class ServiceProvider extends BaseServiceProvider
             '*core_completion_get_course_completion_status*' => Http::response(
                 MockResponses::courseCompletion(),
             ),
+            '*core_calendar_get_calendar_monthly_view*' => Http::response(
+                MockResponses::calendarResponse(),
+            ),
             '*mod_page_get_pages_by_courses*' => Http::response(
                 MockResponses::coursePages(),
             ),
