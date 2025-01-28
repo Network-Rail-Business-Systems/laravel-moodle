@@ -9,6 +9,6 @@ class GetCourseAssignments extends FlexibleDataTransferObject
     /** @var \NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\CourseAssignment[] */
     public array $courses;
 
-    /** @var array */
+    /** @var \NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\Warning[] */
     public array $warnings;
 }

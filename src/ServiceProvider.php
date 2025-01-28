@@ -113,6 +113,9 @@ class ServiceProvider extends BaseServiceProvider
             '*gradereport_overview_get_course_grades*' => Http::response(
                 MockResponses::getGrades(),
             ),
+            '*enrol_self_enrol_user*' => Http::response(
+                MockResponses::selfEnrol(),
+            ),
         ])->baseUrl(self::EMULATOR_URL);
     }
 }

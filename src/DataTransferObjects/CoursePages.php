@@ -9,5 +9,6 @@ class CoursePages extends FlexibleDataTransferObject
     /** @var \NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\Page[] */
     public array $pages;
 
+    /** @var \NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\Warning[] */
     public array $warnings;
 }

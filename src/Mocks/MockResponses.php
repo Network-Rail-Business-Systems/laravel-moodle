@@ -1479,4 +1479,12 @@ class MockResponses
             ],
         ];
     }
+
+    public static function selfEnrol(): array
+    {
+        return [
+            'status' => true,
+            'warnings' => [],
+        ];
+    }
 }

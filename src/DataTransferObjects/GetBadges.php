@@ -9,6 +9,6 @@ class GetBadges extends FlexibleDataTransferObject
     /** @var \NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\Badge[] */
     public array $badges;
 
-    /** @var array */
+    /** @var \NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\Warning[] */
     public array $warnings;
 }
