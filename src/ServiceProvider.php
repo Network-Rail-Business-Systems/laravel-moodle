@@ -107,6 +107,9 @@ class ServiceProvider extends BaseServiceProvider
             '*mod_assign_get_submission_status*' => Http::response(
                 MockResponses::assessmentStatus(),
             ),
+            '*gradereport_overview_get_course_grades*' => Http::response(
+                MockResponses::getGrades(),
+            ),
         ])->baseUrl(self::EMULATOR_URL);
     }
 }
