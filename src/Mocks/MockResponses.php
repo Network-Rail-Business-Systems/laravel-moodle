@@ -786,6 +786,27 @@ class MockResponses
         ];
     }
 
+    public static function assessmentStatusNoLastAttempt(): array
+    {
+        return [
+            'lastattempt' => [
+                'submission' => null,
+                'submissiongroupmemberswhoneedtosubmit' => [],
+                'submissionsenabled' => true,
+                'locked' => false,
+                'graded' => false,
+                'canedit' => true,
+                'caneditowner' => true,
+                'cansubmit' => false,
+                'extensionduedate' => null,
+                'blindmarking' => false,
+                'gradingstatus' => 'notgraded',
+                'usergroups' => [],
+            ],
+            'warnings' => [],
+        ];
+    }
+
     public static function getGrades(): array
     {
         return [
