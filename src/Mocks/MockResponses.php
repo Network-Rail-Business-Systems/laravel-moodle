@@ -701,7 +701,7 @@ class MockResponses
             'scorms' => [
                 [
                     'id' => 1,
-                    'coursemodule' => 17,
+                    'coursemodule' => 2,
                     'course' => 3,
                     'name' => 'Example scorm',
                     'intro' => '',

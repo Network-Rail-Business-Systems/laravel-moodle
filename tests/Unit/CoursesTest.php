@@ -170,7 +170,7 @@ class CoursesTest extends TestCase
             '*' => Http::response(MockResponses::getScorms(), 200),
         ]);
 
-        $scorm = LaravelMoodle::getCourseScorm(3, 17);
+        $scorm = LaravelMoodle::getCourseScorm(3, 2);
 
         $this->assertNotNull($scorm);
         $this->assertEquals('Example scorm', $scorm->name);
