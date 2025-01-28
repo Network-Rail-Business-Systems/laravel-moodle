@@ -544,6 +544,50 @@ class MockResponses
         ];
     }
 
+    public static function getScoes(): array
+    {
+        return [
+            'scoes' => [
+                0 => [
+                    'id' => 1,
+                    'scorm' => 1,
+                    'manifest' => 'imsmanifest',
+                    'organization' => '',
+                    'parent' => '/',
+                    'identifier' => 'imsmanifest_ORG',
+                    'launch' => '',
+                    'scormtype' => '',
+                    'title' => 'Captivate E-Learning Course',
+                    'sortorder' => 1,
+                    'extradata' => [],
+                ],
+                1 => [
+                    'id' => 2,
+                    'scorm' => 1,
+                    'manifest' => 'imsmanifest',
+                    'organization' => 'imsmanifest_ORG',
+                    'parent' => 'imsmanifest_ORG',
+                    'identifier' => 'SCO_ID1',
+                    'launch' => 'index_scorm.html',
+                    'scormtype' => 'sco',
+                    'title' => 'Course Object title',
+                    'sortorder' => 2,
+                    'extradata' => [
+                        0 => [
+                            'element' => 'isvisible',
+                            'value' => 'true',
+                        ],
+                        1 => [
+                            'element' => 'parameters',
+                            'value' => '',
+                        ],
+                    ],
+                ],
+            ],
+            'warnings' => [],
+        ];
+    }
+
     public static function categories(): array
     {
         return [
@@ -755,6 +799,79 @@ class MockResponses
                     'courseid' => 3,
                     'grade' => 'A',
                     'rawgrade' => null,
+                ],
+            ],
+            'warnings' => [],
+        ];
+    }
+
+    public static function getResources(): array
+    {
+        return [
+            'resources' => [
+                [
+                    'id' => 1,
+                    'coursemodule' => 4,
+                    'course' => 2,
+                    'name' => 'Example file',
+                    'intro' => '',
+                    'introformat' => 1,
+                    'introfiles' => [],
+                    'contentfiles' => [
+                        [
+                            'filename' => 'An example excel file.xlsx',
+                            'filepath' => '/',
+                            'filesize' => 91901,
+                            'fileurl' => 'http://moodle.fake/webservice/pluginfile.php/62/mod_resource/content/0/Waste%20report%202019-20%20-%20categorised.xlsx',
+                            'timemodified' => 1589882475,
+                            'mimetype' => 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+                            'isexternalfile' => false,
+                        ],
+                    ],
+                    'tobemigrated' => 0,
+                    'legacyfiles' => 0,
+                    'legacyfileslast' => null,
+                    'display' => 0,
+                    'displayoptions' => 'a:1:[s:10:"printintro";i:1;]',
+                    'filterfiles' => 0,
+                    'revision' => 1,
+                    'timemodified' => 1589882475,
+                    'section' => 1,
+                    'visible' => 1,
+                    'groupmode' => 0,
+                    'groupingid' => 0,
+                ],
+                [
+                    'id' => 2,
+                    'coursemodule' => 5,
+                    'course' => 2,
+                    'name' => 'Second file',
+                    'intro' => '',
+                    'introformat' => 1,
+                    'introfiles' => [],
+                    'contentfiles' => [
+                        [
+                            'filename' => 'An second excel file.xlsx',
+                            'filepath' => '/',
+                            'filesize' => 91901,
+                            'fileurl' => 'http://moodle.fake/webservice/pluginfile.php/62/mod_resource/content/0/Waste%20report%202019-20%20-%20categorised.xlsx',
+                            'timemodified' => 1589882475,
+                            'mimetype' => 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+                            'isexternalfile' => false,
+                        ],
+                    ],
+                    'tobemigrated' => 0,
+                    'legacyfiles' => 0,
+                    'legacyfileslast' => null,
+                    'display' => 0,
+                    'displayoptions' => 'a:1:[s:10:"printintro";i:1;]',
+                    'filterfiles' => 0,
+                    'revision' => 1,
+                    'timemodified' => 1589882475,
+                    'section' => 1,
+                    'visible' => 1,
+                    'groupmode' => 0,
+                    'groupingid' => 0,
                 ],
             ],
             'warnings' => [],

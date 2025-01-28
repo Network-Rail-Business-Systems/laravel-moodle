@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
 use NetworkRailBusinessSystems\LaravelMoodle\Middleware\MoodleToken;
+use NetworkRailBusinessSystems\LaravelMoodle\Tests\Stubs\MockResponses;
 
 class ServiceProvider extends BaseServiceProvider
 {
@@ -70,6 +71,36 @@ class ServiceProvider extends BaseServiceProvider
                     ],
                 ],
             ],
+            '*core_course_get_courses_by_field*' => Http::response(
+                MockResponses::getCourses(),
+            ),
+            '*core_course_get_contents*' => Http::response(
+                MockResponses::getCourseContents(),
+            ),
+            '*mod_page_get_pages_by_courses*' => Http::response(
+                MockResponses::coursePages(),
+            ),
+            '*mod_page_view_page*' => Http::response(
+                ['status' => true, 'warnings' => []],
+            ),
+            '*mod_scorm_get_scorms_by_courses*' => Http::response(
+                MockResponses::getScorms(),
+            ),
+            '*mod_scorm_get_scorm_scoes*' => Http::response(
+                MockResponses::getScoes(),
+            ),
+            '*mod_assign_get_assignments*' => Http::response(
+                MockResponses::courseAssignments(),
+            ),
+            '*mod_resource_get_resources_by_courses*' => Http::response(
+                MockResponses::getResources(),
+            ),
+            '*mod_resource_view_resource*' => Http::response(
+                ['status' => true, 'warnings' => []],
+            ),
+            '*mod_assign_get_submission_status*' => Http::response(
+                MockResponses::assessmentStatus(),
+            ),
         ])->baseUrl(self::EMULATOR_URL);
     }
 }
