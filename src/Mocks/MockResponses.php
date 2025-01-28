@@ -8,7 +8,7 @@ class MockResponses
     {
         return [
             'users' => [
-                0 => [
+                [
                     'address' => 'celery',
                     'auth' => 'manual',
                     'city' => 'carrot',
@@ -1351,6 +1351,88 @@ class MockResponses
             'larrow' => '&#x25C4;',
             'rarrow' => '&#x25BA;',
             'defaulteventcontext' => 2,
+        ];
+    }
+
+    public static function getCourseDelegates(): array
+    {
+        return [
+            [
+                'id' => 10,
+                'username' => 'testuser',
+                'firstname' => 'test',
+                'lastname' => 'user',
+                'fullname' => 'Test User',
+                'email' => 'test.user@example.com',
+                'firstaccess' => 1589550236,
+                'lastaccess' => 1591093732,
+                'lastcourseaccess' => 1591093732,
+                'descriptionformat' => 1,
+                'profileimageurlsmall' => 'http://moodle.test/theme/image.php/moove/core/1590132460/u/f2',
+                'profileimageurl' => 'http://moodle.test/theme/image.php/moove/core/1590132460/u/f1',
+                'description' => 'Goose Wrangler',
+                'department' => 'The Lakes',
+                'institution' => 'A Small Boat',
+                'city' => 'Furzton',
+                'address' => 'ABC 123',
+                'groups' => null,
+                'roles' => [
+                    [
+                        'roleid' => 3,
+                        'name' => '',
+                        'shortname' => 'editingteacher',
+                        'sortorder' => 0,
+                    ],
+                    [
+                        'roleid' => 5,
+                        'name' => '',
+                        'shortname' => 'student',
+                        'sortorder' => 0,
+                    ],
+                ],
+                'enrolledcourses' => [
+                    [
+                        'id' => 2,
+                        'fullname' => 'The First Course',
+                        'shortname' => 'first_course',
+                    ],
+                ],
+            ],
+            [
+                'id' => 11,
+                'username' => 'seconduser',
+                'firstname' => 'Second',
+                'lastname' => 'User',
+                'fullname' => 'Second User',
+                'email' => 'second.user@example.com',
+                'firstaccess' => 1589550236,
+                'lastaccess' => 1591093732,
+                'lastcourseaccess' => 1591093732,
+                'descriptionformat' => 1,
+                'profileimageurlsmall' => 'http://moodle.test/theme/image.php/moove/core/1590132460/u/f2',
+                'profileimageurl' => 'http://moodle.test/theme/image.php/moove/core/1590132460/u/f1',
+                'description' => 'Goose Wrangler',
+                'department' => 'The Lakes',
+                'institution' => 'A Small Boat',
+                'city' => 'Furzton',
+                'address' => 'ABC 123',
+                'groups' => null,
+                'roles' => [
+                    [
+                        'roleid' => 5,
+                        'name' => '',
+                        'shortname' => 'student',
+                        'sortorder' => 0,
+                    ],
+                ],
+                'enrolledcourses' => [
+                    [
+                        'id' => 2,
+                        'fullname' => 'The First Course',
+                        'shortname' => 'first_course',
+                    ],
+                ],
+            ],
         ];
     }
 }
