@@ -1487,4 +1487,12 @@ class MockResponses
             'warnings' => [],
         ];
     }
+
+    public static function manualEnrol(): array
+    {
+        return [
+            'status' => true,
+            'warnings' => [],
+        ];
+    }
 }
