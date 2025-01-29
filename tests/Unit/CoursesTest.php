@@ -26,7 +26,7 @@ class CoursesTest extends TestCase
         $data = LaravelMoodle::getCourses();
 
         $this->assertNotNull($data->courses);
-        $this->assertCount(1, $data->courses);
+        $this->assertCount(3, $data->courses);
         $this->assertEquals('My First Course', $data->courses[0]->fullname);
         $this->assertEquals('Intro Course', $data->courses[0]->shortname);
     }
@@ -52,7 +52,7 @@ class CoursesTest extends TestCase
         $data = LaravelMoodle::getCoursesByCategory(1);
 
         $this->assertNotNull($data->courses);
-        $this->assertCount(1, $data->courses);
+        $this->assertCount(3, $data->courses);
         $this->assertEquals('My First Course', $data->courses[0]->fullname);
         $this->assertEquals('Intro Course', $data->courses[0]->shortname);
     }
@@ -108,7 +108,7 @@ class CoursesTest extends TestCase
         $searchResults = LaravelMoodle::searchCourses('my first course');
 
         $this->assertNotNull($searchResults);
-        $this->assertEquals(1, $searchResults->total);
+        $this->assertEquals(3, $searchResults->total);
         $this->assertEquals('My First Course', $searchResults->courses[0]->fullname);
         $this->assertEquals('Intro Course', $searchResults->courses[0]->shortname);
     }
