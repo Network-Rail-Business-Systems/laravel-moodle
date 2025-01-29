@@ -2,6 +2,9 @@
 
 namespace NetworkRailBusinessSystems\LaravelMoodle\Mocks;
 
+use NetworkRailBusinessSystems\LaravelMoodle\Factories\Course;
+use NetworkRailBusinessSystems\LaravelMoodle\Factories\CourseSearchCourse;
+
 class MockResponses
 {
     public static function userSearch(): array
@@ -130,6 +133,8 @@ class MockResponses
                         ],
                     ],
                 ],
+                Course::make(),
+                Course::make(),
             ],
             'warnings' => [],
         ];
@@ -410,7 +415,7 @@ class MockResponses
     public static function searchCourses(): array
     {
         return [
-            'total' => 1,
+            'total' => 3,
             'courses' => [
                 [
                     'id' => 2,
@@ -436,6 +441,8 @@ class MockResponses
                     'contacts' => [],
                     'enrollmentmethods' => ['manual', 'self'],
                 ],
+                CourseSearchCourse::make(),
+                CourseSearchCourse::make(),
             ],
             'warnings' => [],
         ];
