@@ -95,9 +95,10 @@ class ServiceProvider extends BaseServiceProvider
             '*mod_page_get_pages_by_courses*' => Http::response(
                 MockResponses::coursePages(),
             ),
-            '*mod_page_view_page*' => Http::response(
-                ['status' => true, 'warnings' => []],
-            ),
+            '*mod_page_view_page*' => Http::response([
+                'status' => true,
+                'warnings' => [],
+            ]),
             '*mod_scorm_get_scorms_by_courses*' => Http::response(
                 MockResponses::getScorms(),
             ),
@@ -107,12 +108,14 @@ class ServiceProvider extends BaseServiceProvider
             '*mod_assign_get_assignments*' => Http::response(
                 MockResponses::courseAssignments(),
             ),
+            '*mod_assign_save_submission*' => Http::response([]),
             '*mod_resource_get_resources_by_courses*' => Http::response(
                 MockResponses::getResources(),
             ),
-            '*mod_resource_view_resource*' => Http::response(
-                ['status' => true, 'warnings' => []],
-            ),
+            '*mod_resource_view_resource*' => Http::response([
+                'status' => true,
+                'warnings' => [],
+            ]),
             '*mod_assign_get_submission_status*' => Http::response(
                 MockResponses::assessmentStatus(),
             ),
