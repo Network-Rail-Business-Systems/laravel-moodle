@@ -2,13 +2,13 @@
 
 namespace NetworkRailBusinessSystems\LaravelMoodle\Factories;
 
-use NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\Completion as MoodleCompletion;
+use NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\CourseEnrolledUser as MoodleCourseEnrolledUser;
 
 class CourseEnrolledUser extends MoodleFactory
 {
-    public function makeOne(): MoodleCompletion
+    public function makeOne(): MoodleCourseEnrolledUser
     {
-        return new MoodleCompletion([
+        return new MoodleCourseEnrolledUser([
             '$descriptionformat' => $this->faker->randomNumber(),
             'department' => $this->faker->company(),
             'description' => $this->faker->words(3, true),
