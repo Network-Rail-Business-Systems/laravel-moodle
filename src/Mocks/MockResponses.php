@@ -325,7 +325,7 @@ class MockResponses
     {
         return [
             'completionstatus' => [
-                'completed' => false,
+                'completed' => true,
                 'aggregation' => 1,
                 'completions' => [
                     [
