@@ -3,6 +3,7 @@
 namespace NetworkRailBusinessSystems\LaravelMoodle\Mocks;
 
 use NetworkRailBusinessSystems\LaravelMoodle\Factories\Course;
+use NetworkRailBusinessSystems\LaravelMoodle\Factories\CourseEnrolledUser;
 use NetworkRailBusinessSystems\LaravelMoodle\Factories\CourseSearchCourse;
 
 class MockResponses
@@ -634,6 +635,8 @@ class MockResponses
                     ],
                 ],
             ],
+            CourseEnrolledUser::make(),
+            CourseEnrolledUser::make(),
         ];
     }
 
