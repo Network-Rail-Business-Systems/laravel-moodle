@@ -56,7 +56,7 @@ class ServiceProvider extends BaseServiceProvider
             '*login/token*' => [
                 'token' => 'abc123',
             ],
-            '*core_user_get_users&moodlewsrestformat*' => [
+            '*core_user_get_users*' => [
                 'users' => [
                     [
                         'address' => $user->address,
