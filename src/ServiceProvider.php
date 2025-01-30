@@ -128,6 +128,10 @@ class ServiceProvider extends BaseServiceProvider
             '*enrol_manual_enrol_users*' => Http::response(
                 MockResponses::manualEnrol(),
             ),
+            '*enrol_manual_unenrol_users*' => Http::response([
+                'status' => true,
+                'warnings' => [],
+            ]),
         ])->baseUrl(self::EMULATOR_URL);
     }
 }
