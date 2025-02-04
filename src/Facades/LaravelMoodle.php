@@ -2,13 +2,16 @@
 
 namespace NetworkRailBusinessSystems\LaravelMoodle\Facades;
 
-class LaravelMoodle extends \Illuminate\Support\Facades\Facade
+use Illuminate\Support\Facades\Facade;
+use NetworkRailBusinessSystems\LaravelMoodle\LaravelMoodle as BaseLaravelMoodle;
+
+/**
+ * @mixin BaseLaravelMoodle
+ */
+class LaravelMoodle extends Facade
 {
-    /**
-     * {@inheritDoc}
-     */
-    protected static function getFacadeAccessor()
+    protected static function getFacadeAccessor(): string
     {
-        return \NetworkRailBusinessSystems\LaravelMoodle\LaravelMoodle::class;
+        return BaseLaravelMoodle::class;
     }
 }

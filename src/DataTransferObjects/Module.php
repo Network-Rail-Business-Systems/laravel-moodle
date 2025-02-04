@@ -8,70 +8,50 @@ use Spatie\DataTransferObject\FlexibleDataTransferObject;
 
 class Module extends FlexibleDataTransferObject
 {
-    use HasDates;
     use HasActivity;
+    use HasDates;
 
-    protected $dates = ['added'];
+    protected array $dates = ['added'];
 
-    /** @var int */
-    public $id;
+    public int $id;
 
-    /** @var string * */
-    public $url;
+    public string $url;
 
-    /** @var string * */
-    public $name;
+    public string $name;
 
-    /** @var int * */
-    public $instance;
+    public int $instance;
 
-    /** @var mixed|null|string */
-    public $description;
+    public ?string $description;
 
-    /** @var int */
-    public $visible;
+    public int $visible;
 
-    /** @var bool * */
-    public $uservisible;
+    public bool $uservisible;
 
-    /** @var int * */
-    public $visibleoncoursepage;
+    public int $visibleoncoursepage;
 
-    /** @var string * */
-    public $modicon;
+    public string $modicon;
 
-    /** @var string * */
-    public $modname;
+    public string $modname;
 
-    /** @var string * */
-    public $modplural;
+    public string $modplural;
 
-    /** @var mixed|null|string * */
-    public $availability;
+    public ?string $availability;
 
-    /** @var int * */
-    public $indent;
+    public int $indent;
 
-    /** @var string * */
-    public $onclick;
+    public string $onclick;
 
-    /** @var mixed|null|string * */
-    public $afterlink;
+    public ?string $afterlink;
 
-    /** @var string * */
-    public $customdata;
+    public string $customdata;
 
-    /** @var bool * */
-    public $noviewlink;
+    public bool $noviewlink;
 
-    /** @var int * */
-    public $completion;
+    public int $completion;
 
-    /** @var mixed|null|\NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\CompletionData */
-    public $completiondata;
+    public ?CompletionData $completiondata;
 
-    /** @var mixed|null|array */
-    public $contents;
+    public ?array $contents;
 
-    public $contentsinfo;
+    public ?array $contentsinfo;
 }

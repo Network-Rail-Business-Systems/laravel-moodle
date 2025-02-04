@@ -6,12 +6,10 @@ use Spatie\DataTransferObject\FlexibleDataTransferObject;
 
 class Week extends FlexibleDataTransferObject
 {
-    /** @var array */
-    public $prepadding;
+    public array $prepadding;
 
-    /** @var array */
-    public $postpadding;
+    public array $postpadding;
 
     /** @var \NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\Day[] */
-    public $days;
+    public array $days;
 }

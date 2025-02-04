@@ -6,15 +6,13 @@ use Spatie\DataTransferObject\FlexibleDataTransferObject;
 
 class Plugin extends FlexibleDataTransferObject
 {
-    /** @var string */
-    public $type;
+    public string $type;
 
-    /** @var string */
-    public $name;
+    public string $name;
 
-    /** @var null|\NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\FileArea[] */
-    public $fileareas;
+    /** @var \NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\FileArea[]|null */
+    public ?array $fileareas;
 
-    /** @var null|\NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\EditorFields[] */
-    public $editorfields;
+    /** @var \NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\EditorFields[]|null */
+    public ?array $editorfields;
 }

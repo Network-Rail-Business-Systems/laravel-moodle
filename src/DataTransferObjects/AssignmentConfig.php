@@ -6,15 +6,11 @@ use Spatie\DataTransferObject\FlexibleDataTransferObject;
 
 class AssignmentConfig extends FlexibleDataTransferObject
 {
-    /** @var string */
-    public $plugin;
+    public string $plugin;
 
-    /** @var string */
-    public $subtype;
+    public string $subtype;
 
-    /** @var string */
-    public $name;
+    public string $name;
 
-    /** @var int|string */
-    public $value;
+    public string $value;
 }

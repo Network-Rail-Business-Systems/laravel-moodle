@@ -10,131 +10,95 @@ use Spatie\DataTransferObject\FlexibleDataTransferObject;
 
 class Course extends FlexibleDataTransferObject
 {
-    use HasDates;
     use HasCourseImages;
     use HasCustomFields;
+    use HasDates;
     use HasEnrollements;
 
-    protected $dates = ['startdate', 'enddate', 'timecreated', 'timemodified'];
+    protected array $dates = ['startdate', 'enddate', 'timecreated', 'timemodified'];
 
-    /** @var int */
-    public $id;
+    public int $id;
 
-    /** @var string */
-    public $fullname;
+    public string $fullname;
 
-    /** @var string */
-    public $shortname;
+    public string $shortname;
 
-    /** @var string */
-    public $displayname;
+    public string $displayname;
 
-    /** @var int */
-    public $categoryid;
+    public int $categoryid;
 
-    /** @var string */
-    public $categoryname;
+    public string $categoryname;
 
-    /** @var int */
-    public $sortorder;
+    public int $sortorder;
 
-    /** @var string */
-    public $summary;
+    public string $summary;
 
-    /** @var int */
-    public $summaryformat;
+    public int $summaryformat;
 
     /** @var \NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\FileObject[] */
-    public $summaryfiles;
+    public array $summaryfiles;
 
     /** @var \NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\FileObject[] */
-    public $overviewfiles;
+    public array $overviewfiles;
 
-    /** @var array */
-    public $contacts;
+    public array $contacts;
 
-    /** @var array */
-    public $enrollmentmethods;
+    public array $enrollmentmethods;
 
     /** @var \NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\CustomField[] */
-    public $customfields;
+    public array $customfields;
 
-    /** @var string|null */
-    public $idnumber;
+    public ?string $idnumber;
 
-    /** @var string|null */
-    public $format;
+    public ?string $format;
 
-    /** @var int|null */
-    public $showgrades;
+    public ?int $showgrades;
 
-    /** @var int|null */
-    public $newsitems;
+    public ?int $newsitems;
 
-    /** @var int|null */
-    public $startdate;
+    public ?int $startdate;
 
-    /** @var int|null */
-    public $enddate;
+    public ?int $enddate;
 
-    /** @var int|null */
-    public $maxbytes;
+    public ?int $maxbytes;
 
-    /** @var int|null */
-    public $showreports;
+    public ?int $showreports;
 
-    /** @var int|null */
-    public $visible;
+    public ?int $visible;
 
-    /** @var int|null */
-    public $groupmode;
+    public ?int $groupmode;
 
-    /** @var int|null */
-    public $groupmodeforce;
+    public ?int $groupmodeforce;
 
-    /** @var int|null */
-    public $defaultgroupingid;
+    public ?int $defaultgroupingid;
 
-    /** @var int|null */
-    public $enablecompletion;
+    public ?int $enablecompletion;
 
-    /** @var int|null */
-    public $completionnotify;
+    public ?int $completionnotify;
 
-    /** @var string|null */
-    public $lang;
+    public ?string $lang;
 
-    /** @var string|null */
-    public $theme;
+    public ?string $theme;
 
-    /** @var int|null */
-    public $marker;
+    public ?int $marker;
 
-    /** @var int|null */
-    public $legacyfiles;
+    public ?int $legacyfiles;
 
-    /** @var string|null */
-    public $calendartype;
+    public ?string $calendartype;
 
-    /** @var int|null */
-    public $timecreated;
+    public ?int $timecreated;
 
-    /** @var int|null */
-    public $timemodified;
+    public ?int $timemodified;
 
-    /** @var int|null */
-    public $requested;
+    public ?int $requested;
 
-    /** @var int|null */
-    public $cacherev;
+    public ?int $cacherev;
 
-    /** @var array|null */
-    public $filters;
+    public ?array $filters;
 
-    /** @var mixed|null|array */
-    public $courseformatoptions;
+    public ?array $courseformatoptions;
 
-    public function fullname()
+    public function fullname(): string
     {
         return html_entity_decode($this->fullname);
     }

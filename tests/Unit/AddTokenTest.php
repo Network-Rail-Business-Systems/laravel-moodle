@@ -5,6 +5,7 @@ namespace NetworkRailBusinessSystems\LaravelMoodle\Tests\Unit;
 use NetworkRailBusinessSystems\LaravelMoodle\Exceptions\MoodleTokenMissingException;
 use NetworkRailBusinessSystems\LaravelMoodle\Facades\AddToken;
 use NetworkRailBusinessSystems\LaravelMoodle\Tests\TestCase;
+use PHPUnit\Framework\Attributes\DataProvider;
 
 class AddTokenTest extends TestCase
 {
@@ -15,7 +16,7 @@ class AddTokenTest extends TestCase
         session(['moodle-token' => 'ABC123']);
     }
 
-    public function test_no_moodle_token()
+    public function test_no_moodle_token(): void
     {
         session()->forget('moodle-token');
 
@@ -24,15 +25,13 @@ class AddTokenTest extends TestCase
         AddToken::toImage('test');
     }
 
-    /**
-     * @dataProvider images
-     */
-    public function test_add_token_to_images($content, $expected)
+    #[DataProvider('images')]
+    public function test_add_token_to_images($content, $expected): void
     {
         $this->assertEquals($expected, AddToken::toImages($content));
     }
 
-    public function images()
+    public static function images(): array
     {
         return [
             'jpg' => ['test.jpg', 'test.jpg?token=ABC123'],
@@ -42,7 +41,7 @@ class AddTokenTest extends TestCase
         ];
     }
 
-    public function test_add_token_to_url()
+    public function test_add_token_to_url(): void
     {
         $this->assertEquals(
             'http://moodle.test/download/spreadsheet.xlsx?token=ABC123',

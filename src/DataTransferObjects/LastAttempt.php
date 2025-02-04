@@ -6,45 +6,31 @@ use Spatie\DataTransferObject\FlexibleDataTransferObject;
 
 class LastAttempt extends FlexibleDataTransferObject
 {
-    /** @var null|\NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\Submission */
-    public $submission;
+    public ?Submission $submission;
 
-    /** @var null|\NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\Submission */
-    public $teamsubmission;
+    public ?Submission $teamsubmission;
 
-    /** @var null|int */
-    public $submissiongroup;
+    public ?int $submissiongroup;
 
-    /** @var array */
-    public $submissiongroupmemberswhoneedtosubmit;
+    public array $submissiongroupmemberswhoneedtosubmit;
 
-    /** @var int|bool */
-    public $submissionsenabled;
+    public bool $submissionsenabled;
 
-    /** @var int|bool */
-    public $locked;
+    public bool $locked;
 
-    /** @var int|bool */
-    public $graded;
+    public bool $graded;
 
-    /** @var int|bool */
-    public $canedit;
+    public bool $canedit;
 
-    /** @var int|bool */
-    public $caneditowner;
+    public bool $caneditowner;
 
-    /** @var int|bool */
-    public $cansubmit;
+    public bool $cansubmit;
 
-    /** @var null|int */
-    public $extensionduedate;
+    public ?int $extensionduedate;
 
-    /** @var int|bool */
-    public $blindmarking;
+    public bool $blindmarking;
 
-    /** @var string */
-    public $gradingstatus;
+    public string $gradingstatus;
 
-    /** @var array */
-    public $usergroups;
+    public array $usergroups;
 }

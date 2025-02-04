@@ -12,10 +12,21 @@ The package should auto register the service providers.
 
 ### Migrations
 
-The package includes a migration to make the password column nullable and adds a username field to the users table.
+Your User table should include the following columns:
 
-```bash
-php artisan migrate
+```php
+$table
+    ->string('password')
+    ->nullable();
+
+$table
+    ->string('username')
+    ->unique()
+    ->nullable();
+
+$table
+    ->unsignedBigInteger('moodle_id')
+    ->nullable();
 ```
 
 ### Configuration

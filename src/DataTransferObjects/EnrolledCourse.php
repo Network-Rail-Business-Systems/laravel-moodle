@@ -6,12 +6,9 @@ use Spatie\DataTransferObject\FlexibleDataTransferObject;
 
 class EnrolledCourse extends FlexibleDataTransferObject
 {
-    /** @var int */
-    public $id;
+    public int $id;
 
-    /** @var string */
-    public $fullname;
+    public string $fullname;
 
-    /** @var string */
-    public $shortname;
+    public string $shortname;
 }

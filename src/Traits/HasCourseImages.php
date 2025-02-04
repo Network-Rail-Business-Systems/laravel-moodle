@@ -2,12 +2,11 @@
 
 namespace NetworkRailBusinessSystems\LaravelMoodle\Traits;
 
+use Illuminate\Support\Collection;
+
 trait HasCourseImages
 {
-    /**
-     * @return \Illuminate\Support\Collection
-     */
-    public function getImages()
+    public function getImages(): Collection
     {
         $images = collect();
 
@@ -22,10 +21,7 @@ trait HasCourseImages
         return $images;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getImage()
+    public function getImage(): mixed
     {
         return $this->getImages()->first();
     }

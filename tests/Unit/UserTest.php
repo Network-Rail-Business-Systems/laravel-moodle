@@ -9,10 +9,10 @@ use NetworkRailBusinessSystems\LaravelMoodle\Tests\TestCase;
 
 class UserTest extends TestCase
 {
-    public function test_search_users()
+    public function test_search_users(): void
     {
         Http::fake([
-            '*' => Http::response(MockResponses::userSearch(), 200),
+            '*' => Http::response(MockResponses::userSearch()),
         ]);
 
         session(['moodle-token' => 'ABC123']);

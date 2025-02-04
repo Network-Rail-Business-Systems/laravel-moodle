@@ -13,7 +13,7 @@ class TestCase extends Orchestra
     {
         parent::setUp();
 
-        $this->loadLaravelMigrations();
+        $this->loadMigrationsFrom(__DIR__ . '/Migrations');
         $this->artisan('migrate')->run();
         $this->artisan('ui:controllers')->run();
 

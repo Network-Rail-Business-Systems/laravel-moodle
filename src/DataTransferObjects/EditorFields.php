@@ -6,15 +6,11 @@ use Spatie\DataTransferObject\FlexibleDataTransferObject;
 
 class EditorFields extends FlexibleDataTransferObject
 {
-    /** @var string */
-    public $name;
+    public string $name;
 
-    /** @var string */
-    public $description;
+    public string $description;
 
-    /** @var string */
-    public $text;
+    public string $text;
 
-    /** @var int */
-    public $format;
+    public int $format;
 }

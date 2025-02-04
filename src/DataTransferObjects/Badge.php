@@ -9,110 +9,75 @@ class Badge extends FlexibleDataTransferObject
 {
     use HasDates;
 
-    protected $dates = ['timecreated', 'timemodified', 'dateissued'];
+    protected array $dates = ['timecreated', 'timemodified', 'dateissued'];
 
-    /** @var int * */
-    public $id;
+    public int $id;
 
-    /** @var string * */
-    public $name;
+    public string $name;
 
-    /** @var string * */
-    public $description;
+    public string $description;
 
-    /** @var int * */
-    public $timecreated;
+    public int $timecreated;
 
-    /** @var int * */
-    public $timemodified;
+    public int $timemodified;
 
-    /** @var int|null * */
-    public $usercreated;
+    public ?int $usercreated;
 
-    /** @var int|null * */
-    public $usermodified;
+    public ?int $usermodified;
 
-    /** @var string * */
-    public $issuername;
+    public string $issuername;
 
-    /** @var mixed|null|string * */
-    public $issuerurl;
+    public string $issuerurl;
 
-    /** @var string * */
-    public $issuercontact;
+    public string $issuercontact;
 
-    /** @var mixed|null|string * */
-    public $expiredate;
+    public mixed $expiredate;
 
-    /** @var mixed|null|string * */
-    public $expireperiod;
+    public mixed $expireperiod;
 
-    /** @var int * */
-    public $type;
+    public int $type;
 
-    /** @var int|null * */
-    public $courseid;
+    public ?int $courseid;
 
-    /** @var string|null * */
-    public $message;
+    public ?string $message;
 
-    /** @var string|null * */
-    public $messagesubject;
+    public ?string $messagesubject;
 
-    /** @var int * */
-    public $attachment;
+    public int $attachment;
 
-    /** @var int * */
-    public $notification;
+    public int $notification;
 
-    /** @var mixed|null|string * */
-    public $nextcron;
+    public mixed $nextcron;
 
-    /** @var int * */
-    public $status;
+    public int $status;
 
-    /** @var int|null * */
-    public $issuedid;
+    public ?int $issuedid;
 
-    /** @var string * */
-    public $uniquehash;
+    public string $uniquehash;
 
-    /** @var int * */
-    public $dateissued;
+    public int $dateissued;
 
-    /** @var mixed|null|int * */
-    public $dateexpire;
+    public mixed $dateexpire;
 
-    /** @var int * */
-    public $visible;
+    public int $visible;
 
-    /** @var string|null * */
-    public $email;
+    public ?string $email;
 
-    /** @var string * */
-    public $version;
+    public string $version;
 
-    /** @var string * */
-    public $language;
+    public string $language;
 
-    /** @var string * */
-    public $imageauthorname;
+    public string $imageauthorname;
 
-    /** @var string * */
-    public $imageauthoremail;
+    public string $imageauthoremail;
 
-    /** @var string * */
-    public $imageauthorurl;
+    public string $imageauthorurl;
 
-    /** @var string * */
-    public $imagecaption;
+    public string $imagecaption;
 
-    /** @var string * */
-    public $badgeurl;
+    public string $badgeurl;
 
-    /** @var array * */
-    public $alignment;
+    public array $alignment;
 
-    /** @var mixed|null|array * */
-    public $relatedbadges;
+    public mixed $relatedbadges;
 }

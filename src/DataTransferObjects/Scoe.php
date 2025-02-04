@@ -6,36 +6,25 @@ use Spatie\DataTransferObject\FlexibleDataTransferObject;
 
 class Scoe extends FlexibleDataTransferObject
 {
-    /** @var int */
-    public $id;
+    public int $id;
 
-    /** @var int */
-    public $scorm;
+    public int $scorm;
 
-    /** @var string` */
-    public $manifest;
+    public string $manifest;
 
-    /** @var string */
-    public $organization;
+    public string $organization;
 
-    /** @var string */
-    public $parent;
+    public string $parent;
 
-    /** @var string */
-    public $identifier;
+    public string $identifier;
 
-    /** @var string */
-    public $launch;
+    public string $launch;
 
-    /** @var string */
-    public $scormtype;
+    public string $scormtype;
 
-    /** @var string */
-    public $title;
+    public string $title;
 
-    /** @var int */
-    public $sortorder;
+    public int $sortorder;
 
-    /** @var array|null */
-    public $extradata;
+    public ?array $extradata;
 }

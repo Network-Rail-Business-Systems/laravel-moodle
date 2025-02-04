@@ -6,9 +6,7 @@ use Spatie\DataTransferObject\FlexibleDataTransferObject;
 
 class CourseCompletion extends FlexibleDataTransferObject
 {
-    /** @var \NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\CompletionStatus */
-    public $completionstatus;
+    public CompletionStatus $completionstatus;
 
-    /** @var array */
-    public $warnings;
+    public array $warnings;
 }

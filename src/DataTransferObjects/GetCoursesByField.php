@@ -7,8 +7,8 @@ use Spatie\DataTransferObject\FlexibleDataTransferObject;
 class GetCoursesByField extends FlexibleDataTransferObject
 {
     /** @var \NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\Course[] */
-    public $courses;
+    public array $courses;
 
     /** @var array */
-    public $warnings;
+    public array $warnings;
 }

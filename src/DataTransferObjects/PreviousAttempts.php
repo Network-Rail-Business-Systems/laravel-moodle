@@ -6,13 +6,11 @@ use Spatie\DataTransferObject\FlexibleDataTransferObject;
 
 class PreviousAttempts extends FlexibleDataTransferObject
 {
-    /** @var int */
-    public $attemptnumber;
+    public int $attemptnumber;
 
-    /** @var \NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\Submission */
-    public $submission;
+    public Submission $submission;
 
-    public $grade;
+    public mixed $grade;
 
-    public $feedbackplugins;
+    public mixed $feedbackplugins;
 }

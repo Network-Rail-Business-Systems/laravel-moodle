@@ -6,66 +6,46 @@ use Spatie\DataTransferObject\FlexibleDataTransferObject;
 
 class Day extends FlexibleDataTransferObject
 {
-    /** @var int */
-    public $seconds;
+    public int $seconds;
 
-    /** @var int */
-    public $minutes;
+    public int $minutes;
 
-    /** @var int */
-    public $hours;
+    public int $hours;
 
-    /** @var int */
-    public $mday;
+    public int $mday;
 
-    /** @var int */
-    public $wday;
+    public int $wday;
 
-    /** @var int */
-    public $year;
+    public int $year;
 
-    /** @var int */
-    public $yday;
+    public int $yday;
 
-    /** @var bool */
-    public $istoday;
+    public bool $istoday;
 
-    /** @var bool */
-    public $isweekend;
+    public bool $isweekend;
 
-    /** @var int */
-    public $timestamp;
+    public int $timestamp;
 
-    /** @var int */
-    public $neweventtimestamp;
+    public int $neweventtimestamp;
 
-    /** @var string */
-    public $viewdaylink;
+    public string $viewdaylink;
 
-    /** @var null|string */
-    public $viewdaylinktitle;
+    public ?string $viewdaylinktitle;
 
     /** @var null|\NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\Event[] */
-    public $events;
+    public ?array $events;
 
-    /** @var bool */
-    public $hasevents;
+    public bool $hasevents;
 
-    /** @var array */
-    public $calendareventtypes;
+    public array $calendareventtypes;
 
-    /** @var int */
-    public $previousperiod;
+    public int $previousperiod;
 
-    /** @var int */
-    public $nextperiod;
+    public int $nextperiod;
 
-    /** @var string */
-    public $navigation;
+    public ?string $navigation;
 
-    /** @var bool */
-    public $haslastdayofevent;
+    public bool $haslastdayofevent;
 
-    /** @var string */
-    public $popovertitle;
+    public string $popovertitle;
 }

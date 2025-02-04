@@ -6,54 +6,39 @@ use Spatie\DataTransferObject\FlexibleDataTransferObject;
 
 class CourseEnrolledUser extends FlexibleDataTransferObject
 {
-    /** @var int * */
-    public $id;
+    public int $id;
 
-    /** @var string|null * */
-    public $username;
+    public ?string $username;
 
-    /** @var string|null * */
-    public $firstname;
+    public ?string $firstname;
 
-    /** @var string|null * */
-    public $lastname;
+    public ?string $lastname;
 
-    /** @var string */
-    public $fullname;
+    public string $fullname;
 
-    /** @var string * */
-    public $email;
+    public string $email;
 
-    /** @var string|null * */
-    public $department;
+    public ?string $department;
 
-    /** @var int * */
-    public $firstaccess;
+    public int $firstaccess;
 
-    /** @var int * */
-    public $lastaccess;
+    public int $lastaccess;
 
-    /** @var int */
-    public $lastcourseaccess;
+    public int $lastcourseaccess;
 
-    /** @var null|string * */
-    public $description;
+    public ?string $description;
 
-    /** @var null|int * */
-    public $descriptionformat;
+    public ?int $descriptionformat;
 
-    /** @var string * */
-    public $profileimageurlsmall;
+    public string $profileimageurlsmall;
 
-    /** @var string * */
-    public $profileimageurl;
+    public string $profileimageurl;
 
-    /** @var array|null */
-    public $groups;
+    public ?array $groups;
 
     /** @var \NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\Role[] */
-    public $roles;
+    public array $roles;
 
     /** @var \NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\EnrolledCourse[] */
-    public $enrolledcourses;
+    public array $enrolledcourses;
 }
