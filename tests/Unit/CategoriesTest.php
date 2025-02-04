@@ -4,8 +4,8 @@ namespace NetworkRailBusinessSystems\LaravelMoodle\Tests\Unit;
 
 use Illuminate\Support\Facades\Http;
 use NetworkRailBusinessSystems\LaravelMoodle\Facades\LaravelMoodle;
+use NetworkRailBusinessSystems\LaravelMoodle\Mocks\MockResponses;
 use NetworkRailBusinessSystems\LaravelMoodle\Support\Categories;
-use NetworkRailBusinessSystems\LaravelMoodle\Tests\Stubs\MockResponses;
 use NetworkRailBusinessSystems\LaravelMoodle\Tests\TestCase;
 
 class CategoriesTest extends TestCase

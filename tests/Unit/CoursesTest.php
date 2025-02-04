@@ -4,7 +4,7 @@ namespace NetworkRailBusinessSystems\LaravelMoodle\Tests\Unit;
 
 use Illuminate\Support\Facades\Http;
 use NetworkRailBusinessSystems\LaravelMoodle\Facades\LaravelMoodle;
-use NetworkRailBusinessSystems\LaravelMoodle\Tests\Stubs\MockResponses;
+use NetworkRailBusinessSystems\LaravelMoodle\Mocks\MockResponses;
 use NetworkRailBusinessSystems\LaravelMoodle\Tests\TestCase;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
@@ -26,7 +26,7 @@ class CoursesTest extends TestCase
         $data = LaravelMoodle::getCourses();
 
         $this->assertNotNull($data->courses);
-        $this->assertCount(1, $data->courses);
+        $this->assertCount(3, $data->courses);
         $this->assertEquals('My First Course', $data->courses[0]->fullname);
         $this->assertEquals('Intro Course', $data->courses[0]->shortname);
     }
@@ -52,7 +52,7 @@ class CoursesTest extends TestCase
         $data = LaravelMoodle::getCoursesByCategory(1);
 
         $this->assertNotNull($data->courses);
-        $this->assertCount(1, $data->courses);
+        $this->assertCount(3, $data->courses);
         $this->assertEquals('My First Course', $data->courses[0]->fullname);
         $this->assertEquals('Intro Course', $data->courses[0]->shortname);
     }
@@ -92,11 +92,11 @@ class CoursesTest extends TestCase
 
         $this->assertNotNull($contents);
         $this->assertCount(1, $contents);
-        $this->assertEquals('General', $contents[0]->name);
-        $this->assertEquals('Announcements', $contents[0]->modules[0]->name);
-        $this->assertTrue($contents[0]->modules[1]->hasPage());
-        $this->assertFalse($contents[0]->modules[1]->hasScorm());
-        $this->assertEquals(3, $contents[0]->modules[1]->getActivityId());
+        $this->assertEquals('Topic 1', $contents[0]->name);
+        $this->assertEquals('Example Page', $contents[0]->modules[0]->name);
+        $this->assertTrue($contents[0]->modules[0]->hasPage());
+        $this->assertFalse($contents[0]->modules[0]->hasScorm());
+        $this->assertEquals(1, $contents[0]->modules[0]->getActivityId());
     }
 
     public function test_search_courses()
@@ -108,7 +108,7 @@ class CoursesTest extends TestCase
         $searchResults = LaravelMoodle::searchCourses('my first course');
 
         $this->assertNotNull($searchResults);
-        $this->assertEquals(1, $searchResults->total);
+        $this->assertEquals(3, $searchResults->total);
         $this->assertEquals('My First Course', $searchResults->courses[0]->fullname);
         $this->assertEquals('Intro Course', $searchResults->courses[0]->shortname);
     }
@@ -170,7 +170,7 @@ class CoursesTest extends TestCase
             '*' => Http::response(MockResponses::getScorms(), 200),
         ]);
 
-        $scorm = LaravelMoodle::getCourseScorm(3, 17);
+        $scorm = LaravelMoodle::getCourseScorm(3, 2);
 
         $this->assertNotNull($scorm);
         $this->assertEquals('Example scorm', $scorm->name);

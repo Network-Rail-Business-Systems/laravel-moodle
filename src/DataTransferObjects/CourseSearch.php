@@ -11,5 +11,6 @@ class CourseSearch extends FlexibleDataTransferObject
     /** @var \NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\CourseSearchCourse[] */
     public array $courses;
 
+    /** @var \NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\Warning[] */
     public array $warnings;
 }

@@ -1,10 +1,10 @@
 <?php
 
-namespace NetworkRailBusinessSystems\LaravelMoodle\Tests\Stubs;
+namespace NetworkRailBusinessSystems\LaravelMoodle\Mocks;
 
 class CalendarResponses
 {
-    public static function calendarResponse()
+    public static function calendarResponse(): array
     {
         return [
             'url' => 'http://moodle.test/calendar',

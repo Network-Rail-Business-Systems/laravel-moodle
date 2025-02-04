@@ -9,5 +9,6 @@ class CourseActivityStatuses extends FlexibleDataTransferObject
     /** @var \NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\Statuses[] */
     public array $statuses;
 
+    /** @var \NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\Warning[] */
     public array $warnings;
 }

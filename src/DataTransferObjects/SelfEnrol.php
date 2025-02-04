@@ -8,5 +8,6 @@ class SelfEnrol extends FlexibleDataTransferObject
 {
     public bool $status;
 
+    /** @var \NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\Warning[] */
     public array $warnings;
 }

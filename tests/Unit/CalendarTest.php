@@ -4,7 +4,7 @@ namespace NetworkRailBusinessSystems\LaravelMoodle\Tests\Unit;
 
 use Illuminate\Support\Facades\Http;
 use NetworkRailBusinessSystems\LaravelMoodle\Facades\LaravelMoodle;
-use NetworkRailBusinessSystems\LaravelMoodle\Tests\Stubs\CalendarResponses;
+use NetworkRailBusinessSystems\LaravelMoodle\Mocks\CalendarResponses;
 use NetworkRailBusinessSystems\LaravelMoodle\Tests\TestCase;
 
 class CalendarTest extends TestCase
