@@ -15,7 +15,7 @@ class Category extends FlexibleDataTransferObject
 
     public string $name;
 
-    public mixed $idnumber;
+    public ?string $idnumber;
 
     public string $description;
 
