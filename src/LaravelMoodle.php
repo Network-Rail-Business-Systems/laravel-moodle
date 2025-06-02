@@ -534,9 +534,9 @@ class LaravelMoodle
             )
             ->json();
 
-        $category = new Collection($categories);
+        $categories = new Collection($categories);
 
-        return $category->map(function ($category) {
+        return $categories->map(function ($category) {
             return new Category($category);
         });
     }
@@ -558,9 +558,9 @@ class LaravelMoodle
             )
             ->json();
 
-        $category = new Collection($categories);
+        $categories = new Collection($categories);
 
-        return $category->map(function ($category) {
+        return $categories->map(function ($category) {
             return new Category($category);
         });
     }
