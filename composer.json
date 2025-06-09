@@ -10,15 +10,14 @@
     ],
     "require": {
         "php": "^8.3",
-        "doctrine/dbal": "^4",
         "spatie/data-transfer-object": "^2"
     },
     "require-dev": {
-        "laravel/framework": "^11",
-        "orchestra/testbench": "^9",
+        "laravel/framework": "^12",
+        "orchestra/testbench": "^10",
         "guzzlehttp/guzzle": "^7",
         "laravel/ui": "^4",
-        "hannesvdvreken/guzzle-debugbar": "^3",
+        "hannesvdvreken/guzzle-debugbar": "^4",
         "laravel/pint": "^1",
         "larastan/larastan": "^3"
     },
