@@ -35,7 +35,7 @@ class AssignmentTest extends TestCase
             '*' => Http::response(MockResponses::courseAssignments(), 200),
         ]);
 
-        $assignment = LaravelMoodle::getCourseAssignment(3, 16);
+        $assignment = LaravelMoodle::getCourseAssignment(3, 3);
 
         $this->assertNotNull($assignment);
         $this->assertEquals(3, $assignment->course);
