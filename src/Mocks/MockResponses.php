@@ -317,6 +317,25 @@ class MockResponses
                         'noviewlink' => false,
                         'completion' => 0,
                     ],
+                    [
+                        'id' => 5,
+                        'url' => 'http://moodle.test/mod/other/view.php?id=4',
+                        'name' => 'Example other',
+                        'instance' => 1,
+                        'visible' => 1,
+                        'uservisible' => true,
+                        'visibleoncoursepage' => 1,
+                        'modicon' => 'http://moodle.test/theme/image.php/boost/page/1592292950/icon',
+                        'modname' => 'other',
+                        'modplural' => 'Others',
+                        'availability' => null,
+                        'indent' => 0,
+                        'onclick' => '',
+                        'afterlink' => null,
+                        'customdata' => '""',
+                        'noviewlink' => false,
+                        'completion' => 0,
+                    ],
                 ],
             ],
         ];
@@ -564,7 +583,7 @@ class MockResponses
             'pages' => [
                 [
                     'id' => 1,
-                    'coursemodule' => 2,
+                    'coursemodule' => 1,
                     'course' => 2,
                     'name' => 'My First Page',
                     'intro' => '',
@@ -876,7 +895,7 @@ class MockResponses
                     'assignments' => [
                         [
                             'id' => 1,
-                            'cmid' => 16,
+                            'cmid' => 3,
                             'course' => 3,
                             'name' => 'Example course assignment',
                             'nosubmissions' => 0,

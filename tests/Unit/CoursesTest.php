@@ -144,7 +144,7 @@ class CoursesTest extends TestCase
             '*' => Http::response(MockResponses::coursePages(), 200),
         ]);
 
-        $page = LaravelMoodle::getCoursePage(2, 2);
+        $page = LaravelMoodle::getCoursePage(2, 1);
 
         $this->assertNotNull($page);
         $this->assertEquals('My First Page', $page->name);
