@@ -42,7 +42,7 @@ class Resource extends FlexibleDataTransferObject
 
     public int $section;
 
-    public int $visible;
+    public bool $visible;
 
     public int $groupmode;
 
