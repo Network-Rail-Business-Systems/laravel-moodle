@@ -10,7 +10,7 @@ use NetworkRailBusinessSystems\LaravelMoodle\Tests\TestCase;
 
 class CategoriesTest extends TestCase
 {
-    public function test_build_tree()
+    public function test_build_tree(): void
     {
         Http::fake([
             '*' => Http::response(MockResponses::categories()),

@@ -880,6 +880,22 @@ class MockResponses
                 'path' => '/1',
                 'theme' => '',
             ],
+            [
+                'id' => 4,
+                'name' => 'Should never be seen',
+                'idnumber' => null,
+                'description' => '',
+                'descriptionformat' => 1,
+                'parent' => 2,
+                'sortorder' => 10000,
+                'coursecount' => 1,
+                'visible' => 0,
+                'visibleold' => 0,
+                'timemodified' => 1589550212,
+                'depth' => 1,
+                'path' => '/1',
+                'theme' => '',
+            ],
         ];
     }
 
