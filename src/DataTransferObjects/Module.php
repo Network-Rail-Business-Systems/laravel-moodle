@@ -15,7 +15,7 @@ class Module extends FlexibleDataTransferObject
 
     public int $id;
 
-    public string $url;
+    public ?string $url;
 
     public string $name;
 
