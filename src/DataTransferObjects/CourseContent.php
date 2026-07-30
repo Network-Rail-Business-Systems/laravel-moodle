@@ -22,6 +22,6 @@ class CourseContent extends FlexibleDataTransferObject
 
     public bool $uservisible;
 
-    /** @var \NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\Module[] */
+    /** @var Module[] */
     public array $modules;
 }

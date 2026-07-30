@@ -6,9 +6,9 @@ use Spatie\DataTransferObject\FlexibleDataTransferObject;
 
 class CourseActivityStatuses extends FlexibleDataTransferObject
 {
-    /** @var \NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\Statuses[] */
+    /** @var Statuses[] */
     public array $statuses;
 
-    /** @var \NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\Warning[] */
+    /** @var Warning[] */
     public array $warnings;
 }

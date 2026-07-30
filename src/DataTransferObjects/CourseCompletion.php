@@ -8,6 +8,6 @@ class CourseCompletion extends FlexibleDataTransferObject
 {
     public CompletionStatus $completionstatus;
 
-    /** @var \NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\Warning[] */
+    /** @var Warning[] */
     public array $warnings;
 }

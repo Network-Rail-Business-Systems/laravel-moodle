@@ -32,7 +32,7 @@ class Day extends FlexibleDataTransferObject
 
     public ?string $viewdaylinktitle;
 
-    /** @var null|\NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\Event[] */
+    /** @var null|Event[] */
     public ?array $events;
 
     public bool $hasevents;

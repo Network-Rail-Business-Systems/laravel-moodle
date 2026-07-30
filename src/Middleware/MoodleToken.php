@@ -11,17 +11,17 @@ class MoodleToken
     public function handle(Request $request, Closure $next): mixed
     {
         // TODO FOR ENTRA TO CAHNGE
-//        if (! session()->has('moodle-token')) {
-//            auth()->logout();
-//
-//            return redirect('login');
-//        }
+        //        if (! session()->has('moodle-token')) {
+        //            auth()->logout();
+        //
+        //            return redirect('login');
+        //        }
 
         // TODO FOR TEST USER CREATION
         $user = $request->user();
 
         if ($user !== null && $user->moodle_id === null) {
-            $provider = new MoodleUserProvider();
+            $provider = new MoodleUserProvider;
             $provider->syncUser($user);
         }
 

@@ -10,6 +10,6 @@ class CompletionStatus extends FlexibleDataTransferObject
 
     public int $aggregation;
 
-    /** @var \NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\Completion[] */
+    /** @var Completion[] */
     public array $completions;
 }

@@ -6,9 +6,9 @@ use Spatie\DataTransferObject\FlexibleDataTransferObject;
 
 class GetBadges extends FlexibleDataTransferObject
 {
-    /** @var \NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\Badge[] */
+    /** @var Badge[] */
     public array $badges;
 
-    /** @var \NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\Warning[] */
+    /** @var Warning[] */
     public array $warnings;
 }

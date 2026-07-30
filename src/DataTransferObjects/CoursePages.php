@@ -6,9 +6,9 @@ use Spatie\DataTransferObject\FlexibleDataTransferObject;
 
 class CoursePages extends FlexibleDataTransferObject
 {
-    /** @var \NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\Page[] */
+    /** @var Page[] */
     public array $pages;
 
-    /** @var \NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\Warning[] */
+    /** @var Warning[] */
     public array $warnings;
 }

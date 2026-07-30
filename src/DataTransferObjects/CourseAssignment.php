@@ -14,6 +14,6 @@ class CourseAssignment extends FlexibleDataTransferObject
 
     public int $timemodified;
 
-    /** @var \NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\Assignment[] */
+    /** @var Assignment[] */
     public array $assignments;
 }

@@ -9,7 +9,7 @@ use NetworkRailBusinessSystems\LaravelMoodle\Tests\TestCase;
 
 class CalendarTest extends TestCase
 {
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
 

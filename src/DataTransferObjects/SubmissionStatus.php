@@ -12,9 +12,9 @@ class SubmissionStatus extends FlexibleDataTransferObject
 
     public ?array $feedback;
 
-    /** @var null|\NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\PreviousAttempts[] */
+    /** @var null|PreviousAttempts[] */
     public ?array $previousattempts;
 
-    /** @var \NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\Warning[] */
+    /** @var Warning[] */
     public array $warnings;
 }

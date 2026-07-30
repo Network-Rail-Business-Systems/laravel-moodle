@@ -11,7 +11,7 @@ class AddToken
     public function __construct()
     {
         if (session()->has('moodle-token') === false) {
-            throw new MoodleTokenMissingException();
+            throw new MoodleTokenMissingException;
         }
     }
 

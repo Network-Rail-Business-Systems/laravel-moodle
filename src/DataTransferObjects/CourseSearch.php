@@ -8,9 +8,9 @@ class CourseSearch extends FlexibleDataTransferObject
 {
     public int $total;
 
-    /** @var \NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\CourseSearchCourse[] */
+    /** @var CourseSearchCourse[] */
     public array $courses;
 
-    /** @var \NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\Warning[] */
+    /** @var Warning[] */
     public array $warnings;
 }

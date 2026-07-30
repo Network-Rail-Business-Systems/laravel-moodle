@@ -9,7 +9,7 @@ class AuthServiceProvider extends \Illuminate\Foundation\Support\Providers\AuthS
     public function boot(): void
     {
         Auth::provider('moodle', function ($app, array $config) {
-            return new MoodleUserProvider();
+            return new MoodleUserProvider;
         });
     }
 }

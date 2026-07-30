@@ -8,6 +8,6 @@ class CourseModuleById extends FlexibleDataTransferObject
 {
     public CourseModule $cm;
 
-    /** @var \NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\Warning[] */
+    /** @var Warning[] */
     public array $warnings;
 }

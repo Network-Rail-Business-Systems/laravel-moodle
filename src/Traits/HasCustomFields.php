@@ -13,10 +13,11 @@ trait HasCustomFields
     {
         if ($this->customfields !== null) {
             $customFields = new Collection($this->customfields);
+
             return $customFields->pluck('value', 'shortname');
         }
 
-        return new Collection();
+        return new Collection;
     }
 
     public function getCustomField(string $shortname): ?string

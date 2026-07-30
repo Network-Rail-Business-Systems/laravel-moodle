@@ -2,7 +2,9 @@
 
 namespace NetworkRailBusinessSystems\LaravelMoodle\Facades;
 
-class AddToken extends \Illuminate\Support\Facades\Facade
+use Illuminate\Support\Facades\Facade;
+
+class AddToken extends Facade
 {
     /**
      * {@inheritDoc}

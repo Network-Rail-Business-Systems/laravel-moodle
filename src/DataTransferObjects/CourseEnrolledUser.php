@@ -36,9 +36,9 @@ class CourseEnrolledUser extends FlexibleDataTransferObject
 
     public ?array $groups;
 
-    /** @var \NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\Role[] */
+    /** @var Role[] */
     public array $roles;
 
-    /** @var \NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\EnrolledCourse[] */
+    /** @var EnrolledCourse[] */
     public array $enrolledcourses;
 }
