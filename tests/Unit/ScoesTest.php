@@ -8,7 +8,7 @@ use NetworkRailBusinessSystems\LaravelMoodle\Tests\TestCase;
 
 class ScoesTest extends TestCase
 {
-    protected function setUp(): void
+    public function setUp(): void
     {
         parent::setUp();
 

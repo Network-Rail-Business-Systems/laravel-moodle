@@ -6,10 +6,10 @@ use Spatie\DataTransferObject\FlexibleDataTransferObject;
 
 class GetScoes extends FlexibleDataTransferObject
 {
-    /** @var Scoe[] */
+    /** @var \NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\Scoe[] */
     public array $scoes;
 
-    /** @var Warning[] */
+    /** @var \NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\Warning[] */
     public array $warnings;
 
     public function getSco(): Scoe

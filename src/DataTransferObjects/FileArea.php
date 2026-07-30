@@ -8,6 +8,6 @@ class FileArea extends FlexibleDataTransferObject
 {
     public string $area;
 
-    /** @var FileObject[] */
+    /** @var \NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\FileObject[] */
     public array $files;
 }

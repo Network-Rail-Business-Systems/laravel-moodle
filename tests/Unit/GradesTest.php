@@ -9,7 +9,7 @@ use NetworkRailBusinessSystems\LaravelMoodle\Tests\TestCase;
 
 class GradesTest extends TestCase
 {
-    protected function setUp(): void
+    public function setUp(): void
     {
         parent::setUp();
 

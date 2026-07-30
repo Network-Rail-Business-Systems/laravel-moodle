@@ -18,10 +18,10 @@ class Resource extends FlexibleDataTransferObject
 
     public int $introformat;
 
-    /** @var FileObject[] */
+    /** @var \NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\FileObject[] */
     public array $introfiles;
 
-    /** @var FileObject[] */
+    /** @var \NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\FileObject[] */
     public array $contentfiles;
 
     public int $tobemigrated;

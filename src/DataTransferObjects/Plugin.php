@@ -10,9 +10,9 @@ class Plugin extends FlexibleDataTransferObject
 
     public string $name;
 
-    /** @var FileArea[]|null */
+    /** @var \NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\FileArea[]|null */
     public ?array $fileareas;
 
-    /** @var EditorFields[]|null */
+    /** @var \NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\EditorFields[]|null */
     public ?array $editorfields;
 }

@@ -1,7 +1,5 @@
 <?php
 
-use App\Models\User;
-
 return [
     /**
      * The base url of your moodle installation,
@@ -32,7 +30,7 @@ return [
     /**
      * The user model in your app
      */
-    'user_model' => User::class,
+    'user_model' => \App\Models\User::class,
 
     /**
      * The default ID of student.

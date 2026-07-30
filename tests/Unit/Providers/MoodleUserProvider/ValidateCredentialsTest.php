@@ -19,7 +19,7 @@ class ValidateCredentialsTest extends TestCase
 
     protected User $user;
 
-    protected function setUp(): void
+    public function setUp(): void
     {
         parent::setUp();
 
@@ -30,14 +30,14 @@ class ValidateCredentialsTest extends TestCase
         ]);
     }
 
-    public function test_true_on_success(): void
+    public function testTrueOnSuccess(): void
     {
         $this->assertTrue(
             $this->makeCheck(MockResponses::loginSuccess())
         );
     }
 
-    public function test_false_on_failure(): void
+    public function testFalseOnFailure(): void
     {
         $this->assertFalse(
             $this->makeCheck(MockResponses::loginFailure())
@@ -51,7 +51,7 @@ class ValidateCredentialsTest extends TestCase
             'http://moodle.test/webservice/*' => Http::response(MockResponses::userSearch()),
         ]);
 
-        $this->provider = new MoodleUserProvider;
+        $this->provider = new MoodleUserProvider();
 
         return $this->provider->validateCredentials($this->user, $this->credentials);
     }

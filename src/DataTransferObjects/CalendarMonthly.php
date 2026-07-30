@@ -14,10 +14,10 @@ class CalendarMonthly extends FlexibleDataTransferObject
 
     public string $filter_selector;
 
-    /** @var Week[] */
+    /** @var \NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\Week[] */
     public array $weeks;
 
-    /** @var DayNames[] */
+    /** @var \NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\DayNames[] */
     public array $daynames;
 
     public string $view;

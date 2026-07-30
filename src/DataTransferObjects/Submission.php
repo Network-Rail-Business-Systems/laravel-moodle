@@ -24,7 +24,7 @@ class Submission extends FlexibleDataTransferObject
 
     public int $latest;
 
-    /** @var Plugin[] */
+    /** @var \NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\Plugin[] */
     public array $plugins;
 
     public ?string $gradingstatus;

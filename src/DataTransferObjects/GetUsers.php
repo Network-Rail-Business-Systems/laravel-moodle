@@ -6,9 +6,9 @@ use Spatie\DataTransferObject\FlexibleDataTransferObject;
 
 class GetUsers extends FlexibleDataTransferObject
 {
-    /** @var User[] */
+    /** @var \NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\User[] */
     public array $users;
 
-    /** @var Warning[] */
+    /** @var \NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\Warning[] */
     public array $warnings;
 }

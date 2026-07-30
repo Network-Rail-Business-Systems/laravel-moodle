@@ -14,7 +14,7 @@ class SyncUserTest extends TestCase
 
     protected User $user;
 
-    protected function setUp(): void
+    public function setUp(): void
     {
         parent::setUp();
 
@@ -26,11 +26,11 @@ class SyncUserTest extends TestCase
             'username' => 'testuser',
         ]);
 
-        $this->provider = new MoodleUserProvider;
+        $this->provider = new MoodleUserProvider();
         $this->provider->syncUser($this->user);
     }
 
-    public function test_syncs_details(): void
+    public function testSyncsDetails(): void
     {
         $this->assertDatabaseHas('users', [
             'email' => 'test.user@fake.email',

@@ -29,17 +29,17 @@ class CourseSearchCourse extends FlexibleDataTransferObject
 
     public int $summaryformat;
 
-    /** @var FileObject[] */
+    /** @var \NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\FileObject[] */
     public array $summaryfiles;
 
-    /** @var FileObject[] */
+    /** @var \NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\FileObject[] */
     public array $overviewfiles;
 
     public array $contacts;
 
     public array $enrollmentmethods;
 
-    /** @var CustomField[]|null */
+    /** @var \NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\CustomField[]|null */
     public ?array $customfields;
 
     public ?bool $completed = null;

@@ -119,7 +119,7 @@ class MoodleUserProvider implements UserProvider
 
         if ($response->successful() === false || isset($data['exception']) === true) {
             throw new MoodleException(
-                $data['message'] ?? 'Unable to search Moodle users: '.$response->body()
+                $data['message'] ?? 'Unable to search Moodle users: ' . $response->body()
             );
         }
 
@@ -153,7 +153,7 @@ class MoodleUserProvider implements UserProvider
 
         $data = $response->json();
 
-        if ($response->successful() === false || isset($data['exception']) === true) {
+        if ($response->successful() === false  || isset($data['exception']) === true) {
             throw new MoodleException(
                 $data['message'] ?? 'Unable to create Moodle user: '.$response->body()
             );
@@ -161,7 +161,7 @@ class MoodleUserProvider implements UserProvider
 
         if (isset($data[0]['id']) === false) {
             throw new MoodleException(
-                $data['message'] ?? 'Moodle did not return a user ID: '.$response->body()
+                $data['message'] ?? 'Moodle did not return a user ID: ' . $response->body()
             );
         }
 
@@ -196,7 +196,7 @@ class MoodleUserProvider implements UserProvider
 
         if ($response->successful() === false || isset($data['exception']) === true) {
             throw new MoodleException(
-                $data['message'] ?? 'Unable to update Moodle user: '.$response->body()
+                $data['message'] ?? 'Unable to update Moodle user: ' . $response->body()
             );
         }
     }

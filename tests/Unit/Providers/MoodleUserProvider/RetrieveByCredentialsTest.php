@@ -11,14 +11,14 @@ class RetrieveByCredentialsTest extends TestCase
 {
     protected MoodleUserProvider $provider;
 
-    protected function setUp(): void
+    public function setUp(): void
     {
         parent::setUp();
 
-        $this->userProvider = new MoodleUserProvider;
+        $this->userProvider = new MoodleUserProvider();
     }
 
-    public function test_finds_existing(): void
+    public function testFindsExisting(): void
     {
         User::create([
             'email' => 'test.user@fake.email',
@@ -31,7 +31,7 @@ class RetrieveByCredentialsTest extends TestCase
         );
     }
 
-    public function test_makes_new(): void
+    public function testMakesNew(): void
     {
         $this->assertFalse(
             $this->retrieve()->exists

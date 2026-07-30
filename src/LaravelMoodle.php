@@ -42,12 +42,12 @@ class LaravelMoodle
     public function __construct()
     {
         // TODO UPDATE WHEN MOODLE SYNC
-        //        if (session()->has('moodle-token') === false) {
-        //             throw new MoodleTokenMissingException;
-        //        }
-        //
-        //        $this->token = session('moodle-token');
-        //
+//        if (session()->has('moodle-token') === false) {
+//             throw new MoodleTokenMissingException;
+//        }
+//
+//        $this->token = session('moodle-token');
+//
 
         $token = config('laravel-moodle.admin_token');
 
@@ -73,7 +73,6 @@ class LaravelMoodle
             );
         }
     }
-
     public function getCourses(string $term = '', string $field = ''): GetCoursesByField
     {
         $courses = $this->http

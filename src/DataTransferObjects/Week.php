@@ -10,6 +10,6 @@ class Week extends FlexibleDataTransferObject
 
     public array $postpadding;
 
-    /** @var Day[] */
+    /** @var \NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\Day[] */
     public array $days;
 }

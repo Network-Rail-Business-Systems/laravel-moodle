@@ -62,16 +62,16 @@ class Assignment extends FlexibleDataTransferObject
 
     public int $preventsubmissionnotingroup;
 
-    /** @var AssignmentConfig[] */
+    /** @var \NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\AssignmentConfig[] */
     public array $configs;
 
     public string $intro;
 
     public int $introformat;
 
-    /** @var FileObject[] */
+    /** @var \NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\FileObject[] */
     public array $introfiles;
 
-    /** @var FileObject[] */
+    /** @var \NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\FileObject[] */
     public array $introattachments;
 }

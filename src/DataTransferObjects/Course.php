@@ -35,17 +35,17 @@ class Course extends FlexibleDataTransferObject
 
     public int $summaryformat;
 
-    /** @var FileObject[] */
+    /** @var \NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\FileObject[] */
     public array $summaryfiles;
 
-    /** @var FileObject[] */
+    /** @var \NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\FileObject[] */
     public array $overviewfiles;
 
     public array $contacts;
 
     public array $enrollmentmethods;
 
-    /** @var CustomField[] */
+    /** @var \NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\CustomField[] */
     public array $customfields;
 
     public ?string $idnumber;

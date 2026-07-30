@@ -23,7 +23,7 @@ class Scorm extends FlexibleDataTransferObject
 
     public int $introformat;
 
-    /** @var FileObject[] */
+    /** @var \NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\FileObject[] */
     public array $introfiles;
 
     public int $packagesize;

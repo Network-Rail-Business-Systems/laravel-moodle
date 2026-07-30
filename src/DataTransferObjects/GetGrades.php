@@ -6,9 +6,9 @@ use Spatie\DataTransferObject\FlexibleDataTransferObject;
 
 class GetGrades extends FlexibleDataTransferObject
 {
-    /** @var null|Grade[] */
+    /** @var null|\NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\Grade[] */
     public ?array $grades;
 
-    /** @var null|Warning[] */
+    /** @var null|\NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\Warning[] */
     public ?array $warnings;
 }
