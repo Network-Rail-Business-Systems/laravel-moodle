@@ -41,11 +41,23 @@ class LaravelMoodle
 
     public function __construct()
     {
-        if (session()->has('moodle-token') === false) {
-            throw new MoodleTokenMissingException;
+        // TODO UPDATE WHEN MOODLE SYNC
+//        if (session()->has('moodle-token') === false) {
+//             throw new MoodleTokenMissingException;
+//        }
+//
+//        $this->token = session('moodle-token');
+//
+
+        $token = config('laravel-moodle.admin_token');
+
+        if (blank($token) === true) {
+            throw new MoodleTokenMissingException(
+                'The Moodle admin token is not configured.'
+            );
         }
 
-        $this->token = session('moodle-token');
+        $this->token = $token;
 
         $this->http = Http::withOptions([
             'base_uri' => config('laravel-moodle.base_url'),
@@ -53,10 +65,14 @@ class LaravelMoodle
 
         if (config('laravel-moodle.debug')) {
             $debugbar = App::make('debugbar');
-            $this->http->withMiddleware(new Middleware(new Profiler($debugbar->getCollector('time'))));
+
+            $this->http->withMiddleware(
+                new Middleware(
+                    new Profiler($debugbar->getCollector('time'))
+                )
+            );
         }
     }
-
     public function getCourses(string $term = '', string $field = ''): GetCoursesByField
     {
         $courses = $this->http

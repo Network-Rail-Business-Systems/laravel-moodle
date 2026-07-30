@@ -6,8 +6,8 @@ use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Contracts\Auth\UserProvider;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Client\PendingRequest;
-use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Http;
+use NetworkRailBusinessSystems\LaravelMoodle\Exceptions\MoodleException;
 
 class MoodleUserProvider implements UserProvider
 {
@@ -72,29 +72,133 @@ class MoodleUserProvider implements UserProvider
         return false;
     }
 
-    public function syncUser(Authenticatable|Model $user, string $userKey = 'username', string $moodleKey = null): void
-    {
-        $data = $this->http
-            ->asForm()
-            ->post(
-                "/webservice/rest/server.php?wstoken={$this->adminToken}&wsfunction=core_user_get_users&moodlewsrestformat=json",
-                [
-                    'criteria' => [
-                        [
-                            'key' => $moodleKey ?? config('laravel-moodle.login_attribute'),
-                            'value' => $user->$userKey,
-                        ],
-                    ],
-                ]
-            )
-            ->json()['users'][0];
+    public function syncUser(
+        Authenticatable|Model $user,
+        string $userKey = 'email',
+        ?string $moodleKey = 'email'
+    ): int {
+        $moodleUser = $this->findMoodleUser(
+            $moodleKey,
+            $user->{$userKey}
+        );
 
-        $config = new Collection(config('laravel-moodle.sync_attributes'));
-        $config->each(function ($item, $key) use ($data, $user) {
-            $user->$key = $data[$item] ?? null;
-        });
+        if ($moodleUser === null) {
+            $moodleUserId = $this->createMoodleUser($user);
+        } else {
+            $moodleUserId = (int) $moodleUser['id'];
 
+            $this->updateMoodleUser(
+                $moodleUserId,
+                $user
+            );
+        }
+
+        $user->moodle_id = $moodleUserId;
         $user->save();
+
+        return $moodleUserId;
+    }
+
+    private function findMoodleUser(string $key, string $value): ?array
+    {
+        $response = $this->http
+            ->asForm()
+            ->post('/webservice/rest/server.php', [
+                'wstoken' => $this->adminToken,
+                'wsfunction' => 'core_user_get_users',
+                'moodlewsrestformat' => 'json',
+                'criteria' => [
+                    [
+                        'key' => $key,
+                        'value' => $value,
+                    ],
+                ],
+            ]);
+
+        $data = $response->json();
+
+        if ($response->successful() === false || isset($data['exception']) === true) {
+            throw new MoodleException(
+                $data['message'] ?? 'Unable to search Moodle users: ' . $response->body()
+            );
+        }
+
+        return $data['users'][0] ?? null;
+    }
+
+    private function createMoodleUser(Authenticatable|Model $user): int
+    {
+        $response = $this->http
+            ->asForm()
+            ->post('/webservice/rest/server.php', [
+                'wstoken' => $this->adminToken,
+                'wsfunction' => 'core_user_create_users',
+                'moodlewsrestformat' => 'json',
+                'users' => [
+                    [
+                        'auth' => 'manual',
+                        'address' => $user->address,
+                        'city' => $user->location,
+                        'department' => $user->business_area,
+                        'description' => $user->title,
+                        'email' => $user->email,
+                        'firstname' => $user->first_name,
+                        'institution' => $user->office,
+                        'lastname' => $user->last_name,
+                        'password' => 'A1!'.bin2hex(random_bytes(8)),
+                        'username' => strtolower($user->username),
+                    ],
+                ],
+            ]);
+
+        $data = $response->json();
+
+        if ($response->successful() === false  || isset($data['exception']) === true) {
+            throw new MoodleException(
+                $data['message'] ?? 'Unable to create Moodle user: '.$response->body()
+            );
+        }
+
+        if (isset($data[0]['id']) === false) {
+            throw new MoodleException(
+                $data['message'] ?? 'Moodle did not return a user ID: ' . $response->body()
+            );
+        }
+
+        return (int) $data[0]['id'];
+    }
+
+    private function updateMoodleUser(int $moodleUserId, Model $user): void
+    {
+        $response = $this->http
+            ->asForm()
+            ->post('/webservice/rest/server.php', [
+                'wstoken' => $this->adminToken,
+                'wsfunction' => 'core_user_update_users',
+                'moodlewsrestformat' => 'json',
+
+                'users' => [
+                    [
+                        'id' => $moodleUserId,
+                        'address' => $user->address,
+                        'city' => $user->location,
+                        'department' => $user->business_area,
+                        'description' => $user->title,
+                        'email' => $user->email,
+                        'firstname' => $user->first_name,
+                        'institution' => $user->office,
+                        'lastname' => $user->last_name,
+                    ],
+                ],
+            ]);
+
+        $data = $response->json();
+
+        if ($response->successful() === false || isset($data['exception']) === true) {
+            throw new MoodleException(
+                $data['message'] ?? 'Unable to update Moodle user: ' . $response->body()
+            );
+        }
     }
 
     public function rehashPasswordIfRequired(Authenticatable $user, array $credentials, bool $force = false): void
