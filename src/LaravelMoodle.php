@@ -37,18 +37,10 @@ class LaravelMoodle
 {
     private PendingRequest $http;
 
-    private string $token;
+    private string $adminToken;
 
     public function __construct()
     {
-        // TODO UPDATE WHEN MOODLE SYNC
-//        if (session()->has('moodle-token') === false) {
-//             throw new MoodleTokenMissingException;
-//        }
-//
-//        $this->token = session('moodle-token');
-//
-
         $token = config('laravel-moodle.admin_token');
 
         if (blank($token) === true) {
@@ -57,7 +49,7 @@ class LaravelMoodle
             );
         }
 
-        $this->token = $token;
+        $this->adminToken = $token;
 
         $this->http = Http::withOptions([
             'base_uri' => config('laravel-moodle.base_url'),
@@ -78,13 +70,22 @@ class LaravelMoodle
         $courses = $this->http
             ->asForm()
             ->post(
-                "/webservice/rest/server.php?wstoken={$this->token}&moodlewsrestformat=json&wsfunction=core_course_get_courses_by_field",
+                "/webservice/rest/server.php?wstoken={$this->adminToken}&moodlewsrestformat=json&wsfunction=core_course_get_courses_by_field",
                 [
                     'field' => $field,
                     'value' => $term,
                 ]
             )
             ->json();
+
+        $courses['courses'] = array_map(
+            static function (array $course): array {
+                $course['customfields'] = $course['customfields'] ?? [];
+
+                return $course;
+            },
+            $courses['courses'] ?? []
+        );
 
         return new GetCoursesByField($courses);
     }
@@ -94,7 +95,7 @@ class LaravelMoodle
         $courses = $this->http
             ->asForm()
             ->post(
-                "/webservice/rest/server.php?wstoken={$this->token}&wsfunction=core_course_get_courses_by_field&moodlewsrestformat=json",
+                "/webservice/rest/server.php?wstoken={$this->adminToken}&wsfunction=core_course_get_courses_by_field&moodlewsrestformat=json",
                 [
                     'field' => 'category',
                     'value' => $categoryId,
@@ -110,7 +111,7 @@ class LaravelMoodle
         $courses = $this->http
             ->asForm()
             ->post(
-                "/webservice/rest/server.php?wstoken={$this->token}&wsfunction=core_course_get_courses_by_field&moodlewsrestformat=json",
+                "/webservice/rest/server.php?wstoken={$this->adminToken}&wsfunction=core_course_get_courses_by_field&moodlewsrestformat=json",
                 [
                     'field' => 'id',
                     'value' => $id,
@@ -120,7 +121,11 @@ class LaravelMoodle
 
         abort_if(empty($courses['courses']) === true, 404, 'Course not found');
 
-        return new Course($courses['courses'][0]);
+        $course = $courses['courses'][0];
+
+        $course['customfields'] = $course['customfields'] ?? [];
+
+        return new Course($course);
     }
 
     public function searchCourses(string $term, int $page = 0, int $perPage = 15, int $onlyEnrolled = 0): CourseSearch
@@ -128,7 +133,7 @@ class LaravelMoodle
         $courses = $this->http
             ->asForm()
             ->post(
-                "/webservice/rest/server.php?wstoken={$this->token}&moodlewsrestformat=json&wsfunction=core_course_search_courses",
+                "/webservice/rest/server.php?wstoken={$this->adminToken}&moodlewsrestformat=json&wsfunction=core_course_search_courses",
                 [
                     'criterianame' => 'search',
                     'criteriavalue' => $term,
@@ -150,7 +155,7 @@ class LaravelMoodle
     {
         $courseContents = $this->http
             ->get(
-                "/webservice/rest/server.php?wstoken={$this->token}&moodlewsrestformat=json&wsfunction=core_course_get_contents&courseid={$id}"
+                "/webservice/rest/server.php?wstoken={$this->adminToken}&moodlewsrestformat=json&wsfunction=core_course_get_contents&courseid={$id}"
             )
             ->json();
 
@@ -181,7 +186,7 @@ class LaravelMoodle
         $pages = $this->http
             ->asForm()
             ->post(
-                "/webservice/rest/server.php?wstoken={$this->token}&moodlewsrestformat=json&wsfunction=mod_page_get_pages_by_courses",
+                "/webservice/rest/server.php?wstoken={$this->adminToken}&moodlewsrestformat=json&wsfunction=mod_page_get_pages_by_courses",
                 [
                     'courseids' => [$courseId],
                 ]
@@ -205,7 +210,7 @@ class LaravelMoodle
         $scorms = $this->http
             ->asForm()
             ->post(
-                "/webservice/rest/server.php?wstoken={$this->token}&moodlewsrestformat=json&wsfunction=mod_scorm_get_scorms_by_courses",
+                "/webservice/rest/server.php?wstoken={$this->adminToken}&moodlewsrestformat=json&wsfunction=mod_scorm_get_scorms_by_courses",
                 [
                     'courseids' => [$courseId],
                 ]
@@ -229,7 +234,7 @@ class LaravelMoodle
         $scoes = $this->http
             ->asForm()
             ->post(
-                "/webservice/rest/server.php?wstoken={$this->token}&moodlewsrestformat=json&wsfunction=mod_scorm_get_scorm_scoes",
+                "/webservice/rest/server.php?wstoken={$this->adminToken}&moodlewsrestformat=json&wsfunction=mod_scorm_get_scorm_scoes",
                 [
                     'scormid' => $scormId,
                 ]
@@ -244,7 +249,7 @@ class LaravelMoodle
         $resources = $this->http
             ->asForm()
             ->post(
-                "/webservice/rest/server.php?wstoken={$this->token}&moodlewsrestformat=json&wsfunction=mod_resource_get_resources_by_courses",
+                "/webservice/rest/server.php?wstoken={$this->adminToken}&moodlewsrestformat=json&wsfunction=mod_resource_get_resources_by_courses",
                 [
                     'courseids' => [$courseId],
                 ]
@@ -268,7 +273,7 @@ class LaravelMoodle
         $completion = $this->http
             ->asForm()
             ->post(
-                "/webservice/rest/server.php?wstoken={$this->token}&moodlewsrestformat=json&wsfunction=core_completion_get_course_completion_status",
+                "/webservice/rest/server.php?wstoken={$this->adminToken}&moodlewsrestformat=json&wsfunction=core_completion_get_course_completion_status",
                 [
                     'courseid' => $courseId,
                     'userid' => $userId,
@@ -288,7 +293,7 @@ class LaravelMoodle
         $completion = $this->http
             ->asForm()
             ->post(
-                "/webservice/rest/server.php?wstoken={$this->token}&moodlewsrestformat=json&wsfunction=core_completion_get_activities_completion_status",
+                "/webservice/rest/server.php?wstoken={$this->adminToken}&moodlewsrestformat=json&wsfunction=core_completion_get_activities_completion_status",
                 [
                     'courseid' => $courseId,
                     'userid' => $userId,
@@ -308,7 +313,7 @@ class LaravelMoodle
         $assignments = $this->http
             ->asForm()
             ->post(
-                "/webservice/rest/server.php?wstoken={$this->token}&moodlewsrestformat=json&wsfunction=mod_assign_get_assignments",
+                "/webservice/rest/server.php?wstoken={$this->adminToken}&moodlewsrestformat=json&wsfunction=mod_assign_get_assignments",
                 [
                     'courseids' => [$courseId],
                 ]
@@ -334,7 +339,7 @@ class LaravelMoodle
         $submissionStatus = $this->http
             ->asForm()
             ->post(
-                "/webservice/rest/server.php?wstoken={$this->token}&moodlewsrestformat=json&wsfunction=mod_assign_get_submission_status",
+                "/webservice/rest/server.php?wstoken={$this->adminToken}&moodlewsrestformat=json&wsfunction=mod_assign_get_submission_status",
                 [
                     'assignid' => $assignmentId,
                     'userid' => $userId,
@@ -350,7 +355,7 @@ class LaravelMoodle
         $assignment = $this->http
             ->asForm()
             ->post(
-                "/webservice/rest/server.php?wstoken={$this->token}&moodlewsrestformat=json&wsfunction=mod_assign_save_submission",
+                "/webservice/rest/server.php?wstoken={$this->adminToken}&moodlewsrestformat=json&wsfunction=mod_assign_save_submission",
                 [
                     'assignmentid' => $assignmentId,
                     'plugindata' => [
@@ -384,7 +389,7 @@ class LaravelMoodle
         $grades = $this->http
             ->asForm()
             ->post(
-                "/webservice/rest/server.php?wstoken={$this->token}&moodlewsrestformat=json&wsfunction=gradereport_overview_get_course_grades",
+                "/webservice/rest/server.php?wstoken={$this->adminToken}&moodlewsrestformat=json&wsfunction=gradereport_overview_get_course_grades",
                 [
                     'userid' => $userId,
                 ]
@@ -396,18 +401,15 @@ class LaravelMoodle
 
     public function getCourseGrade(int $courseId, int $userId = 0): mixed
     {
-        return collect($this->getUserGrades($userId)->grades)
-            ->where('courseid', '=', $courseId)
-            ->whenEmpty(function ($collection) use ($courseId) {
-                return $collection->push(
-                    new Grade([
-                        'grade' => null,
-                        'courseid' => $courseId,
-                        'rawgrade' => null,
-                    ])
-                );
-            })
-            ->first();
+        $grades = $this->getUserGrades($userId)->grades ?? [];
+
+        return collect($grades)
+            ->firstWhere('courseid', $courseId)
+            ?? new Grade([
+                'grade' => null,
+                'courseid' => $courseId,
+                'rawgrade' => null,
+            ]);
     }
 
     public function searchUsers(string $searchTerm, string $field = 'username'): GetUsers
@@ -415,7 +417,7 @@ class LaravelMoodle
         $users = $this->http
             ->asForm()
             ->post(
-                "/webservice/rest/server.php?wstoken={$this->token}&wsfunction=core_user_get_users&moodlewsrestformat=json",
+                "/webservice/rest/server.php?wstoken={$this->adminToken}&wsfunction=core_user_get_users&moodlewsrestformat=json",
                 [
                     'criteria' => [
                         [
@@ -435,7 +437,7 @@ class LaravelMoodle
         $enrol = $this->http
             ->asForm()
             ->post(
-                "/webservice/rest/server.php?wstoken={$this->token}&wsfunction=enrol_manual_enrol_users&moodlewsrestformat=json",
+                "/webservice/rest/server.php?wstoken={$this->adminToken}&wsfunction=enrol_manual_enrol_users&moodlewsrestformat=json",
                 [
                     'enrolments' => [
                         [
@@ -460,7 +462,7 @@ class LaravelMoodle
         $enrol = $this->http
             ->asForm()
             ->post(
-                "/webservice/rest/server.php?wstoken={$this->token}&moodlewsrestformat=json&wsfunction=enrol_self_enrol_user",
+                "/webservice/rest/server.php?wstoken={$this->adminToken}&moodlewsrestformat=json&wsfunction=enrol_self_enrol_user",
                 [
                     'courseid' => $courseId,
                     'password' => $enrollmentKey,
@@ -481,7 +483,7 @@ class LaravelMoodle
         $enrolledUsers = $this->http
             ->asForm()
             ->post(
-                "/webservice/rest/server.php?wstoken={$this->token}&wsfunction=core_enrol_get_enrolled_users&moodlewsrestformat=json",
+                "/webservice/rest/server.php?wstoken={$this->adminToken}&wsfunction=core_enrol_get_enrolled_users&moodlewsrestformat=json",
                 [
                     'courseid' => $courseId,
                 ]
@@ -504,7 +506,7 @@ class LaravelMoodle
         $unenrol = $this->http
             ->asForm()
             ->post(
-                "/webservice/rest/server.php?wstoken={$this->token}&wsfunction=enrol_manual_unenrol_users&moodlewsrestformat=json",
+                "/webservice/rest/server.php?wstoken={$this->adminToken}&wsfunction=enrol_manual_unenrol_users&moodlewsrestformat=json",
                 [
                     'enrolments' => [
                         [
@@ -529,7 +531,7 @@ class LaravelMoodle
         $badges = $this->http
             ->asForm()
             ->post(
-                "/webservice/rest/server.php?wstoken={$this->token}&wsfunction=core_badges_get_user_badges&moodlewsrestformat=json",
+                "/webservice/rest/server.php?wstoken={$this->adminToken}&wsfunction=core_badges_get_user_badges&moodlewsrestformat=json",
                 [
                     'userid' => $userId,
                     'courseid' => $courseId,
@@ -546,7 +548,7 @@ class LaravelMoodle
         $categories = $this->http
             ->asForm()
             ->get(
-                "/webservice/rest/server.php?wstoken={$this->token}&wsfunction=core_course_get_categories&moodlewsrestformat=json"
+                "/webservice/rest/server.php?wstoken={$this->adminToken}&wsfunction=core_course_get_categories&moodlewsrestformat=json"
             )
             ->json();
 
@@ -562,7 +564,7 @@ class LaravelMoodle
         $categories = $this->http
             ->asForm()
             ->post(
-                "/webservice/rest/server.php?wstoken={$this->token}&wsfunction=core_course_get_categories&moodlewsrestformat=json",
+                "/webservice/rest/server.php?wstoken={$this->adminToken}&wsfunction=core_course_get_categories&moodlewsrestformat=json",
                 [
                     'criteria' => [
                         [
@@ -586,7 +588,7 @@ class LaravelMoodle
         $page = $this->http
             ->asForm()
             ->post(
-                "/webservice/rest/server.php?wstoken={$this->token}&wsfunction=mod_page_view_page&moodlewsrestformat=json",
+                "/webservice/rest/server.php?wstoken={$this->adminToken}&wsfunction=mod_page_view_page&moodlewsrestformat=json",
                 [
                     'pageid' => $pageId,
                 ]
@@ -605,7 +607,7 @@ class LaravelMoodle
         $resource = $this->http
             ->asForm()
             ->post(
-                "/webservice/rest/server.php?wstoken={$this->token}&wsfunction=mod_resource_view_resource&moodlewsrestformat=json",
+                "/webservice/rest/server.php?wstoken={$this->adminToken}&wsfunction=mod_resource_view_resource&moodlewsrestformat=json",
                 [
                     'resourceid' => $resourceId,
                 ]
@@ -624,7 +626,7 @@ class LaravelMoodle
         $calendar = $this->http
             ->asForm()
             ->post(
-                "/webservice/rest/server.php?wstoken={$this->token}&moodlewsrestformat=json&wsfunction=core_calendar_get_calendar_monthly_view",
+                "/webservice/rest/server.php?wstoken={$this->adminToken}&moodlewsrestformat=json&wsfunction=core_calendar_get_calendar_monthly_view",
                 [
                     'courseid' => $courseId,
                     'year' => $year,
@@ -634,5 +636,32 @@ class LaravelMoodle
             ->json();
 
         return new CalendarMonthly($calendar);
+    }
+
+    public function getUserCourses(int $moodleUserId): Collection
+    {
+        $response = $this->http
+            ->asForm()
+            ->post(
+                "/webservice/rest/server.php?wstoken={$this->adminToken}&wsfunction=core_enrol_get_users_courses&moodlewsrestformat=json",
+                [
+                    'userid' => $moodleUserId,
+                ]
+            )
+            ->json();
+
+        if (isset($response['exception'])) {
+            throw new MoodleException($response['message']);
+        }
+
+        return collect($response);
+    }
+
+    public function isUserEnrolled(int $moodleUserId, int $courseId): bool
+    {
+        return $this->getUserCourses($moodleUserId)
+            ->contains(function (array $course) use ($courseId): bool {
+                return (int) $course['id'] === $courseId;
+            });
     }
 }

@@ -5,7 +5,7 @@ namespace NetworkRailBusinessSystems\LaravelMoodle;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
-use NetworkRailBusinessSystems\LaravelMoodle\Middleware\MoodleToken;
+use NetworkRailBusinessSystems\LaravelMoodle\Middleware\SyncMoodleUser;
 use NetworkRailBusinessSystems\LaravelMoodle\Mocks\MockResponses;
 
 class ServiceProvider extends BaseServiceProvider
@@ -16,7 +16,7 @@ class ServiceProvider extends BaseServiceProvider
     {
         parent::register();
 
-        app('router')->aliasMiddleware('laravel-moodle', MoodleToken::class);
+        app('router')->aliasMiddleware('laravel-moodle', SyncMoodleUser::class);
     }
 
     public function boot(): void

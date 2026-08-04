@@ -22,7 +22,10 @@ class SyncUserTest extends TestCase
             '*' => Http::response(MockResponses::userSearch()),
         ]);
 
+
         $this->user = new User([
+            'name' => 'Test User',
+            'email' => 'test.user@fake.email',
             'username' => 'testuser',
         ]);
 
@@ -34,9 +37,9 @@ class SyncUserTest extends TestCase
     {
         $this->assertDatabaseHas('users', [
             'email' => 'test.user@fake.email',
-            'moodle_id' => 2,
             'name' => 'Test User',
             'username' => 'testuser',
+            'moodle_id' => 2,
         ]);
     }
 }

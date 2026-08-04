@@ -137,13 +137,11 @@ class MoodleUserProvider implements UserProvider
                 'users' => [
                     [
                         'auth' => 'manual',
-                        'address' => $user->address,
                         'city' => $user->location,
                         'department' => $user->business_area,
                         'description' => $user->title,
                         'email' => $user->email,
                         'firstname' => $user->first_name,
-                        'institution' => $user->office,
                         'lastname' => $user->last_name,
                         'password' => 'A1!'.bin2hex(random_bytes(8)),
                         'username' => strtolower($user->username),
@@ -180,14 +178,13 @@ class MoodleUserProvider implements UserProvider
                 'users' => [
                     [
                         'id' => $moodleUserId,
-                        'address' => $user->address,
                         'city' => $user->location,
                         'department' => $user->business_area,
                         'description' => $user->title,
                         'email' => $user->email,
                         'firstname' => $user->first_name,
-                        'institution' => $user->office,
                         'lastname' => $user->last_name,
+                        'username' => strtolower($user->username),
                     ],
                 ],
             ]);
