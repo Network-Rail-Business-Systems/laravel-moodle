@@ -82,7 +82,8 @@ class LaravelMoodle
 
         if (isset($response['exception']) === true) {
             throw new MoodleException(
-                $response['message'] ?? 'Moodle request failed.'
+                $response['message']
+                ?? 'Moodle request failed: '.$response->body()
             );
         }
 
@@ -382,65 +383,44 @@ class LaravelMoodle
 
     public function enrolUserOnCourse(int $userId, int $courseId, ?int $roleId = null): bool
     {
-        $enrol = $this->http
-            ->asForm()
-            ->post(
-                "/webservice/rest/server.php?wstoken={$this->adminToken}&wsfunction=enrol_manual_enrol_users&moodlewsrestformat=json",
-                [
-                    'enrolments' => [
-                        [
-                            'roleid' => $roleId ?? config('laravel-moodle.student_role_id'),
-                            'userid' => $userId,
-                            'courseid' => $courseId,
-                        ],
+        $this->callMoodle(
+            'enrol_manual_enrol_users',
+            [
+                'enrolments' => [
+                    [
+                        'roleid' => $roleId ?? config('laravel-moodle.student_role_id'),
+                        'userid' => $userId,
+                        'courseid' => $courseId,
                     ],
-                ]
-            )
-            ->json();
-
-        if (isset($enrol['exception'])) {
-            throw new MoodleException($enrol['message']);
-        }
+                ],
+            ]
+        );
 
         return true;
     }
 
     public function selfEnrolOnCourse(int $courseId, string $enrollmentKey = '', int $instanceId = 0): SelfEnrol
     {
-        $enrol = $this->http
-            ->asForm()
-            ->post(
-                "/webservice/rest/server.php?wstoken={$this->adminToken}&moodlewsrestformat=json&wsfunction=enrol_self_enrol_user",
-                [
-                    'courseid' => $courseId,
-                    'password' => $enrollmentKey,
-                    'instanceid' => $instanceId,
-                ]
-            )
-            ->json();
-
-        if (isset($enrol['exception'])) {
-            throw new MoodleException($enrol['message']);
-        }
+        $enrol = $this->callMoodle(
+            'enrol_self_enrol_user',
+            [
+                'courseid' => $courseId,
+                'password' => $enrollmentKey,
+                'instanceid' => $instanceId,
+            ]
+        );
 
         return new SelfEnrol($enrol);
     }
 
     public function getEnrolledUsersForCourse(int $courseId): Collection
     {
-        $enrolledUsers = $this->http
-            ->asForm()
-            ->post(
-                "/webservice/rest/server.php?wstoken={$this->adminToken}&wsfunction=core_enrol_get_enrolled_users&moodlewsrestformat=json",
-                [
-                    'courseid' => $courseId,
-                ]
-            )
-            ->json();
-
-        if (isset($enrolledUsers['exception'])) {
-            throw new MoodleException($enrolledUsers['message']);
-        }
+        $enrolledUsers = $this->callMoodle(
+            'core_enrol_get_enrolled_users',
+            [
+                'courseid' => $courseId,
+            ]
+        );
 
         $users = new Collection($enrolledUsers);
 
@@ -451,54 +431,39 @@ class LaravelMoodle
 
     public function unenrolUserOnCourse(int $userId, int $courseId, ?int $roleId = null): bool
     {
-        $unenrol = $this->http
-            ->asForm()
-            ->post(
-                "/webservice/rest/server.php?wstoken={$this->adminToken}&wsfunction=enrol_manual_unenrol_users&moodlewsrestformat=json",
-                [
-                    'enrolments' => [
-                        [
-                            'roleid' => $roleId ?? config('laravel-moodle.student_role_id'),
-                            'userid' => $userId,
-                            'courseid' => $courseId,
-                        ],
+        $this->callMoodle(
+            'enrol_manual_unenrol_users',
+            [
+                'enrolments' => [
+                    [
+                        'roleid' => $roleId ?? config('laravel-moodle.student_role_id'),
+                        'userid' => $userId,
+                        'courseid' => $courseId,
                     ],
-                ]
-            )
-            ->json();
-
-        if (isset($unenrol['exception'])) {
-            throw new MoodleException($unenrol['message']);
-        }
+                ],
+            ]
+        );
 
         return true;
     }
 
     public function getBadges(int $userId = 0, int $courseId = 0, string $search = ''): GetBadges
     {
-        $badges = $this->http
-            ->asForm()
-            ->post(
-                "/webservice/rest/server.php?wstoken={$this->adminToken}&wsfunction=core_badges_get_user_badges&moodlewsrestformat=json",
-                [
-                    'userid' => $userId,
-                    'courseid' => $courseId,
-                    'search' => $search,
-                ]
-            )
-            ->json();
+        $badges = $this->callMoodle(
+            'core_badges_get_user_badges',
+            [
+                'userid' => $userId,
+                'courseid' => $courseId,
+                'search' => $search,
+            ]
+        );
 
         return new GetBadges($badges);
     }
 
     public function getCategories(): Collection
     {
-        $categories = $this->http
-            ->asForm()
-            ->get(
-                "/webservice/rest/server.php?wstoken={$this->adminToken}&wsfunction=core_course_get_categories&moodlewsrestformat=json"
-            )
-            ->json();
+        $categories = $this->callMoodle('core_course_get_categories');
 
         $categories = new Collection($categories);
 
@@ -509,20 +474,17 @@ class LaravelMoodle
 
     public function searchCategories(string $searchTerm, string $field = 'name'): Collection
     {
-        $categories = $this->http
-            ->asForm()
-            ->post(
-                "/webservice/rest/server.php?wstoken={$this->adminToken}&wsfunction=core_course_get_categories&moodlewsrestformat=json",
-                [
-                    'criteria' => [
-                        [
-                            'key' => $field,
-                            'value' => $searchTerm,
-                        ],
+        $categories = $this->callMoodle(
+            'core_course_get_categories',
+            [
+                'criteria' => [
+                    [
+                        'key' => $field,
+                        'value' => $searchTerm,
                     ],
-                ]
-            )
-            ->json();
+                ],
+            ]
+        );
 
         $categories = new Collection($categories);
 
