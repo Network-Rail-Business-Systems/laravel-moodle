@@ -40,11 +40,8 @@ class SyncUserTest extends TestCase
     {
         Http::fake([
             '*' => Http::sequence()
-                ->push([
-                    'users' => [],
-                    'warnings' => [],
-                ], 200)
-                ->push([], 200),
+                ->push(MockResponses::emptyUserSearch())
+                ->push(MockResponses::createUser()),
         ]);
 
         $user = User::create([
@@ -55,12 +52,9 @@ class SyncUserTest extends TestCase
             'last_name' => 'User',
         ]);
 
-        $this->expectException(MoodleException::class);
-        $this->expectExceptionMessage(
-            'Moodle did not return a user ID.'
-        );
+        $moodleUserId = LaravelMoodle::syncUser($user);
 
-        LaravelMoodle::syncUser($user);
+        $this->assertSame(10, $moodleUserId);
     }
 
     public function test_throws_moodle_exception(): void

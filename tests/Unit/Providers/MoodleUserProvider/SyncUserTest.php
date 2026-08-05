@@ -24,7 +24,7 @@ class SyncUserTest extends TestCase
 
 
         $this->user = new User([
-            'email' => 'test.user@fake.email',
+            'username' => 'testuser',
         ]);
 
         $this->provider = new MoodleUserProvider();
@@ -36,6 +36,8 @@ class SyncUserTest extends TestCase
         $this->assertDatabaseHas('users', [
             'email' => 'test.user@fake.email',
             'moodle_id' => 2,
+            'name' => 'Test User',
+            'username' => 'testuser',
         ]);
     }
 }

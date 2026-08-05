@@ -7,7 +7,7 @@ use NetworkRailBusinessSystems\LaravelMoodle\Facades\LaravelMoodle;
 use NetworkRailBusinessSystems\LaravelMoodle\Mocks\MockResponses;
 use NetworkRailBusinessSystems\LaravelMoodle\Tests\TestCase;
 
-class UserSearchTest extends TestCase
+class SearchUsersTest extends TestCase
 {
     public function test_search_users(): void
     {
