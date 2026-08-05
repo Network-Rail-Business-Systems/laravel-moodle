@@ -53,9 +53,6 @@ class ServiceProvider extends BaseServiceProvider
         ]);
 
         Http::fake([
-            '*login/token*' => [
-                'token' => 'abc123',
-            ],
             '*core_user_get_users*' => [
                 'users' => [
                     [

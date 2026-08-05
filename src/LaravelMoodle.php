@@ -4,6 +4,7 @@ namespace NetworkRailBusinessSystems\LaravelMoodle;
 
 use GuzzleHttp\Profiling\Debugbar\Profiler;
 use GuzzleHttp\Profiling\Middleware;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Client\PendingRequest;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\App;
@@ -65,18 +66,38 @@ class LaravelMoodle
             );
         }
     }
+
+    private function callMoodle(
+        string $function,
+        array $parameters = []
+    ): array {
+        $response = $this->http
+            ->asForm()
+            ->post('/webservice/rest/server.php', array_merge([
+                'wstoken' => $this->adminToken,
+                'moodlewsrestformat' => 'json',
+                'wsfunction' => $function,
+            ], $parameters))
+            ->json();
+
+        if (isset($response['exception']) === true) {
+            throw new MoodleException(
+                $response['message'] ?? 'Moodle request failed.'
+            );
+        }
+
+        return $response;
+    }
+
     public function getCourses(string $term = '', string $field = ''): GetCoursesByField
     {
-        $courses = $this->http
-            ->asForm()
-            ->post(
-                "/webservice/rest/server.php?wstoken={$this->adminToken}&moodlewsrestformat=json&wsfunction=core_course_get_courses_by_field",
-                [
-                    'field' => $field,
-                    'value' => $term,
-                ]
-            )
-            ->json();
+        $courses = $this->callMoodle(
+            'core_course_get_courses_by_field',
+            [
+                'field' => $field,
+                'value' => $term,
+            ]
+        );
 
         $courses['courses'] = array_map(
             static function (array $course): array {
@@ -92,32 +113,26 @@ class LaravelMoodle
 
     public function getCoursesByCategory(int $categoryId): GetCoursesByField
     {
-        $courses = $this->http
-            ->asForm()
-            ->post(
-                "/webservice/rest/server.php?wstoken={$this->adminToken}&wsfunction=core_course_get_courses_by_field&moodlewsrestformat=json",
-                [
-                    'field' => 'category',
-                    'value' => $categoryId,
-                ]
-            )
-            ->json();
+        $courses = $this->callMoodle(
+            'core_course_get_courses_by_field',
+            [
+                'field' => 'category',
+                'value' => $categoryId,
+            ]
+        );
 
         return new GetCoursesByField($courses);
     }
 
     public function getCourse(int $id): Course
     {
-        $courses = $this->http
-            ->asForm()
-            ->post(
-                "/webservice/rest/server.php?wstoken={$this->adminToken}&wsfunction=core_course_get_courses_by_field&moodlewsrestformat=json",
-                [
-                    'field' => 'id',
-                    'value' => $id,
-                ]
-            )
-            ->json();
+        $courses = $this->callMoodle(
+            'core_course_get_courses_by_field',
+            [
+                'field' => 'id',
+                'value' => $id,
+            ]
+        );
 
         abort_if(empty($courses['courses']) === true, 404, 'Course not found');
 
@@ -130,19 +145,16 @@ class LaravelMoodle
 
     public function searchCourses(string $term, int $page = 0, int $perPage = 15, int $onlyEnrolled = 0): CourseSearch
     {
-        $courses = $this->http
-            ->asForm()
-            ->post(
-                "/webservice/rest/server.php?wstoken={$this->adminToken}&moodlewsrestformat=json&wsfunction=core_course_search_courses",
-                [
-                    'criterianame' => 'search',
-                    'criteriavalue' => $term,
-                    'page' => $page,
-                    'perpage' => $perPage,
-                    'limittoenrolled' => $onlyEnrolled,
-                ]
-            )
-            ->json();
+        $courses = $this->callMoodle(
+            'core_course_search_courses',
+            [
+                'criterianame' => 'search',
+                'criteriavalue' => $term,
+                'page' => $page,
+                'perpage' => $perPage,
+                'limittoenrolled' => $onlyEnrolled,
+            ]
+        );
 
         if (isset($courses['exception'])) {
             throw new MoodleException($courses['message']);
@@ -153,15 +165,12 @@ class LaravelMoodle
 
     public function getCourseContents(int $id): Collection
     {
-        $courseContents = $this->http
-            ->get(
-                "/webservice/rest/server.php?wstoken={$this->adminToken}&moodlewsrestformat=json&wsfunction=core_course_get_contents&courseid={$id}"
-            )
-            ->json();
-
-        if (isset($courseContents['exception'])) {
-            throw new MoodleException($courseContents['message']);
-        }
+        $courseContents = $this->callMoodle(
+            'core_course_get_contents',
+            [
+                'courseid' => $id,
+            ]
+        );
 
         $contents = new Collection($courseContents);
 
@@ -172,26 +181,24 @@ class LaravelMoodle
 
     public function getCourseModule(int $id): CourseModuleById
     {
-        $module = $this->http
-            ->get(
-                "/webservice/rest/server.php?wstoken=3a52dd83512957fc724122bf4853a2a8&moodlewsrestformat=json&wsfunction=core_course_get_course_module&cmid={$id}"
-            )
-            ->json();
+        $module = $this->callMoodle(
+            'core_course_get_course_module',
+            [
+                'cmid' => $id,
+            ]
+        );
 
         return new CourseModuleById($module);
     }
 
     public function getCoursePages(int $courseId): CoursePages
     {
-        $pages = $this->http
-            ->asForm()
-            ->post(
-                "/webservice/rest/server.php?wstoken={$this->adminToken}&moodlewsrestformat=json&wsfunction=mod_page_get_pages_by_courses",
-                [
-                    'courseids' => [$courseId],
-                ]
-            )
-            ->json();
+        $pages = $this->callMoodle(
+            'mod_page_get_pages_by_courses',
+            [
+                'courseids' => [$courseId],
+            ]
+        );
 
         return new CoursePages($pages);
     }
@@ -207,15 +214,12 @@ class LaravelMoodle
 
     public function getCourseScorms(int $courseId): GetScorms
     {
-        $scorms = $this->http
-            ->asForm()
-            ->post(
-                "/webservice/rest/server.php?wstoken={$this->adminToken}&moodlewsrestformat=json&wsfunction=mod_scorm_get_scorms_by_courses",
-                [
-                    'courseids' => [$courseId],
-                ]
-            )
-            ->json();
+        $scorms = $this->callMoodle(
+            'mod_scorm_get_scorms_by_courses',
+            [
+                'courseids' => [$courseId],
+            ]
+        );
 
         return new GetScorms($scorms);
     }
@@ -231,30 +235,24 @@ class LaravelMoodle
 
     public function getScormScoes(int $scormId): GetScoes
     {
-        $scoes = $this->http
-            ->asForm()
-            ->post(
-                "/webservice/rest/server.php?wstoken={$this->adminToken}&moodlewsrestformat=json&wsfunction=mod_scorm_get_scorm_scoes",
-                [
-                    'scormid' => $scormId,
-                ]
-            )
-            ->json();
+        $scoes = $this->callMoodle(
+            'mod_scorm_get_scorm_scoes',
+            [
+                'scormid' => $scormId,
+            ]
+        );
 
         return new GetScoes($scoes);
     }
 
     public function getCourseResources(int $courseId): GetResources
     {
-        $resources = $this->http
-            ->asForm()
-            ->post(
-                "/webservice/rest/server.php?wstoken={$this->adminToken}&moodlewsrestformat=json&wsfunction=mod_resource_get_resources_by_courses",
-                [
-                    'courseids' => [$courseId],
-                ]
-            )
-            ->json();
+        $resources = $this->callMoodle(
+            'mod_resource_get_resources_by_courses',
+            [
+                'courseids' => [$courseId],
+            ]
+        );
 
         return new GetResources($resources);
     }
@@ -270,55 +268,38 @@ class LaravelMoodle
 
     public function getCourseCompletion(int $userId, int $courseId): CourseCompletion
     {
-        $completion = $this->http
-            ->asForm()
-            ->post(
-                "/webservice/rest/server.php?wstoken={$this->adminToken}&moodlewsrestformat=json&wsfunction=core_completion_get_course_completion_status",
-                [
-                    'courseid' => $courseId,
-                    'userid' => $userId,
-                ]
-            )
-            ->json();
-
-        if (isset($completion['exception'])) {
-            throw new MoodleException($completion['message']);
-        }
+        $completion = $this->callMoodle(
+            'core_completion_get_course_completion_status',
+            [
+                'courseid' => $courseId,
+                'userid' => $userId,
+            ]
+        );
 
         return new CourseCompletion($completion);
     }
 
     public function getCourseActivitiesCompletion(int $userId, int $courseId): CourseActivityStatuses
     {
-        $completion = $this->http
-            ->asForm()
-            ->post(
-                "/webservice/rest/server.php?wstoken={$this->adminToken}&moodlewsrestformat=json&wsfunction=core_completion_get_activities_completion_status",
-                [
-                    'courseid' => $courseId,
-                    'userid' => $userId,
-                ]
-            )
-            ->json();
-
-        if (isset($completion['exception'])) {
-            throw new MoodleException($completion['message']);
-        }
+        $completion = $this->callMoodle(
+            'core_completion_get_activities_completion_status',
+            [
+                'courseid' => $courseId,
+                'userid' => $userId,
+            ]
+        );
 
         return new CourseActivityStatuses($completion);
     }
 
     public function getCourseAssignments(int $courseId): GetCourseAssignments
     {
-        $assignments = $this->http
-            ->asForm()
-            ->post(
-                "/webservice/rest/server.php?wstoken={$this->adminToken}&moodlewsrestformat=json&wsfunction=mod_assign_get_assignments",
-                [
-                    'courseids' => [$courseId],
-                ]
-            )
-            ->json();
+        $assignments = $this->callMoodle(
+            'mod_assign_get_assignments',
+            [
+                'courseids' => [$courseId],
+            ]
+        );
 
         return new GetCourseAssignments($assignments);
     }
@@ -336,42 +317,32 @@ class LaravelMoodle
 
     public function getAssignmentSubmissionStatus(int $assignmentId, int $userId = 0): SubmissionStatus
     {
-        $submissionStatus = $this->http
-            ->asForm()
-            ->post(
-                "/webservice/rest/server.php?wstoken={$this->adminToken}&moodlewsrestformat=json&wsfunction=mod_assign_get_submission_status",
-                [
-                    'assignid' => $assignmentId,
-                    'userid' => $userId,
-                ]
-            )
-            ->json();
+        $submissionStatus = $this->callMoodle(
+            'mod_assign_get_submission_status',
+            [
+                'assignid' => $assignmentId,
+                'userid' => $userId,
+            ]
+        );
 
         return new SubmissionStatus($submissionStatus);
     }
 
     public function saveCourseAssignment(int $assignmentId, string $content = '', int $format = 1, int $itemId = 1): bool|Collection
     {
-        $assignment = $this->http
-            ->asForm()
-            ->post(
-                "/webservice/rest/server.php?wstoken={$this->adminToken}&moodlewsrestformat=json&wsfunction=mod_assign_save_submission",
-                [
-                    'assignmentid' => $assignmentId,
-                    'plugindata' => [
-                        'onlinetext_editor' => [
-                            'text' => $content,
-                            'format' => $format,
-                            'itemid' => $itemId,
-                        ],
+        $assignment = $this->callMoodle(
+            'mod_assign_save_submission',
+            [
+                'assignmentid' => $assignmentId,
+                'plugindata' => [
+                    'onlinetext_editor' => [
+                        'text' => $content,
+                        'format' => $format,
+                        'itemid' => $itemId,
                     ],
-                ]
-            )
-            ->json();
-
-        if (isset($assignment['exception'])) {
-            throw new MoodleException($assignment['message']);
-        }
+                ],
+            ]
+        );
 
         if (count($assignment) > 0) {
             $assignments = new Collection($assignment);
@@ -386,15 +357,12 @@ class LaravelMoodle
 
     public function getUserGrades(int $userId = 0): GetGrades
     {
-        $grades = $this->http
-            ->asForm()
-            ->post(
-                "/webservice/rest/server.php?wstoken={$this->adminToken}&moodlewsrestformat=json&wsfunction=gradereport_overview_get_course_grades",
-                [
-                    'userid' => $userId,
-                ]
-            )
-            ->json();
+        $grades = $this->callMoodle(
+            'gradereport_overview_get_course_grades',
+            [
+                'userid' => $userId,
+            ]
+        );
 
         return new GetGrades($grades);
     }
@@ -410,26 +378,6 @@ class LaravelMoodle
                 'courseid' => $courseId,
                 'rawgrade' => null,
             ]);
-    }
-
-    public function searchUsers(string $searchTerm, string $field = 'username'): GetUsers
-    {
-        $users = $this->http
-            ->asForm()
-            ->post(
-                "/webservice/rest/server.php?wstoken={$this->adminToken}&wsfunction=core_user_get_users&moodlewsrestformat=json",
-                [
-                    'criteria' => [
-                        [
-                            'key' => $field,
-                            'value' => $searchTerm,
-                        ],
-                    ],
-                ]
-            )
-            ->json();
-
-        return new GetUsers($users);
     }
 
     public function enrolUserOnCourse(int $userId, int $courseId, ?int $roleId = null): bool
@@ -585,76 +533,150 @@ class LaravelMoodle
 
     public function viewPageEvent(int $pageId): bool
     {
-        $page = $this->http
-            ->asForm()
-            ->post(
-                "/webservice/rest/server.php?wstoken={$this->adminToken}&wsfunction=mod_page_view_page&moodlewsrestformat=json",
-                [
-                    'pageid' => $pageId,
-                ]
-            )
-            ->json();
-
-        if (isset($page['exception'])) {
-            throw new MoodleException($page['message']);
-        }
+        $page = $this->callMoodle(
+            'mod_page_view_page',
+            [
+                'pageid' => $pageId,
+            ]
+        );
 
         return $page['status'];
     }
 
     public function viewResourceEvent(int $resourceId): mixed
     {
-        $resource = $this->http
-            ->asForm()
-            ->post(
-                "/webservice/rest/server.php?wstoken={$this->adminToken}&wsfunction=mod_resource_view_resource&moodlewsrestformat=json",
-                [
-                    'resourceid' => $resourceId,
-                ]
-            )
-            ->json();
-
-        if (isset($resource['exception'])) {
-            throw new MoodleException($resource['message']);
-        }
+        $resource = $this->callMoodle(
+            'mod_resource_view_resource',
+            [
+                'resourceid' => $resourceId,
+            ]
+        );
 
         return $resource['status'];
     }
 
     public function calendarMonthlyView(int $year, int $month, int $courseId = 0): CalendarMonthly
     {
-        $calendar = $this->http
-            ->asForm()
-            ->post(
-                "/webservice/rest/server.php?wstoken={$this->adminToken}&moodlewsrestformat=json&wsfunction=core_calendar_get_calendar_monthly_view",
-                [
-                    'courseid' => $courseId,
-                    'year' => $year,
-                    'month' => $month,
-                ]
-            )
-            ->json();
+        $calendar = $this->callMoodle(
+            'core_calendar_get_calendar_monthly_view',
+            [
+                'courseid' => $courseId,
+                'year' => $year,
+                'month' => $month,
+            ]
+        );
 
         return new CalendarMonthly($calendar);
     }
 
     public function getUserCourses(int $moodleUserId): Collection
     {
-        $response = $this->http
-            ->asForm()
-            ->post(
-                "/webservice/rest/server.php?wstoken={$this->adminToken}&wsfunction=core_enrol_get_users_courses&moodlewsrestformat=json",
-                [
-                    'userid' => $moodleUserId,
-                ]
-            )
-            ->json();
-
-        if (isset($response['exception'])) {
-            throw new MoodleException($response['message']);
-        }
+        $response = $this->callMoodle(
+            'core_enrol_get_users_courses',
+            [
+                'userid' => $moodleUserId,
+            ]
+        );
 
         return collect($response);
+    }
+
+    // User functions
+    public function syncUser(
+        Model $user,
+        string $userKey = 'email',
+        ?string $moodleKey = 'email'
+    ): int {
+        $moodleUser = $this->searchUsers(
+            $user->{$userKey},
+            $moodleKey
+        )->users[0] ?? null;
+
+        if ($moodleUser === null) {
+            $moodleUserId = $this->createMoodleUser($user);
+        } else {
+            $moodleUserId = $moodleUser->id;
+
+            $this->updateMoodleUser(
+                $moodleUserId,
+                $user
+            );
+        }
+
+        $user->moodle_id = $moodleUserId;
+        $user->save();
+
+        return $moodleUserId;
+    }
+
+    public function searchUsers(string $searchTerm, string $field = 'username'): GetUsers
+    {
+        $users = $this->callMoodle(
+            'core_user_get_users',
+            [
+                'criteria' => [
+                    [
+                        'key' => $field,
+                        'value' => $searchTerm,
+                    ],
+                ],
+            ]
+        );
+
+        return new GetUsers($users);
+    }
+
+    private function createMoodleUser(Model $user): int
+    {
+        $response = $this->callMoodle(
+            'core_user_create_users',
+            [
+                'users' => [
+                    [
+                        'auth' => 'manual',
+                        'city' => $user->location,
+                        'department' => $user->business_area,
+                        'description' => $user->title,
+                        'email' => $user->email,
+                        'firstname' => $user->first_name,
+                        'lastname' => $user->last_name,
+                        'password' => 'A1!' . bin2hex(random_bytes(8)),
+                        'username' => strtolower($user->username),
+                    ],
+                ],
+            ]
+        );
+
+        if (isset($response[0]['id']) === false) {
+            throw new MoodleException(
+                $response['message'] ?? 'Moodle did not return a user ID.'
+            );
+        }
+
+        return (int) $response[0]['id'];
+    }
+
+    private function updateMoodleUser(
+        int $moodleUserId,
+        Model $user
+    ): void {
+        $this->callMoodle(
+            'core_user_update_users',
+            [
+                'users' => [
+                    [
+                        'id' => $moodleUserId,
+                        'city' => $user->location,
+                        'department' => $user->business_area,
+                        'description' => $user->title,
+                        'email' => $user->email,
+                        'firstname' => $user->first_name,
+                        'lastname' => $user->last_name,
+                        'username' => strtolower($user->username),
+                    ],
+                ],
+            ]
+        );
     }
 
     public function isUserEnrolled(int $moodleUserId, int $courseId): bool

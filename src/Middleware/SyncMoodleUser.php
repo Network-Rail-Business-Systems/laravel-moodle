@@ -4,7 +4,7 @@ namespace NetworkRailBusinessSystems\LaravelMoodle\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use NetworkRailBusinessSystems\LaravelMoodle\MoodleUserProvider;
+use NetworkRailBusinessSystems\LaravelMoodle\Facades\LaravelMoodle;
 
 class SyncMoodleUser
 {
@@ -13,8 +13,7 @@ class SyncMoodleUser
         $user = $request->user();
 
         if ($user !== null && $user->moodle_id === null) {
-            $provider = new MoodleUserProvider();
-            $provider->syncUser($user);
+            LaravelMoodle::syncUser($user);
         }
 
         return $next($request);

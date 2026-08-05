@@ -7,15 +7,13 @@ use NetworkRailBusinessSystems\LaravelMoodle\Facades\LaravelMoodle;
 use NetworkRailBusinessSystems\LaravelMoodle\Mocks\MockResponses;
 use NetworkRailBusinessSystems\LaravelMoodle\Tests\TestCase;
 
-class UserTest extends TestCase
+class UserSearchTest extends TestCase
 {
     public function test_search_users(): void
     {
         Http::fake([
             '*' => Http::response(MockResponses::userSearch()),
         ]);
-
-        session(['moodle-token' => 'ABC123']);
 
         $users = LaravelMoodle::searchUsers('testuser');
 
