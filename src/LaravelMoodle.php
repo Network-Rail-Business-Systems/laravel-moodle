@@ -44,7 +44,7 @@ class LaravelMoodle
     {
         $token = config('laravel-moodle.admin_token');
 
-        if (blank($token) === true) {
+        if (empty($token) === true) {
             throw new MoodleTokenMissingException(
                 'The Moodle admin token is not configured.'
             );

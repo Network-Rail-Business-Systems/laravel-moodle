@@ -21,7 +21,7 @@ class SyncUserTest extends TestCase
         Http::fake([
             '*' => Http::response(MockResponses::userSearch()),
         ]);
-        
+
         $this->user = new User([
             'username' => 'testuser',
         ]);
