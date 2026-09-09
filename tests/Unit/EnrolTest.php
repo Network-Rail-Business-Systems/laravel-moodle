@@ -19,7 +19,7 @@ class EnrolTest extends TestCase
     public function test_successful_enrol_user_on_course()
     {
         Http::fake([
-            '*' => Http::response(null, 200),
+            '*' => Http::response([], 200),
         ]);
 
         $enrol = LaravelMoodle::enrolUserOnCourse(1, 1, 5);
@@ -30,7 +30,7 @@ class EnrolTest extends TestCase
     public function test_enrol_user_on_course_without_role_id()
     {
         Http::fake([
-            '*' => Http::response(null, 200),
+            '*' => Http::response([], 200),
         ]);
 
         $enrol = LaravelMoodle::enrolUserOnCourse(1, 1);
@@ -89,7 +89,7 @@ class EnrolTest extends TestCase
     public function test_unenrol_user_from_course()
     {
         Http::fake([
-            '*' => Http::response(null, 200),
+            '*' => Http::response([], 200),
         ]);
 
         $enrol = LaravelMoodle::unenrolUserOnCourse(1, 1, 5);
@@ -100,7 +100,7 @@ class EnrolTest extends TestCase
     public function test_unenrol_user_from_course_without_role_id()
     {
         Http::fake([
-            '*' => Http::response(null, 200),
+            '*' => Http::response([], 200),
         ]);
 
         $enrol = LaravelMoodle::unenrolUserOnCourse(1, 1);
