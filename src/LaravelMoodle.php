@@ -603,7 +603,7 @@ class LaravelMoodle
                         'firstname' => $user->first_name,
                         'lastname' => $user->last_name,
                         'password' => 'A1!' . bin2hex(random_bytes(8)),
-                        'username' => strtolower($user->username),
+                        'username' => strtolower($user->email),
                     ],
                 ],
             ]
@@ -634,7 +634,7 @@ class LaravelMoodle
                         'email' => $user->email,
                         'firstname' => $user->first_name,
                         'lastname' => $user->last_name,
-                        'username' => strtolower($user->username),
+                        'username' => strtolower($user->email),
                     ],
                 ],
             ]
