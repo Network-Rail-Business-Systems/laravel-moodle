@@ -110,7 +110,10 @@ In order to access data from Moodle, it needs to be configured first as the web 
         - core_course_get_courses_by_field
         - core_course_search_courses
         - core_enrol_get_enrolled_users
+        - core_enrol_get_users_courses
+        - core_user_create_users
         - core_user_get_users
+        - core_user_update_users
         - enrol_manual_enrol_users
         - enrol_manual_unenrol_users 
         - enrol_self_enrol_user
@@ -147,6 +150,21 @@ use NetworkRailBusinessSystems\LaravelMoodle\LaravelMoodle as LaravelMoodle;
 ```
 
 The package uses [Spatie Data Transfer Objects](https://github.com/spatie/data-transfer-object) to format the response into objects.
+### Create or Update users
+
+Return the Moodle user ID.
+
+```php
+$moodleId = LaravelMoodle::syncUser($user, $userKey, $moodleKey);
+
+echo $moodleId; // 123
+```
+
+Search Moodle for an existing user.
+
+Update the Moodle user if one exists.
+
+Create the Moodle user if one does not exist.
 
 ### Get Courses
 

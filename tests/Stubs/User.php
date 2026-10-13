@@ -6,7 +6,7 @@ use Illuminate\Foundation\Auth\User as Eloquent;
 
 class User extends Eloquent
 {
-    protected $fillable = ['name', 'email', 'password', 'username', 'moodle_id'];
+    protected $fillable = ['name', 'email', 'username', 'moodle_id'];
 
     protected $casts = [
         'moodle_id' => 'int',

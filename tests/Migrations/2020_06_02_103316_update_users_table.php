@@ -12,7 +12,6 @@ return new class extends Migration
             $table->string('name');
             $table->string('email');
             $table->timestamps();
-            $table->string('password')->nullable();
             $table->string('username')->nullable()->unique();
             $table->unsignedBigInteger('moodle_id')->nullable();
         });

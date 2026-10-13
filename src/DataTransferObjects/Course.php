@@ -46,7 +46,7 @@ class Course extends FlexibleDataTransferObject
     public array $enrollmentmethods;
 
     /** @var \NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\CustomField[] */
-    public array $customfields;
+    public ?array $customfields;
 
     public ?string $idnumber;
 

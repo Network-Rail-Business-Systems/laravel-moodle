@@ -42,6 +42,23 @@ class MockResponses
         ];
     }
 
+    public static function emptyUserSearch(): array
+    {
+        return [
+            'users' => [],
+            'warnings' => [],
+        ];
+    }
+
+    public static function createUser(): array
+    {
+        return [
+            [
+                'id' => 10,
+            ],
+        ];
+    }
+
     public static function loginSuccess(): array
     {
         return [
@@ -138,6 +155,34 @@ class MockResponses
                 Course::make(),
             ],
             'warnings' => [],
+        ];
+    }
+
+    public static function getUserCourses(): array
+    {
+        return [
+            [
+                'id' => 4,
+                'shortname' => 'Intro Course',
+                'fullname' => 'My First Course',
+                'displayname' => 'My First Course',
+                'category' => 2,
+                'summary' => '<p>This course is aimed at all staff</p>',
+                'summaryformat' => 1,
+                'progress' => 50,
+                'completed' => false,
+            ],
+            [
+                'id' => 3,
+                'shortname' => 'Second Course',
+                'fullname' => 'My Second Course',
+                'displayname' => 'My Second Course',
+                'category' => 2,
+                'summary' => '<p>Another course</p>',
+                'summaryformat' => 1,
+                'progress' => 100,
+                'completed' => true,
+            ],
         ];
     }
 

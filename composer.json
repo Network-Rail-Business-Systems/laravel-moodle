@@ -13,8 +13,8 @@
         "spatie/data-transfer-object": "^2"
     },
     "require-dev": {
-        "laravel/framework": "^12",
-        "orchestra/testbench": "^10",
+        "laravel/framework": "^13",
+        "orchestra/testbench": "^11",
         "guzzlehttp/guzzle": "^7",
         "laravel/ui": "^4",
         "hannesvdvreken/guzzle-debugbar": "^4",
