@@ -53,6 +53,10 @@ class ServiceProvider extends BaseServiceProvider
         ]);
 
         Http::fake(function (Request $request) use ($user) {
+            if (str_starts_with($request->url(), self::EMULATOR_URL) === false) {
+                return null;
+            }
+
             $function = $request->data()['wsfunction'] ?? null;
 
             return match ($function) {
