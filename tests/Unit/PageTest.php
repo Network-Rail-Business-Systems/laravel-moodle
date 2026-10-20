@@ -21,8 +21,6 @@ class PageTest extends TestCase
             ),
         ]);
 
-        session(['moodle-token' => 'ABC123']);
-
         $this->assertTrue(LaravelMoodle::viewPageEvent(1));
     }
 
@@ -40,8 +38,6 @@ class PageTest extends TestCase
                 200
             ),
         ]);
-
-        session(['moodle-token' => 'ABC123']);
 
         LaravelMoodle::viewPageEvent(1);
     }

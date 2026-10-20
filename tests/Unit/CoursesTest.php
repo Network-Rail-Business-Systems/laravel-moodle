@@ -13,8 +13,6 @@ class CoursesTest extends TestCase
     public function setUp(): void
     {
         parent::setUp();
-
-        session(['moodle-token' => 'ABC123']);
     }
 
     public function test_get_courses()

@@ -26,7 +26,6 @@ class TestCase extends Orchestra
     {
         return [
             'NetworkRailBusinessSystems\LaravelMoodle\ServiceProvider',
-            'NetworkRailBusinessSystems\LaravelMoodle\AuthServiceProvider',
             'Laravel\Ui\UiServiceProvider',
         ];
     }

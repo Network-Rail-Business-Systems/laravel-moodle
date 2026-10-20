@@ -32,7 +32,7 @@ use NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\SelfEnrol;
 use NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\SubmissionStatus;
 use NetworkRailBusinessSystems\LaravelMoodle\DataTransferObjects\Warning;
 use NetworkRailBusinessSystems\LaravelMoodle\Exceptions\MoodleException;
-use NetworkRailBusinessSystems\LaravelMoodle\Exceptions\MoodleTokenMissingException;
+use NetworkRailBusinessSystems\LaravelMoodle\Support\MoodleToken;
 
 class LaravelMoodle
 {
@@ -42,15 +42,7 @@ class LaravelMoodle
 
     public function __construct()
     {
-        $token = config('laravel-moodle.admin_token');
-
-        if (empty($token) === true) {
-            throw new MoodleTokenMissingException(
-                'The Moodle admin token is not configured.'
-            );
-        }
-
-        $this->adminToken = $token;
+        $this->adminToken = MoodleToken::get();
 
         $this->http = Http::withOptions([
             'base_uri' => config('laravel-moodle.base_url'),
@@ -77,17 +69,18 @@ class LaravelMoodle
                 'wstoken' => $this->adminToken,
                 'moodlewsrestformat' => 'json',
                 'wsfunction' => $function,
-            ], $parameters))
-            ->json();
+            ], $parameters));
 
-        if (isset($response['exception']) === true) {
+        $data = $response->json();
+
+        if (isset($data['exception']) === true) {
             throw new MoodleException(
-                $response['message']
-                ?? 'Moodle request failed: '.$response->body()
+                $data['message']
+                ?? 'Moodle request failed: '.$data->body()
             );
         }
 
-        return $response;
+        return $data ?? [];
     }
 
     public function getCourses(string $term = '', string $field = ''): GetCoursesByField
@@ -647,5 +640,16 @@ class LaravelMoodle
             ->contains(function (array $course) use ($courseId): bool {
                 return (int) $course['id'] === $courseId;
             });
+    }
+
+    private function getMoodleUserAttributes(Model $user): array
+    {
+        $attributes = [];
+
+        foreach (config('laravel-moodle.sync_attributes', []) as $moodleField => $userField) {
+            $attributes[$moodleField] = $user->{$userField};
+        }
+
+        return $attributes;
     }
 }

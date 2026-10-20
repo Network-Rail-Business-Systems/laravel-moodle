@@ -13,22 +13,31 @@ class AddTokenTest extends TestCase
     {
         parent::setUp();
 
-        session(['moodle-token' => 'ABC123']);
+        config([
+            'laravel-moodle.admin_token' => 'ABC123',
+        ]);
     }
 
     public function test_no_moodle_token(): void
     {
-        session()->forget('moodle-token');
+        config([
+            'laravel-moodle.admin_token' => null,
+        ]);
 
         $this->expectException(MoodleTokenMissingException::class);
 
-        AddToken::toImage('test');
+        AddToken::toImages('test.png');
     }
 
     #[DataProvider('images')]
-    public function test_add_token_to_images($content, $expected): void
-    {
-        $this->assertEquals($expected, AddToken::toImages($content));
+    public function test_add_token_to_images(
+        string $content,
+        string $expected
+    ): void {
+        $this->assertEquals(
+            $expected,
+            AddToken::toImages($content)
+        );
     }
 
     public static function images(): array

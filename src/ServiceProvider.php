@@ -71,7 +71,7 @@ class ServiceProvider extends BaseServiceProvider
                             'fullname' => $user->name,
                             'id' => $user->moodle_id,
                             'lastname' => $user->last_name,
-                            'username' => $user->username,
+                            'username' => $user->email,
                         ],
                     ],
                 ]),

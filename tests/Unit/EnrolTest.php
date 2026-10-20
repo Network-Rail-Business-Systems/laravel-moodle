@@ -10,12 +10,6 @@ use NetworkRailBusinessSystems\LaravelMoodle\Tests\TestCase;
 
 class EnrolTest extends TestCase
 {
-    public function setUp(): void
-    {
-        parent::setUp();
-        session(['moodle-token' => 'ABC123']);
-    }
-
     public function test_successful_enrol_user_on_course()
     {
         Http::fake([

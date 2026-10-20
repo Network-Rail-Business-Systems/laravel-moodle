@@ -9,13 +9,6 @@ use NetworkRailBusinessSystems\LaravelMoodle\Tests\TestCase;
 
 class AssignmentTest extends TestCase
 {
-    public function setUp(): void
-    {
-        parent::setUp();
-
-        session(['moodle-token' => 'ABC123']);
-    }
-
     public function test_get_course_assignments()
     {
         Http::fake([
