@@ -583,21 +583,17 @@ class LaravelMoodle
 
     private function createMoodleUser(Model $user): int
     {
+        $attributes = $this->getMoodleUserAttributes($user);
+
         $response = $this->callMoodle(
             'core_user_create_users',
             [
                 'users' => [
-                    [
+                    array_merge($attributes, [
                         'auth' => 'manual',
-                        'city' => $user->location,
-                        'department' => $user->business_area,
-                        'description' => $user->title,
-                        'email' => $user->email,
-                        'firstname' => $user->first_name,
-                        'lastname' => $user->last_name,
-                        'password' => 'A1!' . bin2hex(random_bytes(8)),
+                        'password' => 'A1!'.bin2hex(random_bytes(8)),
                         'username' => strtolower($user->email),
-                    ],
+                    ]),
                 ],
             ]
         );
@@ -615,20 +611,16 @@ class LaravelMoodle
         int $moodleUserId,
         Model $user
     ): void {
+        $attributes = $this->getMoodleUserAttributes($user);
+
         $this->callMoodle(
             'core_user_update_users',
             [
                 'users' => [
-                    [
+                    array_merge($attributes, [
                         'id' => $moodleUserId,
-                        'city' => $user->location,
-                        'department' => $user->business_area,
-                        'description' => $user->title,
-                        'email' => $user->email,
-                        'firstname' => $user->first_name,
-                        'lastname' => $user->last_name,
                         'username' => strtolower($user->email),
-                    ],
+                    ]),
                 ],
             ]
         );
