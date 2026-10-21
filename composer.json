@@ -34,8 +34,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "NetworkRailBusinessSystems\\LaravelMoodle\\ServiceProvider",
-                "NetworkRailBusinessSystems\\LaravelMoodle\\AuthServiceProvider"
+                "NetworkRailBusinessSystems\\LaravelMoodle\\ServiceProvider"
             ],
             "aliases": {
                 "LaravelMoodle": "NetworkRailBusinessSystems\\LaravelMoodle\\Facades\\LaravelMoodle",
