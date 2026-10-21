@@ -13,8 +13,6 @@ class CoursesTest extends TestCase
     public function setUp(): void
     {
         parent::setUp();
-
-        session(['moodle-token' => 'ABC123']);
     }
 
     public function test_get_courses()
@@ -224,5 +222,18 @@ class CoursesTest extends TestCase
         $data = LaravelMoodle::getCourses();
 
         $this->assertEquals('Course With & < html >', $data->courses[0]->fullname());
+    }
+
+    public function test_get_user_courses()
+    {
+        Http::fake([
+            '*' => Http::response(MockResponses::getUserCourses(), 200),
+        ]);
+
+        $courses  = LaravelMoodle::getUserCourses(2);
+
+        $this->assertCount(2, $courses);
+        $this->assertEquals(4, $courses[0]['id']);
+        $this->assertEquals('My First Course', $courses[0]['fullname']);
     }
 }

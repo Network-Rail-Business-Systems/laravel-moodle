@@ -1,6 +1,6 @@
 # LaravelMoodle
 
-A Laravel package to authenticate with Moodle and retrieve course information.
+A Laravel package for synchronising users with Moodle and retrieve course information.
 
 ## Installation
 
@@ -16,11 +16,7 @@ Your User table should include the following columns:
 
 ```php
 $table
-    ->string('password')
-    ->nullable();
-
-$table
-    ->string('username')
+    ->string('email')
     ->unique()
     ->nullable();
 
@@ -31,7 +27,7 @@ $table
 
 ### Configuration
 
-Optionally, publish the config file. This is required if you want to customise which fields are synchronised from Moodle to your user model.
+Optionally, publish the config file. This is required if you want to customise which user fields are synchronised from your Laravel user model to Moodle.
 
 ```bash
 php artisan vendor:publish
@@ -39,29 +35,23 @@ php artisan vendor:publish
 
 Update your auth.php config file, providers > users > drivers to `moodle`
 
-Update the .env file with the `MOODLE_BASE_URL` with the url of your Moodle installation and `MOODLE_ADMIN_TOKEN` with a token for an existing user that has permission to search existing users.
+Update the .env file with the:
+`MOODLE_BASE_URL` with the url of your Moodle installation
+`MOODLE_ADMIN_TOKEN` is the token for the authorised Moodle Web Service user.
 
 ### User Model
 
-When a user logs in for the first time their email, username and id are set from Moodle in the user model. If you want to customise the fields that are synchronised then publish the `laravel-moodle` config file and update the sync_attributes array.
+When a user is synchronised with Moodle, the package will create the Moodle user if they do not already exist, or update their details if they do. 
 
-Any fields that you synchronise will need to added to the `protected $fillable` array in your User model.
+The Moodle user ID is then stored in the local user's moodle_id field.
 
-If you want to use a different model to `App\User` then update the `user_model` in the `laravel-moodle` config file.
-
-### Credentials
-
-The package expects the credentials from the LoginController to be an array containing `username` and `password`, but if you want to use `username` instead then add `MOODLE_LOGIN_ATTRIBUTE=username` to your .env file.
-
-**Users set as a Site Administrator in Moodle will not be able to login using LaravelMoodle until they manually generate a token for their account as per step #5 below.**
+To customise which user fields are synchronised from your Laravel user model to Moodle, publish the laravel-moodle config file and update the sync_attributes array.
 
 ### Middleware
 
-The package contains a middleware that you can use to check if the user has a moodle token in their session. If they don't it will log the user out from their Laravel session and redirect the user ot the login page.
+The package provides `laravel-moodle` middleware to synchronise the authenticated Laravel user with Moodle.
 
-To use globally list the `NetworkRailBusinessSystems\LaravelMoodle\Middleware\MoodleToken::class` in the `$middleware` property of `app/Http/Kernel.php`.
-
-To use on specific routes add `'laravel-moodle' => \NetworkRailBusinessSystems\LaravelMoodle\Middleware\MoodleToken::class` to the `$routeMiddleware` in `app/Http/Kernel.php` and then add to your route.
+The middleware should be used after the application's user authentication middleware.
 
 ```php
 Route::get('/', function () {})->middleware('laravel-moodle');
@@ -110,7 +100,10 @@ In order to access data from Moodle, it needs to be configured first as the web 
         - core_course_get_courses_by_field
         - core_course_search_courses
         - core_enrol_get_enrolled_users
+        - core_enrol_get_users_courses
+        - core_user_create_users
         - core_user_get_users
+        - core_user_update_users
         - enrol_manual_enrol_users
         - enrol_manual_unenrol_users 
         - enrol_self_enrol_user
@@ -147,6 +140,21 @@ use NetworkRailBusinessSystems\LaravelMoodle\LaravelMoodle as LaravelMoodle;
 ```
 
 The package uses [Spatie Data Transfer Objects](https://github.com/spatie/data-transfer-object) to format the response into objects.
+### Create or Update users
+
+Return the Moodle user ID.
+
+```php
+$moodleId = LaravelMoodle::syncUser($user, $userKey, $moodleKey);
+
+echo $moodleId; // 123
+```
+
+Search Moodle for an existing user.
+
+Update the Moodle user if one exists.
+
+Create the Moodle user if one does not exist.
 
 ### Get Courses
 

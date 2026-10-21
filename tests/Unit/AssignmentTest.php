@@ -9,13 +9,6 @@ use NetworkRailBusinessSystems\LaravelMoodle\Tests\TestCase;
 
 class AssignmentTest extends TestCase
 {
-    public function setUp(): void
-    {
-        parent::setUp();
-
-        session(['moodle-token' => 'ABC123']);
-    }
-
     public function test_get_course_assignments()
     {
         Http::fake([
@@ -81,7 +74,7 @@ class AssignmentTest extends TestCase
         $this->assertNotNull($status);
         $this->assertEquals(
             'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-            $status->lastattempt->submission->plugins[0]->editorfields[0]->text
+            $status->lastattempt->submission->plugins[0]->editorfields[0]->text,
         );
     }
 }

@@ -16,8 +16,6 @@ class CategoryTest extends TestCase
         Http::fake([
             '*' => Http::response(MockResponses::categories(), 200),
         ]);
-
-        session(['moodle-token' => 'ABC123']);
     }
 
     public function test_get_categories()
