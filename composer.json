@@ -19,8 +19,7 @@
         "laravel/ui": "^4",
         "hannesvdvreken/guzzle-debugbar": "^4",
         "laravel/pint": "^1",
-        "larastan/larastan": "^3",
-        "pint": "php ./vendor/bin/pint --preset=per"
+        "larastan/larastan": "^3"
     },
     "autoload": {
         "psr-4": {
