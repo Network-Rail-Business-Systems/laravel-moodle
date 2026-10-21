@@ -76,7 +76,7 @@ class LaravelMoodle
         if (isset($data['exception']) === true) {
             throw new MoodleException(
                 $data['message']
-                ?? 'Moodle request failed: '.$data->body()
+                ?? 'Moodle request failed: '.$response->body()
             );
         }
 
