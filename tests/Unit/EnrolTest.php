@@ -41,7 +41,7 @@ class EnrolTest extends TestCase
                     'errorcode' => 'invalidparameter',
                     'message' => 'Invalid parameter value detected (Context does not exist)',
                 ],
-                200
+                200,
             ),
         ]);
 

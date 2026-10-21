@@ -19,16 +19,16 @@ class AddToken
         return Str::of($content)->replace(
             ['.png', '.PNG', '.jpg', '.JPG'],
             [
-                '.png?token='.$this->token,
-                '.PNG?token='.$this->token,
-                '.jpg?token='.$this->token,
-                '.JPG?token='.$this->token,
-            ]
+                '.png?token=' . $this->token,
+                '.PNG?token=' . $this->token,
+                '.jpg?token=' . $this->token,
+                '.JPG?token=' . $this->token,
+            ],
         );
     }
 
     public function toUrl(string $url): string
     {
-        return $url.'?token='.$this->token;
+        return $url . '?token=' . $this->token;
     }
 }

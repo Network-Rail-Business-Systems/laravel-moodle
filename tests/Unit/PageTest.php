@@ -17,7 +17,7 @@ class PageTest extends TestCase
                     'status' => true,
                     'warnings' => [],
                 ],
-                200
+                200,
             ),
         ]);
 
@@ -35,7 +35,7 @@ class PageTest extends TestCase
                     'errorcode' => 'invalidparameter',
                     'message' => 'Invalid parameter value detected (Missing required key in single structure: pageid)',
                 ],
-                200
+                200,
             ),
         ]);
 

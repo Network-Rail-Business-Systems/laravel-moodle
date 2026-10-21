@@ -53,15 +53,15 @@ class LaravelMoodle
 
             $this->http->withMiddleware(
                 new Middleware(
-                    new Profiler($debugbar->getCollector('time'))
-                )
+                    new Profiler($debugbar->getCollector('time')),
+                ),
             );
         }
     }
 
     private function callMoodle(
         string $function,
-        array $parameters = []
+        array $parameters = [],
     ): array {
         $response = $this->http
             ->asForm()
@@ -76,7 +76,7 @@ class LaravelMoodle
         if (isset($data['exception']) === true) {
             throw new MoodleException(
                 $data['message']
-                ?? 'Moodle request failed: '.$response->body()
+                ?? 'Moodle request failed: ' . $response->body(),
             );
         }
 
@@ -90,7 +90,7 @@ class LaravelMoodle
             [
                 'field' => $field,
                 'value' => $term,
-            ]
+            ],
         );
 
         $courses['courses'] = array_map(
@@ -99,7 +99,7 @@ class LaravelMoodle
 
                 return $course;
             },
-            $courses['courses'] ?? []
+            $courses['courses'] ?? [],
         );
 
         return new GetCoursesByField($courses);
@@ -112,7 +112,7 @@ class LaravelMoodle
             [
                 'field' => 'category',
                 'value' => $categoryId,
-            ]
+            ],
         );
 
         return new GetCoursesByField($courses);
@@ -125,7 +125,7 @@ class LaravelMoodle
             [
                 'field' => 'id',
                 'value' => $id,
-            ]
+            ],
         );
 
         abort_if(empty($courses['courses']) === true, 404, 'Course not found');
@@ -147,7 +147,7 @@ class LaravelMoodle
                 'page' => $page,
                 'perpage' => $perPage,
                 'limittoenrolled' => $onlyEnrolled,
-            ]
+            ],
         );
 
         if (isset($courses['exception'])) {
@@ -163,7 +163,7 @@ class LaravelMoodle
             'core_course_get_contents',
             [
                 'courseid' => $id,
-            ]
+            ],
         );
 
         $contents = new Collection($courseContents);
@@ -179,7 +179,7 @@ class LaravelMoodle
             'core_course_get_course_module',
             [
                 'cmid' => $id,
-            ]
+            ],
         );
 
         return new CourseModuleById($module);
@@ -191,7 +191,7 @@ class LaravelMoodle
             'mod_page_get_pages_by_courses',
             [
                 'courseids' => [$courseId],
-            ]
+            ],
         );
 
         return new CoursePages($pages);
@@ -212,7 +212,7 @@ class LaravelMoodle
             'mod_scorm_get_scorms_by_courses',
             [
                 'courseids' => [$courseId],
-            ]
+            ],
         );
 
         return new GetScorms($scorms);
@@ -233,7 +233,7 @@ class LaravelMoodle
             'mod_scorm_get_scorm_scoes',
             [
                 'scormid' => $scormId,
-            ]
+            ],
         );
 
         return new GetScoes($scoes);
@@ -245,7 +245,7 @@ class LaravelMoodle
             'mod_resource_get_resources_by_courses',
             [
                 'courseids' => [$courseId],
-            ]
+            ],
         );
 
         return new GetResources($resources);
@@ -267,7 +267,7 @@ class LaravelMoodle
             [
                 'courseid' => $courseId,
                 'userid' => $userId,
-            ]
+            ],
         );
 
         return new CourseCompletion($completion);
@@ -280,7 +280,7 @@ class LaravelMoodle
             [
                 'courseid' => $courseId,
                 'userid' => $userId,
-            ]
+            ],
         );
 
         return new CourseActivityStatuses($completion);
@@ -292,7 +292,7 @@ class LaravelMoodle
             'mod_assign_get_assignments',
             [
                 'courseids' => [$courseId],
-            ]
+            ],
         );
 
         return new GetCourseAssignments($assignments);
@@ -316,7 +316,7 @@ class LaravelMoodle
             [
                 'assignid' => $assignmentId,
                 'userid' => $userId,
-            ]
+            ],
         );
 
         return new SubmissionStatus($submissionStatus);
@@ -335,7 +335,7 @@ class LaravelMoodle
                         'itemid' => $itemId,
                     ],
                 ],
-            ]
+            ],
         );
 
         if (count($assignment) > 0) {
@@ -355,7 +355,7 @@ class LaravelMoodle
             'gradereport_overview_get_course_grades',
             [
                 'userid' => $userId,
-            ]
+            ],
         );
 
         return new GetGrades($grades);
@@ -386,7 +386,7 @@ class LaravelMoodle
                         'courseid' => $courseId,
                     ],
                 ],
-            ]
+            ],
         );
 
         return true;
@@ -400,7 +400,7 @@ class LaravelMoodle
                 'courseid' => $courseId,
                 'password' => $enrollmentKey,
                 'instanceid' => $instanceId,
-            ]
+            ],
         );
 
         return new SelfEnrol($enrol);
@@ -412,7 +412,7 @@ class LaravelMoodle
             'core_enrol_get_enrolled_users',
             [
                 'courseid' => $courseId,
-            ]
+            ],
         );
 
         $users = new Collection($enrolledUsers);
@@ -434,7 +434,7 @@ class LaravelMoodle
                         'courseid' => $courseId,
                     ],
                 ],
-            ]
+            ],
         );
 
         return true;
@@ -448,7 +448,7 @@ class LaravelMoodle
                 'userid' => $userId,
                 'courseid' => $courseId,
                 'search' => $search,
-            ]
+            ],
         );
 
         return new GetBadges($badges);
@@ -476,7 +476,7 @@ class LaravelMoodle
                         'value' => $searchTerm,
                     ],
                 ],
-            ]
+            ],
         );
 
         $categories = new Collection($categories);
@@ -492,7 +492,7 @@ class LaravelMoodle
             'mod_page_view_page',
             [
                 'pageid' => $pageId,
-            ]
+            ],
         );
 
         return $page['status'];
@@ -504,7 +504,7 @@ class LaravelMoodle
             'mod_resource_view_resource',
             [
                 'resourceid' => $resourceId,
-            ]
+            ],
         );
 
         return $resource['status'];
@@ -518,7 +518,7 @@ class LaravelMoodle
                 'courseid' => $courseId,
                 'year' => $year,
                 'month' => $month,
-            ]
+            ],
         );
 
         return new CalendarMonthly($calendar);
@@ -530,7 +530,7 @@ class LaravelMoodle
             'core_enrol_get_users_courses',
             [
                 'userid' => $moodleUserId,
-            ]
+            ],
         );
 
         return collect($response);
@@ -540,11 +540,11 @@ class LaravelMoodle
     public function syncUser(
         Model $user,
         string $userKey = 'email',
-        ?string $moodleKey = 'email'
+        ?string $moodleKey = 'email',
     ): int {
         $moodleUser = $this->searchUsers(
             $user->{$userKey},
-            $moodleKey
+            $moodleKey,
         )->users[0] ?? null;
 
         if ($moodleUser === null) {
@@ -554,7 +554,7 @@ class LaravelMoodle
 
             $this->updateMoodleUser(
                 $moodleUserId,
-                $user
+                $user,
             );
         }
 
@@ -575,7 +575,7 @@ class LaravelMoodle
                         'value' => $searchTerm,
                     ],
                 ],
-            ]
+            ],
         );
 
         return new GetUsers($users);
@@ -591,16 +591,16 @@ class LaravelMoodle
                 'users' => [
                     array_merge($attributes, [
                         'auth' => 'manual',
-                        'password' => 'A1!'.bin2hex(random_bytes(8)),
+                        'password' => 'A1!' . bin2hex(random_bytes(8)),
                         'username' => strtolower($user->email),
                     ]),
                 ],
-            ]
+            ],
         );
 
         if (isset($response[0]['id']) === false) {
             throw new MoodleException(
-                $response['message'] ?? 'Moodle did not return a user ID.'
+                $response['message'] ?? 'Moodle did not return a user ID.',
             );
         }
 
@@ -609,7 +609,7 @@ class LaravelMoodle
 
     private function updateMoodleUser(
         int $moodleUserId,
-        Model $user
+        Model $user,
     ): void {
         $attributes = $this->getMoodleUserAttributes($user);
 
@@ -622,7 +622,7 @@ class LaravelMoodle
                         'username' => strtolower($user->email),
                     ]),
                 ],
-            ]
+            ],
         );
     }
 

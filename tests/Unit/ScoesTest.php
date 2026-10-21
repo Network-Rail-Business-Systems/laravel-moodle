@@ -54,7 +54,7 @@ class ScoesTest extends TestCase
                     ],
                     'warnings' => [],
                 ],
-                200
+                200,
             ),
         ]);
     }

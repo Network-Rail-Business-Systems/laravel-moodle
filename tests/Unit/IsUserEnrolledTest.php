@@ -16,7 +16,7 @@ class IsUserEnrolledTest extends TestCase
         ]);
 
         $this->assertTrue(
-            LaravelMoodle::isUserEnrolled(2, 4)
+            LaravelMoodle::isUserEnrolled(2, 4),
         );
     }
 
@@ -27,7 +27,7 @@ class IsUserEnrolledTest extends TestCase
         ]);
 
         $this->assertFalse(
-            LaravelMoodle::isUserEnrolled(2, 99)
+            LaravelMoodle::isUserEnrolled(2, 99),
         );
     }
 }

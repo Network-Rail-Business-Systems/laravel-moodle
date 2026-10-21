@@ -12,7 +12,7 @@ class MoodleToken
 
         if (empty($token) === true) {
             throw new MoodleTokenMissingException(
-                'The Moodle admin token is not configured.'
+                'The Moodle admin token is not configured.',
             );
         }
 

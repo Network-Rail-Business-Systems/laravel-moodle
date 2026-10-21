@@ -31,7 +31,7 @@ class CategoriesTest extends TestCase
                     ],
                 ],
             ],
-            Categories::buildTree($categories)->toArray()
+            Categories::buildTree($categories)->toArray(),
         );
     }
 }

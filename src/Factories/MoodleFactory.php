@@ -16,7 +16,7 @@ abstract class MoodleFactory
 
     public static function make(): FlexibleDataTransferObject
     {
-        $factory = new static;
+        $factory = new static();
 
         return $factory->makeOne();
     }
@@ -24,7 +24,7 @@ abstract class MoodleFactory
     public static function makeMany(int $count = 3): array
     {
         $data = [];
-        $factory = new static;
+        $factory = new static();
 
         for ($current = 0; $current < $count; $current++) {
             $data[] = $factory->makeOne();

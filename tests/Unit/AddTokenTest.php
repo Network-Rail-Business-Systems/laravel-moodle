@@ -32,11 +32,11 @@ class AddTokenTest extends TestCase
     #[DataProvider('images')]
     public function test_add_token_to_images(
         string $content,
-        string $expected
+        string $expected,
     ): void {
         $this->assertEquals(
             $expected,
-            AddToken::toImages($content)
+            AddToken::toImages($content),
         );
     }
 
@@ -54,7 +54,7 @@ class AddTokenTest extends TestCase
     {
         $this->assertEquals(
             'http://moodle.test/download/spreadsheet.xlsx?token=ABC123',
-            AddToken::toUrl('http://moodle.test/download/spreadsheet.xlsx')
+            AddToken::toUrl('http://moodle.test/download/spreadsheet.xlsx'),
         );
     }
 }
