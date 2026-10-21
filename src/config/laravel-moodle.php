@@ -14,7 +14,7 @@ return [
 
     /**
      * User attributes to sync to the user model
-     * moodle field name => db field name
+     * Moodle field name => Laravel field name
      */
     'sync_attributes' => [
         'city' => 'location',
