@@ -12,8 +12,6 @@ class ScoesTest extends TestCase
     {
         parent::setUp();
 
-        session(['moodle-token' => 'ABC123']);
-
         Http::fake([
             '*' => Http::response(
                 [
@@ -56,7 +54,7 @@ class ScoesTest extends TestCase
                     ],
                     'warnings' => [],
                 ],
-                200
+                200,
             ),
         ]);
     }

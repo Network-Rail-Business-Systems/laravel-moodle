@@ -11,7 +11,7 @@ use NetworkRailBusinessSystems\LaravelMoodle\Mocks\MockResponses;
 
 class ServiceProvider extends BaseServiceProvider
 {
-    const string EMULATOR_URL = 'http://moodle.test';
+    public const string EMULATOR_URL = 'http://moodle.test';
 
     public function register(): void
     {
@@ -23,10 +23,10 @@ class ServiceProvider extends BaseServiceProvider
     public function boot(): void
     {
         $this->publishes([
-            __DIR__.'/config/laravel-moodle.php' => config_path('laravel-moodle.php'),
+            __DIR__ . '/config/laravel-moodle.php' => config_path('laravel-moodle.php'),
         ]);
 
-        $this->mergeConfigFrom(__DIR__.'/config/laravel-moodle.php', 'laravel-moodle');
+        $this->mergeConfigFrom(__DIR__ . '/config/laravel-moodle.php', 'laravel-moodle');
 
         if (config('laravel-moodle.emulator_enabled') === true) {
             self::startEmulator();
@@ -71,7 +71,7 @@ class ServiceProvider extends BaseServiceProvider
                             'fullname' => $user->name,
                             'id' => $user->moodle_id,
                             'lastname' => $user->last_name,
-                            'username' => $user->username,
+                            'username' => $user->email,
                         ],
                     ],
                 ]),
@@ -87,23 +87,23 @@ class ServiceProvider extends BaseServiceProvider
                 'core_user_update_users' => Http::response([]),
 
                 'core_course_get_courses_by_field' => Http::response(
-                    MockResponses::getCourses()
+                    MockResponses::getCourses(),
                 ),
 
                 'core_course_get_contents' => Http::response(
-                    MockResponses::getCourseContents()
+                    MockResponses::getCourseContents(),
                 ),
 
                 'core_course_search_courses' => Http::response(
-                    MockResponses::searchCourses()
+                    MockResponses::searchCourses(),
                 ),
 
                 'core_course_get_categories' => Http::response(
-                    MockResponses::categories()
+                    MockResponses::categories(),
                 ),
 
                 'core_enrol_get_enrolled_users' => Http::response(
-                    MockResponses::enrolledUsers()
+                    MockResponses::enrolledUsers(),
                 ),
 
                 'core_enrol_get_users_courses' => Http::response([
@@ -116,19 +116,19 @@ class ServiceProvider extends BaseServiceProvider
                 ]),
 
                 'core_completion_get_course_completion_status' => Http::response(
-                    MockResponses::courseCompletion()
+                    MockResponses::courseCompletion(),
                 ),
 
                 'core_completion_get_activities_completion_status' => Http::response(
-                    MockResponses::courseCompletion()
+                    MockResponses::courseCompletion(),
                 ),
 
                 'core_calendar_get_calendar_monthly_view' => Http::response(
-                    MockResponses::calendarResponse()
+                    MockResponses::calendarResponse(),
                 ),
 
                 'mod_page_get_pages_by_courses' => Http::response(
-                    MockResponses::coursePages()
+                    MockResponses::coursePages(),
                 ),
 
                 'mod_page_view_page' => Http::response([
@@ -137,7 +137,7 @@ class ServiceProvider extends BaseServiceProvider
                 ]),
 
                 'mod_resource_get_resources_by_courses' => Http::response(
-                    MockResponses::getResources()
+                    MockResponses::getResources(),
                 ),
 
                 'mod_resource_view_resource' => Http::response([
@@ -146,33 +146,33 @@ class ServiceProvider extends BaseServiceProvider
                 ]),
 
                 'mod_scorm_get_scorms_by_courses' => Http::response(
-                    MockResponses::getScorms()
+                    MockResponses::getScorms(),
                 ),
 
                 'mod_scorm_get_scorm_scoes' => Http::response(
-                    MockResponses::getScoes()
+                    MockResponses::getScoes(),
                 ),
 
                 'mod_assign_get_assignments' => Http::response(
-                    MockResponses::courseAssignments()
+                    MockResponses::courseAssignments(),
                 ),
 
                 'mod_assign_get_submission_status' => Http::response(
-                    MockResponses::assessmentStatus()
+                    MockResponses::assessmentStatus(),
                 ),
 
                 'mod_assign_save_submission' => Http::response([]),
 
                 'gradereport_overview_get_course_grades' => Http::response(
-                    MockResponses::getGrades()
+                    MockResponses::getGrades(),
                 ),
 
                 'enrol_self_enrol_user' => Http::response(
-                    MockResponses::selfEnrol()
+                    MockResponses::selfEnrol(),
                 ),
 
                 'enrol_manual_enrol_users' => Http::response(
-                    MockResponses::manualEnrol()
+                    MockResponses::manualEnrol(),
                 ),
 
                 'enrol_manual_unenrol_users' => Http::response([]),
@@ -182,7 +182,7 @@ class ServiceProvider extends BaseServiceProvider
                     'errorcode' => 'unsupported_emulator_function',
                     'message' => sprintf(
                         'No emulator response exists for Moodle function [%s].',
-                        $function ?? 'missing wsfunction'
+                        $function ?? 'missing wsfunction',
                     ),
                 ], 500),
             };

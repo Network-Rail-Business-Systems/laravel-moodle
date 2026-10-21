@@ -18,7 +18,7 @@ class SearchUsersTest extends TestCase
         $users = LaravelMoodle::searchUsers('testuser');
 
         $this->assertNotNull($users);
-        $this->assertEquals('testuser', $users->users[0]->username);
+        $this->assertEquals('test.user@fake.email', $users->users[0]->email);
         $this->assertEquals('Test User', $users->users[0]->fullname);
     }
 }

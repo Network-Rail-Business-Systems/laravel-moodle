@@ -46,10 +46,7 @@ class SyncUserTest extends TestCase
 
         $user = User::create([
             'name' => 'Test User',
-            'email' => 'test.user.nonexistent@fake.email',
-            'username' => 'testuser',
-            'first_name' => 'Test',
-            'last_name' => 'User',
+            'email' => 'test.user@fake.email',
         ]);
 
         $moodleUserId = LaravelMoodle::syncUser($user);
@@ -68,9 +65,6 @@ class SyncUserTest extends TestCase
         $user = User::create([
             'name' => 'Test User',
             'email' => 'test.user@fake.email',
-            'username' => 'testuser',
-            'first_name' => 'Test',
-            'last_name' => 'User',
         ]);
 
         $this->expectException(MoodleException::class);

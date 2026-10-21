@@ -8,23 +8,21 @@ return [
     'base_url' => env('MOODLE_BASE_URL'),
 
     /**
-     * A token for an admin user that can search users
+     * The Moodle web service token used by TMS to make Moodle requests.
      */
     'admin_token' => env('MOODLE_ADMIN_TOKEN'),
 
     /**
-     * The login attribute to use. Default is email, but can be overwritten, for example, username
-     */
-    'login_attribute' => env('MOODLE_LOGIN_ATTRIBUTE', 'username'),
-
-    /**
      * User attributes to sync to the user model
-     * db field name => moodle field name
+     * Moodle field name => Laravel field name
      */
     'sync_attributes' => [
-        'moodle_id' => 'id',
-        'name' => 'fullname',
+        'city' => 'location',
+        'department' => 'business_area',
+        'description' => 'title',
         'email' => 'email',
+        'firstname' => 'first_name',
+        'lastname' => 'last_name',
     ],
 
     /**
