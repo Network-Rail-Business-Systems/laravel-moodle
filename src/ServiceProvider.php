@@ -41,11 +41,11 @@ class ServiceProvider extends BaseServiceProvider
         $modelClass = config('laravel-moodle.user_model');
 
         $user = $modelClass::query()->firstOrCreate([
-            'email' => 'gandalf',
+            'email' => 'gandalf.stormcrow@networkrail.co.uk',
         ], [
             'azure_id' => '#1234567890!',
             'business_area' => 'Isengard',
-            'email' => 'gandalf.stormcrow@example.com',
+            'email' => 'gandalf.stormcrow@networkrail.co.uk',
             'location' => 'Rohan',
             'moodle_id' => 123,
             'name' => 'Gandalf Stormcrow',
