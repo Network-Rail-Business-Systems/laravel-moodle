@@ -15,7 +15,6 @@ class CategoriesTest extends TestCase
         Http::fake([
             '*' => Http::response(MockResponses::categories()),
         ]);
-        session(['moodle-token' => 'ABC123']);
 
         $categories = LaravelMoodle::getCategories();
 
@@ -32,7 +31,7 @@ class CategoriesTest extends TestCase
                     ],
                 ],
             ],
-            Categories::buildTree($categories)->toArray()
+            Categories::buildTree($categories)->toArray(),
         );
     }
 }

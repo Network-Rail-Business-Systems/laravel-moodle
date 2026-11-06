@@ -15,8 +15,6 @@ class BadgeTest extends TestCase
             '*' => Http::response(MockResponses::badges(), 200),
         ]);
 
-        session(['moodle-token' => 'ABC123']);
-
         $data = LaravelMoodle::getBadges();
 
         $this->assertNotNull($data);

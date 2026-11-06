@@ -7,7 +7,7 @@ use NetworkRailBusinessSystems\LaravelMoodle\Facades\LaravelMoodle;
 use NetworkRailBusinessSystems\LaravelMoodle\Mocks\MockResponses;
 use NetworkRailBusinessSystems\LaravelMoodle\Tests\TestCase;
 
-class UserTest extends TestCase
+class SearchUsersTest extends TestCase
 {
     public function test_search_users(): void
     {
@@ -15,12 +15,10 @@ class UserTest extends TestCase
             '*' => Http::response(MockResponses::userSearch()),
         ]);
 
-        session(['moodle-token' => 'ABC123']);
-
         $users = LaravelMoodle::searchUsers('testuser');
 
         $this->assertNotNull($users);
-        $this->assertEquals('testuser', $users->users[0]->username);
+        $this->assertEquals('test.user@fake.email', $users->users[0]->email);
         $this->assertEquals('Test User', $users->users[0]->fullname);
     }
 }
