@@ -2,7 +2,6 @@
 
 namespace NetworkRailBusinessSystems\LaravelMoodle;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Client\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
@@ -37,22 +36,7 @@ class ServiceProvider extends BaseServiceProvider
     {
         config()->set('laravel-moodle.base_url', self::EMULATOR_URL);
 
-        /** @var class-string<Model> $modelClass */
-        $modelClass = config('laravel-moodle.user_model');
-
-        $user = $modelClass::query()->firstOrCreate([
-            'email' => 'gandalf',
-        ], [
-            'azure_id' => '#1234567890!',
-            'business_area' => 'Isengard',
-            'email' => 'gandalf.stormcrow@example.com',
-            'location' => 'Rohan',
-            'moodle_id' => 123,
-            'name' => 'Gandalf Stormcrow',
-            'title' => 'Wizard',
-        ]);
-
-        Http::fake(function (Request $request) use ($user) {
+        Http::fake(function (Request $request) {
             if (str_starts_with($request->url(), self::EMULATOR_URL) === false) {
                 return null;
             }
@@ -63,15 +47,15 @@ class ServiceProvider extends BaseServiceProvider
                 'core_user_get_users' => Http::response([
                     'users' => [
                         [
-                            'city' => $user->location,
-                            'department' => $user->business_area,
-                            'description' => $user->title,
-                            'email' => $user->email,
-                            'firstname' => $user->first_name,
-                            'fullname' => $user->name,
-                            'id' => $user->moodle_id,
-                            'lastname' => $user->last_name,
-                            'username' => $user->email,
+                            'city' => 'Rohan',
+                            'department' => 'Isengard',
+                            'description' => 'Wizard',
+                            'email' => 'gandalf.stormcrow@networkrail.co.uk',
+                            'firstname' => 'Gandalf',
+                            'fullname' => 'Gandalf Stormcrow',
+                            'id' => 123,
+                            'lastname' => 'Stormcrow',
+                            'username' => 'gandalf.stormcrow@networkrail.co.uk',
                         ],
                     ],
                 ]),
