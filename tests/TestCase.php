@@ -18,8 +18,6 @@ class TestCase extends Orchestra
         $this->artisan('ui:controllers')->run();
 
         Auth::routes();
-
-        Config::set('laravel-moodle.user_model', User::class);
     }
 
     protected function getPackageProviders($app)

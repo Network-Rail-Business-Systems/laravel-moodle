@@ -2,7 +2,6 @@
 
 namespace NetworkRailBusinessSystems\LaravelMoodle;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Client\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
@@ -36,9 +35,6 @@ class ServiceProvider extends BaseServiceProvider
     public static function startEmulator(): void
     {
         config()->set('laravel-moodle.base_url', self::EMULATOR_URL);
-
-        /** @var class-string<Model> $modelClass */
-        $modelClass = config('laravel-moodle.user_model');
 
         Http::fake(function (Request $request) {
             if (str_starts_with($request->url(), self::EMULATOR_URL) === false) {
