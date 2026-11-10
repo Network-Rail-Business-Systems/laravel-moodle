@@ -28,7 +28,7 @@
     },
     "scripts": {
         "larastan": "php ./vendor/bin/phpstan analyse",
-        "pint": "php ./vendor/bin/pint",
+        "pint": "php ./vendor/bin/pint --preset=per",
         "test": "php ./vendor/bin/phpunit"
     },
     "devDependencies": {

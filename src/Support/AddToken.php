@@ -4,15 +4,14 @@ namespace NetworkRailBusinessSystems\LaravelMoodle\Support;
 
 use Illuminate\Support\Str;
 use Illuminate\Support\Stringable;
-use NetworkRailBusinessSystems\LaravelMoodle\Exceptions\MoodleTokenMissingException;
 
 class AddToken
 {
+    private string $token;
+
     public function __construct()
     {
-        if (session()->has('moodle-token') === false) {
-            throw new MoodleTokenMissingException();
-        }
+        $this->token = MoodleToken::get();
     }
 
     public function toImages(string $content): Stringable
@@ -20,16 +19,16 @@ class AddToken
         return Str::of($content)->replace(
             ['.png', '.PNG', '.jpg', '.JPG'],
             [
-                '.png?token='.session('moodle-token'),
-                '.PNG?token='.session('moodle-token'),
-                '.jpg?token='.session('moodle-token'),
-                '.JPG?token='.session('moodle-token'),
-            ]
+                '.png?token=' . $this->token,
+                '.PNG?token=' . $this->token,
+                '.jpg?token=' . $this->token,
+                '.JPG?token=' . $this->token,
+            ],
         );
     }
 
     public function toUrl(string $url): string
     {
-        return $url.'?token='.session('moodle-token');
+        return $url . '?token=' . $this->token;
     }
 }

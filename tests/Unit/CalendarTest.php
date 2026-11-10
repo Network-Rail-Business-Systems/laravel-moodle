@@ -9,13 +9,6 @@ use NetworkRailBusinessSystems\LaravelMoodle\Tests\TestCase;
 
 class CalendarTest extends TestCase
 {
-    public function setUp(): void
-    {
-        parent::setUp();
-
-        session(['moodle-token' => 'ABC123']);
-    }
-
     public function test_get_calendar_monthly_view()
     {
         Http::fake([

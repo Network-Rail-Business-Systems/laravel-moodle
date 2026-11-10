@@ -17,11 +17,9 @@ class PageTest extends TestCase
                     'status' => true,
                     'warnings' => [],
                 ],
-                200
+                200,
             ),
         ]);
-
-        session(['moodle-token' => 'ABC123']);
 
         $this->assertTrue(LaravelMoodle::viewPageEvent(1));
     }
@@ -37,11 +35,9 @@ class PageTest extends TestCase
                     'errorcode' => 'invalidparameter',
                     'message' => 'Invalid parameter value detected (Missing required key in single structure: pageid)',
                 ],
-                200
+                200,
             ),
         ]);
-
-        session(['moodle-token' => 'ABC123']);
 
         LaravelMoodle::viewPageEvent(1);
     }
